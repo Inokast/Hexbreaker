@@ -626,10 +626,10 @@
             "m_Id": "cf8c4b906a454e46a4e1f8c1c2b73144"
         },
         {
-            "m_Id": "5274c4b3bb194b0fa0b36d3a85ed4a1b"
+            "m_Id": "0abec8b879d64d18b92d91ee6e3f414a"
         },
         {
-            "m_Id": "0abec8b879d64d18b92d91ee6e3f414a"
+            "m_Id": "5274c4b3bb194b0fa0b36d3a85ed4a1b"
         }
     ]
 }
@@ -1250,10 +1250,10 @@
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
     "m_Value": {
-        "r": 0.0748487114906311,
-        "g": 0.33500173687934878,
-        "b": 0.5471698045730591,
-        "a": 0.0
+        "r": 0.11013706773519516,
+        "g": 0.4245283007621765,
+        "b": 0.28467586636543276,
+        "a": 1.0
     },
     "isMainColor": false,
     "m_ColorMode": 1
