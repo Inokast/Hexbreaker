@@ -1,3 +1,7 @@
+// Hexbreaker - used in Combat System
+// Last modified: 05/25/23 - Dan Sanchez
+// Notes:
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
