@@ -1,5 +1,5 @@
 // Hexbreaker - Quick Time Event System
-// Last modified: 05/27/23 - Dan Sanchez
+// Last modified: 05/28/23 - Dan Sanchez
 // Notes: The goal is to make this flexible enough to be used in any scene where we want a QTE.
 
 using System.Collections;
@@ -8,11 +8,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+public enum QTEResult { NONE, LOW, MID, HIGH }
 public class QTEManager : MonoBehaviour
 {
-
-    [SerializeField] private TextMeshProUGUI inputDisplayText;
-    [SerializeField] private TextMeshProUGUI resultDisplayText;
+    public GameObject eventPanel;
+    public TextMeshProUGUI inputDisplayText;
+    public TextMeshProUGUI resultDisplayText;
 
     private float timerDuration;
     private int eventGen; // QTE generator
@@ -20,28 +21,28 @@ public class QTEManager : MonoBehaviour
     private bool inputWasCorrect;
     private bool timerIsActive;
 
+    public QTEResult eventResult;
+
     public void Start()
     {
+
         resultDisplayText.text = "";
         inputDisplayText.text = "";
         isWaitingForInput = false;
+        eventPanel.SetActive(false);
+        eventResult = QTEResult.NONE;    
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (isWaitingForInput == false)  // I put this here just for testing. Will loop QTE in game scene.
-        {
-            GenerateQTE(3.5f);
-        }
-
-        if (isWaitingForInput) 
+        if (isWaitingForInput == true) 
         {
             if (Input.anyKeyDown) 
             {
                 switch (eventGen)
                 {
-                    case 0:
+                    case 0: print("Event did not generate");
                         break;
 
                     case 1:
@@ -102,7 +103,7 @@ public class QTEManager : MonoBehaviour
 
                     default:
                         Debug.Log("Error! QTE Event generated not recognized.");
-                        break;
+                        break;                       
                 }
             }            
         }
@@ -110,9 +111,13 @@ public class QTEManager : MonoBehaviour
 
     public void GenerateQTE(float duration) 
     {
+        StopCoroutine(ClearQTESequence());
+        eventPanel.SetActive(true);
+        resultDisplayText.text = "";
         eventGen = Random.Range(1, 5);
         timerDuration = duration;
         StartCoroutine(Timer());
+
         switch (eventGen)
         {
             case 1:
@@ -142,20 +147,28 @@ public class QTEManager : MonoBehaviour
     private void InputReceived() 
     {
         eventGen = 0; // Reset
+        print("Input was detected");
         if (inputWasCorrect) 
         {
-            resultDisplayText.text = "PASS";
+            eventResult = QTEResult.HIGH;
+            resultDisplayText.text = "Nice!";
+            inputDisplayText.color = Color.yellow;
             StartCoroutine(ClearQTESequence());
         }
 
-        if (inputWasCorrect!) 
+        else if (inputWasCorrect == false)
         {
-            resultDisplayText.text = "FAIL";
+            eventResult = QTEResult.LOW;
+            resultDisplayText.text = "Fail...";
+            inputDisplayText.color = Color.red;
             StartCoroutine(ClearQTESequence());
-            
+
         }
 
-        //StopCoroutine(Timer());
+        else 
+        {
+            print("Error. Does not know if input result is null");
+        }
     }
 
     IEnumerator Timer() 
@@ -165,20 +178,23 @@ public class QTEManager : MonoBehaviour
         if (timerIsActive == true) 
         {
             eventGen = 0;
-            resultDisplayText.text = "FAIL";
+            eventResult = QTEResult.LOW;            
+            resultDisplayText.text = "Missed...";
+            inputDisplayText.color = Color.red;
             StartCoroutine(ClearQTESequence());
         }
     }
 
     IEnumerator ClearQTESequence() 
     {
-        yield return new WaitForSeconds(1.5f);
-        inputWasCorrect = false;
-        resultDisplayText.text = "";
-        inputDisplayText.text = "";
-        yield return new WaitForSeconds(1.5f);
         timerIsActive = false;
+        //yield return new WaitForSeconds(1.5f);
+        inputWasCorrect = false;
+        yield return new WaitForSeconds(2f);     
         isWaitingForInput = false;
-        
+        inputDisplayText.text = "";
+        resultDisplayText.text = "";
+        eventPanel.SetActive(false);
+        inputDisplayText.color = Color.white;
     }
 }

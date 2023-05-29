@@ -13,7 +13,10 @@ public class Unit : MonoBehaviour
     public bool isDefending = false;
 
     [Header("Unit Stats")]
-    public int damage; // The next Attack will deal this amount of damage. Can be updated through unit's actions.
+    public int highDamage;
+    public int midDamage; // The next Attack will deal this amount of damage. Can be updated through unit's actions.
+    public int lowDamage;
+
     public int defense; // A passive damage reduction. Reduces incoming damage by this value.
 
     public int maxHP;

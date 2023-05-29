@@ -119,6 +119,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitName: Player
-  damage: 5
+  isDefending: 0
+  highDamage: 6
+  midDamage: 4
+  lowDamage: 2
+  defense: 0
   maxHP: 10
   currentHP: 10
