@@ -616,7 +616,7 @@ VisualEffect:
       - m_Value: {x: 5.8175, y: 8.2943, z: 2.9164}
         m_Name: Transform_position
         m_Overridden: 1
-      - m_Value: {x: 0.20169827, y: 0.20169827, z: 0.20169827}
+      - m_Value: {x: 0.08, y: 0.08, z: 0.08}
         m_Name: Transform_scale
         m_Overridden: 1
       - m_Value: {x: 0.5, y: 0, z: 2}
@@ -745,7 +745,7 @@ VisualEffect:
       - m_Value: {x: 5.8175, y: 8.2943, z: 2.9164}
         m_Name: Transform_position
         m_Overridden: 1
-      - m_Value: {x: 0.20169827, y: 0.20169827, z: 0.20169827}
+      - m_Value: {x: 0.08, y: 0.08, z: 0.08}
         m_Name: Transform_scale
         m_Overridden: 1
       - m_Value: {x: 0, y: 0, z: 0}
@@ -843,17 +843,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 485bb061442945b4887b1ff6c4773104,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.20169827
+      value: 0.08
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 485bb061442945b4887b1ff6c4773104,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.20169827
+      value: 0.08
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 485bb061442945b4887b1ff6c4773104,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.20169827
+      value: 0.08
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 485bb061442945b4887b1ff6c4773104,
         type: 3}
