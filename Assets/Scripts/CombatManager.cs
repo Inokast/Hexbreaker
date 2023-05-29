@@ -25,6 +25,10 @@ public class CombatManager : MonoBehaviour
     public BattleHUD playerHUD;
     public BattleHUD enemyHUD;
 
+    public GameObject breakMeterGO; //Since all of these are public, I figured I'd make mine public here too. -Dylan
+
+    private BreakMeter bm; //This is to reference the script attached instead of fetching the component 20 times. -Dylan
+
     [Header("Battle Settings")]
 
     private Unit playerUnit;
@@ -40,6 +44,9 @@ public class CombatManager : MonoBehaviour
     void Start()
     {
         state = BattleState.START;
+
+        bm = breakMeterGO.GetComponent<BreakMeter>(); //Fetches the script for the break meter. -Dylan
+
         StartCoroutine(SetupBattle());
     }
 
@@ -124,6 +131,9 @@ public class CombatManager : MonoBehaviour
         bool isDead = enemyUnit.TakeDamage(playerUnit.damage, false);
         enemyHUD.SetHP(enemyUnit);
 
+        //Break Meter charge is inserted here. -Dylan
+        bm.ChangeMeterValue(18); //Placeholder value. Need to see how things play out. -Dylan
+
         battleText.text = "The " + enemyUnit.unitName + " takes " + playerUnit.damage + " damage!";
         yield return new WaitForSeconds(2f);
 
@@ -151,6 +161,8 @@ public class CombatManager : MonoBehaviour
         playerUnit.isDefending = true;
 
         battleText.text = playerUnit.unitName + " takes a defensive stance!";
+
+        bm.ChangeMeterValue(35); //Again, placeholder value. But I do think defend should give more than attack. Otherwise "attack OP pls nerf." -Dylan
 
         yield return new WaitForSeconds(2f);
 
@@ -246,11 +258,17 @@ public class CombatManager : MonoBehaviour
 
     public void OnBreakButton()
     {
-        if (state != BattleState.PLAYERTURN)
-            return;
+        if (BreakMeter.charge == 100)
+        {
+            if (state != BattleState.PLAYERTURN)
+                return;
 
-        //StartCoroutine(PlayerBreak());
-        state = BattleState.START;
+            //StartCoroutine(PlayerBreak());
+
+            bm.BreakCurse(GameObject.Find("ExampleCurse")); //Just placeholder, no coroutine needed yet since there's no curses. -Dylan
+
+            state = BattleState.START;
+        }
     }
 
     #endregion
