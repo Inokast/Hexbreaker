@@ -112,7 +112,6 @@ public class CombatManager : MonoBehaviour
     {
         if (playerUnit.isDefending)
         {
-            playerUnit.defense -= defenseBoost;
             defenseBoost = 0;
             playerUnit.isDefending = false;
         }
@@ -181,7 +180,7 @@ public class CombatManager : MonoBehaviour
         battleText.text = "You attack! Press the right key";
         eventManager.GenerateQTE(3f); // Generates Quick time event;
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(3.1f);
         int damageDealt = 0;
         switch (eventManager.eventResult)
         {
@@ -273,9 +272,9 @@ public class CombatManager : MonoBehaviour
                 print("ERROR! random.range outside possible bounds.");
                 break;
         }
-
+        print("Damage dealt before defense" + damageDealt);
         battleText.text = "The " + enemyUnit.unitName + " attacks! " + playerUnit.unitName + " takes " + damageDealt + " damage!";
-
+        int playerDef = playerUnit.defense;
         if (playerUnit.isDefending) 
         {
             playerUnit.defense -= defenseBoost; // Reset any previous defense gains in case player is attacked more than once on same turn.
@@ -293,17 +292,17 @@ public class CombatManager : MonoBehaviour
 
                 case QTEResult.LOW:
                     defenseBoost = 1;
-                    battleText.text = "A weak block..." + playerUnit.unitName + " takes " + (Mathf.Clamp(damageDealt - (playerUnit.defense += defenseBoost) , 1, damageDealt)) + " damage!";
+                    battleText.text = "A weak block..." + playerUnit.unitName + " takes " + (Mathf.Clamp(damageDealt - defenseBoost , 1, damageDealt)) + " damage!";
                     break;
 
                 case QTEResult.MID:
                     defenseBoost = 2;
-                    battleText.text = "You block! " + playerUnit.unitName + " takes " + (Mathf.Clamp(damageDealt - (playerUnit.defense += defenseBoost), 1, damageDealt)) + " damage!";
+                    battleText.text = "You block! " + playerUnit.unitName + " takes " + (Mathf.Clamp(damageDealt - defenseBoost, 1, damageDealt)) + " damage!";
                     break;
 
                 case QTEResult.HIGH:
                     defenseBoost = 3;
-                    battleText.text = "A perfect block! " + playerUnit.unitName + " takes " + (Mathf.Clamp(damageDealt - (playerUnit.defense += defenseBoost), 1, damageDealt)) + " damage!";
+                    battleText.text = "A perfect block! " + playerUnit.unitName + " takes " + (Mathf.Clamp(damageDealt - defenseBoost, 1, damageDealt)) + " damage!";
                     break;
 
                 default:
@@ -311,11 +310,9 @@ public class CombatManager : MonoBehaviour
                     break;
             }
             // Depending on degree of success, temporarily increase defense.
-            playerUnit.defense += defenseBoost;      
-            
         }
 
-        bool isDead = playerUnit.TakeDamage(damageDealt, false);
+        bool isDead = playerUnit.TakeDamage(Mathf.Clamp(damageDealt - defenseBoost, 1, damageDealt), false);
         playerHUD.SetHP(playerUnit);
 
         yield return new WaitForSeconds(2f);
