@@ -41,6 +41,8 @@ public class CombatManager : MonoBehaviour
     private int defenseBoost = 0; // Used to temporarily increase player defense.
     private int turnCounter = 0; // Because some abilities will be gated by skill cooldowns, we'll use a counter. Turn counter always goes up on Player's turn.
 
+    public bool canAttack = true;
+
     public BattleState state;
 
     // Start is called before the first frame update
@@ -71,6 +73,8 @@ public class CombatManager : MonoBehaviour
         yield return new WaitForSeconds(2f);
 
         state = BattleState.PLAYERTURN;
+        //Curse check
+        canAttack = false;
         PlayerTurn();
     }
 
@@ -140,6 +144,7 @@ public class CombatManager : MonoBehaviour
         breakButton.interactable = false;
         //Play the animation for the break button deactivating
 
+        canAttack = true;
         battleText.text = "You break the curse imposed by " + enemyUnit.unitName + " and deal " + playerUnit.highDamage + " damage!";
 
         yield return new WaitForSeconds(2f);
@@ -336,6 +341,14 @@ public class CombatManager : MonoBehaviour
     {
         if (state != BattleState.PLAYERTURN)
             return;
+
+        if (canAttack == false) 
+        {
+            battleText.text = "The enemy's curse prevents " + playerUnit.unitName + " from attacking!";
+            return;
+        }
+
+            
 
         StartCoroutine(PlayerAttack());
         state = BattleState.START;
