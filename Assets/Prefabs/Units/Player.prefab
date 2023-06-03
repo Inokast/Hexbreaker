@@ -124,5 +124,5 @@ MonoBehaviour:
   midDamage: 4
   lowDamage: 2
   defense: 0
-  maxHP: 10
-  currentHP: 10
+  maxHP: 80
+  currentHP: 80

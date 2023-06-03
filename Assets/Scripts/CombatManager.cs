@@ -11,6 +11,10 @@ using TMPro;
 public enum BattleState { START, PLAYERTURN, QTE, ENEMYTURN, WON, LOST }
 public class CombatManager : MonoBehaviour
 {
+    private GameObject[] topCurses; //Self-explanatory. For randomization. -Dylan 2
+    private GameObject[] midCurses;
+    private GameObject[] botCurses;
+
     [Header("Scene Setup")] 
 
     public GameObject playerPrefab;
@@ -29,9 +33,9 @@ public class CombatManager : MonoBehaviour
 
     private QTEManager eventManager;
 
-    public GameObject breakMeterGO; //Since all of these are public, I figured I'd make mine public here too. -Dylan
+    public GameObject breakMeterGO; //Since all of these are public, I figured I'd make mine public here too. -Dylan 1
 
-    private BreakMeter bm; //This is to reference the script attached instead of fetching the component 20 times. -Dylan
+    private BreakMeter bm; //This is to reference the script attached instead of fetching the component 20 times. -Dylan 1
 
     [Header("Battle Settings")]
 
@@ -41,16 +45,51 @@ public class CombatManager : MonoBehaviour
     private int defenseBoost = 0; // Used to temporarily increase player defense.
     private int turnCounter = 0; // Because some abilities will be gated by skill cooldowns, we'll use a counter. Turn counter always goes up on Player's turn.
 
-    public bool canAttack = true;
-
     public BattleState state;
 
     // Start is called before the first frame update
     void Start()
-    {       
+    {
+        topCurses = GameObject.FindGameObjectsWithTag("CurseTop"); //For finding the curses. -Dylan 2
+        midCurses = GameObject.FindGameObjectsWithTag("CurseMid");
+        botCurses = GameObject.FindGameObjectsWithTag("CurseBot");
+
+        foreach (GameObject curse in topCurses) //Probably wildly inefficient, but hey. It works. -Dylan 2
+        {
+            curse.SetActive(false);
+        }
+
+        foreach (GameObject curse in midCurses)
+        {
+            curse.SetActive(false);
+        }
+
+        foreach (GameObject curse in botCurses)
+        {
+            curse.SetActive(false);
+        }
+
+        int amountOfCurses = Random.Range(1, 4);
+
+        if (amountOfCurses == 1) //This is what randomizes the curses -Dylan 2
+        {
+            botCurses[Random.Range(0, botCurses.Length)].SetActive(true);
+        }
+        else if (amountOfCurses == 2)
+        {
+            botCurses[Random.Range(0, botCurses.Length)].SetActive(true);
+            midCurses[Random.Range(0, midCurses.Length)].SetActive(true);
+        }
+        else if (amountOfCurses == 3)
+        {
+            botCurses[Random.Range(0, botCurses.Length)].SetActive(true);
+            midCurses[Random.Range(0, midCurses.Length)].SetActive(true);
+            topCurses[Random.Range(0, topCurses.Length)].SetActive(true);
+        }
+
         state = BattleState.START;
 
-        bm = breakMeterGO.GetComponent<BreakMeter>(); //Fetches the script for the break meter. -Dylan
+        bm = breakMeterGO.GetComponent<BreakMeter>(); //Fetches the script for the break meter. -Dylan 1
         eventManager = FindAnyObjectByType<QTEManager>();
 
         StartCoroutine(SetupBattle());
@@ -74,7 +113,6 @@ public class CombatManager : MonoBehaviour
 
         state = BattleState.PLAYERTURN;
         //Curse check
-        canAttack = false;
         PlayerTurn();
     }
 
@@ -143,7 +181,6 @@ public class CombatManager : MonoBehaviour
         breakButton.interactable = false;
         //Play the animation for the break button deactivating
 
-        canAttack = true;
         battleText.text = "You break the curse imposed by " + enemyUnit.unitName + " and deal " + playerUnit.highDamage + " damage!";
 
         yield return new WaitForSeconds(2f);
@@ -152,7 +189,61 @@ public class CombatManager : MonoBehaviour
         bool isDead = enemyUnit.TakeDamage(playerUnit.highDamage, false);
         enemyHUD.SetHP(enemyUnit);
 
-        bm.BreakCurse(GameObject.Find("ExampleCurse")); //Just placeholder, no coroutine needed yet since there's no curses. -Dylan
+        //bm.BreakCurse(GameObject.Find("ExampleCurse")); //Just placeholder, no coroutine needed yet since there's no curses. -Dylan 1
+
+        bool bCurseActive = false; //Finds out what level of curse is active. This is to make sure the curses are broken in order. -Dylan 2
+        bool mCurseActive = false;
+        bool tCurseActive = false;
+
+        foreach (GameObject curse in botCurses)
+        {
+            if (curse.activeSelf)
+            {
+                bCurseActive = true;
+            }
+        }
+
+        foreach (GameObject curse in midCurses)
+        {
+            if (curse.activeSelf)
+            {
+                mCurseActive = true;
+            }
+        }
+
+        foreach (GameObject curse in topCurses)
+        {
+            if (curse.activeSelf)
+            {
+                tCurseActive = true;
+            }
+        }
+
+        if (bCurseActive)
+        {
+            foreach (GameObject curse in botCurses)
+            {
+                curse.SetActive(false);
+                bm.BreakCurse();
+            }
+        }
+        else if (mCurseActive)
+        {
+            foreach (GameObject curse in midCurses)
+            {
+                curse.SetActive(false);
+                bm.BreakCurse();
+            }
+        }
+        else if (tCurseActive)
+        {
+            foreach (GameObject curse in topCurses)
+            {
+                curse.SetActive(false);
+
+                bm.BreakCurse();
+            }
+        }
 
         // Here begins endturn functionality
         if (isDead)
@@ -190,14 +281,37 @@ public class CombatManager : MonoBehaviour
             case QTEResult.LOW:
                 damageDealt = playerUnit.lowDamage;
                 battleText.text = "A weak hit! The " + enemyUnit.unitName + " takes " + damageDealt + " damage!";
+
+                if (GameObject.Find("WeakAttackCurse") != null) //Changes the break charge based on the weak curse. -Dylan 2
+                {
+                    bm.ChangeMeterValue(4);
+                }
+                else
+                {
+                    bm.ChangeMeterValue(6);
+                }
                 break;
             case QTEResult.MID:
                 damageDealt = playerUnit.midDamage;
                 battleText.text = "A hit! The " + enemyUnit.unitName + " takes " + damageDealt + " damage!";
+                bm.ChangeMeterValue(12);
                 break;
             case QTEResult.HIGH:
                 damageDealt = playerUnit.highDamage;
                 battleText.text = "A strong hit! The " + enemyUnit.unitName + " takes " + damageDealt + " damage!";
+
+                if (GameObject.Find("DefendingCurse") != null) //Changes break charge based on the strong attack curse. -Dylan 2
+                {
+                    bm.ChangeMeterValue(50);
+                }
+                else if (GameObject.Find("PerfectAttackCurse") != null)
+                {
+                    bm.ChangeMeterValue(8);
+                }
+                else
+                {
+                    bm.ChangeMeterValue(18);
+                }
                 break;
             default:
                 print("ERROR! EventResult is not recognized!");
@@ -207,8 +321,6 @@ public class CombatManager : MonoBehaviour
         bool isDead = enemyUnit.TakeDamage(damageDealt, false);
         enemyHUD.SetHP(enemyUnit);
 
-        //Break Meter charge is inserted here. -Dylan
-        bm.ChangeMeterValue(18); //Placeholder value. Need to see how things play out. -Dylan
         yield return new WaitForSeconds(2f);
 
         // Here begins endturn functionality
@@ -235,8 +347,6 @@ public class CombatManager : MonoBehaviour
         playerUnit.isDefending = true;
 
         battleText.text = playerUnit.unitName + " takes a defensive stance!";
-
-        bm.ChangeMeterValue(35); //Again, placeholder value. But I do think defend should give more than attack. Otherwise "attack OP pls nerf." -Dylan
 
         yield return new WaitForSeconds(2f);
 
@@ -293,6 +403,15 @@ public class CombatManager : MonoBehaviour
                 case QTEResult.LOW:
                     defenseBoost = 1;
                     battleText.text = "A weak block..." + playerUnit.unitName + " takes " + (Mathf.Clamp(damageDealt - defenseBoost , 1, damageDealt)) + " damage!";
+
+                    if (GameObject.Find("WeakBlockCurse") != null) //Changes meter charge based on curse. -Dylan 2
+                    {
+                        bm.ChangeMeterValue(13);
+                    }
+                    else
+                    {
+                        bm.ChangeMeterValue(15);
+                    }
                     break;
 
                 case QTEResult.MID:
@@ -303,6 +422,19 @@ public class CombatManager : MonoBehaviour
                 case QTEResult.HIGH:
                     defenseBoost = 3;
                     battleText.text = "A perfect block! " + playerUnit.unitName + " takes " + (Mathf.Clamp(damageDealt - defenseBoost, 1, damageDealt)) + " damage!";
+
+                    if (GameObject.Find("AttackingCurse") != null) //Changes meter charge based on curse. If the player can only defend, that should be the only curse to apply in a perfect QTE. -Dylan 2
+                    {
+                        bm.ChangeMeterValue(50);
+                    }
+                    else if (GameObject.Find("PerfectBlockCurse") != null)
+                    {
+                        bm.ChangeMeterValue(25);
+                    }
+                    else
+                    {
+                        bm.ChangeMeterValue(35);
+                    }
                     break;
 
                 default:
@@ -339,13 +471,10 @@ public class CombatManager : MonoBehaviour
         if (state != BattleState.PLAYERTURN)
             return;
 
-        if (canAttack == false) 
+        if (GameObject.Find("AttackingCurse") != null) //To prevent attacking. -Dylan 2
         {
-            battleText.text = "The enemy's curse prevents " + playerUnit.unitName + " from attacking!";
             return;
         }
-
-            
 
         StartCoroutine(PlayerAttack());
         state = BattleState.START;
@@ -355,6 +484,11 @@ public class CombatManager : MonoBehaviour
     {
         if (state != BattleState.PLAYERTURN)
             return;
+
+        if (GameObject.Find("DefendingCurse") != null) //To prevent defending. -Dylan 2
+        {
+            return;
+        }
 
         StartCoroutine(PlayerDefend());
         state = BattleState.START;

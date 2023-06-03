@@ -44,13 +44,13 @@ public class BreakMeter : MonoBehaviour
     //I don't know how I want to do the below system yet. I might do it with an array/list
     //of integers, or I might use GameObjects. We'll see.
 
-    public void BreakCurse(GameObject curse)
+    public void BreakCurse(/*GameObject curse*/)
     {
         //Play an animation of the modifier being destroyed maybe.
 
         ChangeMeterValue(-100);
 
-        curse.SetActive(false); //If applicable, also stop all coroutines before setting inactive, as they will continue otherwise.
+        //curse.SetActive(false); //If applicable, also stop all coroutines before setting inactive, as they will continue otherwise.
 
         //Display text saying that the modifier is broken. Use the game output text? Or use a different text?
     }
