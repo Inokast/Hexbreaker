@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ConnorSight : MonoBehaviour
+public class OutlineWpopUpUI : MonoBehaviour
 {
     [SerializeField] private Material blank;
     [SerializeField] private Material outlineMaterial;
