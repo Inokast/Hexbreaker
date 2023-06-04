@@ -12,6 +12,9 @@ public class GameData
     public Vector3 playerPositionInWorld;   
     //public string lastActiveSceneName;
     public bool worldGenerated;
+    public bool rightRoomSetToUnlock;
+    public SerializableDictionary<string, bool> nodesActive;
+    public SerializableDictionary<string, bool> nodesCompleted;
 
     [Header("Settings Data")]
     public float bgmVolumeLevel;
@@ -40,14 +43,18 @@ public class GameData
     {
         playerPositionInWorld = new Vector3(0, .5f, -8);
         worldGenerated = false;
+        rightRoomSetToUnlock = true;
         //lastActiveSceneName = "CombatSceneForest";
+
+        nodesActive = new SerializableDictionary<string, bool>();
+        nodesCompleted = new SerializableDictionary<string, bool>();
 
         bgmVolumeLevel = .5f;
         sfxVolumeLevel = .5f;
         
         enemyUnitToLoadID = 0;
 
-        playerUnitName = "Player";
+        playerUnitName = "Rosalin";
         playerHighDamage = 6;
         playerMidDamage = 4;
         playerLowDamage = 2;

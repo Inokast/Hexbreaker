@@ -11,10 +11,10 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
     [SerializeField] private GameObject informationPanel;
     [SerializeField] private TextMeshProUGUI informationText;
     [SerializeField] private TextMeshProUGUI eventText;
+    [SerializeField] private MapNode[] mapNodes;
 
 
     [Header("World Data")]
-    private Transform playerPosition;
     [SerializeField] private GameObject player;
     private Unit playerUnit;
     private bool worldGenerated;
@@ -62,6 +62,8 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
         worldGenerated = gameData.worldGenerated;
 
         playerPosInWorld = gameData.playerPositionInWorld;
+
+        worldGenerated = gameData.worldGenerated;
     }
 
     public void SaveData(GameData gameData)
@@ -77,6 +79,8 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
         gameData.playerCurrentHP = playerUnit.currentHP;
 
         gameData.playerPositionInWorld = endPos;
+
+        gameData.worldGenerated = worldGenerated;
     }
 
     // Update is called once per frame
@@ -102,6 +106,15 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
                         moveTimer = 0;
                         movementInitiated = true;
 
+                        if (selectedNode.isCompleted)
+                        {
+                            informationPanel.GetComponentInChildren<Button>().interactable = false;
+                        }
+
+                        else 
+                        {                            
+                            informationPanel.GetComponentInChildren<Button>().interactable = true;
+                        }                       
                     }
                 }
 
@@ -134,11 +147,16 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
                 // Node type Combat
                 
                 selectedNodeEnemyID = selectedNode.nodeEnemyID;
-                levelManager.LoadSceneWithName("CombatSceneForest");
+
+                if (selectedNode.mapSection == "Marsh") 
+                {
+                    levelManager.LoadSceneWithName("CombatSceneForest");
+                }
+                
                 break;
 
             case 2:
-                // Node type Upgrade
+                // Node type Lucky (free talisman choice)
                 break;
 
             case 3:
@@ -146,10 +164,12 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
                 break;
 
             case 4:
-                // Node type Lucky (free talisman choice)
+                
+                // Node type Upgrade
                 break;
 
             default:
+                print("Node type not recognized");
                 break;
         }
     }
@@ -173,5 +193,16 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
     {
         worldGenerated = true;
         player.transform.position = startPos;
+        mapNodes[0].isActive = true;
+
+        // Temp code
+        mapNodes[2].isActive = true;
+        mapNodes[3].isActive = true;
+        mapNodes[4].isActive = true;
+        // End of Temp code
+
+        print("World was generated");
+
+        // foreach mapNode node in mapNodes[], randomize values
     }
 }

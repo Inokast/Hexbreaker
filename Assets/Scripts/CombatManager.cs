@@ -132,7 +132,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
 
         endPanel.SetActive(false);
         GameObject playerGO = Instantiate(playerPrefab, playerBattleStation);
-        //playerUnit = playerGO.GetComponent<Unit>(); // We are now reading the unit data from GameData when we load intot he scene. - Dan
+        //playerUnit = playerGO.GetComponent<Unit>(); // We are now reading the unit data from GameData when we load into the scene. - Dan
 
         enemyPrefab = enemyPrefabs[loadedEnemyID];
 

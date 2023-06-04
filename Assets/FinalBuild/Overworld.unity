@@ -182,7 +182,7 @@ GameObject:
   - component: {fileID: 44941528}
   - component: {fileID: 44941531}
   m_Layer: 0
-  m_Name: Node (7)
+  m_Name: RuinsNode3
   m_TagString: Node
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -293,7 +293,8 @@ MonoBehaviour:
   nodeDescription: 
   nodeRewards: []
   nodeEnemyID: 0
-  isActive: 1
+  mapSection: 
+  isActive: 0
   isCompleted: 0
 --- !u!1 &109931045
 GameObject:
@@ -309,7 +310,7 @@ GameObject:
   - component: {fileID: 109931047}
   - component: {fileID: 109931050}
   m_Layer: 0
-  m_Name: Node (10)
+  m_Name: CathedralNode2
   m_TagString: Node
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -420,7 +421,8 @@ MonoBehaviour:
   nodeDescription: 
   nodeRewards: []
   nodeEnemyID: 0
-  isActive: 1
+  mapSection: 
+  isActive: 0
   isCompleted: 0
 --- !u!1 &254238220
 GameObject:
@@ -436,7 +438,7 @@ GameObject:
   - component: {fileID: 254238222}
   - component: {fileID: 254238225}
   m_Layer: 0
-  m_Name: Node (4)
+  m_Name: MarshNode4
   m_TagString: Node
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -547,6 +549,7 @@ MonoBehaviour:
   nodeDescription: This is combat. The enemy is a fake slurp.
   nodeRewards: []
   nodeEnemyID: 2
+  mapSection: 
   isActive: 1
   isCompleted: 0
 --- !u!1 &270262958
@@ -681,7 +684,7 @@ GameObject:
   - component: {fileID: 326234396}
   - component: {fileID: 326234399}
   m_Layer: 0
-  m_Name: Node (5)
+  m_Name: RuinsNode1
   m_TagString: Node
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -792,7 +795,8 @@ MonoBehaviour:
   nodeDescription: 
   nodeRewards: []
   nodeEnemyID: 0
-  isActive: 1
+  mapSection: 
+  isActive: 0
   isCompleted: 0
 --- !u!1 &460283470
 GameObject:
@@ -1012,6 +1016,21 @@ MonoBehaviour:
   informationPanel: {fileID: 1438190498}
   informationText: {fileID: 1173194898}
   eventText: {fileID: 1525085633}
+  mapNodes:
+  - {fileID: 1173233832}
+  - {fileID: 1057626255}
+  - {fileID: 1075164956}
+  - {fileID: 1667269715}
+  - {fileID: 254238225}
+  - {fileID: 326234399}
+  - {fileID: 1864126185}
+  - {fileID: 44941531}
+  - {fileID: 750133156}
+  - {fileID: 1049117491}
+  - {fileID: 109931050}
+  - {fileID: 1238171429}
+  - {fileID: 819224332}
+  - {fileID: 1201661011}
   player: {fileID: 1767277888}
   startPos: {x: 0, y: 0.5, z: -8}
   playerPosInWorld: {x: 0, y: 0, z: 0}
@@ -1048,7 +1067,7 @@ GameObject:
   - component: {fileID: 750133153}
   - component: {fileID: 750133156}
   m_Layer: 0
-  m_Name: Node (8)
+  m_Name: RuinsNode4
   m_TagString: Node
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1159,7 +1178,8 @@ MonoBehaviour:
   nodeDescription: 
   nodeRewards: []
   nodeEnemyID: 0
-  isActive: 1
+  mapSection: 
+  isActive: 0
   isCompleted: 0
 --- !u!1 &811155372
 GameObject:
@@ -1329,7 +1349,7 @@ GameObject:
   - component: {fileID: 819224329}
   - component: {fileID: 819224332}
   m_Layer: 0
-  m_Name: Node (12)
+  m_Name: CathedralNode4
   m_TagString: Node
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1440,7 +1460,8 @@ MonoBehaviour:
   nodeDescription: 
   nodeRewards: []
   nodeEnemyID: 0
-  isActive: 1
+  mapSection: 
+  isActive: 0
   isCompleted: 0
 --- !u!1 &837986265
 GameObject:
@@ -1795,7 +1816,7 @@ GameObject:
   - component: {fileID: 1049117488}
   - component: {fileID: 1049117491}
   m_Layer: 0
-  m_Name: Node (9)
+  m_Name: CathedralNode1
   m_TagString: Node
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1906,7 +1927,8 @@ MonoBehaviour:
   nodeDescription: 
   nodeRewards: []
   nodeEnemyID: 0
-  isActive: 1
+  mapSection: 
+  isActive: 0
   isCompleted: 0
 --- !u!1 &1057626250
 GameObject:
@@ -1922,7 +1944,7 @@ GameObject:
   - component: {fileID: 1057626251}
   - component: {fileID: 1057626255}
   m_Layer: 0
-  m_Name: Node (1)
+  m_Name: MarshNode1
   m_TagString: Node
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2034,6 +2056,7 @@ MonoBehaviour:
   nodeRewards:
   - Health Recovered Talisman
   nodeEnemyID: 0
+  mapSection: 
   isActive: 1
   isCompleted: 0
 --- !u!1 &1075164951
@@ -2050,7 +2073,7 @@ GameObject:
   - component: {fileID: 1075164952}
   - component: {fileID: 1075164956}
   m_Layer: 0
-  m_Name: Node (2)
+  m_Name: MarshNode2
   m_TagString: Node
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2157,10 +2180,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nodeID: 
-  nodeType: 0
+  nodeType: 1
   nodeDescription: This is a combat node. A Slurp enemy lurks here.
   nodeRewards: []
   nodeEnemyID: 1
+  mapSection: 
   isActive: 1
   isCompleted: 0
 --- !u!1 &1104284628
@@ -2495,7 +2519,7 @@ GameObject:
   - component: {fileID: 1173233828}
   - component: {fileID: 1173233832}
   m_Layer: 0
-  m_Name: Node
+  m_Name: StartingNode
   m_TagString: Node
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2610,6 +2634,7 @@ MonoBehaviour:
   - Attack Up Talisman
   - Defense Up Talisman
   nodeEnemyID: 0
+  mapSection: Marsh
   isActive: 1
   isCompleted: 0
 --- !u!1 &1201661006
@@ -2626,7 +2651,7 @@ GameObject:
   - component: {fileID: 1201661008}
   - component: {fileID: 1201661011}
   m_Layer: 0
-  m_Name: Node (13)
+  m_Name: BossNode
   m_TagString: Node
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2737,7 +2762,8 @@ MonoBehaviour:
   nodeDescription: 
   nodeRewards: []
   nodeEnemyID: 0
-  isActive: 1
+  mapSection: 
+  isActive: 0
   isCompleted: 0
 --- !u!1 &1238171424
 GameObject:
@@ -2753,7 +2779,7 @@ GameObject:
   - component: {fileID: 1238171426}
   - component: {fileID: 1238171429}
   m_Layer: 0
-  m_Name: Node (11)
+  m_Name: CathedralNode3
   m_TagString: Node
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2864,7 +2890,8 @@ MonoBehaviour:
   nodeDescription: 
   nodeRewards: []
   nodeEnemyID: 0
-  isActive: 1
+  mapSection: 
+  isActive: 0
   isCompleted: 0
 --- !u!1 &1249302571
 GameObject:
@@ -3170,7 +3197,7 @@ GameObject:
   - component: {fileID: 1667269712}
   - component: {fileID: 1667269715}
   m_Layer: 0
-  m_Name: Node (3)
+  m_Name: MarshNode3
   m_TagString: Node
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3281,7 +3308,8 @@ MonoBehaviour:
   nodeDescription: 
   nodeRewards: []
   nodeEnemyID: 0
-  isActive: 1
+  mapSection: 
+  isActive: 0
   isCompleted: 0
 --- !u!1 &1767277888 stripped
 GameObject:
@@ -3309,7 +3337,7 @@ GameObject:
   - component: {fileID: 1864126182}
   - component: {fileID: 1864126185}
   m_Layer: 0
-  m_Name: Node (6)
+  m_Name: RuinsNode2
   m_TagString: Node
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3420,7 +3448,8 @@ MonoBehaviour:
   nodeDescription: 
   nodeRewards: []
   nodeEnemyID: 0
-  isActive: 1
+  mapSection: 
+  isActive: 0
   isCompleted: 0
 --- !u!1001 &2033265230
 PrefabInstance:
