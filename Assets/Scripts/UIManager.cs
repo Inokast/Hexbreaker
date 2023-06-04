@@ -7,6 +7,7 @@ public class UIManager : MonoBehaviour
 {
 
     [SerializeField] private GameObject settingsPanel;
+    [SerializeField] private GameObject HelpPanel;
     private LevelManager levelManager;
 
     void Start()
@@ -45,6 +46,16 @@ public class UIManager : MonoBehaviour
         }
 
         else { settingsPanel.SetActive(true); }
+    }
+
+    public void ToggleHelpPanel()
+    {
+        if (HelpPanel.activeSelf == true)
+        {
+            HelpPanel.SetActive(false);
+        }
+
+        else { HelpPanel.SetActive(true); }
     }
 
     public void OnQuitButtonPress() 
