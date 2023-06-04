@@ -9,6 +9,7 @@ TagManager:
   - CurseTop
   - CurseMid
   - CurseBot
+  - Node
   layers:
   - Default
   - TransparentFX

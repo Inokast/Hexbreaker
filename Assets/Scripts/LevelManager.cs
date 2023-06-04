@@ -8,13 +8,14 @@ using TMPro;
 public class LevelManager : MonoBehaviour
 {
     private SoundFXController sfx;
+    private BGMController bgm;
 
     [Header("Scene Configuration")]
     private LevelTransitionScreen transition;
-    [SerializeField] private string nextLevelString;
+    private string nextLevelString;
     private UIManager ui;
     [SerializeField] private int playMusicID = 0;
-    private BGMController bgm;
+    
     
     private void Start()
     {
@@ -49,11 +50,11 @@ public class LevelManager : MonoBehaviour
 
     IEnumerator LoadNextLevel()
     {        
-        //transition.StartTransition();
+        transition.StartTransition();
 
         yield return new WaitForSeconds(transition.transitionTime);
 
-        SceneManager.LoadScene(nextLevelString);
+        SceneManager.LoadSceneAsync(nextLevelString);
     }
     public void LoadSceneWithName(string newLevelString) 
     {

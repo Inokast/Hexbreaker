@@ -9,16 +9,21 @@ using UnityEngine.UI;
 using TMPro;
 
 public enum BattleState { START, PLAYERTURN, QTE, ENEMYTURN, WON, LOST }
-public class CombatManager : MonoBehaviour
+public class CombatManager : MonoBehaviour, IDataPersistence
 {
+
+    [Header("Debugging")]
+
     private GameObject[] topCurses; //Self-explanatory. For randomization. -Dylan 2
     private GameObject[] midCurses;
     private GameObject[] botCurses;
 
-    [Header("Scene Setup")] 
+    [Header("Scene Setup")]
 
-    public GameObject playerPrefab;
-    public GameObject enemyPrefab;
+    [SerializeField] private GameObject playerPrefab;
+    [SerializeField] private GameObject[] enemyPrefabs;
+    private GameObject enemyPrefab;
+    private int loadedEnemyID = 0; // This number determines which of the enemyPrefabs[] prefab is used. Pass this data through the Overworld map by saving it upon selecting a node in that scene. - Dan
 
     [SerializeField] private TextMeshProUGUI battleText;
     [SerializeField] private GameObject endPanel;
@@ -95,11 +100,41 @@ public class CombatManager : MonoBehaviour
         StartCoroutine(SetupBattle());
     }
 
+    // Loads data needed to set up battle properly - Dan 
+    public void LoadData(GameData gameData)
+    {
+        playerUnit = playerPrefab.GetComponent<Unit>(); 
+        loadedEnemyID = gameData.enemyUnitToLoadID;
+
+        playerUnit.unitName = gameData.playerUnitName;
+        playerUnit.highDamage = gameData.playerHighDamage;
+        playerUnit.midDamage = gameData.playerMidDamage;
+        playerUnit.lowDamage = gameData.playerLowDamage;
+        playerUnit.defense = gameData.playerDefense;
+        playerUnit.maxHP = gameData.playerMaxHP;
+        playerUnit.currentHP = gameData.playerCurrentHP;
+    }
+
+    // Passes data to the saved data file
+    public void SaveData(GameData gameData)
+    {
+        gameData.playerUnitName = playerUnit.unitName;
+        gameData.playerHighDamage = playerUnit.highDamage;
+        gameData.playerMidDamage = playerUnit.midDamage;
+        gameData.playerLowDamage = playerUnit.lowDamage;
+        gameData.playerDefense = playerUnit.defense;
+        gameData.playerMaxHP = playerUnit.maxHP;
+        gameData.playerCurrentHP = playerUnit.currentHP;
+    }
+
     IEnumerator SetupBattle() // This function sets up the battle
     {
+
         endPanel.SetActive(false);
         GameObject playerGO = Instantiate(playerPrefab, playerBattleStation);
-        playerUnit = playerGO.GetComponent<Unit>();
+        //playerUnit = playerGO.GetComponent<Unit>(); // We are now reading the unit data from GameData when we load intot he scene. - Dan
+
+        enemyPrefab = enemyPrefabs[loadedEnemyID];
 
         GameObject enemyGO = Instantiate(enemyPrefab, enemyBattleStation);
         enemyUnit = enemyGO.GetComponent<Unit>();
@@ -174,94 +209,7 @@ public class CombatManager : MonoBehaviour
         turnCounter += 1;
     }
 
-    IEnumerator PlayerBreak() 
-    {
-        // Break animation plays. It is an auto success!
-
-        breakButton.interactable = false;
-        //Play the animation for the break button deactivating
-
-        battleText.text = "You break the curse imposed by " + enemyUnit.unitName + " and deal " + playerUnit.highDamage + " damage!";
-
-        yield return new WaitForSeconds(2f);
-
-        // Damage the enemy selected. Choose damage based on eventState;
-        bool isDead = enemyUnit.TakeDamage(playerUnit.highDamage, false);
-        enemyHUD.SetHP(enemyUnit);
-
-        //bm.BreakCurse(GameObject.Find("ExampleCurse")); //Just placeholder, no coroutine needed yet since there's no curses. -Dylan 1
-
-        bool bCurseActive = false; //Finds out what level of curse is active. This is to make sure the curses are broken in order. -Dylan 2
-        bool mCurseActive = false;
-        bool tCurseActive = false;
-
-        foreach (GameObject curse in botCurses)
-        {
-            if (curse.activeSelf)
-            {
-                bCurseActive = true;
-            }
-        }
-
-        foreach (GameObject curse in midCurses)
-        {
-            if (curse.activeSelf)
-            {
-                mCurseActive = true;
-            }
-        }
-
-        foreach (GameObject curse in topCurses)
-        {
-            if (curse.activeSelf)
-            {
-                tCurseActive = true;
-            }
-        }
-
-        if (bCurseActive)
-        {
-            foreach (GameObject curse in botCurses)
-            {
-                curse.SetActive(false);
-                bm.BreakCurse();
-            }
-        }
-        else if (mCurseActive)
-        {
-            foreach (GameObject curse in midCurses)
-            {
-                curse.SetActive(false);
-                bm.BreakCurse();
-            }
-        }
-        else if (tCurseActive)
-        {
-            foreach (GameObject curse in topCurses)
-            {
-                curse.SetActive(false);
-
-                bm.BreakCurse();
-            }
-        }
-
-        // Here begins endturn functionality
-        if (isDead)
-        {
-            // (If more than 1 enemy) Check if all enemies are dead
-            state = BattleState.WON;
-            EndBattle();
-            // End the battle
-        }
-
-        else
-        {
-            // Proceed to enemy's turn.
-            state = BattleState.ENEMYTURN;
-            StartCoroutine(EnemyTurn());
-        }
-        // Change state of battle based on result
-    }
+    
 
     #region Player Actions
     IEnumerator PlayerAttack() // Deals damage to enemy and then checks if it is dead
@@ -356,6 +304,96 @@ public class CombatManager : MonoBehaviour
         StartCoroutine(EnemyTurn());
 
     }
+
+    IEnumerator PlayerBreak()
+    {
+        // Break animation plays. It is an auto success!
+
+        breakButton.interactable = false;
+        //Play the animation for the break button deactivating
+
+        battleText.text = "You break the curse imposed by " + enemyUnit.unitName + " and deal " + playerUnit.highDamage + " damage!";
+
+        yield return new WaitForSeconds(2f);
+
+        // Damage the enemy selected. Choose damage based on eventState;
+        bool isDead = enemyUnit.TakeDamage(playerUnit.highDamage, false);
+        enemyHUD.SetHP(enemyUnit);
+
+        //bm.BreakCurse(GameObject.Find("ExampleCurse")); //Just placeholder, no coroutine needed yet since there's no curses. -Dylan 1
+
+        bool bCurseActive = false; //Finds out what level of curse is active. This is to make sure the curses are broken in order. -Dylan 2
+        bool mCurseActive = false;
+        bool tCurseActive = false;
+
+        foreach (GameObject curse in botCurses)
+        {
+            if (curse.activeSelf)
+            {
+                bCurseActive = true;
+            }
+        }
+
+        foreach (GameObject curse in midCurses)
+        {
+            if (curse.activeSelf)
+            {
+                mCurseActive = true;
+            }
+        }
+
+        foreach (GameObject curse in topCurses)
+        {
+            if (curse.activeSelf)
+            {
+                tCurseActive = true;
+            }
+        }
+
+        if (bCurseActive)
+        {
+            foreach (GameObject curse in botCurses)
+            {
+                curse.SetActive(false);
+                bm.BreakCurse();
+            }
+        }
+        else if (mCurseActive)
+        {
+            foreach (GameObject curse in midCurses)
+            {
+                curse.SetActive(false);
+                bm.BreakCurse();
+            }
+        }
+        else if (tCurseActive)
+        {
+            foreach (GameObject curse in topCurses)
+            {
+                curse.SetActive(false);
+
+                bm.BreakCurse();
+            }
+        }
+
+        // Here begins endturn functionality
+        if (isDead)
+        {
+            // (If more than 1 enemy) Check if all enemies are dead
+            state = BattleState.WON;
+            EndBattle();
+            // End the battle
+        }
+
+        else
+        {
+            // Proceed to enemy's turn.
+            state = BattleState.ENEMYTURN;
+            StartCoroutine(EnemyTurn());
+        }
+        // Change state of battle based on result
+    }
+
     #endregion
 
     #region Enemy Actions

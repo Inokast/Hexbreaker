@@ -53,7 +53,7 @@ public class FileDataHandler
         string fullPath = Path.Combine(dataDirPath, dataFileName);
         try
         {
-            // create directory the directory the file will be written to if it doesn't already exist
+            // create directory the file will be written to if it doesn't already exist
             Directory.CreateDirectory(Path.GetDirectoryName(fullPath));
 
             // serialize the C# game data object into json

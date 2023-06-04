@@ -23,23 +23,18 @@ public class UIManager : MonoBehaviour
         // create a new game - which will initialize game data
         DataPersistenceManager.instance.NewGame();
         // Load the gameplay scene - which will in turn save the game
-        levelManager.LoadSceneWithName("CombatSceneForest"); // Whatever the name of our tutorial scene is
+        levelManager.LoadSceneWithName("Overworld"); // Whatever the name of our tutorial scene is
         // disable the ability to select a different button so that it cannot load multiple games asynchronously
     }
 
     public void OnContinueGameButton() 
     {
         // Load the next scene - which will load the game data
+        levelManager.LoadSceneWithName("Overworld");
     }
     public void OnLoadNewSceneButton(string sceneName) 
     {
-        //SceneManager.LoadScene(sceneName);
-        levelManager.LoadSceneWithName("CombatSceneForest");
-    }
-
-    public void RestartCurrentScene() 
-    {
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        levelManager.LoadSceneWithName(sceneName);
     }
 
     public void ToggleSettingsPanel() 

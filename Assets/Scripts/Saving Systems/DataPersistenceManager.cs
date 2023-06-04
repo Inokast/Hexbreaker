@@ -79,7 +79,7 @@ public class DataPersistenceManager : MonoBehaviour
 
     public void LoadGame() 
     {
-        // TODO - Load any saved data from a file using the data handler
+        // Load any saved data from a file using the data handler
         gameData = dataHandler.Load();
 
         if (gameData == null && initializeDataIfNull) 
