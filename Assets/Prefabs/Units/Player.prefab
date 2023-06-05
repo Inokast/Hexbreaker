@@ -116,8 +116,8 @@ MonoBehaviour:
   midDamage: 4
   lowDamage: 2
   defense: 0
-  maxHP: 80
-  currentHP: 80
+  maxHP: 100
+  currentHP: 100
 --- !u!1001 &8105622300356814059
 PrefabInstance:
   m_ObjectHideFlags: 0

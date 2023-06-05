@@ -18,6 +18,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
     private GameObject[] midCurses;
     private GameObject[] botCurses;
 
+    public static int cursesToTalismans = 0; //Amount of talismans to generate.
 
     [Header("Curse Data")]
 
@@ -33,6 +34,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
 
     [SerializeField] private TextMeshProUGUI battleText;
     [SerializeField] private GameObject endPanel;
+    private GameObject winPanel;
 
     public Transform playerBattleStation;
     public Transform enemyBattleStation;
@@ -60,6 +62,8 @@ public class CombatManager : MonoBehaviour, IDataPersistence
     private Unit playerUnit;
     private Unit enemyUnit;
 
+    private GameObject enemyGO;
+
     private int defenseBoost = 0; // Used to temporarily increase player defense.
     private int turnCounter = 0; // Because some abilities will be gated by skill cooldowns, we'll use a counter. Turn counter always goes up on Player's turn. Please use to count turns on Talisman cooldowns - Dan
 
@@ -71,6 +75,10 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         topCurses = GameObject.FindGameObjectsWithTag("CurseTop"); //For finding the curses. -Dylan 2
         midCurses = GameObject.FindGameObjectsWithTag("CurseMid");
         botCurses = GameObject.FindGameObjectsWithTag("CurseBot");
+
+        winPanel = GameObject.Find("Win Panel");
+
+        winPanel.SetActive(false);
 
         foreach (GameObject curse in topCurses) //Probably wildly inefficient, but hey. It works. -Dylan 2
         {
@@ -158,7 +166,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
 
         enemyPrefab = enemyPrefabs[loadedEnemyID];
 
-        GameObject enemyGO = Instantiate(enemyPrefab, enemyBattleStation);
+        enemyGO = Instantiate(enemyPrefab, enemyBattleStation);
         enemyUnit = enemyGO.GetComponent<Unit>();
 
         battleText.text = "The battle has begun! " + enemyUnit.unitName + " wants to fight!";
@@ -190,11 +198,24 @@ public class CombatManager : MonoBehaviour, IDataPersistence
 
         if (state == BattleState.WON)
         {
-            battleText.text = "You won the battle! Choose a talisman to purify (Placeholder)";
+            battleText.text = "";
+            GameObject camera = GameObject.Find("Main Camera"); //To change the camera position to look at the talismans -Dylan 3
+
+            enemyGO.SetActive(false);
+
+            camera.transform.position = new Vector3(1.019f, 1.812f, 1.466f);
+
+            camera.transform.rotation = Quaternion.Euler(8.301f, -96.467f, 2.312f);
             /// Display choice
-            endPanel.SetActive(true);
+            //endPanel.SetActive(true); Changed -Dylan 3
             combatFinished = true;
             playerDied = false;
+
+            GameObject.Find("Curses").SetActive(false);
+            GameObject.Find("PlayerHUDPanel").SetActive(false);
+            GameObject.Find("EnemyHUDPanel").SetActive(false);
+
+            winPanel.SetActive(true);
         }
         else if (state == BattleState.LOST)
         {
@@ -348,6 +369,8 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         //Play the animation for the break button deactivating
 
         battleText.text = "You break the curse imposed by " + enemyUnit.unitName + " and deal " + playerUnit.highDamage + " damage!";
+
+        cursesToTalismans += 1;
 
         yield return new WaitForSeconds(2f);
 

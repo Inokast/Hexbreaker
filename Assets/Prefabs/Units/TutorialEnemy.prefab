@@ -285,8 +285,8 @@ MonoBehaviour:
   midDamage: 2
   lowDamage: 1
   defense: 0
-  maxHP: 19
-  currentHP: 19
+  maxHP: 16
+  currentHP: 16
 --- !u!1 &7512487103157660640
 GameObject:
   m_ObjectHideFlags: 0

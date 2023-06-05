@@ -11,6 +11,13 @@ TagManager:
   - CurseBot
   - Node
   - EventButton
+  - TalismanFrame
+  - CommonFrame
+  - UncommonFrame
+  - RareFrame
+  - LegendaryFrame
+  - SpectralFrame
+  - TalismanButton
   layers:
   - Default
   - TransparentFX
