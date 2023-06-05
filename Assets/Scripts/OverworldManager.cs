@@ -18,13 +18,15 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
     [SerializeField] private GameObject player;
     private Unit playerUnit;
     private bool worldGenerated;
+    private bool combatFinished;
 
     [SerializeField] private Vector3 startPos = new Vector3(0, .5f, -8);
     [SerializeField] private Vector3 playerPosInWorld;
 
     [Header("Combat Node Data")]
     [SerializeField] private GameObject[] EnemyPrefabs; // We put all possible enemy prefabs here. When we want to load a combat scene, we change
-    [SerializeField] private int selectedNodeEnemyID;      // 
+    [SerializeField] private int lastSelectedNodeEnemyID;     
+    private string lastSelectedNodeID;
 
     private LevelManager levelManager;
 
@@ -48,6 +50,17 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
             GenerateNewWorld();
         }
 
+        if (playerUnit.currentHP == 0) 
+        {
+            GenerateNewWorld();
+            ResetPlayerStats();
+        }
+
+        if (combatFinished == true) 
+        {
+            CheckNodeCompleted();
+        }
+
     }
     public void LoadData(GameData gameData)
     {
@@ -63,12 +76,13 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
 
         playerPosInWorld = gameData.playerPositionInWorld;
 
+        combatFinished = gameData.combatFinished;
         worldGenerated = gameData.worldGenerated;
     }
 
     public void SaveData(GameData gameData)
     {
-        gameData.enemyUnitToLoadID = selectedNodeEnemyID;
+        gameData.enemyUnitToLoadID = lastSelectedNodeEnemyID;
 
         gameData.playerUnitName = playerUnit.unitName;
         gameData.playerHighDamage = playerUnit.highDamage;
@@ -81,6 +95,8 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
         gameData.playerPositionInWorld = endPos;
 
         gameData.worldGenerated = worldGenerated;
+
+        gameData.lastSelectedNodeID = lastSelectedNodeID;
     }
 
     // Update is called once per frame
@@ -105,6 +121,7 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
                         endPos = selectedNode.gameObject.transform.position;
                         moveTimer = 0;
                         movementInitiated = true;
+                        lastSelectedNodeID = selectedNode.nodeID;
 
                         if (selectedNode.isCompleted)
                         {
@@ -146,7 +163,7 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
             case 1:
                 // Node type Combat
                 
-                selectedNodeEnemyID = selectedNode.nodeEnemyID;
+                lastSelectedNodeEnemyID = selectedNode.nodeEnemyID;
 
                 if (selectedNode.mapSection == "Marsh") 
                 {
@@ -182,27 +199,44 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
         eventText.text = "";
     }
 
+    private void CheckNodeCompleted() 
+    {
+        foreach (MapNode node in mapNodes)
+        {
+            if (node.nodeID == lastSelectedNodeID) 
+            {
+                node.CompleteNode();
+                combatFinished = false;
+            }
+        }
+    }
+
     private void DisplayNodeInfo(MapNode node) 
     {
         informationPanel.SetActive(true);
         informationText.text = node.nodeDescription;
     }
 
-    // Please use this function to initialize the world. Use this for any randomization that sets what each node is. 
+    // Please use this function to initialize the world. Use this for any randomization that sets what each node is. - Dan
     private void GenerateNewWorld() 
     {
         worldGenerated = true;
         player.transform.position = startPos;
         mapNodes[0].isActive = true;
 
-        // Temp code
-        mapNodes[2].isActive = true;
-        mapNodes[3].isActive = true;
-        mapNodes[4].isActive = true;
-        // End of Temp code
-
-        print("World was generated");
-
         // foreach mapNode node in mapNodes[], randomize values
+    }
+
+     // Resets the player unit to default values - Dan
+    private void ResetPlayerStats() 
+    {
+        playerUnit.highDamage = 6;
+        playerUnit.midDamage = 4;
+        playerUnit.lowDamage = 2;
+        playerUnit.defense = 0;
+        playerUnit.maxHP = 80;
+        playerUnit.currentHP = 80;
+
+        // Also remove any talismans
     }
 }

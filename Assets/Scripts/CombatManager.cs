@@ -1,6 +1,6 @@
 // Hexbreaker - Combat System
-// Last modified: 05/28/23 - Dan Sanchez
-// Notes: Should be working as expected;
+// Last modified: 06/04/23 - Dan Sanchez
+// Notes:
 
 using System.Collections;
 using System.Collections.Generic;
@@ -17,6 +17,12 @@ public class CombatManager : MonoBehaviour, IDataPersistence
     private GameObject[] topCurses; //Self-explanatory. For randomization. -Dylan 2
     private GameObject[] midCurses;
     private GameObject[] botCurses;
+
+
+    [Header("Curse Data")]
+
+    private bool rightRoomLocked; // Make a function that checks if there is a curse that should set this value to true at the end of the battle - Dan
+    private bool leftRoomLocked;
 
     [Header("Scene Setup")]
 
@@ -35,6 +41,10 @@ public class CombatManager : MonoBehaviour, IDataPersistence
     [SerializeField] private BattleHUD enemyHUD;
 
     [SerializeField] private Button breakButton;
+    [SerializeField] private Button attackButton;
+    [SerializeField] private Button defendButton;
+
+    private LevelManager levelManager;
 
     private QTEManager eventManager;
 
@@ -44,11 +54,13 @@ public class CombatManager : MonoBehaviour, IDataPersistence
 
     [Header("Battle Settings")]
 
+    private bool combatFinished = false;
+
     private Unit playerUnit;
     private Unit enemyUnit;
 
     private int defenseBoost = 0; // Used to temporarily increase player defense.
-    private int turnCounter = 0; // Because some abilities will be gated by skill cooldowns, we'll use a counter. Turn counter always goes up on Player's turn.
+    private int turnCounter = 0; // Because some abilities will be gated by skill cooldowns, we'll use a counter. Turn counter always goes up on Player's turn. Please use to count turns on Talisman cooldowns - Dan
 
     public BattleState state;
 
@@ -92,6 +104,8 @@ public class CombatManager : MonoBehaviour, IDataPersistence
             topCurses[Random.Range(0, topCurses.Length)].SetActive(true);
         }
 
+        levelManager = FindAnyObjectByType<LevelManager>();
+
         state = BattleState.START;
 
         bm = breakMeterGO.GetComponent<BreakMeter>(); //Fetches the script for the break meter. -Dylan 1
@@ -125,10 +139,14 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         gameData.playerDefense = playerUnit.defense;
         gameData.playerMaxHP = playerUnit.maxHP;
         gameData.playerCurrentHP = playerUnit.currentHP;
+        gameData.combatFinished = combatFinished;
+        gameData.rightRoomLocked = rightRoomLocked;
+        gameData.leftRoomLocked = leftRoomLocked;
     }
 
     IEnumerator SetupBattle() // This function sets up the battle
     {
+        combatFinished = false;
 
         endPanel.SetActive(false);
         GameObject playerGO = Instantiate(playerPrefab, playerBattleStation);
@@ -181,6 +199,12 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         else { battleText.text = "Battle state is wrong"; }
     }
 
+    public void TalismanPicked() 
+    {
+        combatFinished = true;
+        levelManager.LoadSceneWithName("Overworld");
+    }
+
     private void RefreshPlayerStatus()
     {
         if (playerUnit.isDefending)
@@ -215,9 +239,9 @@ public class CombatManager : MonoBehaviour, IDataPersistence
     IEnumerator PlayerAttack() // Deals damage to enemy and then checks if it is dead
     {
         state = BattleState.QTE;
-        // Trigger QTE after a brief delay
+
         battleText.text = "You attack! Press the right key";
-        eventManager.GenerateQTE(3f); // Generates Quick time event;
+        eventManager.GenerateQTE(3f); // Generates Quick time event
 
         yield return new WaitForSeconds(3.1f);
         int damageDealt = 0;
@@ -511,6 +535,8 @@ public class CombatManager : MonoBehaviour, IDataPersistence
 
         if (GameObject.Find("AttackingCurse") != null) //To prevent attacking. -Dylan 2
         {
+            battleText.text = "The enemy's curse is preventing " + playerUnit.unitName + " from attacking!";
+            attackButton.interactable = false;
             return;
         }
 
@@ -525,6 +551,8 @@ public class CombatManager : MonoBehaviour, IDataPersistence
 
         if (GameObject.Find("DefendingCurse") != null) //To prevent defending. -Dylan 2
         {
+            battleText.text = "The enemy's curse is preventing " + playerUnit.unitName + " from defending!";
+            defendButton.interactable = false;
             return;
         }
 

@@ -12,7 +12,9 @@ public class GameData
     public Vector3 playerPositionInWorld;   
     //public string lastActiveSceneName;
     public bool worldGenerated;
-    public bool rightRoomSetToUnlock;
+    public string lastSelectedNodeID;
+    public bool rightRoomLocked;
+    public bool leftRoomLocked;
     public SerializableDictionary<string, bool> nodesActive;
     public SerializableDictionary<string, bool> nodesCompleted;
 
@@ -22,6 +24,7 @@ public class GameData
 
     [Header("Combat Data")]
     public int enemyUnitToLoadID;
+    public bool combatFinished;
 
     [Header("Player Unit Data")]
     public string playerUnitName;
@@ -43,7 +46,9 @@ public class GameData
     {
         playerPositionInWorld = new Vector3(0, .5f, -8);
         worldGenerated = false;
-        rightRoomSetToUnlock = true;
+        lastSelectedNodeID = "";
+        rightRoomLocked = false;
+        leftRoomLocked = false;
         //lastActiveSceneName = "CombatSceneForest";
 
         nodesActive = new SerializableDictionary<string, bool>();

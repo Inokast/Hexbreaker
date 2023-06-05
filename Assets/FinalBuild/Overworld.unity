@@ -289,11 +289,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nodeID: 
+  leftPath: {fileID: 109931050}
+  rightPath: {fileID: 109931050}
   nodeType: 0
   nodeDescription: 
   nodeRewards: []
   nodeEnemyID: 0
-  mapSection: 
+  mapSection: Ruins
   isActive: 0
   isCompleted: 0
 --- !u!1 &109931045
@@ -417,11 +419,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nodeID: 
+  leftPath: {fileID: 1201661011}
+  rightPath: {fileID: 1201661011}
   nodeType: 0
   nodeDescription: 
   nodeRewards: []
   nodeEnemyID: 0
-  mapSection: 
+  mapSection: Cathedral
   isActive: 0
   isCompleted: 0
 --- !u!1 &254238220
@@ -545,11 +549,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nodeID: 
+  leftPath: {fileID: 750133156}
+  rightPath: {fileID: 1049117491}
   nodeType: 1
   nodeDescription: This is combat. The enemy is a fake slurp.
   nodeRewards: []
   nodeEnemyID: 2
-  mapSection: 
+  mapSection: Marsh
   isActive: 1
   isCompleted: 0
 --- !u!1 &270262958
@@ -791,11 +797,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nodeID: 
+  leftPath: {fileID: 1049117491}
+  rightPath: {fileID: 1864126185}
   nodeType: 0
   nodeDescription: 
   nodeRewards: []
   nodeEnemyID: 0
-  mapSection: 
+  mapSection: Ruins
   isActive: 0
   isCompleted: 0
 --- !u!1 &460283470
@@ -1037,7 +1045,7 @@ MonoBehaviour:
   EnemyPrefabs:
   - {fileID: 6365840768337044842, guid: ea6b5ed09e4f7614db582ab146b4409f, type: 3}
   - {fileID: 6365840768337044842, guid: e7ff66b40ec8dc1418dd8a5632f92d32, type: 3}
-  selectedNodeEnemyID: 0
+  lastSelectedNodeEnemyID: 0
 --- !u!4 &533649390
 Transform:
   m_ObjectHideFlags: 0
@@ -1174,11 +1182,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nodeID: 
+  leftPath: {fileID: 109931050}
+  rightPath: {fileID: 1238171429}
   nodeType: 0
   nodeDescription: 
   nodeRewards: []
   nodeEnemyID: 0
-  mapSection: 
+  mapSection: Ruins
   isActive: 0
   isCompleted: 0
 --- !u!1 &811155372
@@ -1456,11 +1466,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nodeID: 
+  leftPath: {fileID: 1201661011}
+  rightPath: {fileID: 1201661011}
   nodeType: 0
   nodeDescription: 
   nodeRewards: []
   nodeEnemyID: 0
-  mapSection: 
+  mapSection: Cathedral
   isActive: 0
   isCompleted: 0
 --- !u!1 &837986265
@@ -1923,11 +1935,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nodeID: 
+  leftPath: {fileID: 1238171429}
+  rightPath: {fileID: 819224332}
   nodeType: 0
   nodeDescription: 
   nodeRewards: []
   nodeEnemyID: 0
-  mapSection: 
+  mapSection: Cathedral
   isActive: 0
   isCompleted: 0
 --- !u!1 &1057626250
@@ -2051,12 +2065,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nodeID: 
+  leftPath: {fileID: 254238225}
+  rightPath: {fileID: 326234399}
   nodeType: 2
   nodeDescription: This is a healing node.
   nodeRewards:
   - Health Recovered Talisman
   nodeEnemyID: 0
-  mapSection: 
+  mapSection: Marsh
   isActive: 1
   isCompleted: 0
 --- !u!1 &1075164951
@@ -2180,11 +2196,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nodeID: 
+  leftPath: {fileID: 1667269715}
+  rightPath: {fileID: 254238225}
   nodeType: 1
   nodeDescription: This is a combat node. A Slurp enemy lurks here.
   nodeRewards: []
   nodeEnemyID: 1
-  mapSection: 
+  mapSection: Marsh
   isActive: 1
   isCompleted: 0
 --- !u!1 &1104284628
@@ -2626,8 +2644,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nodeID: 
+  leftPath: {fileID: 1075164956}
+  rightPath: {fileID: 1057626255}
   nodeType: 1
-  nodeDescription: This is the tutorial node. Herew e have a combat with a tutorial
+  nodeDescription: This is the tutorial node. Here we have a combat with a tutorial
     enemy!
   nodeRewards:
   - Max Health Up Talisman
@@ -2758,11 +2778,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nodeID: 
-  nodeType: 0
-  nodeDescription: 
+  leftPath: {fileID: 0}
+  rightPath: {fileID: 0}
+  nodeType: 1
+  nodeDescription: You've reached the boss. Evil specter is waiting.
   nodeRewards: []
-  nodeEnemyID: 0
-  mapSection: 
+  nodeEnemyID: 2
+  mapSection: Boss
   isActive: 0
   isCompleted: 0
 --- !u!1 &1238171424
@@ -2886,11 +2908,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nodeID: 
+  leftPath: {fileID: 1201661011}
+  rightPath: {fileID: 1201661011}
   nodeType: 0
   nodeDescription: 
   nodeRewards: []
   nodeEnemyID: 0
-  mapSection: 
+  mapSection: Cathedral
   isActive: 0
   isCompleted: 0
 --- !u!1 &1249302571
@@ -3304,11 +3328,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nodeID: 
+  leftPath: {fileID: 254238225}
+  rightPath: {fileID: 750133156}
   nodeType: 0
   nodeDescription: 
   nodeRewards: []
   nodeEnemyID: 0
-  mapSection: 
+  mapSection: Marsh
   isActive: 0
   isCompleted: 0
 --- !u!1 &1767277888 stripped
@@ -3444,11 +3470,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nodeID: 
+  leftPath: {fileID: 819224332}
+  rightPath: {fileID: 819224332}
   nodeType: 0
   nodeDescription: 
   nodeRewards: []
   nodeEnemyID: 0
-  mapSection: 
+  mapSection: Ruins
   isActive: 0
   isCompleted: 0
 --- !u!1001 &2033265230

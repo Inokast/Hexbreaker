@@ -526,6 +526,8 @@ MonoBehaviour:
   playerHUD: {fileID: 390387213}
   enemyHUD: {fileID: 2108667337}
   breakButton: {fileID: 1905144411}
+  attackButton: {fileID: 1687249517}
+  defendButton: {fileID: 1523884698}
   breakMeterGO: {fileID: 948196822}
   state: 0
 --- !u!4 &94448200
@@ -6441,6 +6443,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settingsPanel: {fileID: 0}
+  HelpPanel: {fileID: 0}
 --- !u!4 &1717980681
 Transform:
   m_ObjectHideFlags: 0

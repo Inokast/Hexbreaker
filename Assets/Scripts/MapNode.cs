@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MapNode : MonoBehaviour , IDataPersistence
 {
-    [SerializeField] private string nodeID; // This will be relevant once we need to save the data of individual nodes upon randomization. - Dan
+    public string nodeID; // This will be relevant once we need to save the data of individual nodes upon randomization. - Dan
 
     [ContextMenu("Generate guid for id")]
 
@@ -12,6 +12,15 @@ public class MapNode : MonoBehaviour , IDataPersistence
     {
         nodeID = System.Guid.NewGuid().ToString();
     }
+
+
+    [Header("Pathing")]
+    [SerializeField] private MapNode leftPath;
+    [SerializeField] private MapNode rightPath;
+    private bool rightPathLocked;
+    private bool leftPathLocked;
+
+
 
     public int nodeType;
     public string nodeDescription;
@@ -42,6 +51,32 @@ public class MapNode : MonoBehaviour , IDataPersistence
             gameData.nodesCompleted.Remove(nodeID);
         }
         gameData.nodesCompleted.Add(nodeID, isCompleted);
+    }
+
+    public void CompleteNode() 
+    {
+        isCompleted = true;
+
+        if (rightPath == leftPath)
+        {
+            rightPath.isActive = true;
+        }
+
+        else 
+        {
+            if (rightPathLocked == false) 
+            {
+                rightPath.isActive = true;
+            }
+
+            if (leftPathLocked == false) 
+            {
+                leftPath.isActive = true;
+            }
+        }
+
+        rightPathLocked = false;
+        leftPathLocked = false;
     }
 
 }
