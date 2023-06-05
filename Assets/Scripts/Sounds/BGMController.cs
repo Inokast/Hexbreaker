@@ -67,7 +67,7 @@ public class BGMController : MonoBehaviour, IDataPersistence
 
 
             default:
-                PlayMenuMusic();
+                StopMusic();
                 break;
         }
     }

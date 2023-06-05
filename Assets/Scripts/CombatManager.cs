@@ -55,6 +55,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
     [Header("Battle Settings")]
 
     private bool combatFinished = false;
+    private bool playerDied = false;
 
     private Unit playerUnit;
     private Unit enemyUnit;
@@ -139,7 +140,10 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         gameData.playerDefense = playerUnit.defense;
         gameData.playerMaxHP = playerUnit.maxHP;
         gameData.playerCurrentHP = playerUnit.currentHP;
+
         gameData.combatFinished = combatFinished;
+        gameData.playerDied = playerDied;
+
         gameData.rightRoomLocked = rightRoomLocked;
         gameData.leftRoomLocked = leftRoomLocked;
     }
@@ -189,11 +193,15 @@ public class CombatManager : MonoBehaviour, IDataPersistence
             battleText.text = "You won the battle! Choose a talisman to purify (Placeholder)";
             /// Display choice
             endPanel.SetActive(true);
+            combatFinished = true;
+            playerDied = false;
         }
         else if (state == BattleState.LOST)
         {
             battleText.text = "You were defeated. Better luck next time";
             endPanel.SetActive(true);
+            playerDied = true;
+            combatFinished = false;
         }
 
         else { battleText.text = "Battle state is wrong"; }
@@ -223,6 +231,9 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         {
             breakButton.interactable = false;
         }
+
+        attackButton.interactable = true;
+        defendButton.interactable = true;
         
     }
     private void PlayerTurn()

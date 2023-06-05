@@ -15,6 +15,7 @@ public class GameData
     public string lastSelectedNodeID;
     public bool rightRoomLocked;
     public bool leftRoomLocked;
+    public bool playerDied;
     public SerializableDictionary<string, bool> nodesActive;
     public SerializableDictionary<string, bool> nodesCompleted;
 
@@ -49,6 +50,7 @@ public class GameData
         lastSelectedNodeID = "";
         rightRoomLocked = false;
         leftRoomLocked = false;
+        playerDied = false;
         //lastActiveSceneName = "CombatSceneForest";
 
         nodesActive = new SerializableDictionary<string, bool>();
