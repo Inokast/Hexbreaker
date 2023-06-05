@@ -279,7 +279,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3985249c191f0244bc10022d3959af5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitName: Slurp
+  unitName: Waterlogged Spirit
   isDefending: 0
   highDamage: 3
   midDamage: 2
