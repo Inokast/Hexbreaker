@@ -24,9 +24,10 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
     [SerializeField] private Vector3 playerPosInWorld;
 
     [Header("Combat Node Data")]
-    [SerializeField] private GameObject[] EnemyPrefabs; // We put all possible enemy prefabs here. When we want to load a combat scene, we change
     [SerializeField] private int lastSelectedNodeEnemyID;     
     private string lastSelectedNodeID;
+
+    private bool playerDied;
 
     private LevelManager levelManager;
 
@@ -50,7 +51,7 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
             GenerateNewWorld();
         }
 
-        if (playerUnit.currentHP == 0) 
+        if (playerDied == true) 
         {
             GenerateNewWorld();
             ResetPlayerStats();
@@ -62,8 +63,10 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
             print(lastSelectedNodeID);
             CheckNodeCompleted();
         }
+        combatFinished = false;
 
     }
+
     public void LoadData(GameData gameData)
     {
         playerUnit = player.GetComponent<Unit>();
@@ -80,6 +83,8 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
 
         combatFinished = gameData.combatFinished;
         worldGenerated = gameData.worldGenerated;
+
+        playerDied = gameData.playerDied;
 
         lastSelectedNodeID = gameData.lastSelectedNodeID;
 
@@ -99,10 +104,13 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
         gameData.playerCurrentHP = playerUnit.currentHP;
 
         gameData.playerPositionInWorld = endPos;
+        gameData.combatFinished = combatFinished;
 
         gameData.worldGenerated = worldGenerated;
 
         gameData.lastSelectedNodeID = lastSelectedNodeID;
+
+        gameData.playerDied = playerDied;
 
         print(gameData.lastSelectedNodeID);
     }
@@ -135,18 +143,31 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
 
                         if (selectedNode.isCompleted)
                         {
+                            print("Selected node is completed and activated");
                             informationPanel.GetComponentInChildren<Button>().interactable = false;
                         }
 
-                        else 
-                        {                            
+                        else if (selectedNode.isCompleted == false)
+                        {
+                            print("Selected node is not completed but is activated");
                             informationPanel.GetComponentInChildren<Button>().interactable = true;
-                        }                       
+                        }
                     }
+
+                    else
+                    {
+                        print("Selected node is not activated");
+                    }
+                }
+
+                else if (hit.collider.CompareTag("EventButton")) 
+                {
+                    OnConfirm();
                 }
 
                 else
                 {
+                    print("Clicked on something that is not a node");
                     informationPanel.SetActive(false);
                 }
             }
@@ -215,9 +236,10 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
         foreach (MapNode node in mapNodes)
         {
             if (node.nodeID == lastSelectedNodeID) 
-            {
+            {               
                 node.CompleteNode();
                 combatFinished = false;
+                print("Node " + node.name + " completed");
             }
         }
     }
@@ -247,6 +269,8 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
         playerUnit.defense = 0;
         playerUnit.maxHP = 80;
         playerUnit.currentHP = 80;
+
+        playerDied = false;
 
         // Also remove any talismans
     }

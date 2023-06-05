@@ -16,6 +16,7 @@ public class TopDownCamera : MonoBehaviour
     void Start()
     {
         HandleCamera();
+        _target = GameObject.FindWithTag("Player").transform;
     }
 
     // Update is called once per frame

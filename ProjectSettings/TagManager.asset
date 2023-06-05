@@ -10,6 +10,7 @@ TagManager:
   - CurseMid
   - CurseBot
   - Node
+  - EventButton
   layers:
   - Default
   - TransparentFX
