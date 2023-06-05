@@ -234,7 +234,7 @@ public class CreateTalismans : MonoBehaviour
             GameObject talisman = DecideTalismanRarity(amount);
 
             int talismanType = Random.Range(0, 81); //Change this when more talisman types exist. -Dylan 3
-            //Change these values to only generate healing/max hp talismans. -Dylan 3
+
             CreateHealthTalisman(talisman);
 
             if (talismanType <= 40)
@@ -248,10 +248,6 @@ public class CreateTalismans : MonoBehaviour
             else if (talismanType > 60 && talismanType <= 80)
             {
                 CreateMaxHealthTalisman(talisman);
-            }
-            else if (talismanType > 80)
-            {
-                CreateDefenseTalisman(talisman);
             }
             else
             {

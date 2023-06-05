@@ -18,7 +18,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
     private GameObject[] midCurses;
     private GameObject[] botCurses;
 
-    public static int cursesToTalismans = 0; //Amount of talismans to generate.
+    public static int cursesToTalismans = 0; //Amount of talismans to generate. -Dylan 3
 
     [Header("Curse Data")]
 
@@ -59,7 +59,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
     private bool combatFinished = false;
     private bool playerDied = false;
 
-    private Unit playerUnit;
+    public Unit playerUnit;
     private Unit enemyUnit;
 
     private GameObject enemyGO;

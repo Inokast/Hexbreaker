@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System;
+using UnityEngine.SceneManagement;
 
 public class TakeTalisman : MonoBehaviour
 {
@@ -31,6 +32,29 @@ public class TakeTalisman : MonoBehaviour
             }
 
             int amount = int.Parse(extractedNumber);
+
+            if (SceneManager.GetActiveScene().name == "Overworld")
+            {
+                OverworldManager om = GameObject.Find("OverworldManager").GetComponent<OverworldManager>();
+                Debug.Log("Overworld Data Loaded");
+                om.playerUnit.currentHP += amount;
+
+                if (om.playerUnit.currentHP > om.playerUnit.maxHP)
+                {
+                    om.playerUnit.currentHP = om.playerUnit.maxHP;
+                }
+            }
+            else
+            {
+                CombatManager cm = GameObject.Find("CombatManager").GetComponent<CombatManager>();
+                Debug.Log("Combat Data Loaded");
+                cm.playerUnit.currentHP += amount;
+
+                if (cm.playerUnit.currentHP > cm.playerUnit.maxHP)
+                {
+                    cm.playerUnit.currentHP = cm.playerUnit.maxHP;
+                }
+            }
         }
         else if (name == "Surgical Talisman")
         {
@@ -46,20 +70,49 @@ public class TakeTalisman : MonoBehaviour
 
             int amount = int.Parse(extractedNumber);
 
+            int firstHalf = 0;
+
+            int secondHalf = 0;
+
             if (amount >= 1000)
             {
-                int firstHalf = Convert.ToInt32(amount.ToString().Substring(0, 2));
+                firstHalf = Convert.ToInt32(amount.ToString().Substring(0, 2));
 
-                int secondHalf = Convert.ToInt32(amount.ToString().Substring(2));
+                secondHalf = Convert.ToInt32(amount.ToString().Substring(2));
             }
             else if (amount <= 100)
             {
-                int firstHalf = Convert.ToInt32(amount.ToString().Substring(0, 1));
+                firstHalf = Convert.ToInt32(amount.ToString().Substring(0, 1));
 
-                int secondHalf = Convert.ToInt32(amount.ToString().Substring(1));
+                secondHalf = Convert.ToInt32(amount.ToString().Substring(1));
             }
 
-            //Combine with hp and max hp respectively.
+            if (SceneManager.GetActiveScene().name == "Overworld")
+            {
+                OverworldManager om = GameObject.Find("OverworldManager").GetComponent<OverworldManager>();
+
+                om.playerUnit.maxHP -= secondHalf;
+
+                om.playerUnit.currentHP += firstHalf;
+
+                if (om.playerUnit.currentHP > om.playerUnit.maxHP)
+                {
+                    om.playerUnit.currentHP = om.playerUnit.maxHP;
+                }
+            }
+            else
+            {
+                CombatManager cm = GameObject.Find("CombatManager").GetComponent<CombatManager>();
+
+                cm.playerUnit.maxHP -= secondHalf;
+                Debug.Log("Combat Data Loaded");
+                cm.playerUnit.currentHP += firstHalf;
+
+                if (cm.playerUnit.currentHP > cm.playerUnit.maxHP)
+                {
+                    cm.playerUnit.currentHP = cm.playerUnit.maxHP;
+                }
+            }
         }
         else if (name == "Expansive Talisman")
         {
@@ -74,7 +127,19 @@ public class TakeTalisman : MonoBehaviour
             }
 
             int amount = int.Parse(extractedNumber);
-            //Add amount to max hp.
+            
+            if (SceneManager.GetActiveScene().name == "Overworld")
+            {
+                OverworldManager om = GameObject.Find("OverworldManager").GetComponent<OverworldManager>();
+
+                om.playerUnit.maxHP += amount;
+            }
+            else
+            {
+                CombatManager cm = GameObject.Find("CombatManager").GetComponent<CombatManager>();
+                Debug.Log("Combat Data Loaded");
+                cm.playerUnit.maxHP += amount;
+            }
         }
 
         GameObject[] buttons = GameObject.FindGameObjectsWithTag("TalismanButton");

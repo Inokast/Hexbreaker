@@ -16,7 +16,7 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
 
     [Header("World Data")]
     [SerializeField] private GameObject player;
-    private Unit playerUnit;
+    public Unit playerUnit;
     private bool worldGenerated;
     private bool combatFinished;
 
