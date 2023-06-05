@@ -58,6 +58,8 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
 
         if (combatFinished == true) 
         {
+            print("Combat Has Finished check successful");
+            print(lastSelectedNodeID);
             CheckNodeCompleted();
         }
 
@@ -78,6 +80,10 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
 
         combatFinished = gameData.combatFinished;
         worldGenerated = gameData.worldGenerated;
+
+        lastSelectedNodeID = gameData.lastSelectedNodeID;
+
+        print("Combat finished state has loaded: " + combatFinished);
     }
 
     public void SaveData(GameData gameData)
@@ -97,6 +103,8 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
         gameData.worldGenerated = worldGenerated;
 
         gameData.lastSelectedNodeID = lastSelectedNodeID;
+
+        print(gameData.lastSelectedNodeID);
     }
 
     // Update is called once per frame
@@ -113,6 +121,7 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
                 {
                     print("Hit a node");
                     selectedNode = hit.collider.gameObject.GetComponent<MapNode>();
+                    print("Node Name: " + selectedNode.name);
 
 
                     if (selectedNode.isActive)
@@ -122,6 +131,7 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
                         moveTimer = 0;
                         movementInitiated = true;
                         lastSelectedNodeID = selectedNode.nodeID;
+                        informationPanel.GetComponentInChildren<Button>().interactable = true;
 
                         if (selectedNode.isCompleted)
                         {
@@ -201,6 +211,7 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
 
     private void CheckNodeCompleted() 
     {
+
         foreach (MapNode node in mapNodes)
         {
             if (node.nodeID == lastSelectedNodeID) 
