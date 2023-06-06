@@ -74,7 +74,6 @@ public class DataPersistenceManager : MonoBehaviour
         {
             dataPersistenceObj.LoadData(gameData);
         }
-        Debug.Log("bgmVolume Level: " + gameData.bgmVolumeLevel);
     }
 
     public void LoadGame() 
