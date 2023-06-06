@@ -146,7 +146,7 @@ public class TakeTalisman : MonoBehaviour
 
         if (SceneManager.GetActiveScene().name != "Overworld")
         {
-            GameObject instantiatedButton = Instantiate(nextLevelButton, new Vector3(500f, 0f, 0f), Quaternion.identity, GameObject.Find("Canvas").transform);
+            GameObject instantiatedButton = Instantiate(nextLevelButton, new Vector3(968f, 100f, 0f), Quaternion.identity, GameObject.Find("Canvas").transform);
         }
 
         foreach (GameObject button in buttons)
