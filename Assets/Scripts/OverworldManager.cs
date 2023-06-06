@@ -15,7 +15,6 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
 
     private CreateTalismans tg;
 
-
     [Header("World Data")]
     [SerializeField] private GameObject player;
     public Unit playerUnit;
@@ -164,7 +163,7 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
                     }
                 }
 
-                else if (hit.collider.CompareTag("EventButton")) 
+                else if (hit.collider.CompareTag("EventButton") && !selectedNode.isCompleted && selectedNode.isActive) 
                 {
                     OnConfirm();
                 }
@@ -202,7 +201,7 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
 
                 if (selectedNode.mapSection == "Marsh") 
                 {
-                    levelManager.LoadSceneWithName("CombatSceneForest");
+                    levelManager.LoadSceneWithName("CombatSceneMarsh");
                 }
                 
                 break;
