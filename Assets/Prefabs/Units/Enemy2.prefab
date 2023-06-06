@@ -279,14 +279,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3985249c191f0244bc10022d3959af5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitName: Tough Spirit
+  unitName: Swamp Seeker
   isDefending: 0
   highDamage: 4
   midDamage: 3
   lowDamage: 2
   defense: 0
-  maxHP: 14
-  currentHP: 14
+  maxHP: 22
+  currentHP: 22
 --- !u!1 &7512487103157660640
 GameObject:
   m_ObjectHideFlags: 0
