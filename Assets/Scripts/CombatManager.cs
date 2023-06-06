@@ -70,6 +70,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
     // Start is called before the first frame update
     void Start()
     {
+        cursesToTalismans = 0;
         topCurses = GameObject.FindGameObjectsWithTag("CurseTop"); //For finding the curses. -Dylan 2
         midCurses = GameObject.FindGameObjectsWithTag("CurseMid");
         botCurses = GameObject.FindGameObjectsWithTag("CurseBot");
