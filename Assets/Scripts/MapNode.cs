@@ -57,6 +57,11 @@ public class MapNode : MonoBehaviour , IDataPersistence
     {
         isCompleted = true;
 
+        if (mapSection == "BossNode") 
+        {
+            FindObjectOfType<LevelManager>().LoadSceneWithName("EndScene");
+        }
+
         if (rightPath == leftPath)
         {
             rightPath.isActive = true;

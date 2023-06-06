@@ -140,16 +140,16 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
                         moveTimer = 0;
                         movementInitiated = true;
                         lastSelectedNodeID = selectedNode.nodeID;
-                        informationPanel.GetComponentInChildren<Button>().interactable = true;
+                        //informationPanel.GetComponentInChildren<Button>().interactable = true;
 
                         if (selectedNode.isCompleted)
                         {
-                            informationPanel.GetComponentInChildren<Button>().interactable = false;
+                            //informationPanel.GetComponentInChildren<Button>().interactable = false;
                         }
 
                         else if (selectedNode.isCompleted == false)
                         {
-                            informationPanel.GetComponentInChildren<Button>().interactable = true;
+                            //informationPanel.GetComponentInChildren<Button>().interactable = true;
                         }
                     }
 
@@ -166,7 +166,6 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
 
                 else
                 {
-                    print("Clicked on something that is not a node");
                     informationPanel.SetActive(false);
                 }
             }
