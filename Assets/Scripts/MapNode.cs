@@ -57,7 +57,7 @@ public class MapNode : MonoBehaviour , IDataPersistence
     {
         isCompleted = true;
 
-        if (mapSection == "BossNode") 
+        if (mapSection == "Boss") 
         {
             FindObjectOfType<LevelManager>().LoadSceneWithName("EndScene");
         }
