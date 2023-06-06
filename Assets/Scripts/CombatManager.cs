@@ -231,6 +231,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         playerDied = true;
         combatFinished = false;
         endPanel.SetActive(true);
+        dataManager = FindObjectOfType<DataPersistenceManager>();
         dataManager.NewGame();
         yield return new WaitForSeconds(2);
 

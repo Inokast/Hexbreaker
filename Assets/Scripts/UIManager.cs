@@ -8,16 +8,13 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private GameObject settingsPanel;
     [SerializeField] private GameObject HelpPanel;
+    [SerializeField] private GameObject creditsPanel;
     private LevelManager levelManager;
+    private DataPersistenceManager dataManager;
 
     void Start()
     {
         levelManager = FindObjectOfType<LevelManager>();
-
-        /// if (!DataPersistenceManager.instance.HasGameData)
-        /// {
-        ///     continueGameButton.SetActive(false);
-        /// ?
     }
     public void OnNewGameButton() 
     {
@@ -33,6 +30,14 @@ public class UIManager : MonoBehaviour
         // Load the next scene - which will load the game data
         levelManager.LoadSceneWithName("Overworld");
     }
+
+    public void OnPlayAgainButton() 
+    {
+        dataManager = FindObjectOfType<DataPersistenceManager>();
+        dataManager.NewGame();
+        levelManager.LoadSceneWithName("MainMenu");
+    }
+
     public void OnLoadNewSceneButton(string sceneName) 
     {
         levelManager.LoadSceneWithName(sceneName);
@@ -46,6 +51,16 @@ public class UIManager : MonoBehaviour
         }
 
         else { settingsPanel.SetActive(true); }
+    }
+
+    public void ToggleCreditsPanel()
+    {
+        if (HelpPanel.activeSelf == true)
+        {
+            HelpPanel.SetActive(false);
+        }
+
+        else { HelpPanel.SetActive(true); }
     }
 
     public void ToggleHelpPanel()

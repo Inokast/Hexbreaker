@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/FinalBuild/Overworld.unity
     guid: 67a4de4e36c65084c93f05bef4fdc196
+  - enabled: 1
+    path: Assets/FinalBuild/EndScene.unity
+    guid: 0cde8e1752075084f8c2e4f06e290227
   m_configObjects: {}
