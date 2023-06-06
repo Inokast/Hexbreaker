@@ -2254,8 +2254,8 @@ MonoBehaviour:
   nodeID: be0d7f52-e84a-43ef-b577-7b482eebd219
   leftPath: {fileID: 1238171429}
   rightPath: {fileID: 819224332}
-  nodeType: 0
-  nodeDescription: 
+  nodeType: 1
+  nodeDescription: A High Spirit lurks here.
   nodeRewards: []
   nodeEnemyID: 0
   mapSection: Cathedral
@@ -4015,8 +4015,8 @@ MonoBehaviour:
   nodeID: 43834c1d-f11b-43ad-901b-5d4bdfcc99bd
   leftPath: {fileID: 819224332}
   rightPath: {fileID: 819224332}
-  nodeType: 0
-  nodeDescription: 
+  nodeType: 1
+  nodeDescription: A High Spirit lurks here.
   nodeRewards: []
   nodeEnemyID: 0
   mapSection: Ruins
