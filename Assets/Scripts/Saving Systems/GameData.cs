@@ -66,8 +66,8 @@ public class GameData
         playerMidDamage = 4;
         playerLowDamage = 2;
         playerDefense = 0;
-        playerMaxHP = 100;
-        playerCurrentHP = 100;
+        playerMaxHP = 70;
+        playerCurrentHP = 70;
 
     }
 
