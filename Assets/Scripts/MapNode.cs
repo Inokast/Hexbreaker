@@ -60,6 +60,7 @@ public class MapNode : MonoBehaviour , IDataPersistence
         if (mapSection == "Boss") 
         {
             FindObjectOfType<LevelManager>().LoadSceneWithName("EndScene");
+            return;
         }
 
         if (rightPath == leftPath)
