@@ -219,13 +219,24 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         }
         else if (state == BattleState.LOST)
         {
-            battleText.text = "You were defeated. Better luck next time";
-            endPanel.SetActive(true);
-            playerDied = true;
-            combatFinished = false;
+            
         }
 
         else { battleText.text = "Battle state is wrong"; }
+    }
+
+
+    IEnumerator KillPlayer() 
+    {
+        battleText.text = "You Died";
+
+        playerDied = true;
+        combatFinished = false;
+        endPanel.SetActive(true);
+        //new GameObject dataManager = FindObjectOfType<DataPersistenceManager>();
+        yield return new WaitForSeconds(2);
+
+        levelManager.LoadSceneWithName("MainMenu");
     }
 
     public void TalismanPicked() 

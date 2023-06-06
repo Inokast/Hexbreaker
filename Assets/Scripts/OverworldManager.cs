@@ -63,7 +63,7 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
         if (combatFinished == true) 
         {
             print("Combat Has Finished check successful");
-            print(lastSelectedNodeID);
+            //print(lastSelectedNodeID);
             CheckNodeCompleted();
         }
         combatFinished = false;
@@ -91,7 +91,7 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
 
         lastSelectedNodeID = gameData.lastSelectedNodeID;
 
-        print("Combat finished state has loaded: " + combatFinished);
+        //print("Combat finished state has loaded: " + combatFinished);
     }
 
     public void SaveData(GameData gameData)
@@ -129,10 +129,8 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
             if (Physics.Raycast(ray, out hit, 100.0f))
             {
                 if (hit.collider.CompareTag("Node"))
-                {
-                    print("Hit a node");
+                {                   
                     selectedNode = hit.collider.gameObject.GetComponent<MapNode>();
-                    print("Node Name: " + selectedNode.name);
 
 
                     if (selectedNode.isActive)
@@ -146,13 +144,11 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
 
                         if (selectedNode.isCompleted)
                         {
-                            print("Selected node is completed and activated");
                             informationPanel.GetComponentInChildren<Button>().interactable = false;
                         }
 
                         else if (selectedNode.isCompleted == false)
                         {
-                            print("Selected node is not completed but is activated");
                             informationPanel.GetComponentInChildren<Button>().interactable = true;
                         }
                     }
@@ -249,7 +245,7 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
             {               
                 node.CompleteNode();
                 combatFinished = false;
-                print("Node " + node.name + " completed");
+                //print("Node " + node.name + " completed");
             }
         }
     }
