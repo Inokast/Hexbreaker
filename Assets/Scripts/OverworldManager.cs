@@ -207,7 +207,7 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
 
                 if (selectedNode.mapSection == "Cathedral")
                 {
-                    levelManager.LoadSceneWithName("CombatSceneCatherdral");
+                    levelManager.LoadSceneWithName("CombatSceneCathedral");
                 }
 
                 if (selectedNode.mapSection == "Boss")

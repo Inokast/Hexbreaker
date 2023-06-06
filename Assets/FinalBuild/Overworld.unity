@@ -3871,7 +3871,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nodeID: 6839ffd6-8f71-494c-accd-16a2c1f11a29
-  leftPath: {fileID: 254238225}
+  leftPath: {fileID: 44941531}
   rightPath: {fileID: 750133156}
   nodeType: 1
   nodeDescription: This is combat. The enemy is a fake slurp.
