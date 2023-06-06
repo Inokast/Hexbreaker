@@ -12,21 +12,17 @@ public enum BattleState { START, PLAYERTURN, QTE, ENEMYTURN, WON, LOST }
 public class CombatManager : MonoBehaviour, IDataPersistence
 {
 
-    [Header("Debugging")]
-
+    [Header("Curse Data")]
     private GameObject[] topCurses; //Self-explanatory. For randomization. -Dylan 2
     private GameObject[] midCurses;
     private GameObject[] botCurses;
 
     public static int cursesToTalismans = 0; //Amount of talismans to generate. -Dylan 3
-
-    [Header("Curse Data")]
-
+ 
     private bool rightRoomLocked; // Make a function that checks if there is a curse that should set this value to true at the end of the battle - Dan
     private bool leftRoomLocked;
 
     [Header("Scene Setup")]
-
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private GameObject[] enemyPrefabs;
     private GameObject enemyPrefab;
@@ -45,6 +41,8 @@ public class CombatManager : MonoBehaviour, IDataPersistence
     [SerializeField] private Button breakButton;
     [SerializeField] private Button attackButton;
     [SerializeField] private Button defendButton;
+
+    private DataPersistenceManager dataManager;
 
     private LevelManager levelManager;
 
@@ -219,7 +217,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         }
         else if (state == BattleState.LOST)
         {
-            
+            StartCoroutine(KillPlayer());
         }
 
         else { battleText.text = "Battle state is wrong"; }
@@ -233,7 +231,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         playerDied = true;
         combatFinished = false;
         endPanel.SetActive(true);
-        //new GameObject dataManager = FindObjectOfType<DataPersistenceManager>();
+        dataManager.NewGame();
         yield return new WaitForSeconds(2);
 
         levelManager.LoadSceneWithName("MainMenu");
