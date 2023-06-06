@@ -7,7 +7,7 @@ public class UIManager : MonoBehaviour
 {
 
     [SerializeField] private GameObject settingsPanel;
-    [SerializeField] private GameObject HelpPanel;
+    [SerializeField] private GameObject helpPanel;
     [SerializeField] private GameObject creditsPanel;
     private LevelManager levelManager;
     private DataPersistenceManager dataManager;
@@ -55,22 +55,22 @@ public class UIManager : MonoBehaviour
 
     public void ToggleCreditsPanel()
     {
-        if (HelpPanel.activeSelf == true)
+        if (creditsPanel.activeSelf == true)
         {
-            HelpPanel.SetActive(false);
+            creditsPanel.SetActive(false);
         }
 
-        else { HelpPanel.SetActive(true); }
+        else { creditsPanel.SetActive(true); }
     }
 
     public void ToggleHelpPanel()
     {
-        if (HelpPanel.activeSelf == true)
+        if (helpPanel.activeSelf == true)
         {
-            HelpPanel.SetActive(false);
+            helpPanel.SetActive(false);
         }
 
-        else { HelpPanel.SetActive(true); }
+        else { helpPanel.SetActive(true); }
     }
 
     public void OnQuitButtonPress() 
