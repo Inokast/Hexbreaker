@@ -199,7 +199,22 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
                 {
                     levelManager.LoadSceneWithName("CombatSceneMarsh");
                 }
-                
+
+                if (selectedNode.mapSection == "Ruins")
+                {
+                    levelManager.LoadSceneWithName("CombatSceneRuins");
+                }
+
+                if (selectedNode.mapSection == "Cathedral")
+                {
+                    levelManager.LoadSceneWithName("CombatSceneCatherdral");
+                }
+
+                if (selectedNode.mapSection == "Boss")
+                {
+                    levelManager.LoadSceneWithName("CombatSceneBoss");
+                }
+
                 break;
 
             case 2:
