@@ -74,7 +74,7 @@ public class TakeTalisman : MonoBehaviour
 
             int secondHalf = 0;
 
-            if (amount >= 1000)
+            if (amount > 100)
             {
                 firstHalf = Convert.ToInt32(amount.ToString().Substring(0, 2));
 
