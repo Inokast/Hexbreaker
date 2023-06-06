@@ -13,6 +13,8 @@ public class CreateTalismans : MonoBehaviour
     [SerializeField] GameObject legendaryFrame;
     [SerializeField] GameObject spectralFrame;
 
+    [SerializeField] GameObject talismanChoicePanel;
+
     public void GenerateEncounterTalismans()
     {
         int amount = CombatManager.cursesToTalismans;
@@ -23,19 +25,19 @@ public class CreateTalismans : MonoBehaviour
         {
             GameObject talisman = DecideTalismanRarity(amount);
 
-            int talismanType = Random.Range(0, 81); //Change this when more talisman types exist. -Dylan 3
+            int talismanType = Random.Range(0, 76); //Change this when more talisman types exist. -Dylan 3
             //Placeholder values. Just need the system to work at the moment -Dylan 3
             CreateHealthTalisman(talisman);
 
-            if (talismanType <= 40)
+            if (talismanType <= 35)
             {
                 CreateHealthTalisman(talisman);
             }
-            else if (talismanType > 40 && talismanType <= 60)
+            else if (talismanType > 35 && talismanType <= 55)
             {
                 CreateExtendingTalisman(talisman);
             }
-            else if (talismanType > 60 && talismanType <= 80)
+            else if (talismanType > 55 && talismanType <= 75)
             {
                 CreateMaxHealthTalisman(talisman);
             }
@@ -132,25 +134,25 @@ public class CreateTalismans : MonoBehaviour
             rarityFrame.transform.SetParent(GameObject.Find("Canvas").transform, false);
             return rarityFrame;
         }
-        else if (rarity > 35 && rarity <= 50)
+        else if (rarity > 35 && rarity <= 65)
         {
             rarityFrame = Instantiate(uncommonFrame, new Vector3(posX, posY, 0f), Quaternion.identity);
             rarityFrame.transform.SetParent(GameObject.Find("Canvas").transform, false);
             return rarityFrame;
         }
-        else if (rarity > 50 && rarity <= 65)
+        else if (rarity > 65 && rarity <= 85)
         {
             rarityFrame = Instantiate(rareFrame, new Vector3(posX, posY, 0f), Quaternion.identity);
             rarityFrame.transform.SetParent(GameObject.Find("Canvas").transform, false);
             return rarityFrame;
         }
-        else if (rarity > 65 && rarity <= 80)
+        else if (rarity > 85 && rarity <= 95)
         {
             rarityFrame = Instantiate(legendaryFrame, new Vector3(posX, posY, 0f), Quaternion.identity);
             rarityFrame.transform.SetParent(GameObject.Find("Canvas").transform, false);
             return rarityFrame;
         }
-        else if (rarity > 80 && rarity <= 100)
+        else if (rarity > 95 && rarity <= 100)
         {
             rarityFrame = Instantiate(spectralFrame, new Vector3(posX, posY, 0f), Quaternion.identity);
             rarityFrame.transform.SetParent(GameObject.Find("Canvas").transform, false);
@@ -191,23 +193,25 @@ public class CreateTalismans : MonoBehaviour
     {
         int amount = 3;
 
+        talismanChoicePanel.SetActive(true);
+
         do
         {
             GameObject talisman = DecideTalismanRarity(amount);
 
-            int talismanType = Random.Range(0, 81); //Change this when more talisman types exist. -Dylan 3
+            int talismanType = Random.Range(0, 76); //Change this when more talisman types exist. -Dylan 3
 
             CreateHealthTalisman(talisman);
 
-            if (talismanType <= 40)
+            if (talismanType <= 35)
             {
                 CreateHealthTalisman(talisman);
             }
-            else if (talismanType > 40 && talismanType <= 60)
+            else if (talismanType > 35 && talismanType <= 55)
             {
                 CreateExtendingTalisman(talisman);
             }
-            else if (talismanType > 60 && talismanType <= 80)
+            else if (talismanType > 55 && talismanType <= 75)
             {
                 CreateMaxHealthTalisman(talisman);
             }
@@ -229,23 +233,25 @@ public class CreateTalismans : MonoBehaviour
     {
         int amount = 3;
 
+        talismanChoicePanel.SetActive(true);
+
         do
         {
             GameObject talisman = DecideTalismanRarity(amount);
 
-            int talismanType = Random.Range(0, 81); //Change this when more talisman types exist. -Dylan 3
+            int talismanType = Random.Range(0, 101); //Change this when more talisman types exist. -Dylan 3
 
             CreateHealthTalisman(talisman);
 
-            if (talismanType <= 40)
+            if (talismanType <= 50)
             {
                 CreateHealthTalisman(talisman);
             }
-            else if (talismanType > 40 && talismanType <= 60)
+            else if (talismanType > 50 && talismanType <= 75)
             {
                 CreateExtendingTalisman(talisman);
             }
-            else if (talismanType > 60 && talismanType <= 80)
+            else if (talismanType > 75 && talismanType <= 100)
             {
                 CreateMaxHealthTalisman(talisman);
             }
@@ -257,5 +263,34 @@ public class CreateTalismans : MonoBehaviour
             amount--;
 
         } while (amount > 0);
+    }
+
+    public void HidePanel()
+    {
+        talismanChoicePanel.SetActive(false);
+
+        GameObject[] commons = GameObject.FindGameObjectsWithTag("CommonFrame");
+
+        GameObject[] uncommons = GameObject.FindGameObjectsWithTag("UncommonFrame");
+
+        GameObject[] rares = GameObject.FindGameObjectsWithTag("RareFrame");
+
+        GameObject[] legendaries = GameObject.FindGameObjectsWithTag("LegendaryFrame");
+
+        GameObject[] spectrals = GameObject.FindGameObjectsWithTag("SpectralFrame");
+
+        HideFrame(commons);
+        HideFrame(uncommons);
+        HideFrame(rares);
+        HideFrame(legendaries);
+        HideFrame(spectrals);
+    }
+
+    private void HideFrame(GameObject[] frames)
+    {
+        foreach (GameObject frame in frames)
+        {
+            Destroy(frame);
+        }
     }
 }

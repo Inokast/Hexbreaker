@@ -13,6 +13,8 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
     [SerializeField] private TextMeshProUGUI eventText;
     [SerializeField] private MapNode[] mapNodes;
 
+    private CreateTalismans tg;
+
 
     [Header("World Data")]
     [SerializeField] private GameObject player;
@@ -45,6 +47,8 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
         levelManager = FindAnyObjectByType<LevelManager>();
         eventText.text = "";
         player.transform.position = playerPosInWorld;
+
+        tg = GameObject.Find("TalismanGenerator").GetComponent<CreateTalismans>();
 
         if (worldGenerated == false) 
         {
@@ -118,7 +122,7 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && GameObject.Find("TalismanPanel") == null)
         {
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -204,11 +208,11 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
                 break;
 
             case 2:
-                // Node type Lucky (free talisman choice)
+                tg.GenerateHealingTalismans();
                 break;
 
             case 3:
-                // Node type Heal
+                // Node type Lucky
                 break;
 
             case 4:
@@ -220,6 +224,13 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
                 print("Node type not recognized");
                 break;
         }
+    }
+
+    public void MarkCurrentNodeComplete()
+    {
+        selectedNode.CompleteNode();
+
+        tg.HidePanel();
     }
 
     IEnumerator EventTextDisplay(string textToDisplay) 
