@@ -35,7 +35,7 @@ public class MapNode : MonoBehaviour , IDataPersistence
     public void LoadData(GameData gameData) 
     {
         gameData.nodesActive.TryGetValue(nodeID, out isActive);
-        gameData.nodesActive.TryGetValue(nodeID, out isCompleted);
+        gameData.nodesCompleted.TryGetValue(nodeID, out isCompleted);
     }
 
     public void SaveData(GameData gameData)
