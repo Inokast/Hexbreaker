@@ -284,7 +284,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         state = BattleState.QTE;
 
         battleText.text = "You attack! Press the right key";
-        eventManager.GenerateQTE(3f); // Generates Quick time event
+        eventManager.GenerateStandardQTE(3f); // Generates Quick time event
 
         yield return new WaitForSeconds(3.1f);
         int damageDealt = 0;
@@ -497,7 +497,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
             playerUnit.defense -= defenseBoost; // Reset any previous defense gains in case player is attacked more than once on same turn.
             state = BattleState.QTE;          
             battleText.text = "The " + enemyUnit.unitName + " attacks! Block by pressing the right key!";
-            eventManager.GenerateQTE(3f);
+            eventManager.GenerateStandardQTE(3f);
             // Start QTE. Reduce incoming damage based on degree of success by increasing player defense. Align QTE with enemy's attack animation.
             yield return new WaitForSeconds(3f);
             
