@@ -11,27 +11,32 @@ using TMPro;
 public enum QTEResult { NONE, LOW, MID, HIGH }
 public class QTEManager : MonoBehaviour
 {
+    [Header("UI Connections")]
     public GameObject eventPanel;
     public TextMeshProUGUI inputDisplayText;
     public TextMeshProUGUI resultDisplayText;
 
+    [Header("General Variables")]
     private float timerDuration;
     private int eventGen; // QTE generator
     private bool isWaitingForInput;
-
+    private string eventType;
     private bool inputWasCorrect;
     private bool timerIsActive;
+    public QTEResult eventResult;
 
+
+    [Header("Advanced Variables")]
     private int correctKeyPressedNum;
     private bool eventOngoing;
+    private float amountFilled;
 
-    private string eventType;
+    
 
     [SerializeField] private GameObject buttonDisplay;
     private GameObject currentButtonDisplay;
     private Transform displayStartPos;
 
-    public QTEResult eventResult;
 
     public void Start()
     {
@@ -122,6 +127,7 @@ public class QTEManager : MonoBehaviour
     public void GenerateTimedQTE(float duration) 
     {
         StopCoroutine(ClearQTESequence());
+        eventType = "Timed";
         eventPanel.SetActive(true);
         resultDisplayText.text = "";
         eventGen = Random.Range(1, 5);
@@ -160,10 +166,70 @@ public class QTEManager : MonoBehaviour
         StartCoroutine(GenerateQTEArray(5, keysToPress));
     }
 
+    public void MashQTETest()
+    {
+        StartCoroutine(GenerateMashQTE(5, 1, 10));
+    }
+
+    IEnumerator GenerateMashQTE(float duration, int keyToPress, float amountToFill)
+    {
+        StopCoroutine(ClearQTESequence());
+        eventType = "Mash";
+        eventPanel.SetActive(true);
+        resultDisplayText.text = "Mash!";
+        //eventGen = Random.Range(1, 5);
+        eventOngoing = true;
+        timerDuration = duration;
+        StartCoroutine(Timer());
+
+        eventGen = keyToPress;
+        amountFilled = 0;
+
+        switch (eventGen)
+        {
+            case 1:
+                inputDisplayText.color = Color.white;
+                inputDisplayText.text = "[W]";
+                break;
+
+            case 2:
+                inputDisplayText.color = Color.white;
+                inputDisplayText.text = "[D]";
+                break;
+
+            case 3:
+                inputDisplayText.color = Color.white;
+                inputDisplayText.text = "[S]";
+                break;
+
+            case 4:
+                inputDisplayText.color = Color.white;
+                inputDisplayText.text = "[A]";
+                break;
+
+            default:
+                Debug.Log("Error! QTE Event generated not recognized. Please input 1 (Up), 2 (Right), 3 (Down), or 4 (Left).");
+                isWaitingForInput = false;
+                break;
+        }
+        isWaitingForInput = true;
+
+        yield return new WaitUntil(() => amountFilled >= amountToFill);
+        timerIsActive = false;
+        isWaitingForInput = false;
+        resultDisplayText.text = "Nice!";
+        inputDisplayText.color = Color.yellow;
+
+        eventResult = QTEResult.HIGH;
+        StartCoroutine(ClearQTESequence());
+
+    }
+
     IEnumerator GenerateQTEArray(float duration, int[] keysToPress)
     {
         StopCoroutine(ClearQTESequence());
         eventPanel.SetActive(true);
+        eventType = "Array";
         resultDisplayText.text = "";
         //eventGen = Random.Range(1, 5);
         eventOngoing = true;
@@ -176,7 +242,6 @@ public class QTEManager : MonoBehaviour
         {
             if (timerIsActive == true)
             {
-                print("Loop for key " + keysToPress[i]);
                 isWaitingForInput = true;
                 eventGen = keysToPress[i];
 
@@ -211,7 +276,6 @@ public class QTEManager : MonoBehaviour
                 if (i == totalKeys - 1)
                 {
                     eventOngoing = false;
-                    print("Fourth loop " + i);
                 }
 
                 yield return new WaitUntil(() => isWaitingForInput == false);
@@ -226,34 +290,33 @@ public class QTEManager : MonoBehaviour
 
         timerIsActive = false;
         //isWaitingForInput = false;
-        print("Made it out of loop");
 
         if (correctKeyPressedNum == totalKeys)
         {
             eventResult = QTEResult.HIGH;
-            ClearQTESequence();
-            print("Perfect end");
+            //print("Perfect end");
         }
 
         else if (correctKeyPressedNum == 0)
         {
             eventResult = QTEResult.LOW;
-            ClearQTESequence();
-            print("Missed end");
+            //print("Missed end");
         }
 
         else 
         {
             eventResult = QTEResult.MID;
-            ClearQTESequence();
-            print("Mid end");
+            //print("Mid end");
         }
+
+        StartCoroutine(ClearQTESequence());
 
     }
 
     public void GenerateStandardQTE(float duration) 
     {
         StopCoroutine(ClearQTESequence());
+        eventType = "Standard";
         eventOngoing = true;
         eventPanel.SetActive(true);
         resultDisplayText.text = "";
@@ -289,8 +352,11 @@ public class QTEManager : MonoBehaviour
 
     private void InputReceived() 
     {
-        eventGen = 0; // Reset
-        print("Input was detected");
+        if (eventType != "Mash") 
+        {
+            eventGen = 0; // Reset
+        }
+        
         if (inputWasCorrect) 
         {
             correctKeyPressedNum += 1;
@@ -305,7 +371,17 @@ public class QTEManager : MonoBehaviour
 
             else 
             {
-                isWaitingForInput = false;
+                if (eventType != "Mash")
+                {
+                    isWaitingForInput = false;
+                    
+                }
+
+                else 
+                {
+                    resultDisplayText.text = "Keep Going!";
+                    amountFilled += 1;
+                }
             }
         }
 
@@ -341,7 +417,7 @@ public class QTEManager : MonoBehaviour
         {
             eventOngoing = false;
             eventGen = 0;
-            eventResult = QTEResult.LOW;            
+            eventResult = QTEResult.LOW;
             resultDisplayText.text = "Missed...";
             inputDisplayText.color = Color.red;
             StartCoroutine(ClearQTESequence());
@@ -355,10 +431,11 @@ public class QTEManager : MonoBehaviour
         //yield return new WaitForSeconds(1.5f);
         inputWasCorrect = false;
         isWaitingForInput = false;
-        yield return new WaitForSeconds(2f);             
+        yield return new WaitForSeconds(1f);             
         inputDisplayText.text = "";
         resultDisplayText.text = "";
         correctKeyPressedNum = 0;
+        amountFilled = 0;
         eventPanel.SetActive(false);
         inputDisplayText.color = Color.white;
     }

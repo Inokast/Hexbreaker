@@ -2749,7 +2749,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Hexbreak
+  m_text: Timed QTE
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2942,7 +2942,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Attack
+  m_text: 'QTE Array
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3108,7 +3110,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Defend
+  m_text: Mash QTE
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4424,8 +4426,8 @@ MonoBehaviour:
   eventPanel: {fileID: 858146520}
   inputDisplayText: {fileID: 88356441}
   resultDisplayText: {fileID: 1255454265}
-  buttonDisplay: {fileID: 738814847}
   eventResult: 0
+  buttonDisplay: {fileID: 738814847}
 --- !u!4 &1031236951
 Transform:
   m_ObjectHideFlags: 0
@@ -5391,9 +5393,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 94448199}
-        m_TargetAssemblyTypeName: CombatManager, Assembly-CSharp
-        m_MethodName: OnDefendButton
+      - m_Target: {fileID: 1031236950}
+        m_TargetAssemblyTypeName: QTEManager, Assembly-CSharp
+        m_MethodName: MashQTETest
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
