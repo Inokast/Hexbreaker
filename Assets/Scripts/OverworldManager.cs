@@ -25,7 +25,7 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
     [SerializeField] private Vector3 playerPosInWorld;
 
     [Header("Combat Node Data")]
-    [SerializeField] private int lastSelectedNodeEnemyID;     
+    [SerializeField] private List<int> lastSelectedNodeEnemyID;     
     private string lastSelectedNodeID;
 
     private bool playerDied;

@@ -39,7 +39,7 @@ public class LevelManager : MonoBehaviour
 
     IEnumerator RestartLevel()
     {
-        //transition.StartTransition();
+        transition.StartTransition();
 
         yield return new WaitForSeconds(transition.transitionTime);
 

@@ -294,7 +294,7 @@ MonoBehaviour:
   nodeType: 1
   nodeDescription: Oh No, a ghost!
   nodeRewards: []
-  nodeEnemyID: 1
+  nodeEnemyID: 00000000
   mapSection: Ruins
   isActive: 0
   isCompleted: 0
@@ -424,7 +424,7 @@ MonoBehaviour:
   nodeType: 1
   nodeDescription: A High Spirit lurks here.
   nodeRewards: []
-  nodeEnemyID: 0
+  nodeEnemyID: 00000000
   mapSection: Cathedral
   isActive: 0
   isCompleted: 0
@@ -554,7 +554,7 @@ MonoBehaviour:
   nodeType: 1
   nodeDescription: This is combat. The enemy is a fake slurp.
   nodeRewards: []
-  nodeEnemyID: 2
+  nodeEnemyID: 00000000
   mapSection: Marsh
   isActive: 1
   isCompleted: 0
@@ -802,7 +802,7 @@ MonoBehaviour:
   nodeType: 1
   nodeDescription: This is combat. The enemy is a ghost.
   nodeRewards: []
-  nodeEnemyID: 1
+  nodeEnemyID: 00000000
   mapSection: Ruins
   isActive: 0
   isCompleted: 0
@@ -1256,7 +1256,7 @@ MonoBehaviour:
   playerUnit: {fileID: 0}
   startPos: {x: 0, y: 0.5, z: -8}
   playerPosInWorld: {x: 0, y: 0, z: 0}
-  lastSelectedNodeEnemyID: 0
+  lastSelectedNodeEnemyID: 
 --- !u!4 &533649390
 Transform:
   m_ObjectHideFlags: 0
@@ -1399,7 +1399,7 @@ MonoBehaviour:
   nodeDescription: This is another healing node.
   nodeRewards:
   - Health Recovered Talisman
-  nodeEnemyID: 0
+  nodeEnemyID: 
   mapSection: Ruins
   isActive: 0
   isCompleted: 0
@@ -1683,7 +1683,7 @@ MonoBehaviour:
   nodeType: 0
   nodeDescription: A High Spirit lurks here.
   nodeRewards: []
-  nodeEnemyID: 0
+  nodeEnemyID: 00000000
   mapSection: Cathedral
   isActive: 0
   isCompleted: 0
@@ -2348,7 +2348,7 @@ MonoBehaviour:
   nodeType: 1
   nodeDescription: A High Spirit lurks here.
   nodeRewards: []
-  nodeEnemyID: 0
+  nodeEnemyID: 00000000
   mapSection: Cathedral
   isActive: 0
   isCompleted: 0
@@ -2479,7 +2479,7 @@ MonoBehaviour:
   nodeDescription: This is a healing node.
   nodeRewards:
   - Health Recovered Talisman
-  nodeEnemyID: 0
+  nodeEnemyID: 
   mapSection: Marsh
   isActive: 1
   isCompleted: 0
@@ -2609,7 +2609,7 @@ MonoBehaviour:
   nodeType: 1
   nodeDescription: This is a combat node. A Slurp enemy lurks here.
   nodeRewards: []
-  nodeEnemyID: 1
+  nodeEnemyID: 00000000
   mapSection: Marsh
   isActive: 1
   isCompleted: 0
@@ -3413,7 +3413,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80c67172a93f2dc47a4be2fff913d31b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nodeID: a8b86f24-1855-4952-98f4-e0ac9513a080
+  nodeID: StartingNode
   leftPath: {fileID: 1075164956}
   rightPath: {fileID: 1057626255}
   nodeType: 1
@@ -3423,7 +3423,7 @@ MonoBehaviour:
   - Max Health Up Talisman
   - Attack Up Talisman
   - Defense Up Talisman
-  nodeEnemyID: 0
+  nodeEnemyID: 00000000
   mapSection: Marsh
   isActive: 1
   isCompleted: 0
@@ -3553,7 +3553,7 @@ MonoBehaviour:
   nodeType: 1
   nodeDescription: You've reached the boss. Evil specter is waiting.
   nodeRewards: []
-  nodeEnemyID: 0
+  nodeEnemyID: 00000000
   mapSection: Boss
   isActive: 0
   isCompleted: 0
@@ -3683,7 +3683,7 @@ MonoBehaviour:
   nodeType: 1
   nodeDescription: A High Spirit lurks here.
   nodeRewards: []
-  nodeEnemyID: 0
+  nodeEnemyID: 00000000
   mapSection: Cathedral
   isActive: 0
   isCompleted: 0
@@ -4236,7 +4236,7 @@ MonoBehaviour:
   nodeType: 1
   nodeDescription: This is combat. The enemy is a fake slurp.
   nodeRewards: []
-  nodeEnemyID: 2
+  nodeEnemyID: 00000000
   mapSection: Marsh
   isActive: 0
   isCompleted: 0
@@ -4378,7 +4378,7 @@ MonoBehaviour:
   nodeType: 1
   nodeDescription: A High Spirit lurks here.
   nodeRewards: []
-  nodeEnemyID: 0
+  nodeEnemyID: 00000000
   mapSection: Ruins
   isActive: 0
   isCompleted: 0

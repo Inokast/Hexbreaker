@@ -25,7 +25,7 @@ public class MapNode : MonoBehaviour , IDataPersistence
     public int nodeType;
     public string nodeDescription;
     public string[] nodeRewards; // Replace String[] with Talisman[] or follow the idea as needed to be able to track it across scenes. - Dan
-    public int nodeEnemyID;
+    public List<int> nodeEnemyID;
 
     public string mapSection; // Marsh, Ruins, Cathedral, Finalboss.
 

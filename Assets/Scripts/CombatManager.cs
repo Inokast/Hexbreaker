@@ -26,14 +26,14 @@ public class CombatManager : MonoBehaviour, IDataPersistence
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private GameObject[] enemyPrefabs;
     private GameObject enemyPrefab;
-    private int loadedEnemyID = 0; // This number determines which of the enemyPrefabs[] prefab is used. Pass this data through the Overworld map by saving it upon selecting a node in that scene. - Dan
+    private List<int> loadedEnemyID; // This number determines which of the enemyPrefabs[] prefab is used. Pass this data through the Overworld map by saving it upon selecting a node in that scene. - Dan
 
     [SerializeField] private TextMeshProUGUI battleText;
     [SerializeField] private GameObject endPanel;
     private GameObject winPanel;
 
     public Transform playerBattleStation;
-    public Transform enemyBattleStation;
+    public Transform[] enemyBattleStations;
 
     [SerializeField] private BattleHUD playerHUD;
     [SerializeField] private BattleHUD enemyHUD;
@@ -58,9 +58,15 @@ public class CombatManager : MonoBehaviour, IDataPersistence
     private bool playerDied = false;
 
     public Unit playerUnit;
-    private Unit enemyUnit;
+    private Unit selectedEnemyUnit;
+    private Unit actingEnemyUnit;
+    private List<Unit> enemyUnits;
 
     private GameObject enemyGO;
+    private GameObject enemyGO2;
+    private GameObject enemyGO3;
+
+    private int currentEnemyTurn;
 
     private int defenseBoost = 0; // Used to temporarily increase player defense.
     private int turnCounter = 0; // Because some abilities will be gated by skill cooldowns, we'll use a counter. Turn counter always goes up on Player's turn. Please use to count turns on Talisman cooldowns - Dan
@@ -163,15 +169,47 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         GameObject playerGO = Instantiate(playerPrefab, playerBattleStation);
         //playerUnit = playerGO.GetComponent<Unit>(); // We are now reading the unit data from GameData when we load into the scene. - Dan
 
-        enemyPrefab = enemyPrefabs[loadedEnemyID];
+        print("Loaded Setup Battle routine");
 
-        enemyGO = Instantiate(enemyPrefab, enemyBattleStation);
-        enemyUnit = enemyGO.GetComponent<Unit>();
+        if (loadedEnemyID.Count == 3)
+        {
+            enemyPrefab = enemyPrefabs[loadedEnemyID[0]];
+            enemyGO = Instantiate(enemyPrefab, enemyBattleStations[0]);
+            enemyUnits.Add(enemyGO.GetComponent<Unit>());
 
-        battleText.text = "The battle has begun! " + enemyUnit.unitName + " wants to fight!";
+            enemyPrefab = enemyPrefabs[loadedEnemyID[1]];
+            enemyGO2 = Instantiate(enemyPrefab, enemyBattleStations[1]);
+            enemyUnits.Add(enemyGO2.GetComponent<Unit>());
+
+            enemyPrefab = enemyPrefabs[loadedEnemyID[2]];
+            enemyGO3 = Instantiate(enemyPrefab, enemyBattleStations[2]);
+            enemyUnits.Add(enemyGO3.GetComponent<Unit>());
+        }
+
+        else if (loadedEnemyID.Count == 2)
+        {
+
+        }
+
+        else if (loadedEnemyID.Count == 1)
+        {
+
+            enemyPrefab = enemyPrefabs[loadedEnemyID[0]];
+
+
+            enemyGO = Instantiate(enemyPrefab, enemyBattleStations[0]);
+            enemyUnits = new List<Unit> { };
+            enemyUnits.Add(enemyGO.GetComponent<Unit>());
+
+        }
+
+        selectedEnemyUnit = enemyUnits[0];
+        actingEnemyUnit = enemyUnits[0];
+
+        battleText.text = "The battle has begun! " + selectedEnemyUnit.unitName + " wants to fight!";
 
         playerHUD.SetHUD(playerUnit);
-        enemyHUD.SetHUD(enemyUnit);
+        enemyHUD.SetHUD(selectedEnemyUnit);
 
         yield return new WaitForSeconds(2f);
 
@@ -184,7 +222,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
     {
         //Check what actions the enemy can use. Here we check enemy behavior.
 
-        battleText.text = "The " + enemyUnit.unitName + " is deciding what to do";
+        battleText.text = "The " + actingEnemyUnit.unitName + " is deciding what to do";
 
         yield return new WaitForSeconds(2f);
 
@@ -295,7 +333,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
                 break;
             case QTEResult.LOW:
                 damageDealt = playerUnit.lowDamage;
-                battleText.text = "A weak hit! The " + enemyUnit.unitName + " takes " + damageDealt + " damage!";
+                battleText.text = "A weak hit! The " + selectedEnemyUnit.unitName + " takes " + damageDealt + " damage!";
 
                 if (GameObject.Find("WeakAttackCurse") != null) //Changes the break charge based on the weak curse. -Dylan 2
                 {
@@ -308,12 +346,12 @@ public class CombatManager : MonoBehaviour, IDataPersistence
                 break;
             case QTEResult.MID:
                 damageDealt = playerUnit.midDamage;
-                battleText.text = "A hit! The " + enemyUnit.unitName + " takes " + damageDealt + " damage!";
+                battleText.text = "A hit! The " + selectedEnemyUnit.unitName + " takes " + damageDealt + " damage!";
                 bm.ChangeMeterValue(12);
                 break;
             case QTEResult.HIGH:
                 damageDealt = playerUnit.highDamage;
-                battleText.text = "A strong hit! The " + enemyUnit.unitName + " takes " + damageDealt + " damage!";
+                battleText.text = "A strong hit! The " + selectedEnemyUnit.unitName + " takes " + damageDealt + " damage!";
 
                 if (GameObject.Find("DefendingCurse") != null) //Changes break charge based on the strong attack curse. -Dylan 2
                 {
@@ -333,8 +371,8 @@ public class CombatManager : MonoBehaviour, IDataPersistence
                 break;
         }
 
-        bool isDead = enemyUnit.TakeDamage(damageDealt, false);
-        enemyHUD.SetHP(enemyUnit);
+        bool isDead = selectedEnemyUnit.TakeDamage(damageDealt, false);
+        enemyHUD.SetHP(selectedEnemyUnit);
 
         yield return new WaitForSeconds(2f);
 
@@ -350,6 +388,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         else 
         {
             // Proceed to enemy's turn.
+            actingEnemyUnit = enemyUnits[0];
             state = BattleState.ENEMYTURN;
             StartCoroutine(EnemyTurn());
         }
@@ -379,15 +418,15 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         breakButton.interactable = false;
         //Play the animation for the break button deactivating
 
-        battleText.text = "You break the curse imposed by " + enemyUnit.unitName + " and deal " + playerUnit.highDamage + " damage!";
+        battleText.text = "You break the curse imposed by " + enemyUnits[0].unitName + " and deal " + playerUnit.highDamage + " damage!";
 
         cursesToTalismans += 1;
 
         yield return new WaitForSeconds(2f);
 
         // Damage the enemy selected. Choose damage based on eventState;
-        bool isDead = enemyUnit.TakeDamage(playerUnit.highDamage, false);
-        enemyHUD.SetHP(enemyUnit);
+        bool isDead = selectedEnemyUnit.TakeDamage(playerUnit.highDamage, false);
+        enemyHUD.SetHP(selectedEnemyUnit);
 
         //bm.BreakCurse(GameObject.Find("ExampleCurse")); //Just placeholder, no coroutine needed yet since there's no curses. -Dylan 1
 
@@ -473,16 +512,16 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         switch (damageDealt)
         {
             case 1:
-                damageDealt = enemyUnit.lowDamage;
+                damageDealt = actingEnemyUnit.lowDamage;
                 break;
 
             case 2:
             case 3:
-                damageDealt = enemyUnit.midDamage;
+                damageDealt = actingEnemyUnit.midDamage;
                 break;
 
             case 4:
-                damageDealt = enemyUnit.highDamage;
+                damageDealt = actingEnemyUnit.highDamage;
                 break;
 
             default:
@@ -490,13 +529,13 @@ public class CombatManager : MonoBehaviour, IDataPersistence
                 break;
         }
         print("Damage dealt before defense" + damageDealt);
-        battleText.text = "The " + enemyUnit.unitName + " attacks! " + playerUnit.unitName + " takes " + damageDealt + " damage!";
+        battleText.text = "The " + actingEnemyUnit.unitName + " attacks! " + playerUnit.unitName + " takes " + damageDealt + " damage!";
         int playerDef = playerUnit.defense;
         if (playerUnit.isDefending) 
         {
             playerUnit.defense -= defenseBoost; // Reset any previous defense gains in case player is attacked more than once on same turn.
             state = BattleState.QTE;          
-            battleText.text = "The " + enemyUnit.unitName + " attacks! Block by pressing the right key!";
+            battleText.text = "The " + actingEnemyUnit.unitName + " attacks! Block by pressing the right key!";
             eventManager.GenerateStandardQTE(3f);
             // Start QTE. Reduce incoming damage based on degree of success by increasing player defense. Align QTE with enemy's attack animation.
             yield return new WaitForSeconds(3f);
@@ -564,9 +603,25 @@ public class CombatManager : MonoBehaviour, IDataPersistence
 
         else
         {
-            // (Check if there are more enemies)
-            state = BattleState.PLAYERTURN;
-            PlayerTurn();
+            if (enemyUnits.Count > 2 && actingEnemyUnit == enemyUnits[1]) 
+            {
+                actingEnemyUnit = enemyUnits[2];
+                EnemyTurn();
+            }
+
+            else if (enemyUnits.Count > 1 && actingEnemyUnit == enemyUnits[0])
+            {
+                actingEnemyUnit = enemyUnits[1];
+                EnemyTurn();
+            }
+
+
+            else 
+            {
+                actingEnemyUnit = enemyUnits[0];
+                state = BattleState.PLAYERTURN;
+                PlayerTurn();
+            }           
         }
     }
 

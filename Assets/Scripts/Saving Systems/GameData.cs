@@ -24,7 +24,7 @@ public class GameData
     public float sfxVolumeLevel;
 
     [Header("Combat Data")]
-    public int enemyUnitToLoadID;
+    public List<int> enemyUnitToLoadID;
     public bool combatFinished;
 
     [Header("Player Unit Data")]
@@ -59,7 +59,7 @@ public class GameData
         bgmVolumeLevel = .5f;
         sfxVolumeLevel = .5f;
         
-        enemyUnitToLoadID = 0;
+        enemyUnitToLoadID = new List<int> {0};
 
         playerUnitName = "Rosalin";
         playerHighDamage = 6;
