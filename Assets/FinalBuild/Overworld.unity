@@ -3417,8 +3417,7 @@ MonoBehaviour:
   leftPath: {fileID: 1075164956}
   rightPath: {fileID: 1057626255}
   nodeType: 1
-  nodeDescription: This is the tutorial node. Here we have a combat with a tutorial
-    enemy!
+  nodeDescription: This is the Tutorial Encounter
   nodeRewards:
   - Max Health Up Talisman
   - Attack Up Talisman

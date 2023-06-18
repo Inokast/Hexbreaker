@@ -276,6 +276,78 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
         worldGenerated = true;
         player.transform.position = startPos;
         mapNodes[0].isActive = true;
+        //Map rando in place is below, also randomizes enemies and amount of enemies. -Dylan 5
+        foreach (MapNode node in mapNodes)
+        {
+
+            if (node.nodeDescription != "This is the Tutorial Encounter")
+            {
+                int randomizedNumber = Random.Range(1, 100);
+
+                if (randomizedNumber >= 1 && randomizedNumber < 75)
+                {
+                    node.nodeType = 1;
+
+                    node.nodeDescription = "A dangerous combat encounter lurks here...";
+                }
+                else if (randomizedNumber >= 76)
+                {
+                    node.nodeType = 2;
+
+                    node.nodeDescription = "A clean fountain that relieves the visitor of their injuries is found here...";
+                }
+
+                int amountOfEnemies = Random.Range(1, 4);
+
+                node.nodeEnemyID.Clear();
+
+                do
+                {
+                    randomizedNumber = Random.Range(1, 100);
+
+                    if (node.mapSection == "Marsh")
+                    {
+                        if (randomizedNumber >= 1 && randomizedNumber < 35)
+                        {
+                            node.nodeEnemyID.Add(0);
+                        }
+                        else if (randomizedNumber >= 36 && randomizedNumber < 70)
+                        {
+                            node.nodeEnemyID.Add(1);
+                        }
+                        else if (randomizedNumber >= 71)
+                        {
+                            node.nodeEnemyID.Add(2);
+                        }
+                    }
+                    else if (node.mapSection == "Ruins")
+                    {
+                        if (randomizedNumber >= 1 && randomizedNumber < 35)
+                        {
+                            node.nodeEnemyID.Add(0);
+                        }
+                        else if (randomizedNumber >= 36 && randomizedNumber < 70)
+                        {
+                            node.nodeEnemyID.Add(1);
+                        }
+                        else if (randomizedNumber >= 71)
+                        {
+                            node.nodeEnemyID.Add(2);
+                        }
+                    }
+                    else if (node.mapSection == "Catherdral")
+                    {
+                        if (randomizedNumber >= 1) //Only one enemy resides in the cathedral currently. -Dylan 5
+                        {
+                            node.nodeEnemyID.Add(0);
+                        }
+                    }
+
+                    amountOfEnemies--;
+
+                } while (amountOfEnemies > 0);
+            }
+        }
 
         // foreach mapNode node in mapNodes[], randomize values
     }
