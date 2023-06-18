@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class MapNode : MonoBehaviour , IDataPersistence
@@ -32,10 +34,18 @@ public class MapNode : MonoBehaviour , IDataPersistence
     public bool isActive;
     public bool isCompleted;
 
-    public void LoadData(GameData gameData) 
+    public void LoadData(GameData gameData) //I've definitely done something wrong here, there's no way it's right. -Dylan 5
     {
         gameData.nodesActive.TryGetValue(nodeID, out isActive);
         gameData.nodesCompleted.TryGetValue(nodeID, out isCompleted);
+        gameData.nodesDescriptions.TryGetValue(nodeID, out nodeDescription);
+        gameData.nodesTypes.TryGetValue(nodeID, out nodeType);
+        if (nodeType == 1)
+        {
+            string enemiesAsString = string.Join(",", nodeEnemyID);
+            gameData.nodesEnemies.TryGetValue(nodeID, out enemiesAsString);
+            nodeEnemyID = enemiesAsString.Split(',').Select(Int32.Parse).ToList();
+        }
     }
 
     public void SaveData(GameData gameData)
@@ -51,6 +61,26 @@ public class MapNode : MonoBehaviour , IDataPersistence
             gameData.nodesCompleted.Remove(nodeID);
         }
         gameData.nodesCompleted.Add(nodeID, isCompleted);
+
+        if (gameData.nodesDescriptions.ContainsKey(nodeID))
+        {
+            gameData.nodesDescriptions.Remove(nodeID);
+        }
+        gameData.nodesDescriptions.Add(nodeID, nodeDescription);
+
+        if (gameData.nodesTypes.ContainsKey(nodeID))
+        {
+            gameData.nodesTypes.Remove(nodeID);
+        }
+        gameData.nodesTypes.Add(nodeID, nodeType);
+
+        string enemiesAsString = string.Join(",", nodeEnemyID);
+
+        if (gameData.nodesEnemies.ContainsKey(nodeID))
+        {
+            gameData.nodesEnemies.Remove(nodeID);
+        }
+        gameData.nodesEnemies.Add(nodeID, enemiesAsString);
     }
 
     public void CompleteNode() 
