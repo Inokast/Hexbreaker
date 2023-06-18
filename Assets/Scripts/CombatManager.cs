@@ -165,7 +165,6 @@ public class CombatManager : MonoBehaviour, IDataPersistence
 
     IEnumerator SetupBattle() // This function sets up the battle
     {
-        //TEMP
 
         loadedEnemyID = new List<int> {0, 0};
 
@@ -179,9 +178,6 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         enemyPrefab = enemyPrefabs[loadedEnemyID[0]];
         enemyGO = Instantiate(enemyPrefab, enemyBattleStations[0]);
         enemyUnits.Add(enemyGO.GetComponent<Unit>());
-
-
-        print("Loaded Setup Battle routine");
 
         if (loadedEnemyID.Count > 1)
         {
@@ -201,7 +197,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         selectedEnemyUnit = enemyUnits[0];
         actingEnemyUnit = enemyUnits[0];
 
-        battleText.text = "The battle has begun! " + selectedEnemyUnit.unitName + " wants to fight!";
+        battleText.text = "The battle has begun! " + actingEnemyUnit.unitName + " wants to fight!";
 
         playerHUD.SetHUD(playerUnit);
         enemyHUD.SetHUD(selectedEnemyUnit);
@@ -301,6 +297,9 @@ public class CombatManager : MonoBehaviour, IDataPersistence
 
         attackButton.interactable = true;
         defendButton.interactable = true;
+        selectedEnemyUnit = enemyUnits[0];
+
+        enemyHUD.SetHUD(selectedEnemyUnit);
         
     }
     private void PlayerTurn()
@@ -316,13 +315,14 @@ public class CombatManager : MonoBehaviour, IDataPersistence
     #region Player Actions
     IEnumerator PlayerAttack() // Deals damage to enemy and then checks if it is dead
     {
+        /*
         if (enemyUnits.Count > 1) 
         {
             battleText.text = "Select your target!";
             selectedEnemyUnit = null;
             yield return new WaitUntil(() => selectedEnemyUnit != null);
         }
-       
+        */
 
         state = BattleState.QTE;
 
@@ -385,9 +385,22 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         // Here begins endturn functionality
         if (isDead)
         {
-            // (If more than 1 enemy) Check if all enemies are dead
-            state = BattleState.WON;
-            EndBattle();
+            if (enemyUnits.Count > 1)
+            {
+                enemyUnits.Remove(selectedEnemyUnit);
+                selectedEnemyUnit.gameObject.SetActive(false);
+                selectedEnemyUnit = enemyUnits[0];
+                actingEnemyUnit = enemyUnits[0];
+                state = BattleState.ENEMYTURN;
+                StartCoroutine(EnemyTurn());
+            }
+
+            else 
+            {
+                selectedEnemyUnit.gameObject.SetActive(false);
+                state = BattleState.WON;
+                EndBattle();
+            }            
             // End the battle
         }
 
@@ -493,15 +506,29 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         // Here begins endturn functionality
         if (isDead)
         {
-            // (If more than 1 enemy) Check if all enemies are dead
-            state = BattleState.WON;
-            EndBattle();
+            if (enemyUnits.Count > 1)
+            {
+                enemyUnits.Remove(selectedEnemyUnit);
+                selectedEnemyUnit.gameObject.SetActive(false);
+                selectedEnemyUnit = enemyUnits[0];
+                actingEnemyUnit = enemyUnits[0];
+                state = BattleState.ENEMYTURN;
+                StartCoroutine(EnemyTurn());
+            }
+
+            else
+            {
+                selectedEnemyUnit.gameObject.SetActive(false);
+                state = BattleState.WON;
+                EndBattle();
+            }
             // End the battle
         }
 
         else
         {
             // Proceed to enemy's turn.
+            actingEnemyUnit = enemyUnits[0];
             state = BattleState.ENEMYTURN;
             StartCoroutine(EnemyTurn());
         }
