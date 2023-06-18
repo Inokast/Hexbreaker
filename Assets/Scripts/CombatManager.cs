@@ -66,7 +66,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
     private GameObject enemyGO2;
     private GameObject enemyGO3;
 
-    private int currentEnemyTurn;
+    //private int currentEnemyTurn;
 
     private int defenseBoost = 0; // Used to temporarily increase player defense.
     private int turnCounter = 0; // Because some abilities will be gated by skill cooldowns, we'll use a counter. Turn counter always goes up on Player's turn. Please use to count turns on Talisman cooldowns - Dan
@@ -128,6 +128,8 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         StartCoroutine(SetupBattle());
     }
 
+
+
     // Loads data needed to set up battle properly - Dan 
     public void LoadData(GameData gameData)
     {
@@ -163,45 +165,38 @@ public class CombatManager : MonoBehaviour, IDataPersistence
 
     IEnumerator SetupBattle() // This function sets up the battle
     {
+        //TEMP
+
+        loadedEnemyID = new List<int> {0, 0};
+
         combatFinished = false;
 
         endPanel.SetActive(false);
         GameObject playerGO = Instantiate(playerPrefab, playerBattleStation);
+        enemyUnits = new List<Unit> { };
         //playerUnit = playerGO.GetComponent<Unit>(); // We are now reading the unit data from GameData when we load into the scene. - Dan
+
+        enemyPrefab = enemyPrefabs[loadedEnemyID[0]];
+        enemyGO = Instantiate(enemyPrefab, enemyBattleStations[0]);
+        enemyUnits.Add(enemyGO.GetComponent<Unit>());
+
 
         print("Loaded Setup Battle routine");
 
-        if (loadedEnemyID.Count == 3)
+        if (loadedEnemyID.Count > 1)
         {
-            enemyPrefab = enemyPrefabs[loadedEnemyID[0]];
-            enemyGO = Instantiate(enemyPrefab, enemyBattleStations[0]);
-            enemyUnits.Add(enemyGO.GetComponent<Unit>());
-
             enemyPrefab = enemyPrefabs[loadedEnemyID[1]];
             enemyGO2 = Instantiate(enemyPrefab, enemyBattleStations[1]);
             enemyUnits.Add(enemyGO2.GetComponent<Unit>());
 
-            enemyPrefab = enemyPrefabs[loadedEnemyID[2]];
-            enemyGO3 = Instantiate(enemyPrefab, enemyBattleStations[2]);
-            enemyUnits.Add(enemyGO3.GetComponent<Unit>());
+            if (loadedEnemyID.Count > 2) 
+            {
+                enemyPrefab = enemyPrefabs[loadedEnemyID[2]];
+                enemyGO3 = Instantiate(enemyPrefab, enemyBattleStations[2]);
+                enemyUnits.Add(enemyGO3.GetComponent<Unit>());
+            }           
         }
-
-        else if (loadedEnemyID.Count == 2)
-        {
-
-        }
-
-        else if (loadedEnemyID.Count == 1)
-        {
-
-            enemyPrefab = enemyPrefabs[loadedEnemyID[0]];
-
-
-            enemyGO = Instantiate(enemyPrefab, enemyBattleStations[0]);
-            enemyUnits = new List<Unit> { };
-            enemyUnits.Add(enemyGO.GetComponent<Unit>());
-
-        }
+        print(enemyUnits);
 
         selectedEnemyUnit = enemyUnits[0];
         actingEnemyUnit = enemyUnits[0];
@@ -221,6 +216,8 @@ public class CombatManager : MonoBehaviour, IDataPersistence
     IEnumerator EnemyTurn()
     {
         //Check what actions the enemy can use. Here we check enemy behavior.
+
+        print("Enemy Turn called");
 
         battleText.text = "The " + actingEnemyUnit.unitName + " is deciding what to do";
 
@@ -319,11 +316,20 @@ public class CombatManager : MonoBehaviour, IDataPersistence
     #region Player Actions
     IEnumerator PlayerAttack() // Deals damage to enemy and then checks if it is dead
     {
+        if (enemyUnits.Count > 1) 
+        {
+            battleText.text = "Select your target!";
+            selectedEnemyUnit = null;
+            yield return new WaitUntil(() => selectedEnemyUnit != null);
+        }
+       
+
         state = BattleState.QTE;
 
         battleText.text = "You attack! Press the right key";
         eventManager.GenerateStandardQTE(3f); // Generates Quick time event
 
+        //yield return new WaitUntil(() => eventManager.timerEnded == true);
         yield return new WaitForSeconds(3.1f);
         int damageDealt = 0;
         switch (eventManager.eventResult)
@@ -605,14 +611,15 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         {
             if (enemyUnits.Count > 2 && actingEnemyUnit == enemyUnits[1]) 
             {
+                
                 actingEnemyUnit = enemyUnits[2];
-                EnemyTurn();
+                StartCoroutine(EnemyTurn());
             }
 
             else if (enemyUnits.Count > 1 && actingEnemyUnit == enemyUnits[0])
             {
                 actingEnemyUnit = enemyUnits[1];
-                EnemyTurn();
+                StartCoroutine(EnemyTurn());
             }
 
 

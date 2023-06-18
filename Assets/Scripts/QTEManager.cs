@@ -483,6 +483,8 @@ public class QTEManager : MonoBehaviour
         }
 
         isWaitingForInput = true;
+
+        eventOngoing = false;
     }
 
     #endregion
