@@ -29,6 +29,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
     private List<int> loadedEnemyID; // This number determines which of the enemyPrefabs[] prefab is used. Pass this data through the Overworld map by saving it upon selecting a node in that scene. - Dan
 
     [SerializeField] private TextMeshProUGUI battleText;
+    [SerializeField] private GameObject helpMenu;
     [SerializeField] private GameObject endPanel;
     private GameObject winPanel;
 
@@ -128,7 +129,21 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         StartCoroutine(SetupBattle());
     }
 
+    private void Update()
+    {
+        if (state == BattleState.PLAYERTURN) 
+        {
+            if (Input.GetKeyDown("q")) 
+            {
+                helpMenu.SetActive(true);
+            }
 
+            if (Input.GetKeyUp("q"))
+            {
+                helpMenu.SetActive(false);
+            }
+        }
+    }
 
     // Loads data needed to set up battle properly - Dan 
     public void LoadData(GameData gameData)

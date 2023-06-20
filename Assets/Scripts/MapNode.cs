@@ -44,7 +44,7 @@ public class MapNode : MonoBehaviour , IDataPersistence
         {
             string enemiesAsString = string.Join(",", nodeEnemyID);
             gameData.nodesEnemies.TryGetValue(nodeID, out enemiesAsString);
-            nodeEnemyID = enemiesAsString.Split(',').Select(Int32.Parse).ToList();
+            nodeEnemyID = enemiesAsString.Split(",").Select(Int32.Parse).ToList();
         }
     }
 
