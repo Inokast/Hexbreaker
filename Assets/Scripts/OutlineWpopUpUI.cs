@@ -9,38 +9,73 @@ public class OutlineWpopUpUI : MonoBehaviour
     [SerializeField] private string selectableTag = "Enemy";
     [SerializeField] public CanvasGroup worldCanvasGroup;
 
-   
+    [SerializeField] private GameObject storedObject;
+    [SerializeField] private bool stored;
+
     private Transform _selection;
+
+
+    public void changeShader()
+    {
+     
+        var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit))
+        {
+            var clickedObject = hit.collider.gameObject;
+            Debug.Log("Game Object to Store hit");
+           
+            var objectRendererN = clickedObject.GetComponent<Renderer>();
+            objectRendererN.material = outlineMaterial;
+            Debug.Log("Set Stored Object to Outline");
+            
+            if (stored == true)
+            {
+                var objectRenderS = storedObject.GetComponent<Renderer>();
+                objectRenderS.material = blank;
+                Debug.Log("Stored Object set to blank");
+            }
+
+            storedObject = clickedObject;
+            stored = true;
+            Debug.Log("Object Stored");
+           
+        }
+
+  
+        
+    }
 
     // Update is called once per frame
     void Update()
     {
-        if (_selection !=null) //reset
-        {
-            var selectionRenderer = _selection.GetComponent<Renderer>();
-            selectionRenderer.material = blank;
-            _selection = null;
-            worldCanvasGroup.alpha =0;
-        }
+       
+     //   if (_selection !=null) //reset
+      //  {
+       //     var selectionRenderer = _selection.GetComponent<Renderer>();
+      //      selectionRenderer.material = blank;
+      //      _selection = null;
+      //      worldCanvasGroup.alpha =0;
+      //  }
 
-        var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit)) //on hit
-        {
-            var selection = hit.transform;
-            if (selection.CompareTag(selectableTag))
-            {
-                
-                var selectionRenderer = selection.GetComponent<Renderer>();
-                if (selectionRenderer != null)
-                {
-                    selectionRenderer.material = outlineMaterial;
-                    worldCanvasGroup.alpha =1 ;
-                }
-                _selection = selection;
-            }
+      //  var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+      //  RaycastHit hit;
+      //  if (Physics.Raycast(ray, out hit)) //on hit
+      //  {
+        //    var selection = hit.transform;
+        //    if (selection.CompareTag(selectableTag))
+        //    {
+           
+              //  var selectionRenderer = selection.GetComponent<Renderer>();
+              //  if (selectionRenderer != null)
+             //   {
+             //       selectionRenderer.material = outlineMaterial;
+             //       worldCanvasGroup.alpha =1 ;
+             //   }
+             //  _selection = selection;
+        //    }
             
-        }
+     //   }
         
     }
 }
