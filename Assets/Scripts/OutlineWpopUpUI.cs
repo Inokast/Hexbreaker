@@ -6,7 +6,7 @@ public class OutlineWpopUpUI : MonoBehaviour
 {
     [SerializeField] private Material blank;
     [SerializeField] private Material outlineMaterial;
-    [SerializeField] private string selectableTag = "Enemy";
+    //[SerializeField] private string selectableTag = "Enemy";
     [SerializeField] public CanvasGroup worldCanvasGroup;
 
     [SerializeField] private GameObject storedObject;
@@ -15,35 +15,23 @@ public class OutlineWpopUpUI : MonoBehaviour
     private Transform _selection;
 
 
-    public void changeShader()
+    public void ChangeShader(GameObject objectToShade)
     {
-     
-        var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit))
-        {
-            var clickedObject = hit.collider.gameObject;
-            Debug.Log("Game Object to Store hit");
-           
-            var objectRendererN = clickedObject.GetComponent<Renderer>();
-            objectRendererN.material = outlineMaterial;
-            Debug.Log("Set Stored Object to Outline");
-            
-            if (stored == true)
-            {
-                var objectRenderS = storedObject.GetComponent<Renderer>();
-                objectRenderS.material = blank;
-                Debug.Log("Stored Object set to blank");
-            }
 
-            storedObject = clickedObject;
-            stored = true;
-            Debug.Log("Object Stored");
-           
+        Renderer objectRendererN = objectToShade.GetComponent<Renderer>();
+        objectRendererN.material = outlineMaterial;
+        //Debug.Log("Set Stored Object to Outline");
+
+        if (stored == true)
+        {
+            var objectRenderS = storedObject.GetComponent<Renderer>();
+            objectRenderS.material = blank;
+            //Debug.Log("Stored Object set to blank");
         }
 
-  
-        
+        storedObject = objectToShade;
+        stored = true;
+        //Debug.Log("Object Stored");
     }
 
     // Update is called once per frame

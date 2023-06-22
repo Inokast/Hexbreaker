@@ -53,6 +53,8 @@ public class CombatManager : MonoBehaviour, IDataPersistence
 
     private BreakMeter bm; //This is to reference the script attached instead of fetching the component 20 times. -Dylan 1
 
+    private OutlineWpopUpUI enemyShader;
+
     [Header("Battle Settings")]
 
     private bool combatFinished = false;
@@ -120,6 +122,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         }
 
         levelManager = FindAnyObjectByType<LevelManager>();
+        enemyShader = FindObjectOfType<OutlineWpopUpUI>();
 
         state = BattleState.START;
 
@@ -131,9 +134,34 @@ public class CombatManager : MonoBehaviour, IDataPersistence
 
     private void Update()
     {
-        if (state == BattleState.PLAYERTURN) 
+        var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit)) //on hit
         {
-            if (Input.GetKeyDown("q")) 
+            GameObject selection = hit.collider.gameObject;
+            if (selection.CompareTag("Enemy"))
+            {
+
+                Unit hoveringUnit = selection.GetComponent<Unit>();
+                enemyHUD.SetHP(hoveringUnit);
+
+                if (state == BattleState.PLAYERTURN) 
+                {
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        enemyShader.ChangeShader(selection);
+                    }
+                }
+                
+            }
+
+ 
+
+        }
+
+        if (state == BattleState.PLAYERTURN)
+        {
+            if (Input.GetKeyDown("q"))
             {
                 helpMenu.SetActive(true);
             }
@@ -214,6 +242,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
 
         battleText.text = "The battle has begun! " + actingEnemyUnit.unitName + " wants to fight!";
 
+        enemyHUD.gameObject.SetActive(true);
         playerHUD.SetHUD(playerUnit);
         enemyHUD.SetHUD(selectedEnemyUnit);
 
