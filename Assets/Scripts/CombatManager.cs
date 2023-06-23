@@ -1,5 +1,5 @@
 // Hexbreaker - Combat System
-// Last modified: 06/04/23 - Dan Sanchez
+// Last modified: 06/22/23 - Dan Sanchez
 // Notes:
 
 using System.Collections;
@@ -38,6 +38,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
 
     [SerializeField] private BattleHUD playerHUD;
     [SerializeField] private BattleHUD enemyHUD;
+    [SerializeField] private CanvasGroup enemyCanvas;
 
     [SerializeField] private Button breakButton;
     [SerializeField] private Button attackButton;
@@ -59,6 +60,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
 
     private bool combatFinished = false;
     private bool playerDied = false;
+    private bool waitingForConfirmation;
 
     public Unit playerUnit;
     private Unit selectedEnemyUnit;
@@ -141,18 +143,24 @@ public class CombatManager : MonoBehaviour, IDataPersistence
             GameObject selection = hit.collider.gameObject;
             if (selection.CompareTag("Enemy"))
             {
-
+                enemyCanvas.alpha = 1;
                 Unit hoveringUnit = selection.GetComponent<Unit>();
                 enemyHUD.SetHP(hoveringUnit);
 
-                if (state == BattleState.PLAYERTURN) 
+                if (state == BattleState.PLAYERTURN)
                 {
                     if (Input.GetMouseButtonDown(0))
                     {
                         enemyShader.ChangeShader(selection);
+                        selectedEnemyUnit = hoveringUnit;
                     }
                 }
-                
+
+            }
+
+            else 
+            {
+                enemyCanvas.alpha = 0;
             }
 
  
@@ -582,7 +590,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
     #endregion
 
     #region Enemy Actions
-    IEnumerator EnemyAttack() 
+    IEnumerator EnemyAttack()
     {
         int damageDealt = Random.Range(1, 5); // Determines how effective the enemy's attack is
 
@@ -605,18 +613,19 @@ public class CombatManager : MonoBehaviour, IDataPersistence
                 print("ERROR! random.range outside possible bounds.");
                 break;
         }
-        print("Damage dealt before defense" + damageDealt);
+
         battleText.text = "The " + actingEnemyUnit.unitName + " attacks! " + playerUnit.unitName + " takes " + damageDealt + " damage!";
         int playerDef = playerUnit.defense;
-        if (playerUnit.isDefending) 
+
+        if (playerUnit.isDefending)
         {
             playerUnit.defense -= defenseBoost; // Reset any previous defense gains in case player is attacked more than once on same turn.
-            state = BattleState.QTE;          
+            state = BattleState.QTE;
             battleText.text = "The " + actingEnemyUnit.unitName + " attacks! Block by pressing the right key!";
             eventManager.GenerateStandardQTE(3f);
             // Start QTE. Reduce incoming damage based on degree of success by increasing player defense. Align QTE with enemy's attack animation.
             yield return new WaitForSeconds(3f);
-            
+
             switch (eventManager.eventResult)
             {
                 case QTEResult.NONE:
@@ -625,7 +634,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
 
                 case QTEResult.LOW:
                     defenseBoost = 1;
-                    battleText.text = "A weak block..." + playerUnit.unitName + " takes " + (Mathf.Clamp(damageDealt - defenseBoost , 1, damageDealt)) + " damage!";
+                    battleText.text = "A weak block..." + playerUnit.unitName + " takes " + (Mathf.Clamp(damageDealt - defenseBoost, 1, damageDealt)) + " damage!";
 
                     if (GameObject.Find("WeakBlockCurse") != null) //Changes meter charge based on curse. -Dylan 2
                     {
@@ -680,9 +689,9 @@ public class CombatManager : MonoBehaviour, IDataPersistence
 
         else
         {
-            if (enemyUnits.Count > 2 && actingEnemyUnit == enemyUnits[1]) 
+            if (enemyUnits.Count > 2 && actingEnemyUnit == enemyUnits[1])
             {
-                
+
                 actingEnemyUnit = enemyUnits[2];
                 StartCoroutine(EnemyTurn());
             }
@@ -694,17 +703,185 @@ public class CombatManager : MonoBehaviour, IDataPersistence
             }
 
 
-            else 
+            else
             {
                 actingEnemyUnit = enemyUnits[0];
                 state = BattleState.PLAYERTURN;
                 PlayerTurn();
-            }           
+            }
+        }
+    }
+
+    IEnumerator SecondaryEnemyAction() 
+    {
+        int damageDealt = Random.Range(1, 5); // Determines how effective the enemy's attack is
+
+        switch (damageDealt)
+        {
+            case 1:
+                damageDealt = actingEnemyUnit.lowDamage;
+                break;
+
+            case 2:
+            case 3:
+                damageDealt = actingEnemyUnit.midDamage;
+                break;
+
+            case 4:
+                damageDealt = actingEnemyUnit.highDamage;
+                break;
+
+            default:
+                print("ERROR! random.range outside possible bounds.");
+                break;
+        }
+
+        battleText.text = "The " + actingEnemyUnit.unitName + " attacks! " + playerUnit.unitName + " takes " + damageDealt + " damage!";
+        int playerDef = playerUnit.defense;
+
+        if (playerUnit.isDefending)
+        {
+            playerUnit.defense -= defenseBoost; // Reset any previous defense gains in case player is attacked more than once on same turn.
+            state = BattleState.QTE;
+            battleText.text = "The " + actingEnemyUnit.unitName + " attacks! Block by pressing the right key!";
+            eventManager.GenerateStandardQTE(3f);
+            // Start QTE. Reduce incoming damage based on degree of success by increasing player defense. Align QTE with enemy's attack animation.
+            yield return new WaitForSeconds(3f);
+
+            switch (eventManager.eventResult)
+            {
+                case QTEResult.NONE:
+                    print("ERROR! EventResult should not be NONE");
+                    break;
+
+                case QTEResult.LOW:
+                    defenseBoost = 1;
+                    battleText.text = "A weak block..." + playerUnit.unitName + " takes " + (Mathf.Clamp(damageDealt - defenseBoost, 1, damageDealt)) + " damage!";
+
+                    if (GameObject.Find("WeakBlockCurse") != null) //Changes meter charge based on curse. -Dylan 2
+                    {
+                        bm.ChangeMeterValue(13);
+                    }
+                    else
+                    {
+                        bm.ChangeMeterValue(15);
+                    }
+                    break;
+
+                case QTEResult.MID:
+                    defenseBoost = 2;
+                    battleText.text = "You block! " + playerUnit.unitName + " takes " + (Mathf.Clamp(damageDealt - defenseBoost, 1, damageDealt)) + " damage!";
+                    break;
+
+                case QTEResult.HIGH:
+                    defenseBoost = 3;
+                    battleText.text = "A perfect block! " + playerUnit.unitName + " takes " + (Mathf.Clamp(damageDealt - defenseBoost, 1, damageDealt)) + " damage!";
+
+                    if (GameObject.Find("AttackingCurse") != null) //Changes meter charge based on curse. If the player can only defend, that should be the only curse to apply in a perfect QTE. -Dylan 2
+                    {
+                        bm.ChangeMeterValue(50);
+                    }
+                    else if (GameObject.Find("PerfectBlockCurse") != null)
+                    {
+                        bm.ChangeMeterValue(25);
+                    }
+                    else
+                    {
+                        bm.ChangeMeterValue(35);
+                    }
+                    break;
+
+                default:
+                    print("ERROR! EventResult is not recognized!");
+                    break;
+            }
+            // Depending on degree of success, temporarily increase defense.
+        }
+
+        bool isDead = playerUnit.TakeDamage(Mathf.Clamp(damageDealt - defenseBoost, 1, damageDealt), false);
+        playerHUD.SetHP(playerUnit);
+
+        yield return new WaitForSeconds(2f);
+
+        if (isDead)
+        {
+            state = BattleState.LOST;
+            EndBattle();
+        }
+
+        else
+        {
+            if (enemyUnits.Count > 2 && actingEnemyUnit == enemyUnits[1])
+            {
+
+                actingEnemyUnit = enemyUnits[2];
+                StartCoroutine(EnemyTurn());
+            }
+
+            else if (enemyUnits.Count > 1 && actingEnemyUnit == enemyUnits[0])
+            {
+                actingEnemyUnit = enemyUnits[1];
+                StartCoroutine(EnemyTurn());
+            }
+
+
+            else
+            {
+                actingEnemyUnit = enemyUnits[0];
+                state = BattleState.PLAYERTURN;
+                PlayerTurn();
+            }
+        }
+    }
+
+    IEnumerator SummonEnemy() 
+    {
+        yield return new WaitForSeconds(2f);
+        // TO DO
+    }
+
+    IEnumerator PowerUpEnemy(Unit enemy) 
+    {
+        
+        enemy.lowDamage = enemy.lowDamage + enemy.strengthModifier;
+        enemy.midDamage = enemy.midDamage + enemy.strengthModifier;
+        enemy.highDamage = enemy.highDamage + enemy.strengthModifier;
+
+        battleText.text = "The " + enemy.unitName + "'s rage has caused it to grow stronger!";
+        yield return new WaitForSeconds(.5f);
+    }
+
+    IEnumerator EnemyCharge(Unit enemy) 
+    {
+        battleText.text = "The " + enemy.unitName + " is preparing to unleash its power!";
+        enemy.isCharged = true;
+        //Play animation or sound effects or whatever
+
+        yield return new WaitForSeconds(2f);
+
+        if (enemyUnits.Count > 2 && actingEnemyUnit == enemyUnits[1])
+        {
+
+            actingEnemyUnit = enemyUnits[2];
+            StartCoroutine(EnemyTurn());
+        }
+
+        else if (enemyUnits.Count > 1 && actingEnemyUnit == enemyUnits[0])
+        {
+            actingEnemyUnit = enemyUnits[1];
+            StartCoroutine(EnemyTurn());
+        }
+
+        else
+        {
+            actingEnemyUnit = enemyUnits[0];
+            state = BattleState.PLAYERTURN;
+            PlayerTurn();
         }
     }
 
     #endregion
-    
+
     #region Buttons
     public void OnAttackButton() 
     {

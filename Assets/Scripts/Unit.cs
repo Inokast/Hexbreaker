@@ -16,6 +16,9 @@ public class Unit : MonoBehaviour
     public int highDamage;
     public int midDamage; // The next Attack will deal this amount of damage. Can be updated through unit's actions.
     public int lowDamage;
+    public int strengthModifier = 3;
+    public int drainStrength;
+    public bool isCharged = false;
 
     public int defense; // A passive damage reduction. Reduces incoming damage by this value.
 
