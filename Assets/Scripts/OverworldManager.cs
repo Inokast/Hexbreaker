@@ -80,6 +80,8 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
         playerUnit.defense = gameData.playerDefense;
         playerUnit.maxHP = gameData.playerMaxHP;
         playerUnit.currentHP = gameData.playerCurrentHP;
+        playerUnit.talismans = gameData.talismansCollected;
+        playerUnit.action = gameData.isAction;
         worldGenerated = gameData.worldGenerated;
 
         playerPosInWorld = gameData.playerPositionInWorld;
@@ -105,6 +107,8 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
         gameData.playerDefense = playerUnit.defense;
         gameData.playerMaxHP = playerUnit.maxHP;
         gameData.playerCurrentHP = playerUnit.currentHP;
+        gameData.isAction = playerUnit.action;
+        gameData.talismansCollected = playerUnit.talismans;
 
         gameData.playerPositionInWorld = endPos;
         gameData.combatFinished = combatFinished;
@@ -221,7 +225,7 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
                 break;
 
             case 3:
-                // Node type Lucky
+                tg.GenerateLuckyTalismans();
                 break;
 
             case 4:
@@ -365,5 +369,7 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
         playerDied = false;
 
         // Also remove any talismans
+
+
     }
 }

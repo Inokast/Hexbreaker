@@ -194,6 +194,8 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         playerUnit.defense = gameData.playerDefense;
         playerUnit.maxHP = gameData.playerMaxHP;
         playerUnit.currentHP = gameData.playerCurrentHP;
+        playerUnit.action = gameData.isAction;
+        playerUnit.talismans = gameData.talismansCollected;
     }
 
     // Passes data to the saved data file
@@ -206,6 +208,8 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         gameData.playerDefense = playerUnit.defense;
         gameData.playerMaxHP = playerUnit.maxHP;
         gameData.playerCurrentHP = playerUnit.currentHP;
+        gameData.talismansCollected = playerUnit.talismans;
+        gameData.isAction = playerUnit.action;
 
         gameData.combatFinished = combatFinished;
         gameData.playerDied = playerDied;

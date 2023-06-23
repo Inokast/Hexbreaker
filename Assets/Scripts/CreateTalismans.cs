@@ -21,34 +21,14 @@ public class CreateTalismans : MonoBehaviour
 
         GameObject.Find("Purify Button").SetActive(false);
 
+        if (amount == 0)
+        {
+            CreateWholeTalisman(1, false);
+        }
+
         do
         {
-            GameObject talisman = DecideTalismanRarity(amount);
-
-            int talismanType = Random.Range(0, 76); //Change this when more talisman types exist. -Dylan 3
-            //Placeholder values. Just need the system to work at the moment -Dylan 3
-            CreateHealthTalisman(talisman);
-
-            if (talismanType <= 35)
-            {
-                CreateHealthTalisman(talisman);
-            }
-            else if (talismanType > 35 && talismanType <= 55)
-            {
-                CreateExtendingTalisman(talisman);
-            }
-            else if (talismanType > 55 && talismanType <= 75)
-            {
-                CreateMaxHealthTalisman(talisman);
-            }
-            else if (talismanType > 80)
-            {
-                CreateDefenseTalisman(talisman);
-            }
-            else
-            {
-                Debug.LogWarning("Talisman Type randomization out of range.");
-            }
+            CreateWholeTalisman(amount, false);
 
             amount--;
 
@@ -90,15 +70,48 @@ public class CreateTalismans : MonoBehaviour
 
     private void CreateAttackTalisman(GameObject frame)
     {
+        int rarity = FetchRarity(frame);
 
+        TMP_Text[] texts = frame.GetComponentsInChildren<TMP_Text>();
+
+        int random = Random.Range(0, 101);
+
+        if (random <= 33)
+        {
+            texts[2].text = "Increases your weak attack's damage by " + (1 * rarity);
+
+            texts[1].text = "Training Talisman";
+        }
+        else if (random > 33 && random <= 66)
+        {
+            texts[2].text = "Increases your medium attack's damage by " + (2 * rarity);
+
+            texts[1].text = "Powerful Talisman";
+        }
+        else if (random > 66)
+        {
+            texts[2].text = "Increases your pefect attack's damage by " + (3 * rarity);
+
+            texts[1].text = "Perfect Talisman";
+        }
+        else
+        {
+            Debug.Log("Missing range exception for attack talisman.");
+        }
     }
 
     private void CreateDefenseTalisman(GameObject frame)
     {
+        int rarity = FetchRarity(frame);
 
+        TMP_Text[] texts = frame.GetComponentsInChildren<TMP_Text>();
+
+        texts[2].text = "Increases your base defense by " + (1 * rarity);
+
+        texts[1].text = "Impenetrable Talisman";
     }
 
-    private GameObject DecideTalismanRarity(int position)
+    private GameObject DecideTalismanRarity(int position, bool isLucky)
     {
         int rarity = Random.Range(0, 101);
 
@@ -128,40 +141,81 @@ public class CreateTalismans : MonoBehaviour
             Debug.LogWarning("Out of rarity position range.");
         }
 
-        if (rarity <= 35)
+        if (!isLucky)
         {
-            rarityFrame = Instantiate(commonFrame, new Vector3(posX, posY, 0f), Quaternion.identity);
-            rarityFrame.transform.SetParent(GameObject.Find("Canvas").transform, false);
-            return rarityFrame;
-        }
-        else if (rarity > 35 && rarity <= 65)
-        {
-            rarityFrame = Instantiate(uncommonFrame, new Vector3(posX, posY, 0f), Quaternion.identity);
-            rarityFrame.transform.SetParent(GameObject.Find("Canvas").transform, false);
-            return rarityFrame;
-        }
-        else if (rarity > 65 && rarity <= 85)
-        {
-            rarityFrame = Instantiate(rareFrame, new Vector3(posX, posY, 0f), Quaternion.identity);
-            rarityFrame.transform.SetParent(GameObject.Find("Canvas").transform, false);
-            return rarityFrame;
-        }
-        else if (rarity > 85 && rarity <= 95)
-        {
-            rarityFrame = Instantiate(legendaryFrame, new Vector3(posX, posY, 0f), Quaternion.identity);
-            rarityFrame.transform.SetParent(GameObject.Find("Canvas").transform, false);
-            return rarityFrame;
-        }
-        else if (rarity > 95 && rarity <= 100)
-        {
-            rarityFrame = Instantiate(spectralFrame, new Vector3(posX, posY, 0f), Quaternion.identity);
-            rarityFrame.transform.SetParent(GameObject.Find("Canvas").transform, false);
-            return rarityFrame;
+            if (rarity <= 35)
+            {
+                rarityFrame = Instantiate(commonFrame, new Vector3(posX, posY, 0f), Quaternion.identity);
+                rarityFrame.transform.SetParent(GameObject.Find("Canvas").transform, false);
+                return rarityFrame;
+            }
+            else if (rarity > 35 && rarity <= 65)
+            {
+                rarityFrame = Instantiate(uncommonFrame, new Vector3(posX, posY, 0f), Quaternion.identity);
+                rarityFrame.transform.SetParent(GameObject.Find("Canvas").transform, false);
+                return rarityFrame;
+            }
+            else if (rarity > 65 && rarity <= 85)
+            {
+                rarityFrame = Instantiate(rareFrame, new Vector3(posX, posY, 0f), Quaternion.identity);
+                rarityFrame.transform.SetParent(GameObject.Find("Canvas").transform, false);
+                return rarityFrame;
+            }
+            else if (rarity > 85 && rarity <= 95)
+            {
+                rarityFrame = Instantiate(legendaryFrame, new Vector3(posX, posY, 0f), Quaternion.identity);
+                rarityFrame.transform.SetParent(GameObject.Find("Canvas").transform, false);
+                return rarityFrame;
+            }
+            else if (rarity > 95 && rarity <= 100)
+            {
+                rarityFrame = Instantiate(spectralFrame, new Vector3(posX, posY, 0f), Quaternion.identity);
+                rarityFrame.transform.SetParent(GameObject.Find("Canvas").transform, false);
+                return rarityFrame;
+            }
+            else
+            {
+                Debug.LogWarning("Rarity messed up!");
+                return null;
+            }
         }
         else
         {
-            Debug.LogWarning("Rarity messed up!");
-            return null;
+            if (rarity <= 25)
+            {
+                rarityFrame = Instantiate(commonFrame, new Vector3(posX, posY, 0f), Quaternion.identity);
+                rarityFrame.transform.SetParent(GameObject.Find("Canvas").transform, false);
+                return rarityFrame;
+            }
+            else if (rarity > 25 && rarity <= 50)
+            {
+                rarityFrame = Instantiate(uncommonFrame, new Vector3(posX, posY, 0f), Quaternion.identity);
+                rarityFrame.transform.SetParent(GameObject.Find("Canvas").transform, false);
+                return rarityFrame;
+            }
+            else if (rarity > 50 && rarity <= 75)
+            {
+                rarityFrame = Instantiate(rareFrame, new Vector3(posX, posY, 0f), Quaternion.identity);
+                rarityFrame.transform.SetParent(GameObject.Find("Canvas").transform, false);
+                return rarityFrame;
+            }
+            else if (rarity > 75 && rarity <= 90)
+            {
+                rarityFrame = Instantiate(legendaryFrame, new Vector3(posX, posY, 0f), Quaternion.identity);
+                rarityFrame.transform.SetParent(GameObject.Find("Canvas").transform, false);
+                return rarityFrame;
+            }
+            else if (rarity > 90 && rarity <= 100)
+            {
+                rarityFrame = Instantiate(spectralFrame, new Vector3(posX, posY, 0f), Quaternion.identity);
+                rarityFrame.transform.SetParent(GameObject.Find("Canvas").transform, false);
+                return rarityFrame;
+            }
+            else
+            {
+                Debug.LogWarning("Rarity messed up!");
+                return null;
+            }
         }
     }
 
@@ -197,32 +251,7 @@ public class CreateTalismans : MonoBehaviour
 
         do
         {
-            GameObject talisman = DecideTalismanRarity(amount);
-
-            int talismanType = Random.Range(0, 76); //Change this when more talisman types exist. -Dylan 3
-
-            CreateHealthTalisman(talisman);
-
-            if (talismanType <= 35)
-            {
-                CreateHealthTalisman(talisman);
-            }
-            else if (talismanType > 35 && talismanType <= 55)
-            {
-                CreateExtendingTalisman(talisman);
-            }
-            else if (talismanType > 55 && talismanType <= 75)
-            {
-                CreateMaxHealthTalisman(talisman);
-            }
-            else if (talismanType > 80)
-            {
-                CreateDefenseTalisman(talisman);
-            }
-            else
-            {
-                Debug.LogWarning("Talisman Type randomization out of range.");
-            }
+            CreateWholeTalisman(amount, true);
 
             amount--;
 
@@ -237,11 +266,9 @@ public class CreateTalismans : MonoBehaviour
 
         do
         {
-            GameObject talisman = DecideTalismanRarity(amount);
+            GameObject talisman = DecideTalismanRarity(amount, false);
 
-            int talismanType = Random.Range(0, 101); //Change this when more talisman types exist. -Dylan 3
-
-            CreateHealthTalisman(talisman);
+            int talismanType = Random.Range(0, 101);
 
             if (talismanType <= 50)
             {
@@ -291,6 +318,49 @@ public class CreateTalismans : MonoBehaviour
         foreach (GameObject frame in frames)
         {
             Destroy(frame);
+        }
+    }
+
+    private void CreateWholeTalisman(int amount, bool isLucky) //This function just exists so I don't have to copy/paste the main code into the next iteration. -Dylan 6
+    {
+        GameObject talisman = DecideTalismanRarity(amount, isLucky);
+
+        int talismanType = 0;
+
+        if (!isLucky)
+        {
+            talismanType = Random.Range(0, 101);
+        }
+        else
+        {
+            talismanType = Random.Range(65, 101);
+        }
+
+
+
+        if (talismanType <= 30)
+        {
+            CreateHealthTalisman(talisman);
+        }
+        else if (talismanType > 30 && talismanType <= 45)
+        {
+            CreateExtendingTalisman(talisman);
+        }
+        else if (talismanType > 45 && talismanType <= 65)
+        {
+            CreateMaxHealthTalisman(talisman);
+        }
+        else if (talismanType > 65 && talismanType <= 85)
+        {
+            CreateAttackTalisman(talisman);
+        }
+        else if (talismanType > 85)
+        {
+            CreateDefenseTalisman(talisman);
+        }
+        else
+        {
+            Debug.LogWarning("Talisman Type randomization out of range.");
         }
     }
 }

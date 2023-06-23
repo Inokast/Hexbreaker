@@ -27,6 +27,7 @@ public class MapNode : MonoBehaviour , IDataPersistence
     public int nodeType;
     public string nodeDescription;
     public string[] nodeRewards; // Replace String[] with Talisman[] or follow the idea as needed to be able to track it across scenes. - Dan
+    public string nodesEnemies;
     public List<int> nodeEnemyID;
 
     public string mapSection; // Marsh, Ruins, Cathedral, Finalboss.
@@ -42,9 +43,15 @@ public class MapNode : MonoBehaviour , IDataPersistence
         gameData.nodesTypes.TryGetValue(nodeID, out nodeType);
         if (nodeType == 1)
         {
-            string enemiesAsString = string.Join(",", nodeEnemyID);
-            gameData.nodesEnemies.TryGetValue(nodeID, out enemiesAsString);
-            nodeEnemyID = enemiesAsString.Split(",").Select(Int32.Parse).ToList();
+            nodeEnemyID.Clear();
+            //string enemiesAsString = string.Join(",", nodeEnemyID);
+            gameData.nodesEnemies.TryGetValue(nodeID, out nodesEnemies);
+
+            //gameData.nodesEnemies.TryGetValue(nodeID, out enemiesAsString);
+            foreach (char c in nodesEnemies)
+            {
+                nodeEnemyID.Add(c);
+            }
         }
     }
 
@@ -74,7 +81,12 @@ public class MapNode : MonoBehaviour , IDataPersistence
         }
         gameData.nodesTypes.Add(nodeID, nodeType);
 
-        string enemiesAsString = string.Join(",", nodeEnemyID);
+        string enemiesAsString = "";
+
+        foreach (int i in nodeEnemyID)
+        {
+            enemiesAsString += i.ToString();
+        }
 
         if (gameData.nodesEnemies.ContainsKey(nodeID))
         {

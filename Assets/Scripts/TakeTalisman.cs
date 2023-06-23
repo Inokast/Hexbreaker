@@ -9,6 +9,26 @@ public class TakeTalisman : MonoBehaviour
 {
     [SerializeField] GameObject nextLevelButton;
 
+    private OverworldManager om;
+
+    private CombatManager cm;
+
+    private Unit playerUnit;
+
+    private void Start()
+    {
+        if (SceneManager.GetActiveScene().name == "Overworld")
+        {
+            om = GameObject.Find("OverworldManager").GetComponent<OverworldManager>();
+        }
+        else
+        {
+            cm = GameObject.Find("CombatManager").GetComponent<CombatManager>();
+        }
+
+        playerUnit = GameObject.Find("Player").GetComponent<Unit>();
+    }
+
     public void GetTalisman()
     {
         string tag = gameObject.tag;
@@ -35,8 +55,6 @@ public class TakeTalisman : MonoBehaviour
 
             if (SceneManager.GetActiveScene().name == "Overworld")
             {
-                OverworldManager om = GameObject.Find("OverworldManager").GetComponent<OverworldManager>();
-                Debug.Log("Overworld Data Loaded");
                 om.playerUnit.currentHP += amount;
 
                 if (om.playerUnit.currentHP > om.playerUnit.maxHP)
@@ -46,8 +64,6 @@ public class TakeTalisman : MonoBehaviour
             }
             else
             {
-                CombatManager cm = GameObject.Find("CombatManager").GetComponent<CombatManager>();
-                Debug.Log("Combat Data Loaded");
                 cm.playerUnit.currentHP += amount;
 
                 if (cm.playerUnit.currentHP > cm.playerUnit.maxHP)
@@ -55,6 +71,10 @@ public class TakeTalisman : MonoBehaviour
                     cm.playerUnit.currentHP = cm.playerUnit.maxHP;
                 }
             }
+
+            playerUnit.talismans.Add(this.transform.parent.gameObject);
+
+            playerUnit.action.Add(false);
         }
         else if (name == "Surgical Talisman")
         {
@@ -88,9 +108,7 @@ public class TakeTalisman : MonoBehaviour
             }
 
             if (SceneManager.GetActiveScene().name == "Overworld")
-            {
-                OverworldManager om = GameObject.Find("OverworldManager").GetComponent<OverworldManager>();
-
+            { 
                 om.playerUnit.maxHP -= secondHalf;
 
                 om.playerUnit.currentHP += firstHalf;
@@ -102,10 +120,8 @@ public class TakeTalisman : MonoBehaviour
             }
             else
             {
-                CombatManager cm = GameObject.Find("CombatManager").GetComponent<CombatManager>();
-
                 cm.playerUnit.maxHP -= secondHalf;
-                Debug.Log("Combat Data Loaded");
+
                 cm.playerUnit.currentHP += firstHalf;
 
                 if (cm.playerUnit.currentHP > cm.playerUnit.maxHP)
@@ -113,6 +129,10 @@ public class TakeTalisman : MonoBehaviour
                     cm.playerUnit.currentHP = cm.playerUnit.maxHP;
                 }
             }
+
+            playerUnit.talismans.Add(this.transform.parent.gameObject);
+
+            playerUnit.action.Add(false);
         }
         else if (name == "Expansive Talisman")
         {
@@ -130,16 +150,86 @@ public class TakeTalisman : MonoBehaviour
             
             if (SceneManager.GetActiveScene().name == "Overworld")
             {
-                OverworldManager om = GameObject.Find("OverworldManager").GetComponent<OverworldManager>();
-
                 om.playerUnit.maxHP += amount;
             }
             else
             {
-                CombatManager cm = GameObject.Find("CombatManager").GetComponent<CombatManager>();
-                Debug.Log("Combat Data Loaded");
                 cm.playerUnit.maxHP += amount;
             }
+
+            playerUnit.talismans.Add(this.transform.parent.gameObject);
+
+            playerUnit.action.Add(false);
+        }
+        else if (name == "Training Talisman" || name == "Powerful Talisman" || name == "Perfect Talisman")
+        {
+            string extractedNumber = "";
+
+            for (int i = 0; i < description.Length; i++)
+            {
+                if (Char.IsDigit(description[i]))
+                {
+                    extractedNumber += description[i];
+                }
+            }
+
+            int amount = int.Parse(extractedNumber);
+
+            if (SceneManager.GetActiveScene().name == "Overworld" && name == "Training Talisman")
+            {
+                om.playerUnit.lowDamage += amount;
+            }
+            else if (name == "Training Talisman")
+            {
+                cm.playerUnit.lowDamage += amount;
+            }
+            else if (SceneManager.GetActiveScene().name == "Overworld" && name == "Powerful Talisman")
+            {
+                om.playerUnit.midDamage += amount;
+            }
+            else if (name == "Powerful Talisman")
+            {
+                cm.playerUnit.midDamage += amount;
+            }
+            else if (SceneManager.GetActiveScene().name == "Overworld" && name == "Perfect Talisman")
+            {
+                om.playerUnit.highDamage += amount;
+            }
+            else if (name == "Perfect Talisman")
+            {
+                cm.playerUnit.highDamage += amount;
+            }
+
+            playerUnit.talismans.Add(this.transform.parent.gameObject);
+
+            playerUnit.action.Add(false);
+        }
+        else if (name == "Impenetrable Talisman")
+        {
+            string extractedNumber = "";
+
+            for (int i = 0; i < description.Length; i++)
+            {
+                if (Char.IsDigit(description[i]))
+                {
+                    extractedNumber += description[i];
+                }
+            }
+
+            int amount = int.Parse(extractedNumber);
+
+            if (SceneManager.GetActiveScene().name == "Overworld")
+            {
+                om.playerUnit.defense += amount;
+            }
+            else
+            {
+                cm.playerUnit.defense += amount;
+            }
+
+            playerUnit.talismans.Add(this.transform.parent.gameObject);
+
+            playerUnit.action.Add(false);
         }
 
         GameObject[] buttons = GameObject.FindGameObjectsWithTag("TalismanButton");

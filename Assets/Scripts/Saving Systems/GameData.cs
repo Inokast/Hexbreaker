@@ -38,6 +38,8 @@ public class GameData
     public int playerDefense;
     public int playerMaxHP;
     public int playerCurrentHP;
+    public List<GameObject> talismansCollected;
+    public List<bool> isAction;
 
     
     
@@ -61,6 +63,9 @@ public class GameData
         nodesDescriptions = new SerializableDictionary<string, string>();
         nodesEnemies = new SerializableDictionary<string, string>();
         nodesTypes = new SerializableDictionary<string, int>();
+
+        talismansCollected = new List<GameObject>();
+        isAction = new List<bool>();
 
         bgmVolumeLevel = .5f;
         sfxVolumeLevel = .5f;
