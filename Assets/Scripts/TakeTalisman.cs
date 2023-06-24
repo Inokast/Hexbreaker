@@ -26,7 +26,15 @@ public class TakeTalisman : MonoBehaviour
             cm = GameObject.Find("CombatManager").GetComponent<CombatManager>();
         }
 
-        playerUnit = GameObject.Find("Player").GetComponent<Unit>();
+        if (SceneManager.GetActiveScene().name == "Overworld")
+        {
+            playerUnit = GameObject.Find("Player").GetComponent<Unit>();
+        }
+        else if (SceneManager.GetActiveScene().name == "CombatSceneMarsh" || SceneManager.GetActiveScene().name == "CombatSceneCathedral" || SceneManager.GetActiveScene().name == "CombatSceneBoss" || SceneManager.GetActiveScene().name == "CombatSceneRuins")
+        {
+            playerUnit = GameObject.Find("Player(Clone)").GetComponent<Unit>();
+        }
+        
     }
 
     public void GetTalisman()
@@ -72,9 +80,13 @@ public class TakeTalisman : MonoBehaviour
                 }
             }
 
-            playerUnit.talismans.Add(this.transform.parent.gameObject);
+            playerUnit.talismans.Add(gameObject);
 
             playerUnit.action.Add(false);
+
+            DontDestroyOnLoad(playerUnit.talismans[playerUnit.talismans.Count - 1]);
+
+            gameObject.SetActive(false);
         }
         else if (name == "Surgical Talisman")
         {
@@ -130,9 +142,13 @@ public class TakeTalisman : MonoBehaviour
                 }
             }
 
-            playerUnit.talismans.Add(this.transform.parent.gameObject);
+            playerUnit.talismans.Add(gameObject);
 
             playerUnit.action.Add(false);
+
+            DontDestroyOnLoad(playerUnit.talismans[playerUnit.talismans.Count - 1]);
+
+            gameObject.SetActive(false);
         }
         else if (name == "Expansive Talisman")
         {
@@ -157,9 +173,13 @@ public class TakeTalisman : MonoBehaviour
                 cm.playerUnit.maxHP += amount;
             }
 
-            playerUnit.talismans.Add(this.transform.parent.gameObject);
+            playerUnit.talismans.Add(gameObject);
 
             playerUnit.action.Add(false);
+
+            DontDestroyOnLoad(playerUnit.talismans[playerUnit.talismans.Count - 1]);
+
+            gameObject.SetActive(false);
         }
         else if (name == "Training Talisman" || name == "Powerful Talisman" || name == "Perfect Talisman")
         {
@@ -200,9 +220,13 @@ public class TakeTalisman : MonoBehaviour
                 cm.playerUnit.highDamage += amount;
             }
 
-            playerUnit.talismans.Add(this.transform.parent.gameObject);
+            playerUnit.talismans.Add(gameObject);
 
             playerUnit.action.Add(false);
+
+            DontDestroyOnLoad(playerUnit.talismans[playerUnit.talismans.Count - 1]);
+
+            gameObject.SetActive(false);
         }
         else if (name == "Impenetrable Talisman")
         {
@@ -227,9 +251,13 @@ public class TakeTalisman : MonoBehaviour
                 cm.playerUnit.defense += amount;
             }
 
-            playerUnit.talismans.Add(this.transform.parent.gameObject);
+            playerUnit.talismans.Add(gameObject);
 
             playerUnit.action.Add(false);
+
+            DontDestroyOnLoad(playerUnit.talismans[playerUnit.talismans.Count - 1]);
+
+            gameObject.SetActive(false);
         }
 
         GameObject[] buttons = GameObject.FindGameObjectsWithTag("TalismanButton");

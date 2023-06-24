@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections.Specialized;
 
 public class OverworldManager : MonoBehaviour, IDataPersistence
 {
@@ -25,7 +26,7 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
     [SerializeField] private Vector3 playerPosInWorld;
 
     [Header("Combat Node Data")]
-    [SerializeField] private List<int> lastSelectedNodeEnemyID;     
+    [SerializeField] private List<int> lastSelectedNodeEnemyID;
     private string lastSelectedNodeID;
 
     private bool playerDied;
@@ -49,18 +50,18 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
 
         tg = GameObject.Find("TalismanGenerator").GetComponent<CreateTalismans>();
 
-        if (worldGenerated == false) 
+        if (worldGenerated == false)
         {
             GenerateNewWorld();
         }
 
-        if (playerDied == true) 
+        if (playerDied == true)
         {
             GenerateNewWorld();
             ResetPlayerStats();
         }
 
-        if (combatFinished == true) 
+        if (combatFinished == true)
         {
             print("Combat Has Finished check successful");
             //print(lastSelectedNodeID);
@@ -80,9 +81,9 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
         playerUnit.defense = gameData.playerDefense;
         playerUnit.maxHP = gameData.playerMaxHP;
         playerUnit.currentHP = gameData.playerCurrentHP;
-        playerUnit.talismans = gameData.talismansCollected;
-        playerUnit.action = gameData.isAction;
         worldGenerated = gameData.worldGenerated;
+        playerUnit.action = gameData.isAction;
+        playerUnit.talismans = gameData.talismansCollected;
 
         playerPosInWorld = gameData.playerPositionInWorld;
 
@@ -107,8 +108,8 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
         gameData.playerDefense = playerUnit.defense;
         gameData.playerMaxHP = playerUnit.maxHP;
         gameData.playerCurrentHP = playerUnit.currentHP;
-        gameData.isAction = playerUnit.action;
         gameData.talismansCollected = playerUnit.talismans;
+        gameData.isAction = playerUnit.action;
 
         gameData.playerPositionInWorld = endPos;
         gameData.combatFinished = combatFinished;
@@ -133,7 +134,7 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
             if (Physics.Raycast(ray, out hit, 100.0f))
             {
                 if (hit.collider.CompareTag("Node"))
-                {                   
+                {
                     selectedNode = hit.collider.gameObject.GetComponent<MapNode>();
 
 
@@ -163,7 +164,7 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
                     }
                 }
 
-                else if (hit.collider.CompareTag("EventButton") && !selectedNode.isCompleted && selectedNode.isActive) 
+                else if (hit.collider.CompareTag("EventButton") && !selectedNode.isCompleted && selectedNode.isActive)
                 {
                     OnConfirm();
                 }
@@ -195,10 +196,10 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
         {
             case 1:
                 // Node type Combat
-                
+
                 lastSelectedNodeEnemyID = selectedNode.nodeEnemyID;
 
-                if (selectedNode.mapSection == "Marsh") 
+                if (selectedNode.mapSection == "Marsh")
                 {
                     levelManager.LoadSceneWithName("CombatSceneMarsh");
                 }
@@ -229,7 +230,7 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
                 break;
 
             case 4:
-                
+
                 // Node type Upgrade
                 break;
 
@@ -246,7 +247,7 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
         tg.HidePanel();
     }
 
-    IEnumerator EventTextDisplay(string textToDisplay) 
+    IEnumerator EventTextDisplay(string textToDisplay)
     {
         eventText.text = textToDisplay;
         yield return new WaitForSeconds(3f);
@@ -254,13 +255,13 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
         eventText.text = "";
     }
 
-    private void CheckNodeCompleted() 
+    private void CheckNodeCompleted()
     {
 
         foreach (MapNode node in mapNodes)
         {
-            if (node.nodeID == lastSelectedNodeID) 
-            {               
+            if (node.nodeID == lastSelectedNodeID)
+            {
                 node.CompleteNode();
                 combatFinished = false;
                 //print("Node " + node.name + " completed");
@@ -268,14 +269,14 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
         }
     }
 
-    private void DisplayNodeInfo(MapNode node) 
+    private void DisplayNodeInfo(MapNode node)
     {
         informationPanel.SetActive(true);
         informationText.text = node.nodeDescription;
     }
 
     // Please use this function to initialize the world. Use this for any randomization that sets what each node is. - Dan
-    private void GenerateNewWorld() 
+    private void GenerateNewWorld()
     {
         worldGenerated = true;
         player.transform.position = startPos;
@@ -286,19 +287,25 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
 
             if (node.nodeDescription != "This is the Tutorial Encounter")
             {
-                int randomizedNumber = Random.Range(1, 100);
+                int randomizedNumber = Random.Range(1, 101);
 
-                if (randomizedNumber >= 1 && randomizedNumber < 75)
+                if (randomizedNumber >= 1 && randomizedNumber < 55)
                 {
                     node.nodeType = 1;
 
                     node.nodeDescription = "A dangerous combat encounter lurks here...";
                 }
-                else if (randomizedNumber >= 76)
+                else if (randomizedNumber >= 55 && randomizedNumber < 75)
                 {
                     node.nodeType = 2;
 
                     node.nodeDescription = "A clean fountain that relieves the visitor of their injuries is found here...";
+                }
+                else if (randomizedNumber >= 75)
+                {
+                    node.nodeType = 3;
+
+                    node.nodeDescription = "A treasure horde of shiny talismans is found here...";
                 }
 
                 int amountOfEnemies = Random.Range(1, 4);
@@ -307,7 +314,7 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
 
                 do
                 {
-                    randomizedNumber = Random.Range(1, 100);
+                    randomizedNumber = Random.Range(1, 101);
 
                     if (node.mapSection == "Marsh")
                     {
@@ -339,7 +346,7 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
                             node.nodeEnemyID.Add(2);
                         }
                     }
-                    else if (node.mapSection == "Catherdral")
+                    else if (node.mapSection == "Cathedral")
                     {
                         if (randomizedNumber >= 1) //Only one enemy resides in the cathedral currently. -Dylan 5
                         {
@@ -356,8 +363,8 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
         // foreach mapNode node in mapNodes[], randomize values
     }
 
-     // Resets the player unit to default values - Dan
-    private void ResetPlayerStats() 
+    // Resets the player unit to default values - Dan
+    private void ResetPlayerStats()
     {
         playerUnit.highDamage = 6;
         playerUnit.midDamage = 4;
@@ -369,7 +376,5 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
         playerDied = false;
 
         // Also remove any talismans
-
-
     }
 }

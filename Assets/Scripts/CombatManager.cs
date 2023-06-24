@@ -179,6 +179,27 @@ public class CombatManager : MonoBehaviour, IDataPersistence
                 helpMenu.SetActive(false);
             }
         }
+
+        /*if (Input.GetMouseButtonDown(1) && GameObject.Find("TalismanPanel") == null)
+        {
+            for (int i = 0; i < playerUnit.talismans.Count; i++)
+            {
+                playerUnit.talismans[i].SetActive(true);
+
+                if (i == 0)
+                {
+                    playerUnit.talismans[0].transform.position = new Vector3(500f, 500f, 0f);
+                }
+                else if (i == 1)
+                {
+                    playerUnit.talismans[1].transform.position = new Vector3(1000f, 500f, 0f);
+                }
+                else if (i == 2)
+                {
+                    playerUnit.talismans[2].transform.position = new Vector3(1500f, 500f, 0f);
+                }
+            }
+        }*/
     }
 
     // Loads data needed to set up battle properly - Dan 
