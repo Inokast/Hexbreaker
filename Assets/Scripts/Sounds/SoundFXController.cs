@@ -10,12 +10,17 @@ public class SoundFXController : MonoBehaviour, IDataPersistence
     public AudioMixer sfxMixer;
 
     [Header("UI Sounds")]
-    [SerializeField] private AudioSource select;
+    [SerializeField] private AudioSource buttonSelect;
+    [SerializeField] private AudioSource talismanSelect;
+    [SerializeField] private AudioSource luckyNode;
+    [SerializeField] private AudioSource gameOver;
+    [SerializeField] private AudioSource winSound;
 
-
-
-    //[Header("Player Sounds")]
-    //[SerializeField] private AudioSource lashOn;
+    [Header("Battle Sounds")]
+    [SerializeField] private AudioSource playerHit;
+    [SerializeField] private AudioSource enemyHit;
+    [SerializeField] private AudioSource qtePass;
+    [SerializeField] private AudioSource qteFail;
 
 
     //[Header("Enemy Sounds")]
