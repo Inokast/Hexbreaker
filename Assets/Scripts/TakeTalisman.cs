@@ -95,6 +95,10 @@ public class TakeTalisman : MonoBehaviour
 
                     cm.activeTalismanPotency.Add(amount);
                 }
+
+                cm.
+
+                gameObject.SetActive(false);
             }
         }
         else if (SceneManager.GetActiveScene().name == "Overworld")

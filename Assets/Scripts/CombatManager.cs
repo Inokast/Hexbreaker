@@ -1,5 +1,5 @@
 // Hexbreaker - Combat System
-// Last modified: 06/22/23 - Dan Sanchez
+// Last modified: 06/25/23 (Unholy AM Hours) - Dylan Grummer
 // Notes:
 
 using System.Collections;
@@ -14,8 +14,14 @@ public class CombatManager : MonoBehaviour, IDataPersistence
 {
 
     [Header("Talisman Data")]
-    public List<string> activeTalismanNames;
-    public List<int> activeTalismanPotency;
+    public List<string> activeTalismanNames; //These two lists run side-by-side, like a dictionary. But not using a dictionary
+    public List<int> activeTalismanPotency; //because I hate those. And they hate me. -Dylan 8
+
+    private int potencyToUse;
+
+    public bool talismanSelected; //To know when to close the talisman panel. -Dylan 8
+
+    [SerializeField] GameObject talismanPanel;
 
     [Header("Curse Data")]
     private GameObject[] topCurses; //Self-explanatory. For randomization. -Dylan 2
@@ -429,6 +435,9 @@ public class CombatManager : MonoBehaviour, IDataPersistence
             GameObject.Find("PlayerHUDPanel").SetActive(false);
             GameObject.Find("EnemyHUDPanel").SetActive(false);
 
+            //Future me needs to set the action talismans to make the TalismanManager their parent object again,
+            //and then set the gameobjects inactive. -Dylan 8
+
             winPanel.SetActive(true);
         }
         else if (state == BattleState.LOST)
@@ -490,51 +499,46 @@ public class CombatManager : MonoBehaviour, IDataPersistence
 
     #region Talisman Checks
 
-    private bool CheckMultistrike() 
+    /*private bool CheckMultistrike() 
     {
-        // if Multistrike Talisman is active return true, else:
+        if (activeTalismanNames.Contains("Multistrike"))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }*/
 
-        return false;
+    private int FetchPotency(int index) //Just ever-so-slightly easier to type. -Dylan 8
+    {
+        return activeTalismanPotency[index];
     }
 
-    private bool CheckVampiric()
+    private int FetchIndexOfName(string name) //Efficiently find the index of the name. -Dylan 8
     {
-        // if Vampiric Talisman is active return true, else:
-
-        return false;
+        if (activeTalismanNames.Contains(name))
+        {
+            return activeTalismanNames.FindIndex(a => a.Contains(name));
+        }
+        else
+        {
+            return 0; //Is never used when the index doesn't exist anyway, just needed a returning code path. -Dylan 8
+        }
     }
 
-    private bool CheckConflicting()
+    private bool CheckIfTalismanActive(string name) //I like parameters. -Dylan 8
     {
-        // you get the idea
-
-        return false;
+        if (activeTalismanNames.Contains(name))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
-
-    private bool CheckPurification()
-    {
-        // if Multistrike Talisman is active return true, else:
-
-        return false;
-    }
-
-    private bool CheckContending()
-    {
-        // you get the idea
-
-        return false;
-    }
-
-    private bool CheckOmnipotent()
-    {
-        // you get the idea
-
-        return false;
-    }
-
-
-
-
 
     #endregion
 
@@ -587,17 +591,10 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         yield return new WaitUntil(() => eventManager.eventCompleted == true);
         int damageDealt = 0;
 
-        bool applyMultistrike = CheckMultistrike();
-        bool applyVampiric = CheckVampiric();
-        bool applyConflicting = CheckConflicting();
-        bool applyPurification = CheckPurification();
-        bool applyContending = CheckContending();
-        bool applyOmnipotent = CheckOmnipotent();
-
-        if (applyVampiric) 
+        /*if (applyVampiric) 
         {
-            eventManager.eventResult = QTEResult.MID; 
-        }
+            eventManager.eventResult = QTEResult.MID; //I meant for Vampiric to deal whatever damage the player deals, not lock in an amount. Wording was kind of weird. -Dylan 8
+        }*/
 
         switch (eventManager.eventResult)
         {
@@ -606,15 +603,19 @@ public class CombatManager : MonoBehaviour, IDataPersistence
                 break;
             case QTEResult.LOW:
                 damageDealt = playerUnit.lowDamage;
-                if (applyConflicting) 
+                if (CheckIfTalismanActive("Conflicting")) 
                 {
-                    int extraDamage = 1; // Here you set the extra damage from the talisman
+                    int extraDamage = FetchPotency(FetchIndexOfName("Conflicting")); // Here you set the extra damage from the talisman
                     damageDealt = playerUnit.midDamage + extraDamage;
                 }
                 
                 battleText.text = "A weak hit! The " + selectedEnemyUnit.unitName + " takes " + damageDealt + " damage!";
 
-                if (GameObject.Find("WeakAttackCurse") != null) //Changes the break charge based on the weak curse. -Dylan 2
+                if (CheckIfTalismanActive("Purification"))
+                {
+                    bm.ChangeMeterValue(FetchPotency(FetchIndexOfName("Purification")));
+                }
+                else if (GameObject.Find("WeakAttackCurse") != null) //Changes the break charge based on the weak curse. -Dylan 2
                 {
                     bm.ChangeMeterValue(4);
                 }
@@ -625,14 +626,40 @@ public class CombatManager : MonoBehaviour, IDataPersistence
                 break;
             case QTEResult.MID:
                 damageDealt = playerUnit.midDamage;
+
+                if (CheckIfTalismanActive("Contending"))
+                {
+                    int extraDamage = FetchPotency(FetchIndexOfName("Contending"));
+                    damageDealt = playerUnit.highDamage + extraDamage;
+                }
+
                 battleText.text = "A hit! The " + selectedEnemyUnit.unitName + " takes " + damageDealt + " damage!";
-                bm.ChangeMeterValue(12);
+
+                if (CheckIfTalismanActive("Purification"))
+                {
+                    bm.ChangeMeterValue(FetchPotency(FetchIndexOfName("Purification")));
+                }
+                else
+                {
+                    bm.ChangeMeterValue(12);
+                }
                 break;
             case QTEResult.HIGH:
                 damageDealt = playerUnit.highDamage;
+
+                if (CheckIfTalismanActive("Omnipotent"))
+                {
+                    int extraDamage = FetchPotency(FetchIndexOfName("Omnipotent"));
+                    damageDealt = playerUnit.highDamage + extraDamage;
+                }
+
                 battleText.text = "A strong hit! The " + selectedEnemyUnit.unitName + " takes " + damageDealt + " damage!";
 
-                if (GameObject.Find("DefendingCurse") != null) //Changes break charge based on the strong attack curse. -Dylan 2
+                if (CheckIfTalismanActive("Purification"))
+                {
+                    bm.ChangeMeterValue(FetchPotency(FetchIndexOfName("Purification")));
+                }
+                else if (GameObject.Find("DefendingCurse") != null) //Changes break charge based on the strong attack curse. -Dylan 2
                 {
                     bm.ChangeMeterValue(50);
                 }
@@ -652,11 +679,11 @@ public class CombatManager : MonoBehaviour, IDataPersistence
 
         bool isDead = false;
 
-        if (applyMultistrike)
+        if (CheckIfTalismanActive("Multistrike"))
         {
             foreach (Unit enemy in enemyUnits)
             {
-                enemy.TakeDamage(damageDealt, false);  
+                enemy.TakeDamage(damageDealt + FetchPotency(FetchIndexOfName("Multistrike")), false);  
             }
 
             if (selectedEnemyUnit.currentHP <= 0) 
@@ -664,15 +691,14 @@ public class CombatManager : MonoBehaviour, IDataPersistence
                 isDead = true;
             }
         }
-
         else 
         {
             isDead = selectedEnemyUnit.TakeDamage(damageDealt, false);
         }
 
-        if (applyVampiric) 
+        if (CheckIfTalismanActive("Vampiric")) 
         {
-            int amountToHeal = 1; // Set this to the # the player should heal from the talisman
+            int amountToHeal = FetchPotency(FetchIndexOfName("Vampiric")); // Set this to the # the player should heal from the talisman
             playerUnit.heal(amountToHeal);
         }
         
@@ -680,6 +706,10 @@ public class CombatManager : MonoBehaviour, IDataPersistence
 
         StartCoroutine(ConfirmTimer());
         yield return new WaitUntil(() => waitingForConfirm == false);
+
+        activeTalismanNames.Clear();
+        //Clears the two lists after they are used, as a sort of reset. -Dylan 8
+        activeTalismanPotency.Clear();
 
         // Here begins endturn functionality
         if (isDead)
@@ -1355,6 +1385,36 @@ public class CombatManager : MonoBehaviour, IDataPersistence
             return;
         }
 
+        /*if (talismanManager.action.Contains(true))
+        {
+            talismanPanel.SetActive(true);
+
+            int amountOfActionTalismans = 0;
+
+            for (int i = 0; i < talismanManager.talismans.Count; i++)
+            {
+                if (talismanManager.action[i])
+                {
+                    talismanManager.talismans[i].SetActive(true);
+                    talismanManager.talismans[i].transform.SetParent(GameObject.Find("Canvas").transform, false);
+
+                    if (amountOfActionTalismans == 0)
+                    {
+                        talismanManager.talismans[i].transform.position = new Vector3(500f, 500f, 0f);
+                    }
+                    else if (amountOfActionTalismans == 1)
+                    {
+                        talismanManager.talismans[i].transform.position = new Vector3(1000f, 500f, 0f);
+                    }
+                    else if (amountOfActionTalismans == 2)
+                    {
+                        talismanManager.talismans[i].transform.position = new Vector3(1500f, 500f, 0f);
+                    }
+
+                    amountOfActionTalismans++;
+                }
+            }
+        }*/
         // If player has action talismans, display talismans and allow player to choose before continuing
 
         // If player presses cancel button, return
