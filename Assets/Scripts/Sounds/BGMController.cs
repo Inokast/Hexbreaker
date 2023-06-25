@@ -11,9 +11,10 @@ public class BGMController : MonoBehaviour, IDataPersistence
     public AudioMixer bgmMixer;
 
     public AudioSource menuMusic;
-    public AudioSource world1Music;
-    public AudioSource world2Music;
-    public AudioSource world3Music;
+    public AudioSource overworldMusic;
+    public AudioSource normalBattleMusic;
+    public AudioSource cathedralBattleMusic;
+    public AudioSource bossBattleMusic;
 
     void Awake()
     {
@@ -54,17 +55,20 @@ public class BGMController : MonoBehaviour, IDataPersistence
                 PlayMenuMusic();
                 break;
 
-            case 1: PlayWorld1Music();
+            case 1: PlayOverworldMusic();
                 break;
 
             case 2:
-                PlayWorld2Music();
+                PlayNormalBattleMusic();
                 break;
 
             case 3:
-                PlayWorld3Music();
+                PlayCathedralBattleMusic();
                 break;
 
+            case 4:
+                PlayBossBattleMusic();
+                break;
 
             default:
                 StopMusic();
@@ -78,29 +82,36 @@ public class BGMController : MonoBehaviour, IDataPersistence
         menuMusic.Play();
     }
 
-    public void PlayWorld1Music()
+    public void PlayOverworldMusic()
     {
         StopMusic();
-        world1Music.Play();
+        overworldMusic.Play();
     }
 
-    public void PlayWorld2Music()
+    public void PlayNormalBattleMusic()
     {
         StopMusic();
-        world2Music.Play();
+        normalBattleMusic.Play();
     }
 
-    public void PlayWorld3Music()
+    public void PlayCathedralBattleMusic()
     {
         StopMusic();
-        world3Music.Play();
+        cathedralBattleMusic.Play();
+    }
+
+    public void PlayBossBattleMusic()
+    {
+        StopMusic();
+        bossBattleMusic.Play();
     }
 
     public void StopMusic()
     {
         menuMusic.Stop();
-        //world1Music.Stop();
-        ////world2Music.Stop();
-        //world3Music.Stop();
+        overworldMusic.Stop();
+        normalBattleMusic.Stop();
+        cathedralBattleMusic.Stop();
+        bossBattleMusic.Stop();
     }
 }
