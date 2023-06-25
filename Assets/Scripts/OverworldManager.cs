@@ -116,7 +116,7 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
 
         gameData.playerDied = playerDied;
 
-        print(gameData.lastSelectedNodeID);
+        //print(gameData.lastSelectedNodeID);
     }
 
     // Update is called once per frame

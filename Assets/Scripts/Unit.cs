@@ -19,14 +19,17 @@ public class Unit : MonoBehaviour
     public int strengthModifier = 3;
     public int drainStrength;
     public bool isCharged = false;
+    public bool isStunned = false;
 
     public string attackType1; // standard, mash, timed, or array
     public int keyToPress1; // Keep values between 1, 2, 3 or 4;
     public float attackTimer1;
+    public string attackString1;
 
     public string attackType2;
     public int keyToPress2; // Keep values between 1, 2, 3 or 4;
     public float attackTimer2;
+    public string attackString2;
 
     public float fillGauge1;
     public float fillGauge2;

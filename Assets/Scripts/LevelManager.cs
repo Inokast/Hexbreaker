@@ -13,16 +13,14 @@ public class LevelManager : MonoBehaviour
     [Header("Scene Configuration")]
     private LevelTransitionScreen transition;
     private string nextLevelString;
-    private UIManager ui;
     [SerializeField] private int playMusicID = 0;
     
     
     private void Start()
     {
-        ui = FindObjectOfType<UIManager>();
-        transition = FindObjectOfType<LevelTransitionScreen>();
+        transition = FindObjectOfType<LevelTransitionScreen>();      
+        sfx = FindObjectOfType<SoundFXController>();      
         bgm = FindObjectOfType<BGMController>();
-        sfx = FindObjectOfType<SoundFXController>();
         bgm.PlayMusicWithID(playMusicID);
     }
 

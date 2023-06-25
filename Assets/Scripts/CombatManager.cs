@@ -298,9 +298,9 @@ public class CombatManager : MonoBehaviour, IDataPersistence
                 enemyUnits.Add(enemyGO3.GetComponent<Unit>());
             }           
         }
-        print(enemyUnits);
 
         selectedEnemyUnit = enemyUnits[0];
+        enemyShader.ChangeShader(selectedEnemyUnit.gameObject);
         actingEnemyUnit = enemyUnits[0];
 
         battleText.text = "The battle has begun! " + actingEnemyUnit.unitName + " wants to fight!";
@@ -316,18 +316,95 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         PlayerTurn();
     }
 
+    private void PlayerTurn()
+    {
+        RefreshPlayerStatus();
+
+        battleText.text = "Your Turn!";
+        turnCounter += 1;
+    }
+
     IEnumerator EnemyTurn()
     {
-        //Check what actions the enemy can use. Here we check enemy behavior.
+        state = BattleState.ENEMYTURN;
+        // auto selects and shades acting enemy for player clarity
+        selectedEnemyUnit = actingEnemyUnit;
+        enemyShader.ChangeShader(selectedEnemyUnit.gameObject);
 
-        print("Enemy Turn called");
+        if (!actingEnemyUnit.isStunned)
+        {
+            if (!actingEnemyUnit.isCharged)
+            {
+                battleText.text = "The " + actingEnemyUnit.unitName + " is deciding what to do";
 
-        battleText.text = "The " + actingEnemyUnit.unitName + " is deciding what to do";
+                StartCoroutine(ConfirmTimer());
+                yield return new WaitUntil(() => waitingForConfirm == false);
 
-        yield return new WaitForSeconds(2f);
+                int actionTaken = Random.Range(0,8);
+                switch (actionTaken)
+                {
+                    case 0:
+                    case 1:
+                    case 2:
+                    case 3:
+                        StartCoroutine(EnemyAttack());
+                        break;
+             
+                    case 4:
+                    case 5:
+                    case 6:
+                        StartCoroutine(EnemyAttack2());
+                        break;
 
-        StartCoroutine(EnemyAttack()); // For now we will assume the enemy will always attack
+                    case 7: StartCoroutine(EnemyCharge());
+                        break;
 
+                    default:
+                        Debug.Log("ERROR! actionTaken in EnemyTurn coroutine not recognized. Defaulting to enemyAttack.");
+                        StartCoroutine(EnemyAttack());
+                        break;
+                }
+            }
+
+            else
+            {
+                battleText.text = "The " + actingEnemyUnit.unitName + " is about to unleash a charged attack!";
+
+                StartCoroutine(ConfirmTimer());
+                yield return new WaitUntil(() => waitingForConfirm == false);
+
+                StartCoroutine(EnemyChargedAttack());
+            }
+        }
+
+        else 
+        {
+            battleText.text = "The " + actingEnemyUnit.unitName + " can't act because it is stunned!";
+            actingEnemyUnit.isStunned = false;
+            StartCoroutine(ConfirmTimer());
+            yield return new WaitUntil(() => waitingForConfirm == false);
+
+            if (enemyUnits.Count > 2 && actingEnemyUnit == enemyUnits[1])
+            {
+
+                actingEnemyUnit = enemyUnits[2];
+                StartCoroutine(EnemyTurn());
+            }
+
+            else if (enemyUnits.Count > 1 && actingEnemyUnit == enemyUnits[0])
+            {
+                actingEnemyUnit = enemyUnits[1];
+                StartCoroutine(EnemyTurn());
+            }
+
+
+            else
+            {
+                actingEnemyUnit = enemyUnits[0];
+                state = BattleState.PLAYERTURN;
+                PlayerTurn();
+            }
+        }
     }
 
     private void EndBattle()
@@ -362,7 +439,6 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         else { battleText.text = "Battle state is wrong"; }
     }
 
-
     IEnumerator KillPlayer() 
     {
         battleText.text = "You Died";
@@ -372,7 +448,9 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         endPanel.SetActive(true);
         dataManager = FindObjectOfType<DataPersistenceManager>();
         dataManager.NewGame();
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1f);
+        waitingForConfirm = true;
+        yield return new WaitUntil(() => waitingForConfirm == false);
 
         levelManager.LoadSceneWithName("MainMenu");
     }
@@ -390,6 +468,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
             defenseBoost = 0;
             playerUnit.isDefending = false;
         }
+
         eventManager.eventResult = QTEResult.NONE;
 
         if (BreakMeter.charge == 100)
@@ -408,15 +487,56 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         enemyHUD.SetHUD(selectedEnemyUnit);
         
     }
-    private void PlayerTurn()
-    {
-        RefreshPlayerStatus();
 
-        battleText.text = "Your Turn!";
-        turnCounter += 1;
+    #region Talisman Checks
+
+    private bool CheckMultistrike() 
+    {
+        // if Multistrike Talisman is active return true, else:
+
+        return false;
     }
 
-    
+    private bool CheckVampiric()
+    {
+        // if Vampiric Talisman is active return true, else:
+
+        return false;
+    }
+
+    private bool CheckConflicting()
+    {
+        // you get the idea
+
+        return false;
+    }
+
+    private bool CheckPurification()
+    {
+        // if Multistrike Talisman is active return true, else:
+
+        return false;
+    }
+
+    private bool CheckContending()
+    {
+        // you get the idea
+
+        return false;
+    }
+
+    private bool CheckOmnipotent()
+    {
+        // you get the idea
+
+        return false;
+    }
+
+
+
+
+
+    #endregion
 
     #region Player Actions
     IEnumerator PlayerAttack() // Deals damage to enemy and then checks if it is dead
@@ -432,12 +552,53 @@ public class CombatManager : MonoBehaviour, IDataPersistence
 
         state = BattleState.QTE;
 
-        battleText.text = "You attack! Press the right key";
-        eventManager.GenerateStandardQTE(3f); // Generates Quick time event
+        battleText.text = "You attack! Press the right key!";
+        string attackType = playerUnit.attackType1;
 
-        //yield return new WaitUntil(() => eventManager.timerEnded == true);
+        switch (attackType)
+        {
+            case "Timed":
+                eventManager.TriggerTimedQTE(playerUnit.attackTimer1, playerUnit.keyToPress1);
+                //Change color of QTE circle
+                break;
+
+            case "Mash":
+                eventManager.TriggerMashQTE(playerUnit.attackTimer1, playerUnit.keyToPress1, playerUnit.fillGauge1);
+                //Change color of QTE circle
+                break;
+
+            case "Array":
+                eventManager.TriggerQTEArray(playerUnit.attackTimer1, playerUnit.keyToPressArray);
+                //Change color of QTE circle
+                break;
+
+            case "Standard":
+                eventManager.GenerateStandardQTE(playerUnit.attackTimer1);
+                //Change color of QTE circle
+                break;
+
+            default:
+                Debug.Log("ERROR! attackType not recognized. Defaulting to Standard attack");
+                eventManager.GenerateStandardQTE(3);
+                break;
+        }
+
+
         yield return new WaitUntil(() => eventManager.eventCompleted == true);
         int damageDealt = 0;
+
+        bool applyMultistrike = CheckMultistrike();
+        bool applyVampiric = CheckVampiric();
+        bool applyConflicting = CheckConflicting();
+        bool applyPurification = CheckPurification();
+        bool applyContending = CheckContending();
+        bool applyOmnipotent = CheckOmnipotent();
+
+        if (applyVampiric) 
+        {
+            eventManager.eventResult = QTEResult.MID; 
+        }
+
         switch (eventManager.eventResult)
         {
             case QTEResult.NONE:
@@ -445,6 +606,12 @@ public class CombatManager : MonoBehaviour, IDataPersistence
                 break;
             case QTEResult.LOW:
                 damageDealt = playerUnit.lowDamage;
+                if (applyConflicting) 
+                {
+                    int extraDamage = 1; // Here you set the extra damage from the talisman
+                    damageDealt = playerUnit.midDamage + extraDamage;
+                }
+                
                 battleText.text = "A weak hit! The " + selectedEnemyUnit.unitName + " takes " + damageDealt + " damage!";
 
                 if (GameObject.Find("WeakAttackCurse") != null) //Changes the break charge based on the weak curse. -Dylan 2
@@ -483,7 +650,32 @@ public class CombatManager : MonoBehaviour, IDataPersistence
                 break;
         }
 
-        bool isDead = selectedEnemyUnit.TakeDamage(damageDealt, false);
+        bool isDead = false;
+
+        if (applyMultistrike)
+        {
+            foreach (Unit enemy in enemyUnits)
+            {
+                enemy.TakeDamage(damageDealt, false);  
+            }
+
+            if (selectedEnemyUnit.currentHP <= 0) 
+            {
+                isDead = true;
+            }
+        }
+
+        else 
+        {
+            isDead = selectedEnemyUnit.TakeDamage(damageDealt, false);
+        }
+
+        if (applyVampiric) 
+        {
+            int amountToHeal = 1; // Set this to the # the player should heal from the talisman
+            playerUnit.heal(amountToHeal);
+        }
+        
         enemyHUD.SetHP(selectedEnemyUnit);
 
         StartCoroutine(ConfirmTimer());
@@ -498,7 +690,6 @@ public class CombatManager : MonoBehaviour, IDataPersistence
                 selectedEnemyUnit.gameObject.SetActive(false);
                 selectedEnemyUnit = enemyUnits[0];
                 actingEnemyUnit = enemyUnits[0];
-                state = BattleState.ENEMYTURN;
                 StartCoroutine(EnemyTurn());
             }
 
@@ -543,9 +734,10 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         // Break animation plays. It is an auto success!
 
         breakButton.interactable = false;
+        BreakMeter.charge = 0;
         //Play the animation for the break button deactivating
 
-        battleText.text = "You break the curse imposed by " + enemyUnits[0].unitName + " and deal " + playerUnit.highDamage + " damage!";
+        battleText.text = "You break the curse imposed by " + selectedEnemyUnit.unitName + " and deal " + playerUnit.highDamage + " damage!";
 
         cursesToTalismans += 1;      
 
@@ -612,6 +804,22 @@ public class CombatManager : MonoBehaviour, IDataPersistence
             }
         }
 
+        if (selectedEnemyUnit.isCharged)
+        {
+            selectedEnemyUnit.isCharged = false;
+            selectedEnemyUnit.isStunned = true;
+            battleText.text = "You interrupt the " + selectedEnemyUnit.unitName + " from charging its attack! " + selectedEnemyUnit.unitName + " is now stunned!";
+        }
+
+        else 
+        {
+            PowerUpEnemy(selectedEnemyUnit);
+        }
+
+        StartCoroutine(ConfirmTimer());
+        yield return new WaitUntil(() => waitingForConfirm == false);
+
+
         // Here begins endturn functionality
         if (isDead)
         {
@@ -620,6 +828,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
                 enemyUnits.Remove(selectedEnemyUnit);
                 selectedEnemyUnit.gameObject.SetActive(false);
                 selectedEnemyUnit = enemyUnits[0];
+                enemyShader.ChangeShader(selectedEnemyUnit.gameObject);
                 actingEnemyUnit = enemyUnits[0];
                 state = BattleState.ENEMYTURN;
                 StartCoroutine(EnemyTurn());
@@ -672,11 +881,10 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         }
 
         battleText.text = "The " + actingEnemyUnit.unitName + " attacks! " + playerUnit.unitName + " takes " + damageDealt + " damage!";
-        int playerDef = playerUnit.defense;
 
         if (playerUnit.isDefending)
         {
-            playerUnit.defense -= defenseBoost; // Reset any previous defense gains in case player is attacked more than once on same turn.
+            defenseBoost = 0; // Reset any previous defense gains in case player is attacked more than once on same turn.
             state = BattleState.QTE;
             battleText.text = "The " + actingEnemyUnit.unitName + " attacks! Block by pressing the right key!";
 
@@ -797,7 +1005,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         }
     }
 
-    IEnumerator SecondaryEnemyAction() 
+    IEnumerator EnemyAttack2() 
     {
         int damageDealt = Random.Range(1, 5); // Determines how effective the enemy's attack is
 
@@ -808,10 +1016,10 @@ public class CombatManager : MonoBehaviour, IDataPersistence
                 break;
 
             case 2:
-            case 3:
                 damageDealt = actingEnemyUnit.midDamage;
                 break;
 
+            case 3:
             case 4:
                 damageDealt = actingEnemyUnit.highDamage;
                 break;
@@ -822,16 +1030,42 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         }
 
         battleText.text = "The " + actingEnemyUnit.unitName + " attacks! " + playerUnit.unitName + " takes " + damageDealt + " damage!";
-        int playerDef = playerUnit.defense;
 
         if (playerUnit.isDefending)
         {
-            playerUnit.defense -= defenseBoost; // Reset any previous defense gains in case player is attacked more than once on same turn.
+            defenseBoost = 0; // Reset any previous defense gains in case player is attacked more than once on same turn.
             state = BattleState.QTE;
             battleText.text = "The " + actingEnemyUnit.unitName + " attacks! Block by pressing the right key!";
-            eventManager.GenerateStandardQTE(3f);
+
+            string attackType = actingEnemyUnit.attackType2;
+
+            switch (attackType)
+            {
+                case "Timed":
+                    eventManager.TriggerTimedQTE(actingEnemyUnit.attackTimer2, actingEnemyUnit.keyToPress2);
+                    break;
+
+                case "Mash":
+                    eventManager.TriggerMashQTE(actingEnemyUnit.attackTimer2, actingEnemyUnit.keyToPress2, actingEnemyUnit.fillGauge2);
+                    break;
+
+                case "Array":
+                    eventManager.TriggerQTEArray(actingEnemyUnit.attackTimer2, actingEnemyUnit.keyToPressArray);
+                    break;
+
+                case "Standard":
+                    eventManager.GenerateStandardQTE(actingEnemyUnit.attackTimer2);
+                    break;
+
+                default:
+                    Debug.Log("ERROR! attackType not recognized. Defaulting to Standard attack");
+                    eventManager.GenerateStandardQTE(actingEnemyUnit.attackTimer2);
+                    break;
+            }
+
+
             // Start QTE. Reduce incoming damage based on degree of success by increasing player defense. Align QTE with enemy's attack animation.
-            yield return new WaitForSeconds(3f);
+            yield return new WaitUntil(() => eventManager.eventCompleted == true);
 
             switch (eventManager.eventResult)
             {
@@ -886,7 +1120,147 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         bool isDead = playerUnit.TakeDamage(Mathf.Clamp(damageDealt - defenseBoost, 1, damageDealt), false);
         playerHUD.SetHP(playerUnit);
 
-        yield return new WaitForSeconds(2f);
+        StartCoroutine(ConfirmTimer());
+        yield return new WaitUntil(() => waitingForConfirm == false);
+
+        if (isDead)
+        {
+            state = BattleState.LOST;
+            EndBattle();
+        }
+
+        else
+        {
+            if (enemyUnits.Count > 2 && actingEnemyUnit == enemyUnits[1])
+            {
+
+                actingEnemyUnit = enemyUnits[2];
+                StartCoroutine(EnemyTurn());
+            }
+
+            else if (enemyUnits.Count > 1 && actingEnemyUnit == enemyUnits[0])
+            {
+                actingEnemyUnit = enemyUnits[1];
+                StartCoroutine(EnemyTurn());
+            }
+
+
+            else
+            {
+                actingEnemyUnit = enemyUnits[0];
+                state = BattleState.PLAYERTURN;
+                PlayerTurn();
+            }
+        }
+    }
+
+    IEnumerator EnemyChargedAttack() 
+    {
+        int damageDealt;
+
+        if (!playerUnit.isDefending)
+        {
+            damageDealt = actingEnemyUnit.highDamage + actingEnemyUnit.midDamage;
+        }
+
+        else 
+        {
+            damageDealt = actingEnemyUnit.highDamage + actingEnemyUnit.lowDamage;
+        }
+
+        battleText.text = "The " + actingEnemyUnit.unitName + " unleashes a charged attack! " + playerUnit.unitName + " takes " + damageDealt + " damage!";
+
+        if (playerUnit.isDefending)
+        {
+            defenseBoost = 0; // Reset any previous defense gains in case player is attacked more than once on same turn.
+            state = BattleState.QTE;
+            battleText.text = "The " + actingEnemyUnit.unitName + " unleashes a charged attack! Block by pressing the right key!";
+
+            string attackType = actingEnemyUnit.attackType2;
+
+            switch (attackType)
+            {
+                case "Timed":
+                    eventManager.TriggerTimedQTE(actingEnemyUnit.attackTimer2, actingEnemyUnit.keyToPress2);
+                    break;
+
+                case "Mash":
+                    eventManager.TriggerMashQTE(actingEnemyUnit.attackTimer2, actingEnemyUnit.keyToPress2, actingEnemyUnit.fillGauge2);
+                    break;
+
+                case "Array":
+                    eventManager.TriggerQTEArray(actingEnemyUnit.attackTimer2, actingEnemyUnit.keyToPressArray);
+                    break;
+
+                case "Standard":
+                    eventManager.GenerateStandardQTE(actingEnemyUnit.attackTimer2);
+                    break;
+
+                default:
+                    Debug.Log("ERROR! attackType not recognized. Defaulting to Standard attack with 3 sec timer");
+                    eventManager.GenerateStandardQTE(3);
+                    break;
+            }
+
+
+            // Start QTE. Reduce incoming damage based on degree of success by increasing player defense. Align QTE with enemy's attack animation.
+            yield return new WaitUntil(() => eventManager.eventCompleted == true);
+
+            switch (eventManager.eventResult)
+            {
+                case QTEResult.NONE:
+                    print("ERROR! EventResult should not be NONE");
+                    break;
+
+                case QTEResult.LOW:
+                    defenseBoost = 1;
+                    battleText.text = "A weak block..." + playerUnit.unitName + " takes " + (Mathf.Clamp(damageDealt - defenseBoost, 1, damageDealt)) + " damage!";
+
+                    if (GameObject.Find("WeakBlockCurse") != null) //Changes meter charge based on curse. -Dylan 2
+                    {
+                        bm.ChangeMeterValue(13);
+                    }
+                    else
+                    {
+                        bm.ChangeMeterValue(15);
+                    }
+                    break;
+
+                case QTEResult.MID:
+                    defenseBoost = 2;
+                    battleText.text = "You block! " + playerUnit.unitName + " takes " + (Mathf.Clamp(damageDealt - defenseBoost, 1, damageDealt)) + " damage!";
+                    break;
+
+                case QTEResult.HIGH:
+                    defenseBoost = 3;
+                    battleText.text = "A perfect block! " + playerUnit.unitName + " takes " + (Mathf.Clamp(damageDealt - defenseBoost, 1, damageDealt)) + " damage!";
+
+                    if (GameObject.Find("AttackingCurse") != null) //Changes meter charge based on curse. If the player can only defend, that should be the only curse to apply in a perfect QTE. -Dylan 2
+                    {
+                        bm.ChangeMeterValue(50);
+                    }
+                    else if (GameObject.Find("PerfectBlockCurse") != null)
+                    {
+                        bm.ChangeMeterValue(25);
+                    }
+                    else
+                    {
+                        bm.ChangeMeterValue(35);
+                    }
+                    break;
+
+                default:
+                    print("ERROR! EventResult is not recognized!");
+                    break;
+            }
+            // Depending on degree of success, temporarily increase defense.
+        }
+
+        bool isDead = playerUnit.TakeDamage(Mathf.Clamp(damageDealt - defenseBoost, 1, damageDealt), false);
+        playerHUD.SetHP(playerUnit);
+
+        StartCoroutine(ConfirmTimer());
+        yield return new WaitUntil(() => waitingForConfirm == false);
 
         if (isDead)
         {
@@ -926,7 +1300,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         // TO DO
     }
 
-    IEnumerator PowerUpEnemy(Unit enemy) 
+    private void PowerUpEnemy(Unit enemy) 
     {
         
         enemy.lowDamage = enemy.lowDamage + enemy.strengthModifier;
@@ -934,13 +1308,12 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         enemy.highDamage = enemy.highDamage + enemy.strengthModifier;
 
         battleText.text = "The " + enemy.unitName + "'s rage has caused it to grow stronger!";
-        yield return new WaitForSeconds(.5f);
     }
 
-    IEnumerator EnemyCharge(Unit enemy) 
+    IEnumerator EnemyCharge() 
     {
-        battleText.text = "The " + enemy.unitName + " is preparing to unleash its power!";
-        enemy.isCharged = true;
+        battleText.text = "The " + actingEnemyUnit.unitName + " is preparing to unleash its power!";
+        actingEnemyUnit.isCharged = true;
         //Play animation or sound effects or whatever
 
         StartCoroutine(ConfirmTimer());

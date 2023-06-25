@@ -55,7 +55,8 @@ public class BGMController : MonoBehaviour, IDataPersistence
                 PlayMenuMusic();
                 break;
 
-            case 1: PlayOverworldMusic();
+            case 1: 
+                PlayOverworldMusic();
                 break;
 
             case 2:

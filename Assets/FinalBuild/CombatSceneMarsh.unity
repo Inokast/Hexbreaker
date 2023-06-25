@@ -495,6 +495,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff3410745d88b7f4ab098d1b4271f0a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activeTalismanNames: []
+  activeTalismanPotency: 
   playerPrefab: {fileID: 5684368225728917180, guid: 03eef988e7ed6014588dd762fd86a172,
     type: 3}
   enemyPrefabs:
@@ -517,6 +519,7 @@ MonoBehaviour:
   defendButton: {fileID: 1523884698}
   breakMeterGO: {fileID: 948196822}
   confirmTimer: 1.5
+  combatFinished: 0
   playerUnit: {fileID: 0}
   state: 0
 --- !u!4 &94448200
@@ -3498,7 +3501,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35669078970940e448d680b8be4268c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playMusicID: 10
+  playMusicID: 2
 --- !u!4 &1139356064
 Transform:
   m_ObjectHideFlags: 0
