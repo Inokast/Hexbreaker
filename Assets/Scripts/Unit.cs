@@ -22,6 +22,18 @@ public class Unit : MonoBehaviour
     public int drainStrength;
     public bool isCharged = false;
 
+    public string attackType1; // standard, mash, timed, or array
+    public int keyToPress1; // Keep values between 1, 2, 3 or 4;
+    public float attackTimer1;
+
+    public string attackType2;
+    public int keyToPress2; // Keep values between 1, 2, 3 or 4;
+    public float attackTimer2;
+
+    public float fillGauge1;
+    public float fillGauge2;
+    public int[] keyToPressArray; // Keep values between 1, 2, 3 or 4;
+
     public int defense; // A passive damage reduction. Reduces incoming damage by this value.
 
     public int maxHP;

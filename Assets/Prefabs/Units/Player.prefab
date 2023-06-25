@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -1907623113879710450}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -110,14 +110,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3985249c191f0244bc10022d3959af5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitName: Player
+  unitName: Rosalin
   isDefending: 0
+  talismans: []
+  action: 
   highDamage: 6
   midDamage: 4
   lowDamage: 2
+  strengthModifier: 3
+  drainStrength: 0
+  isCharged: 0
+  attackType1: 
+  keyToPress1: 0
+  attackTimer1: 0
+  attackType2: 
+  keyToPress2: 0
+  attackTimer2: 0
+  fillGauge1: 0
+  fillGauge2: 0
+  keyToPressArray: 
   defense: 0
-  maxHP: 100
-  currentHP: 100
+  maxHP: 70
+  currentHP: 51
 --- !u!1001 &8105622300356814059
 PrefabInstance:
   m_ObjectHideFlags: 0

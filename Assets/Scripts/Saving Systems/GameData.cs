@@ -41,9 +41,12 @@ public class GameData
     public List<GameObject> talismansCollected;
     public List<bool> isAction;
 
-    
-    
-    
+    [Header("Talisman Manager Settings")]
+    public string example;
+
+
+
+
 
     // The values defined in this constructor will be the default values
     // the game starts with when there's no data to load - Dan
@@ -79,6 +82,8 @@ public class GameData
         playerDefense = 0;
         playerMaxHP = 70;
         playerCurrentHP = 70;
+
+
 
     }
 

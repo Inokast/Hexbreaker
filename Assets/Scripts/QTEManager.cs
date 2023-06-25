@@ -23,7 +23,8 @@ public class QTEManager : MonoBehaviour
     private bool isWaitingForInput;
     private string eventType;
     private bool inputWasCorrect;
-    private bool timerIsActive;
+    public bool timerIsActive;
+    public bool eventCompleted = true;
     public QTEResult eventResult;
 
 
@@ -202,6 +203,7 @@ public class QTEManager : MonoBehaviour
 
     IEnumerator Timer()
     {
+        eventCompleted = false;
         timerIsActive = true;
         float seconds;
         float milliseconds;
@@ -239,7 +241,7 @@ public class QTEManager : MonoBehaviour
         inputWasCorrect = false;
         isWaitingForInput = false;
         perfectTiming = false;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(.5f);
         inputDisplayText.text = "";
         resultDisplayText.text = "";
         timerText.text = "";
@@ -248,22 +250,22 @@ public class QTEManager : MonoBehaviour
         amountFilled = 0;
         eventPanel.SetActive(false);
         inputDisplayText.color = Color.white;
+        eventCompleted = true;
     }
 
-    public void QTEArrayTest() 
+    public void TriggerQTEArray(float duration, int[] keysToPress) 
     {
-        int[] keysToPress = {1, 2, 3, 4};
-        StartCoroutine(GenerateQTEArray(5, keysToPress));
+        StartCoroutine(GenerateQTEArray(duration, keysToPress));
     }
 
-    public void MashQTETest()
+    public void TriggerMashQTE(float duration, int keyToPress, float amountToFill)
     {
-        StartCoroutine(GenerateMashQTE(5, 1, 10));
+        StartCoroutine(GenerateMashQTE(duration, keyToPress, amountToFill));
     }
 
-    public void TimedQTETest()
+    public void TriggerTimedQTE(float duration, int keyToPress)
     {
-        StartCoroutine(GenerateTimedQTE(2.5f, 2));
+        StartCoroutine(GenerateTimedQTE(duration, keyToPress));
     }
 
     #region QTECalls

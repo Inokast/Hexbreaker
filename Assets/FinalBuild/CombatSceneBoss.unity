@@ -427,10 +427,12 @@ MonoBehaviour:
   - {fileID: 1209771180}
   playerHUD: {fileID: 390387213}
   enemyHUD: {fileID: 2108667337}
+  enemyCanvas: {fileID: 1219185796}
   breakButton: {fileID: 1905144411}
   attackButton: {fileID: 1687249517}
   defendButton: {fileID: 1523884698}
   breakMeterGO: {fileID: 948196822}
+  confirmTimer: 1.5
   playerUnit: {fileID: 0}
   state: 0
 --- !u!4 &94448200
@@ -3231,8 +3233,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blank: {fileID: 2100000, guid: f61a172c25f4be34e9553b24b4a18e67, type: 2}
   outlineMaterial: {fileID: 2100000, guid: c46de36b1eca95f47b4596cff4e352ba, type: 2}
-  selectableTag: Enemy
   worldCanvasGroup: {fileID: 1219185796}
+  storedObject: {fileID: 0}
+  stored: 0
 --- !u!4 &633524661
 Transform:
   m_ObjectHideFlags: 0
@@ -4682,6 +4685,8 @@ MonoBehaviour:
   inputDisplayText: {fileID: 1275415944}
   resultDisplayText: {fileID: 1275415943}
   timerText: {fileID: 1275415941}
+  timerIsActive: 0
+  eventCompleted: 1
   eventResult: 0
 --- !u!4 &1031236951
 Transform:

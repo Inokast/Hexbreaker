@@ -516,6 +516,7 @@ MonoBehaviour:
   attackButton: {fileID: 1687249517}
   defendButton: {fileID: 1523884698}
   breakMeterGO: {fileID: 948196822}
+  confirmTimer: 1.5
   playerUnit: {fileID: 0}
   state: 0
 --- !u!4 &94448200
@@ -3257,7 +3258,7 @@ PrefabInstance:
     - target: {fileID: 6610263770803751098, guid: aa48e89b5cfbe0c46ac0ad94d3031e22,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6610263770803751099, guid: aa48e89b5cfbe0c46ac0ad94d3031e22,
         type: 3}
@@ -3352,6 +3353,8 @@ MonoBehaviour:
   inputDisplayText: {fileID: 1429812507}
   resultDisplayText: {fileID: 1429812506}
   timerText: {fileID: 1429812504}
+  timerIsActive: 0
+  eventCompleted: 1
   eventResult: 0
 --- !u!4 &1031236951
 Transform:

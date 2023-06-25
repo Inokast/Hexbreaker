@@ -281,9 +281,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitName: Marshwood Wanderer
   isDefending: 0
+  talismans: []
+  action: 
   highDamage: 4
   midDamage: 3
   lowDamage: 1
+  strengthModifier: 3
+  drainStrength: 0
+  isCharged: 0
+  attackType1: Array
+  keyToPress1: 0
+  attackTimer1: 5
+  attackType2: Timed
+  keyToPress2: 4
+  attackTimer2: 3
+  fillGauge1: 0
+  fillGauge2: 0
+  keyToPressArray: 01000000010000000300000003000000
   defense: 0
   maxHP: 18
   currentHP: 18

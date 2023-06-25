@@ -281,9 +281,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitName: Tutorial Slurp
   isDefending: 0
+  talismans: []
+  action: 
   highDamage: 3
   midDamage: 2
   lowDamage: 1
+  strengthModifier: 3
+  drainStrength: 0
+  isCharged: 0
+  attackType1: Timed
+  keyToPress1: 2
+  attackTimer1: 5
+  attackType2: Mash
+  keyToPress2: 3
+  attackTimer2: 5
+  fillGauge1: 0
+  fillGauge2: 10
+  keyToPressArray: 
   defense: 0
   maxHP: 16
   currentHP: 16

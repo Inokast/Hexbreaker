@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class CreateTalismans : MonoBehaviour
+public class CreateTalismans : MonoBehaviour, IDataPersistence 
 {
     [SerializeField] GameObject commonFrame;
     [SerializeField] GameObject uncommonFrame;
@@ -14,6 +14,33 @@ public class CreateTalismans : MonoBehaviour
     [SerializeField] GameObject spectralFrame;
 
     [SerializeField] GameObject talismanChoicePanel;
+
+    public static CreateTalismans talismanManager { get; private set; }
+
+
+    void Awake()
+    {
+        if (talismanManager == null)
+        {
+            DontDestroyOnLoad(gameObject);
+            talismanManager = this;
+        }
+        else if (talismanManager != null)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    public void LoadData(GameData data)
+    {
+        
+    }
+
+    public void SaveData(GameData data)
+    {
+        
+    }
+
 
     public void GenerateEncounterTalismans()
     {
