@@ -74,6 +74,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
     private int breakCharges = 0;
     [SerializeField] private float confirmTimer = 1.5f;
     private bool waitingForConfirm = false;
+    private bool waitingForTalismanPick = false;
 
     public bool combatFinished = false;
     private bool playerDied = false;
@@ -163,6 +164,15 @@ public class CombatManager : MonoBehaviour, IDataPersistence
             }
         }
 
+        /*
+        if (waitingForTalismanPick)
+        {
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
+            {
+                waitingForConfirm = false;
+            }
+        }*/
+
         var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit)) //on hit
@@ -196,12 +206,12 @@ public class CombatManager : MonoBehaviour, IDataPersistence
 
         if (state == BattleState.PLAYERTURN)
         {
-            if (Input.GetKeyDown("q"))
+            if (Input.GetKeyDown("h"))
             {
                 helpMenu.SetActive(true);
             }
 
-            if (Input.GetKeyUp("q"))
+            if (Input.GetKeyUp("h"))
             {
                 helpMenu.SetActive(false);
             }
@@ -591,10 +601,6 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         yield return new WaitUntil(() => eventManager.eventCompleted == true);
         int damageDealt = 0;
 
-        /*if (applyVampiric) 
-        {
-            eventManager.eventResult = QTEResult.MID; //I meant for Vampiric to deal whatever damage the player deals, not lock in an amount. Wording was kind of weird. -Dylan 8
-        }*/
 
         switch (eventManager.eventResult)
         {
@@ -691,6 +697,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
                 isDead = true;
             }
         }
+
         else 
         {
             isDead = selectedEnemyUnit.TakeDamage(damageDealt, false);
@@ -700,6 +707,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         {
             int amountToHeal = FetchPotency(FetchIndexOfName("Vampiric")); // Set this to the # the player should heal from the talisman
             playerUnit.heal(amountToHeal);
+            playerHUD.SetHP(playerUnit);
         }
         
         enemyHUD.SetHP(selectedEnemyUnit);
@@ -765,14 +773,63 @@ public class CombatManager : MonoBehaviour, IDataPersistence
 
         breakButton.interactable = false;
         BreakMeter.charge = 0;
-        //Play the animation for the break button deactivating
+        //Play the animation for the break button
 
-        battleText.text = "You break the curse imposed by " + selectedEnemyUnit.unitName + " and deal " + playerUnit.highDamage + " damage!";
+        state = BattleState.QTE;
+
+        battleText.text = "You attempt to break the enemy's curse! Press the right key!";
+        string attackType = playerUnit.attackType1;
+
+        switch (attackType)
+        {
+            case "Timed":
+                eventManager.TriggerTimedQTE(playerUnit.attackTimer2, playerUnit.keyToPress2);
+                //Change color of QTE circle
+                break;
+
+            case "Mash":
+                eventManager.TriggerMashQTE(playerUnit.attackTimer2, playerUnit.keyToPress2, playerUnit.fillGauge2);
+                //Change color of QTE circle
+                break;
+
+            case "Array":
+                eventManager.TriggerQTEArray(playerUnit.attackTimer2, playerUnit.keyToPressArray);
+                //Change color of QTE circle
+                break;
+
+            case "Standard":
+                eventManager.GenerateStandardQTE(playerUnit.attackTimer2);
+                //Change color of QTE circle
+                break;
+
+            default:
+                Debug.Log("ERROR! attackType not recognized. Defaulting to Standard attack");
+                eventManager.GenerateStandardQTE(3);
+                break;
+        }
+
+
+        yield return new WaitUntil(() => eventManager.eventCompleted == true);
+        int damageDealt = 0;
+
+        if (eventManager.eventResult == QTEResult.HIGH)
+        {
+            damageDealt = playerUnit.highDamage;
+        }
+
+        else 
+        {
+            damageDealt = playerUnit.midDamage;
+        }
+
+        //
+
+        battleText.text = "You break the curse imposed by " + selectedEnemyUnit.unitName + " and deal " + damageDealt + " damage!";
 
         cursesToTalismans += 1;      
 
         // Damage the enemy selected. Choose damage based on eventState;
-        bool isDead = selectedEnemyUnit.TakeDamage(playerUnit.highDamage, false);
+        bool isDead = selectedEnemyUnit.TakeDamage(damageDealt, false);
         enemyHUD.SetHP(selectedEnemyUnit);
 
         StartCoroutine(ConfirmTimer());
@@ -843,7 +900,11 @@ public class CombatManager : MonoBehaviour, IDataPersistence
 
         else 
         {
-            PowerUpEnemy(selectedEnemyUnit);
+            if (eventManager.eventResult != QTEResult.HIGH)            
+            {
+                PowerUpEnemy(selectedEnemyUnit);
+                print("Break event result was not high, enemy powered up");
+            }           
         }
 
         StartCoroutine(ConfirmTimer());

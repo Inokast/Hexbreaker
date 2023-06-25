@@ -279,22 +279,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3985249c191f0244bc10022d3959af5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitName: Tutorial Slurp
+  unitName: Weak Seeker
   isDefending: 0
-  talismans: []
-  action: 
   highDamage: 3
   midDamage: 2
   lowDamage: 1
   strengthModifier: 3
   drainStrength: 0
   isCharged: 0
+  isStunned: 0
   attackType1: Timed
   keyToPress1: 2
   attackTimer1: 5
+  attackString1: 
   attackType2: Mash
   keyToPress2: 3
   attackTimer2: 5
+  attackString2: 
   fillGauge1: 0
   fillGauge2: 10
   keyToPressArray: 

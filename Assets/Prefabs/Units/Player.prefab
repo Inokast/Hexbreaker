@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitName: Rosalin
-  isDefending: 0
+  isDefending: 1
   highDamage: 6
   midDamage: 4
   lowDamage: 2
@@ -121,18 +121,18 @@ MonoBehaviour:
   isStunned: 0
   attackType1: Standard
   keyToPress1: 1
-  attackTimer1: 0
+  attackTimer1: 3
   attackString1: 
   attackType2: Array
   keyToPress2: 0
-  attackTimer2: 4
+  attackTimer2: 3
   attackString2: 
-  fillGauge1: 0
-  fillGauge2: 0
+  fillGauge1: 10
+  fillGauge2: 10
   keyToPressArray: 0100000002000000030000000400000001000000020000000300000004000000
   defense: 0
   maxHP: 70
-  currentHP: 70
+  currentHP: 57
 --- !u!1001 &8105622300356814059
 PrefabInstance:
   m_ObjectHideFlags: 0

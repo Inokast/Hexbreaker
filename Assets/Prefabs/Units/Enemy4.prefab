@@ -231,6 +231,21 @@ MonoBehaviour:
   highDamage: 4
   midDamage: 3
   lowDamage: 2
+  strengthModifier: 3
+  drainStrength: 0
+  isCharged: 0
+  isStunned: 0
+  attackType1: Array
+  keyToPress1: 0
+  attackTimer1: 3
+  attackString1: 
+  attackType2: Mash
+  keyToPress2: 1
+  attackTimer2: 3
+  attackString2: 
+  fillGauge1: 0
+  fillGauge2: 4
+  keyToPressArray: 01000000030000000400000002000000
   defense: 0
   maxHP: 20
   currentHP: 20
