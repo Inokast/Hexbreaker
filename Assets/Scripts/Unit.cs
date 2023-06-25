@@ -11,8 +11,6 @@ public class Unit : MonoBehaviour
     [Header("Unit Information")]
     public string unitName;
     public bool isDefending = false;
-    public List<GameObject> talismans;
-    public List<bool> action;
 
     [Header("Unit Stats")]
     public int highDamage;

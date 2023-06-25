@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class CreateTalismans : MonoBehaviour, IDataPersistence 
 {
@@ -13,10 +14,12 @@ public class CreateTalismans : MonoBehaviour, IDataPersistence
     [SerializeField] GameObject legendaryFrame;
     [SerializeField] GameObject spectralFrame;
 
-    [SerializeField] GameObject talismanChoicePanel;
+    private GameObject talismanChoicePanel;
+
+    public List<GameObject> talismans = new List<GameObject>();
+    public List<bool> action = new List<bool>();
 
     public static CreateTalismans talismanManager { get; private set; }
-
 
     void Awake()
     {
@@ -29,16 +32,25 @@ public class CreateTalismans : MonoBehaviour, IDataPersistence
         {
             Destroy(gameObject);
         }
+
+        if (SceneManager.GetActiveScene().name == "Overworld")
+        {
+            talismanChoicePanel = GameObject.Find("TalismanPanel");
+
+            talismanChoicePanel.SetActive(false);
+        }
     }
 
-    public void LoadData(GameData data)
+    public void LoadData(GameData gameData)
     {
-        
+        talismans = gameData.talismansCollected;
+        action = gameData.isAction;
     }
 
-    public void SaveData(GameData data)
+    public void SaveData(GameData gameData)
     {
-        
+        gameData.talismansCollected = talismans;
+        gameData.isAction = action;
     }
 
 
@@ -136,6 +148,52 @@ public class CreateTalismans : MonoBehaviour, IDataPersistence
         texts[2].text = "Increases your base defense by " + (1 * rarity);
 
         texts[1].text = "Impenetrable Talisman";
+    }
+
+    private void CreateActionTalisman(GameObject frame)
+    {
+        int rarity = FetchRarity(frame);
+
+        TMP_Text[] texts = frame.GetComponentsInChildren<TMP_Text>();
+
+        int rando = Random.Range(1, 101);
+
+        if (rando <= 20)
+        {
+            texts[2].text = "Action Talisman: Your next attack will hit all enemies on the field and deal an additional" + (rarity * 2) + " damage to them";
+
+            texts[1].text = "Multistrike Talisman";
+        }
+        else if (rando > 20 && rando <= 40)
+        {
+            texts[2].text = "Action Talisman: Your next attack will heal you for " + (rarity * 3) + " and deal the usual attack damage";
+
+            texts[1].text = "Vampiric Talisman";
+        }
+        else if (rando > 40 && rando <= 60)
+        {
+            texts[2].text = "Action Talisman: Your next weak attack will deal the damage of a normal hit, plus an additional " + (rarity * 1);
+
+            texts[1].text = "Conflicting Talisman";
+        }
+        else if (rando > 60 && rando <= 80)
+        {
+            texts[2].text = "Action Talisman: Your next attack will grant " + (rarity * 15) + " break meter charge";
+
+            texts[1].text = "Purification Talisman";
+        }
+        else if (rando > 80 && rando <= 92)
+        {
+            texts[2].text = "Action Talisman: Your next attack will deal the damage of a perfect hit, plus an additional " + (rarity * 2);
+
+            texts[1].text = "Contending Talisman";
+        }
+        else if (rando > 92)
+        {
+            texts[2].text = "Action Talisman: Your next perfect attack will deal an additional " + (rarity * 4) + " damage";
+
+            texts[1].text = "Omnipotent Talisman";
+        }
     }
 
     private GameObject DecideTalismanRarity(int position, bool isLucky)
@@ -360,30 +418,34 @@ public class CreateTalismans : MonoBehaviour, IDataPersistence
         }
         else
         {
-            talismanType = Random.Range(65, 101);
+            talismanType = Random.Range(52, 101);
         }
 
 
 
-        if (talismanType <= 30)
+        if (talismanType <= 17)
         {
             CreateHealthTalisman(talisman);
         }
-        else if (talismanType > 30 && talismanType <= 45)
+        else if (talismanType > 17 && talismanType <= 34)
         {
             CreateExtendingTalisman(talisman);
         }
-        else if (talismanType > 45 && talismanType <= 65)
+        else if (talismanType > 34 && talismanType <= 51)
         {
             CreateMaxHealthTalisman(talisman);
         }
-        else if (talismanType > 65 && talismanType <= 85)
+        else if (talismanType > 51 && talismanType <= 68)
         {
             CreateAttackTalisman(talisman);
         }
-        else if (talismanType > 85)
+        else if (talismanType > 68 && talismanType <= 85)
         {
             CreateDefenseTalisman(talisman);
+        }
+        else if (talismanType > 85)
+        {
+            CreateActionTalisman(talisman);
         }
         else
         {

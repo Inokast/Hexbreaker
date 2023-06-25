@@ -20,7 +20,8 @@ public class GameData
     public SerializableDictionary<string, bool> nodesCompleted;
     public SerializableDictionary<string, int> nodesTypes;
     public SerializableDictionary<string, string> nodesDescriptions;
-    public SerializableDictionary<string, string> nodesEnemies;
+    public List<string> nodeIDForEnemies;
+    public List<string> nodesEnemies;
 
     [Header("Settings Data")]
     public float bgmVolumeLevel;
@@ -38,11 +39,10 @@ public class GameData
     public int playerDefense;
     public int playerMaxHP;
     public int playerCurrentHP;
-    public List<GameObject> talismansCollected;
-    public List<bool> isAction;
 
     [Header("Talisman Manager Settings")]
-    public string example;
+    public List<GameObject> talismansCollected;
+    public List<bool> isAction;
 
 
 
@@ -64,11 +64,13 @@ public class GameData
         nodesActive = new SerializableDictionary<string, bool>();
         nodesCompleted = new SerializableDictionary<string, bool>();
         nodesDescriptions = new SerializableDictionary<string, string>();
-        nodesEnemies = new SerializableDictionary<string, string>();
         nodesTypes = new SerializableDictionary<string, int>();
 
-        talismansCollected = new List<GameObject>();
-        isAction = new List<bool>();
+        nodeIDForEnemies = new List<string>();
+        nodesEnemies = new List<string>();
+
+        //talismansCollected = new List<GameObject>();
+        //isAction = new List<bool>();
 
         bgmVolumeLevel = .5f;
         sfxVolumeLevel = .5f;

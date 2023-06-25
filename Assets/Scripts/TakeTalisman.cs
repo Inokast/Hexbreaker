@@ -13,9 +13,9 @@ public class TakeTalisman : MonoBehaviour
 
     private CombatManager cm;
 
-    private Unit playerUnit;
+    private CreateTalismans talismanManager;
 
-    private void Start()
+    private void Awake()
     {
         if (SceneManager.GetActiveScene().name == "Overworld")
         {
@@ -26,18 +26,88 @@ public class TakeTalisman : MonoBehaviour
             cm = GameObject.Find("CombatManager").GetComponent<CombatManager>();
         }
 
-        if (SceneManager.GetActiveScene().name == "Overworld")
-        {
-            playerUnit = GameObject.Find("Player").GetComponent<Unit>();
-        }
-        else if (SceneManager.GetActiveScene().name == "CombatSceneMarsh" || SceneManager.GetActiveScene().name == "CombatSceneCathedral" || SceneManager.GetActiveScene().name == "CombatSceneBoss" || SceneManager.GetActiveScene().name == "CombatSceneRuins")
-        {
-            playerUnit = GameObject.Find("Player(Clone)").GetComponent<Unit>();
-        }
-        
+        talismanManager = GameObject.Find("TalismanGenerator").GetComponent<CreateTalismans>();
     }
 
     public void GetTalisman()
+    {
+        if (GameObject.Find("CombatManager") != null)
+        {
+            if (GameObject.Find("CombatManager").GetComponent<CombatManager>().combatFinished)
+            {
+                MainTalismanAcquire();
+            }
+            else //This is where the action talismans are handled. -Dylan 7
+            {
+                TMP_Text[] texts = gameObject.GetComponentsInChildren<TMP_Text>();
+
+                string name = texts[1].text;
+
+                string description = texts[2].text;
+
+                string extractedNumber = "";
+
+                for (int i = 0; i < description.Length; i++)
+                {
+                    if (Char.IsDigit(description[i]))
+                    {
+                        extractedNumber += description[i];
+                    }
+                }
+
+                int amount = int.Parse(extractedNumber);
+
+                cm = GameObject.Find("CombatManager").GetComponent<CombatManager>();
+
+                if (name == "Multistrike Talisman")
+                {
+                    cm.activeTalismanNames.Add("Multistrike");
+
+                    cm.activeTalismanPotency.Add(amount);
+                }
+                else if (name == "Vampiric Talisman")
+                {
+                    cm.activeTalismanNames.Add("Vampiric");
+
+                    cm.activeTalismanPotency.Add(amount);
+                }
+                else if (name == "Conflicting Talisman")
+                {
+                    cm.activeTalismanNames.Add("Conflicting");
+
+                    cm.activeTalismanPotency.Add(amount);
+                }
+                else if (name == "Purification Talisman")
+                {
+                    cm.activeTalismanNames.Add("Purification");
+
+                    cm.activeTalismanPotency.Add(amount);
+                }
+                else if (name == "Contending Talisman")
+                {
+                    cm.activeTalismanNames.Add("Contending");
+
+                    cm.activeTalismanPotency.Add(amount);
+                }
+                else if (name == "Omnipotent Talisman")
+                {
+                    cm.activeTalismanNames.Add("Omnipotent");
+
+                    cm.activeTalismanPotency.Add(amount);
+                }
+            }
+        }
+        else if (SceneManager.GetActiveScene().name == "Overworld")
+        {
+            MainTalismanAcquire();
+        }
+        else
+        {
+            Debug.Log("CM/OM Error -- TakeTalisman.cs");
+        }
+    }
+
+    private void MainTalismanAcquire()
     {
         string tag = gameObject.tag;
 
@@ -80,11 +150,11 @@ public class TakeTalisman : MonoBehaviour
                 }
             }
 
-            playerUnit.talismans.Add(gameObject);
+            talismanManager.action.Add(false);
 
-            playerUnit.action.Add(false);
+            gameObject.transform.SetParent(GameObject.Find("TalismanGenerator").transform, false);
 
-            DontDestroyOnLoad(playerUnit.talismans[playerUnit.talismans.Count - 1]);
+            talismanManager.talismans.Add(gameObject);
 
             gameObject.SetActive(false);
         }
@@ -120,7 +190,7 @@ public class TakeTalisman : MonoBehaviour
             }
 
             if (SceneManager.GetActiveScene().name == "Overworld")
-            { 
+            {
                 om.playerUnit.maxHP -= secondHalf;
 
                 om.playerUnit.currentHP += firstHalf;
@@ -142,11 +212,11 @@ public class TakeTalisman : MonoBehaviour
                 }
             }
 
-            playerUnit.talismans.Add(gameObject);
+            talismanManager.action.Add(false);
 
-            playerUnit.action.Add(false);
+            gameObject.transform.SetParent(GameObject.Find("TalismanGenerator").transform, false);
 
-            DontDestroyOnLoad(playerUnit.talismans[playerUnit.talismans.Count - 1]);
+            talismanManager.talismans.Add(gameObject);
 
             gameObject.SetActive(false);
         }
@@ -163,7 +233,7 @@ public class TakeTalisman : MonoBehaviour
             }
 
             int amount = int.Parse(extractedNumber);
-            
+
             if (SceneManager.GetActiveScene().name == "Overworld")
             {
                 om.playerUnit.maxHP += amount;
@@ -173,11 +243,11 @@ public class TakeTalisman : MonoBehaviour
                 cm.playerUnit.maxHP += amount;
             }
 
-            playerUnit.talismans.Add(gameObject);
+            talismanManager.action.Add(false);
 
-            playerUnit.action.Add(false);
+            gameObject.transform.SetParent(GameObject.Find("TalismanGenerator").transform, false);
 
-            DontDestroyOnLoad(playerUnit.talismans[playerUnit.talismans.Count - 1]);
+            talismanManager.talismans.Add(gameObject);
 
             gameObject.SetActive(false);
         }
@@ -220,11 +290,11 @@ public class TakeTalisman : MonoBehaviour
                 cm.playerUnit.highDamage += amount;
             }
 
-            playerUnit.talismans.Add(gameObject);
+            talismanManager.action.Add(false);
 
-            playerUnit.action.Add(false);
+            gameObject.transform.SetParent(GameObject.Find("TalismanGenerator").transform, false);
 
-            DontDestroyOnLoad(playerUnit.talismans[playerUnit.talismans.Count - 1]);
+            talismanManager.talismans.Add(gameObject);
 
             gameObject.SetActive(false);
         }
@@ -251,11 +321,21 @@ public class TakeTalisman : MonoBehaviour
                 cm.playerUnit.defense += amount;
             }
 
-            playerUnit.talismans.Add(gameObject);
+            talismanManager.action.Add(false);
 
-            playerUnit.action.Add(false);
+            gameObject.transform.SetParent(GameObject.Find("TalismanGenerator").transform, false);
 
-            DontDestroyOnLoad(playerUnit.talismans[playerUnit.talismans.Count - 1]);
+            talismanManager.talismans.Add(gameObject);
+
+            gameObject.SetActive(false);
+        }
+        else
+        {
+            talismanManager.action.Add(true);
+
+            gameObject.transform.SetParent(GameObject.Find("TalismanGenerator").transform, false);
+
+            talismanManager.talismans.Add(gameObject);
 
             gameObject.SetActive(false);
         }

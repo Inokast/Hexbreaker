@@ -27,7 +27,6 @@ public class MapNode : MonoBehaviour , IDataPersistence
     public int nodeType;
     public string nodeDescription;
     public string[] nodeRewards; // Replace String[] with Talisman[] or follow the idea as needed to be able to track it across scenes. - Dan
-    public string nodesEnemies;
     public List<int> nodeEnemyID;
 
     public string mapSection; // Marsh, Ruins, Cathedral, Finalboss.
@@ -41,16 +40,15 @@ public class MapNode : MonoBehaviour , IDataPersistence
         gameData.nodesCompleted.TryGetValue(nodeID, out isCompleted);
         gameData.nodesDescriptions.TryGetValue(nodeID, out nodeDescription);
         gameData.nodesTypes.TryGetValue(nodeID, out nodeType);
-        if (nodeType == 1)
+        for (int i = 0; i < gameData.nodesEnemies.Count; i++)
         {
-            nodeEnemyID.Clear();
-            //string enemiesAsString = string.Join(",", nodeEnemyID);
-            gameData.nodesEnemies.TryGetValue(nodeID, out nodesEnemies);
-
-            //gameData.nodesEnemies.TryGetValue(nodeID, out enemiesAsString);
-            foreach (char c in nodesEnemies)
+            if (gameData.nodeIDForEnemies[i] == nodeID)
             {
-                nodeEnemyID.Add(c);
+                nodeEnemyID.Clear();
+                foreach (char c in gameData.nodesEnemies[i])
+                {
+                    nodeEnemyID.Add(int.Parse(c.ToString()));
+                }
             }
         }
     }
@@ -83,16 +81,28 @@ public class MapNode : MonoBehaviour , IDataPersistence
 
         string enemiesAsString = "";
 
+        if (gameData.nodeIDForEnemies.Contains(nodeID))
+        {
+            for (int i = 0; i < gameData.nodeIDForEnemies.Count; i++)
+            {
+                if (gameData.nodeIDForEnemies[i] == nodeID)
+                {
+                    gameData.nodeIDForEnemies.RemoveAt(i);
+
+                    gameData.nodesEnemies.RemoveAt(i);
+                }
+            }
+        }
+        
         foreach (int i in nodeEnemyID)
         {
             enemiesAsString += i.ToString();
         }
 
-        if (gameData.nodesEnemies.ContainsKey(nodeID))
-        {
-            gameData.nodesEnemies.Remove(nodeID);
-        }
-        gameData.nodesEnemies.Add(nodeID, enemiesAsString);
+
+        gameData.nodeIDForEnemies.Add(nodeID);
+
+        gameData.nodesEnemies.Add(enemiesAsString);
     }
 
     public void CompleteNode() 

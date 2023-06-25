@@ -82,8 +82,6 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
         playerUnit.maxHP = gameData.playerMaxHP;
         playerUnit.currentHP = gameData.playerCurrentHP;
         worldGenerated = gameData.worldGenerated;
-        playerUnit.action = gameData.isAction;
-        playerUnit.talismans = gameData.talismansCollected;
 
         playerPosInWorld = gameData.playerPositionInWorld;
 
@@ -108,8 +106,6 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
         gameData.playerDefense = playerUnit.defense;
         gameData.playerMaxHP = playerUnit.maxHP;
         gameData.playerCurrentHP = playerUnit.currentHP;
-        gameData.talismansCollected = playerUnit.talismans;
-        gameData.isAction = playerUnit.action;
 
         gameData.playerPositionInWorld = endPos;
         gameData.combatFinished = combatFinished;

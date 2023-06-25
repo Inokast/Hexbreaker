@@ -7,10 +7,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections.Specialized;
 
 public enum BattleState { START, PLAYERTURN, QTE, ENEMYTURN, WON, LOST }
 public class CombatManager : MonoBehaviour, IDataPersistence
 {
+
+    [Header("Talisman Data")]
+    public List<string> activeTalismanNames;
+    public List<int> activeTalismanPotency;
 
     [Header("Curse Data")]
     private GameObject[] topCurses; //Self-explanatory. For randomization. -Dylan 2
@@ -44,6 +49,8 @@ public class CombatManager : MonoBehaviour, IDataPersistence
     [SerializeField] private Button attackButton;
     [SerializeField] private Button defendButton;
 
+    private CreateTalismans talismanManager;
+
     private DataPersistenceManager dataManager;
 
     private LevelManager levelManager;
@@ -62,7 +69,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
     [SerializeField] private float confirmTimer = 1.5f;
     private bool waitingForConfirm = false;
 
-    private bool combatFinished = false;
+    public bool combatFinished = false;
     private bool playerDied = false;
     private bool waitingForConfirmation;
 
@@ -91,6 +98,8 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         botCurses = GameObject.FindGameObjectsWithTag("CurseBot");
 
         winPanel = GameObject.Find("Win Panel");
+
+        talismanManager = GameObject.Find("TalismanGenerator").GetComponent<CreateTalismans>();
 
         winPanel.SetActive(false);
 
@@ -192,23 +201,31 @@ public class CombatManager : MonoBehaviour, IDataPersistence
             }
         }
 
-        /*if (Input.GetMouseButtonDown(1) && GameObject.Find("TalismanPanel") == null)
+        /*if (Input.GetMouseButtonDown(1)) //This function shows the talismans. Bind it to a specific trigger during combat, and make the panel show up alongside it. -Dylan 7
         {
-            for (int i = 0; i < playerUnit.talismans.Count; i++)
-            {
-                playerUnit.talismans[i].SetActive(true);
+            int amountOfActionTalismans = 0;
 
-                if (i == 0)
+            for (int i = 0; i < talismanManager.talismans.Count; i++)
+            {
+                if (talismanManager.action[i])
                 {
-                    playerUnit.talismans[0].transform.position = new Vector3(500f, 500f, 0f);
-                }
-                else if (i == 1)
-                {
-                    playerUnit.talismans[1].transform.position = new Vector3(1000f, 500f, 0f);
-                }
-                else if (i == 2)
-                {
-                    playerUnit.talismans[2].transform.position = new Vector3(1500f, 500f, 0f);
+                    talismanManager.talismans[i].SetActive(true);
+                    talismanManager.talismans[i].transform.SetParent(GameObject.Find("Canvas").transform, false);
+
+                    if (amountOfActionTalismans == 0)
+                    {
+                        talismanManager.talismans[i].transform.position = new Vector3(500f, 500f, 0f);
+                    }
+                    else if (amountOfActionTalismans == 1)
+                    {
+                        talismanManager.talismans[i].transform.position = new Vector3(1000f, 500f, 0f);
+                    }
+                    else if (amountOfActionTalismans == 2)
+                    {
+                        talismanManager.talismans[i].transform.position = new Vector3(1500f, 500f, 0f);
+                    }
+
+                    amountOfActionTalismans++;
                 }
             }
         }*/
@@ -234,8 +251,6 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         playerUnit.defense = gameData.playerDefense;
         playerUnit.maxHP = gameData.playerMaxHP;
         playerUnit.currentHP = gameData.playerCurrentHP;
-        playerUnit.action = gameData.isAction;
-        playerUnit.talismans = gameData.talismansCollected;
     }
 
     // Passes data to the saved data file
@@ -248,8 +263,6 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         gameData.playerDefense = playerUnit.defense;
         gameData.playerMaxHP = playerUnit.maxHP;
         gameData.playerCurrentHP = playerUnit.currentHP;
-        gameData.talismansCollected = playerUnit.talismans;
-        gameData.isAction = playerUnit.action;
 
         gameData.combatFinished = combatFinished;
         gameData.playerDied = playerDied;
