@@ -247,5 +247,5 @@ MonoBehaviour:
   fillGauge2: 4
   keyToPressArray: 01000000030000000400000002000000
   defense: 0
-  maxHP: 20
-  currentHP: 20
+  maxHP: 60
+  currentHP: 60

@@ -300,8 +300,8 @@ MonoBehaviour:
   fillGauge2: 10
   keyToPressArray: 
   defense: 0
-  maxHP: 16
-  currentHP: 16
+  maxHP: 12
+  currentHP: 12
 --- !u!1 &7512487103157660640
 GameObject:
   m_ObjectHideFlags: 0

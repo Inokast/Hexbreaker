@@ -32,6 +32,12 @@ public class CreateTalismans : MonoBehaviour, IDataPersistence
         {
             Destroy(gameObject);
         }
+    }
+
+    public void LoadData(GameData gameData)
+    {
+        talismans = gameData.talismansCollected;
+        action = gameData.isAction;
 
         if (SceneManager.GetActiveScene().name == "Overworld")
         {
@@ -39,12 +45,6 @@ public class CreateTalismans : MonoBehaviour, IDataPersistence
 
             talismanChoicePanel.SetActive(false);
         }
-    }
-
-    public void LoadData(GameData gameData)
-    {
-        talismans = gameData.talismansCollected;
-        action = gameData.isAction;
     }
 
     public void SaveData(GameData gameData)
@@ -160,7 +160,7 @@ public class CreateTalismans : MonoBehaviour, IDataPersistence
 
         if (rando <= 20)
         {
-            texts[2].text = "Action Talisman: Your next attack will hit all enemies on the field and deal an additional" + (rarity * 2) + " damage to them";
+            texts[2].text = "Action Talisman: Your next attack will hit all enemies on the field and deal an additional " + (rarity * 2) + " damage to them";
 
             texts[1].text = "Multistrike Talisman";
         }

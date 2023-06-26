@@ -40,6 +40,11 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
     private bool movementInitiated = false;
 
     // Start is called before the first frame update
+    void Awake()
+    {
+        tg = GameObject.Find("TalismanGenerator").GetComponent<CreateTalismans>();
+    }
+
     void Start()
     {
         // If there is no previous world data, GenerateNewWorld()
@@ -47,8 +52,6 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
         levelManager = FindAnyObjectByType<LevelManager>();
         eventText.text = "";
         player.transform.position = playerPosInWorld;
-
-        tg = GameObject.Find("TalismanGenerator").GetComponent<CreateTalismans>();
 
         if (worldGenerated == false)
         {
@@ -60,6 +63,8 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
             GenerateNewWorld();
             ResetPlayerStats();
         }
+
+        tg = GameObject.Find("TalismanGenerator").GetComponent<CreateTalismans>();
 
         if (combatFinished == true)
         {
