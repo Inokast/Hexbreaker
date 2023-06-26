@@ -61,42 +61,71 @@ public class TakeTalisman : MonoBehaviour
 
                 if (name == "Multistrike Talisman")
                 {
+                    if (cm.activeTalismanNames.Contains("Multistrike"))
+                    {
+                        return;
+                    }
+
                     cm.activeTalismanNames.Add("Multistrike");
 
                     cm.activeTalismanPotency.Add(amount);
                 }
                 else if (name == "Vampiric Talisman")
                 {
+                    if (cm.activeTalismanNames.Contains("Vampiric"))
+                    {
+                        return;
+                    }
+
                     cm.activeTalismanNames.Add("Vampiric");
 
                     cm.activeTalismanPotency.Add(amount);
                 }
                 else if (name == "Conflicting Talisman")
                 {
+                    if (cm.activeTalismanNames.Contains("Conflicting"))
+                    {
+                        return;
+                    }
+
                     cm.activeTalismanNames.Add("Conflicting");
 
                     cm.activeTalismanPotency.Add(amount);
                 }
                 else if (name == "Purification Talisman")
                 {
+                    if (cm.activeTalismanNames.Contains("Purification"))
+                    {
+                        return;
+                    }
+
                     cm.activeTalismanNames.Add("Purification");
 
                     cm.activeTalismanPotency.Add(amount);
                 }
                 else if (name == "Contending Talisman")
                 {
+                    if (cm.activeTalismanNames.Contains("Contending"))
+                    {
+                        return;
+                    }
+
                     cm.activeTalismanNames.Add("Contending");
 
                     cm.activeTalismanPotency.Add(amount);
                 }
                 else if (name == "Omnipotent Talisman")
                 {
+                    if (cm.activeTalismanNames.Contains("Omnipotent"))
+                    {
+                        return;
+                    }
+
                     cm.activeTalismanNames.Add("Omnipotent");
 
                     cm.activeTalismanPotency.Add(amount);
                 }
 
-                cm.waitingForTalismanPick = false;
                 cm.OnSkipButton();
                 gameObject.SetActive(false);
             }

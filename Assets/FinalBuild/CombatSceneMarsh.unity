@@ -2318,21 +2318,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 94448199}
-    - target: {fileID: 5406469682819972836, guid: 65ae1ed11260dfb43bb15c3843197590,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnSkipButton
-      objectReference: {fileID: 0}
-    - target: {fileID: 5406469682819972836, guid: 65ae1ed11260dfb43bb15c3843197590,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: CombatManager, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 5406469682819972836, guid: 65ae1ed11260dfb43bb15c3843197590,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 5451596706755355852, guid: 65ae1ed11260dfb43bb15c3843197590,
         type: 3}
       propertyPath: m_Pivot.x
@@ -2371,12 +2356,12 @@ PrefabInstance:
     - target: {fileID: 5451596706755355852, guid: 65ae1ed11260dfb43bb15c3843197590,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: -710.4785
+      value: -226.00003
       objectReference: {fileID: 0}
     - target: {fileID: 5451596706755355852, guid: 65ae1ed11260dfb43bb15c3843197590,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: -409.0632
+      value: -137.99998
       objectReference: {fileID: 0}
     - target: {fileID: 5451596706755355852, guid: 65ae1ed11260dfb43bb15c3843197590,
         type: 3}
@@ -2440,39 +2425,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8547250743293088951, guid: 65ae1ed11260dfb43bb15c3843197590,
         type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8547250743293088951, guid: 65ae1ed11260dfb43bb15c3843197590,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8547250743293088951, guid: 65ae1ed11260dfb43bb15c3843197590,
-        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 94448199}
-    - target: {fileID: 8547250743293088951, guid: 65ae1ed11260dfb43bb15c3843197590,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8547250743293088951, guid: 65ae1ed11260dfb43bb15c3843197590,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnCancelButton
-      objectReference: {fileID: 0}
-    - target: {fileID: 8547250743293088951, guid: 65ae1ed11260dfb43bb15c3843197590,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: CombatManager, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 8547250743293088951, guid: 65ae1ed11260dfb43bb15c3843197590,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5151,48 +5106,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8544734865576009886, guid: 6ffe3677d000f63499cb18bae3ca44be,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 193384156764267781}
-    - target: {fileID: 8544734865576009886, guid: 6ffe3677d000f63499cb18bae3ca44be,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: PurifyTalismans
-      objectReference: {fileID: 0}
-    - target: {fileID: 8544734865576009886, guid: 6ffe3677d000f63499cb18bae3ca44be,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: PurifyTalismansButton, Assembly-CSharp
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6194446766389630377, guid: 6ffe3677d000f63499cb18bae3ca44be,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 193384156764267781}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ffe3677d000f63499cb18bae3ca44be, type: 3}
---- !u!1 &193384156764267780 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6194446766389630377, guid: 6ffe3677d000f63499cb18bae3ca44be,
-    type: 3}
-  m_PrefabInstance: {fileID: 193384156764267779}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &193384156764267781
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 193384156764267780}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4bad35e5cd090d048afdaf3b8fc79af9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &5335946798327453183
 PrefabInstance:
   m_ObjectHideFlags: 0

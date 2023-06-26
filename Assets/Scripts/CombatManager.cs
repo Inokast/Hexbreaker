@@ -8,6 +8,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections.Specialized;
+using UnityEngine.SceneManagement;
 
 public enum BattleState { START, PLAYERTURN, QTE, ENEMYTURN, WON, LOST }
 public class CombatManager : MonoBehaviour, IDataPersistence
@@ -413,6 +414,17 @@ public class CombatManager : MonoBehaviour, IDataPersistence
             GameObject.Find("PlayerHUDPanel").SetActive(false);
             GameObject.Find("EnemyHUDPanel").SetActive(false);
 
+            activeTalismanNames.Clear();
+            activeTalismanPotency.Clear();
+
+            for (int i = 0; i < talismanManager.talismans.Count; i++)
+            {
+                if (talismanManager.action[i] == true)
+                {
+                    talismanManager.talismans[i].transform.SetParent(talismanManager.gameObject.transform);
+                }
+            }
+
             //Future me needs to set the action talismans to make the TalismanManager their parent object again,
             //and then set the gameobjects inactive. -Dylan 8
 
@@ -479,7 +491,13 @@ public class CombatManager : MonoBehaviour, IDataPersistence
 
     public void HideTalisman() 
     {
-        // Vanish the talismans that appear
+        for (int i = 0; i < talismanManager.talismans.Count; i++)
+        {
+            if (talismanManager.action[i] == true)
+            {
+                talismanManager.talismans[i].SetActive(false);
+            }
+        }
     }
 
     private int FetchPotency(int index) //Just ever-so-slightly easier to type. -Dylan 8
@@ -532,15 +550,18 @@ public class CombatManager : MonoBehaviour, IDataPersistence
 
                     if (amountOfActionTalismans == 0)
                     {
-                        talismanManager.talismans[i].transform.position = new Vector3(500f, 500f, 0f);
+                        talismanManager.talismans[i].transform.position = new Vector3(500f, 650f, 0f);
+                        talismanManager.talismans[i].transform.localScale = new Vector3(1f, 1f, 1f);
                     }
                     else if (amountOfActionTalismans == 1)
                     {
-                        talismanManager.talismans[i].transform.position = new Vector3(1000f, 500f, 0f);
+                        talismanManager.talismans[i].transform.position = new Vector3(1000f, 650f, 0f);
+                        talismanManager.talismans[i].transform.localScale = new Vector3(1f, 1f, 1f);
                     }
                     else if (amountOfActionTalismans == 2)
                     {
-                        talismanManager.talismans[i].transform.position = new Vector3(1500f, 500f, 0f);
+                        talismanManager.talismans[i].transform.position = new Vector3(1500f, 650f, 0f);
+                        talismanManager.talismans[i].transform.localScale = new Vector3(1f, 1f, 1f);
                     }
 
                     amountOfActionTalismans++;
@@ -766,15 +787,18 @@ public class CombatManager : MonoBehaviour, IDataPersistence
 
                     if (amountOfActionTalismans == 0)
                     {
-                        talismanManager.talismans[i].transform.position = new Vector3(500f, 500f, 0f);
+                        talismanManager.talismans[i].transform.position = new Vector3(500f, 650f, 0f);
+                        talismanManager.talismans[i].transform.localScale = new Vector3(1f, 1f, 1f);
                     }
                     else if (amountOfActionTalismans == 1)
                     {
-                        talismanManager.talismans[i].transform.position = new Vector3(1000f, 500f, 0f);
+                        talismanManager.talismans[i].transform.position = new Vector3(1000f, 650f, 0f);
+                        talismanManager.talismans[i].transform.localScale = new Vector3(1f, 1f, 1f);
                     }
                     else if (amountOfActionTalismans == 2)
                     {
-                        talismanManager.talismans[i].transform.position = new Vector3(1500f, 500f, 0f);
+                        talismanManager.talismans[i].transform.position = new Vector3(1500f, 650f, 0f);
+                        talismanManager.talismans[i].transform.localScale = new Vector3(1f, 1f, 1f);
                     }
 
                     amountOfActionTalismans++;
@@ -1492,6 +1516,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
 
     public void OnCancelButton() 
     {
+        waitingForTalismanPick = false;
         playerCancelled = true;
         talismanPanel.SetActive(false);
         HideTalisman();
@@ -1499,6 +1524,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
 
     public void OnSkipButton() 
     {
+        waitingForTalismanPick = false;
         talismanPanel.SetActive(false);
         HideTalisman();
     }
