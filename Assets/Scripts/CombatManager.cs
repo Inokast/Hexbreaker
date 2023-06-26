@@ -550,17 +550,17 @@ public class CombatManager : MonoBehaviour, IDataPersistence
 
                     if (amountOfActionTalismans == 0)
                     {
-                        talismanManager.talismans[i].transform.position = new Vector3(500f, 650f, 0f);
+                        talismanManager.talismans[i].transform.position = new Vector3(500f, 625f, 0f);
                         talismanManager.talismans[i].transform.localScale = new Vector3(1f, 1f, 1f);
                     }
                     else if (amountOfActionTalismans == 1)
                     {
-                        talismanManager.talismans[i].transform.position = new Vector3(1000f, 650f, 0f);
+                        talismanManager.talismans[i].transform.position = new Vector3(1000f, 625f, 0f);
                         talismanManager.talismans[i].transform.localScale = new Vector3(1f, 1f, 1f);
                     }
                     else if (amountOfActionTalismans == 2)
                     {
-                        talismanManager.talismans[i].transform.position = new Vector3(1500f, 650f, 0f);
+                        talismanManager.talismans[i].transform.position = new Vector3(1500f, 625f, 0f);
                         talismanManager.talismans[i].transform.localScale = new Vector3(1f, 1f, 1f);
                     }
 
@@ -787,17 +787,17 @@ public class CombatManager : MonoBehaviour, IDataPersistence
 
                     if (amountOfActionTalismans == 0)
                     {
-                        talismanManager.talismans[i].transform.position = new Vector3(500f, 650f, 0f);
+                        talismanManager.talismans[i].transform.position = new Vector3(500f, 625f, 0f);
                         talismanManager.talismans[i].transform.localScale = new Vector3(1f, 1f, 1f);
                     }
                     else if (amountOfActionTalismans == 1)
                     {
-                        talismanManager.talismans[i].transform.position = new Vector3(1000f, 650f, 0f);
+                        talismanManager.talismans[i].transform.position = new Vector3(1000f, 625f, 0f);
                         talismanManager.talismans[i].transform.localScale = new Vector3(1f, 1f, 1f);
                     }
                     else if (amountOfActionTalismans == 2)
                     {
-                        talismanManager.talismans[i].transform.position = new Vector3(1500f, 650f, 0f);
+                        talismanManager.talismans[i].transform.position = new Vector3(1500f, 625f, 0f);
                         talismanManager.talismans[i].transform.localScale = new Vector3(1f, 1f, 1f);
                     }
 
