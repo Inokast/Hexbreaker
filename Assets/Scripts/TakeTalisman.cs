@@ -96,8 +96,8 @@ public class TakeTalisman : MonoBehaviour
                     cm.activeTalismanPotency.Add(amount);
                 }
 
-                cm.
-
+                cm.waitingForTalismanPick = false;
+                cm.OnSkipButton();
                 gameObject.SetActive(false);
             }
         }

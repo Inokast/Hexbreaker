@@ -49,12 +49,47 @@ public class SoundFXController : MonoBehaviour, IDataPersistence
     }
 
 
-    public void PlaySelect()
+    public void PlayButtonSelect()
     {
-        select.Play();
+        buttonSelect.Play();
     }
 
-    
+    public void PlayTalismanSelect()
+    {
+        talismanSelect.Play();
+    }
+
+    public void PlayLuckyNode()
+    {
+        luckyNode.Play();
+    }
+
+    public void PlayGameOver()
+    {
+        gameOver.Play();
+    }
+
+    public void PlayWinSound() 
+    {
+        winSound.Play();
+    }
+
+    public void PlayPlayerHit()
+    {
+        playerHit.Play();
+    }
+
+    public void PlayQTEPass()
+    {
+        qtePass.Play();
+    }
+
+    public void PlayQTEFail()
+    {
+        qteFail.Play();
+    }
+
+
 
 
 

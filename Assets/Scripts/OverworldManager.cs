@@ -366,8 +366,8 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
         playerUnit.midDamage = 4;
         playerUnit.lowDamage = 2;
         playerUnit.defense = 0;
-        playerUnit.maxHP = 100;
-        playerUnit.currentHP = 100;
+        playerUnit.maxHP = 70;
+        playerUnit.currentHP = 70;
 
         playerDied = false;
 

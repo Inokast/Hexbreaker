@@ -1,5 +1,5 @@
 // Hexbreaker - Combat System
-// Last modified: 06/25/23 (Unholy AM Hours) - Dylan Grummer
+// Last modified: 06/25/23
 // Notes:
 
 using System.Collections;
@@ -19,7 +19,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
 
     private int potencyToUse;
 
-    public bool talismanSelected; //To know when to close the talisman panel. -Dylan 8
+    //public bool talismanSelected; //To know when to close the talisman panel. -Dylan 8
 
     [SerializeField] GameObject talismanPanel;
 
@@ -29,7 +29,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
     private GameObject[] botCurses;
 
     public static int cursesToTalismans = 0; //Amount of talismans to generate. -Dylan 3
- 
+
     private bool rightRoomLocked; // Make a function that checks if there is a curse that should set this value to true at the end of the battle - Dan
     private bool leftRoomLocked;
 
@@ -74,11 +74,11 @@ public class CombatManager : MonoBehaviour, IDataPersistence
     private int breakCharges = 0;
     [SerializeField] private float confirmTimer = 1.5f;
     private bool waitingForConfirm = false;
-    private bool waitingForTalismanPick = false;
+    public bool waitingForTalismanPick = false;
+    public bool playerCancelled = false;
 
     public bool combatFinished = false;
     private bool playerDied = false;
-    private bool waitingForConfirmation;
 
     public Unit playerUnit;
     private Unit selectedEnemyUnit;
@@ -156,22 +156,22 @@ public class CombatManager : MonoBehaviour, IDataPersistence
 
     private void Update()
     {
-        if (waitingForConfirm) 
+        if (waitingForConfirm)
         {
-            if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) 
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
             {
                 waitingForConfirm = false;
             }
         }
 
-        /*
+
         if (waitingForTalismanPick)
         {
             if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
             {
                 waitingForConfirm = false;
             }
-        }*/
+        }
 
         var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
@@ -195,13 +195,10 @@ public class CombatManager : MonoBehaviour, IDataPersistence
 
             }
 
-            else 
+            else
             {
                 enemyCanvas.alpha = 0;
             }
-
- 
-
         }
 
         if (state == BattleState.PLAYERTURN)
@@ -216,38 +213,9 @@ public class CombatManager : MonoBehaviour, IDataPersistence
                 helpMenu.SetActive(false);
             }
         }
-
-        /*if (Input.GetMouseButtonDown(1)) //This function shows the talismans. Bind it to a specific trigger during combat, and make the panel show up alongside it. -Dylan 7
-        {
-            int amountOfActionTalismans = 0;
-
-            for (int i = 0; i < talismanManager.talismans.Count; i++)
-            {
-                if (talismanManager.action[i])
-                {
-                    talismanManager.talismans[i].SetActive(true);
-                    talismanManager.talismans[i].transform.SetParent(GameObject.Find("Canvas").transform, false);
-
-                    if (amountOfActionTalismans == 0)
-                    {
-                        talismanManager.talismans[i].transform.position = new Vector3(500f, 500f, 0f);
-                    }
-                    else if (amountOfActionTalismans == 1)
-                    {
-                        talismanManager.talismans[i].transform.position = new Vector3(1000f, 500f, 0f);
-                    }
-                    else if (amountOfActionTalismans == 2)
-                    {
-                        talismanManager.talismans[i].transform.position = new Vector3(1500f, 500f, 0f);
-                    }
-
-                    amountOfActionTalismans++;
-                }
-            }
-        }*/
     }
 
-    IEnumerator ConfirmTimer() 
+    IEnumerator ConfirmTimer()
     {
         waitingForConfirm = true;
         yield return new WaitForSeconds(confirmTimer);
@@ -257,7 +225,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
     // Loads data needed to set up battle properly - Dan 
     public void LoadData(GameData gameData)
     {
-        playerUnit = playerPrefab.GetComponent<Unit>(); 
+        playerUnit = playerPrefab.GetComponent<Unit>();
         loadedEnemyID = gameData.enemyUnitToLoadID;
 
         playerUnit.unitName = gameData.playerUnitName;
@@ -307,12 +275,12 @@ public class CombatManager : MonoBehaviour, IDataPersistence
             enemyGO2 = Instantiate(enemyPrefab, enemyBattleStations[1]);
             enemyUnits.Add(enemyGO2.GetComponent<Unit>());
 
-            if (loadedEnemyID.Count > 2) 
+            if (loadedEnemyID.Count > 2)
             {
                 enemyPrefab = enemyPrefabs[loadedEnemyID[2]];
                 enemyGO3 = Instantiate(enemyPrefab, enemyBattleStations[2]);
                 enemyUnits.Add(enemyGO3.GetComponent<Unit>());
-            }           
+            }
         }
 
         selectedEnemyUnit = enemyUnits[0];
@@ -356,7 +324,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
                 StartCoroutine(ConfirmTimer());
                 yield return new WaitUntil(() => waitingForConfirm == false);
 
-                int actionTaken = Random.Range(0,8);
+                int actionTaken = Random.Range(0, 8);
                 switch (actionTaken)
                 {
                     case 0:
@@ -365,7 +333,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
                     case 3:
                         StartCoroutine(EnemyAttack());
                         break;
-             
+
                     case 4:
                     case 5:
                     case 6:
@@ -393,7 +361,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
             }
         }
 
-        else 
+        else
         {
             battleText.text = "The " + actingEnemyUnit.unitName + " can't act because it is stunned!";
             actingEnemyUnit.isStunned = false;
@@ -458,7 +426,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         else { battleText.text = "Battle state is wrong"; }
     }
 
-    IEnumerator KillPlayer() 
+    IEnumerator KillPlayer()
     {
         battleText.text = "You Died";
 
@@ -474,7 +442,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         levelManager.LoadSceneWithName("MainMenu");
     }
 
-    public void TalismanPicked() 
+    public void TalismanPicked()
     {
         combatFinished = true;
         levelManager.LoadSceneWithName("Overworld");
@@ -495,7 +463,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
             breakButton.interactable = true;
         }
 
-        else 
+        else
         {
             breakButton.interactable = false;
         }
@@ -504,22 +472,15 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         defendButton.interactable = true;
 
         enemyHUD.SetHUD(selectedEnemyUnit);
-        
+
     }
 
     #region Talisman Checks
 
-    /*private bool CheckMultistrike() 
+    public void HideTalisman() 
     {
-        if (activeTalismanNames.Contains("Multistrike"))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }*/
+        // Vanish the talismans that appear
+    }
 
     private int FetchPotency(int index) //Just ever-so-slightly easier to type. -Dylan 8
     {
@@ -555,19 +516,56 @@ public class CombatManager : MonoBehaviour, IDataPersistence
     #region Player Actions
     IEnumerator PlayerAttack() // Deals damage to enemy and then checks if it is dead
     {
-        /*
-        if (enemyUnits.Count > 1) 
+
+        if (talismanManager.action.Contains(true))
         {
-            battleText.text = "Select your target!";
-            selectedEnemyUnit = null;
-            yield return new WaitUntil(() => selectedEnemyUnit != null);
+            talismanPanel.SetActive(true);
+
+            int amountOfActionTalismans = 0;
+
+            for (int i = 0; i < talismanManager.talismans.Count; i++)
+            {
+                if (talismanManager.action[i])
+                {
+                    talismanManager.talismans[i].SetActive(true);
+                    talismanManager.talismans[i].transform.SetParent(GameObject.Find("Canvas").transform, false);
+
+                    if (amountOfActionTalismans == 0)
+                    {
+                        talismanManager.talismans[i].transform.position = new Vector3(500f, 500f, 0f);
+                    }
+                    else if (amountOfActionTalismans == 1)
+                    {
+                        talismanManager.talismans[i].transform.position = new Vector3(1000f, 500f, 0f);
+                    }
+                    else if (amountOfActionTalismans == 2)
+                    {
+                        talismanManager.talismans[i].transform.position = new Vector3(1500f, 500f, 0f);
+                    }
+
+                    amountOfActionTalismans++;
+                }
+            }
+
+            waitingForTalismanPick = true;
+            yield return new WaitUntil(() => waitingForTalismanPick == false);
+
+            if (playerCancelled == true) 
+            {
+                state = BattleState.PLAYERTURN;
+                yield break;
+                
+            }
         }
-        */
 
         state = BattleState.QTE;
 
         battleText.text = "You attack! Press the right key!";
-        string attackType = playerUnit.attackType1;
+        string attackType = playerUnit.attackType1; // change attackType to be either Standard, Mash, Timed, Array
+        float timer = playerUnit.attackTimer1; // How much time alloted in QTE
+        int keyToPress = playerUnit.keyToPress1; // Change to 1,2,3 or 4
+
+        // Check for talisman. if last talisman used isn so and so, then change attackType to be either Standard, Mash, Timed, Array
 
         switch (attackType)
         {
@@ -753,8 +751,48 @@ public class CombatManager : MonoBehaviour, IDataPersistence
 
     IEnumerator PlayerDefend() 
     {
-        playerUnit.isDefending = true;
+        if (talismanManager.action.Contains(true))
+        {
+            talismanPanel.SetActive(true);
 
+            int amountOfActionTalismans = 0;
+
+            for (int i = 0; i < talismanManager.talismans.Count; i++)
+            {
+                if (talismanManager.action[i])
+                {
+                    talismanManager.talismans[i].SetActive(true);
+                    talismanManager.talismans[i].transform.SetParent(GameObject.Find("Canvas").transform, false);
+
+                    if (amountOfActionTalismans == 0)
+                    {
+                        talismanManager.talismans[i].transform.position = new Vector3(500f, 500f, 0f);
+                    }
+                    else if (amountOfActionTalismans == 1)
+                    {
+                        talismanManager.talismans[i].transform.position = new Vector3(1000f, 500f, 0f);
+                    }
+                    else if (amountOfActionTalismans == 2)
+                    {
+                        talismanManager.talismans[i].transform.position = new Vector3(1500f, 500f, 0f);
+                    }
+
+                    amountOfActionTalismans++;
+                }
+            }
+
+            waitingForTalismanPick = true;
+            yield return new WaitUntil(() => waitingForTalismanPick == false);
+
+            if (playerCancelled == true)
+            {
+                state = BattleState.PLAYERTURN;
+                yield break;
+
+            }           
+        }
+
+        playerUnit.isDefending = true;
         battleText.text = playerUnit.unitName + " takes a defensive stance!";
 
         StartCoroutine(ConfirmTimer());
@@ -778,7 +816,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         state = BattleState.QTE;
 
         battleText.text = "You attempt to break the enemy's curse! Press the right key!";
-        string attackType = playerUnit.attackType1;
+        string attackType = playerUnit.attackType2;
 
         switch (attackType)
         {
@@ -1439,6 +1477,8 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         if (state != BattleState.PLAYERTURN)
             return;
 
+        playerCancelled = false;
+
         if (GameObject.Find("AttackingCurse") != null) //To prevent attacking. -Dylan 2
         {
             battleText.text = "The enemy's curse is preventing " + playerUnit.unitName + " from attacking!";
@@ -1446,49 +1486,29 @@ public class CombatManager : MonoBehaviour, IDataPersistence
             return;
         }
 
-        /*if (talismanManager.action.Contains(true))
-        {
-            talismanPanel.SetActive(true);
-
-            int amountOfActionTalismans = 0;
-
-            for (int i = 0; i < talismanManager.talismans.Count; i++)
-            {
-                if (talismanManager.action[i])
-                {
-                    talismanManager.talismans[i].SetActive(true);
-                    talismanManager.talismans[i].transform.SetParent(GameObject.Find("Canvas").transform, false);
-
-                    if (amountOfActionTalismans == 0)
-                    {
-                        talismanManager.talismans[i].transform.position = new Vector3(500f, 500f, 0f);
-                    }
-                    else if (amountOfActionTalismans == 1)
-                    {
-                        talismanManager.talismans[i].transform.position = new Vector3(1000f, 500f, 0f);
-                    }
-                    else if (amountOfActionTalismans == 2)
-                    {
-                        talismanManager.talismans[i].transform.position = new Vector3(1500f, 500f, 0f);
-                    }
-
-                    amountOfActionTalismans++;
-                }
-            }
-        }*/
-        // If player has action talismans, display talismans and allow player to choose before continuing
-
-        // If player presses cancel button, return
-
-
         StartCoroutine(PlayerAttack());
         state = BattleState.START;
+    }
+
+    public void OnCancelButton() 
+    {
+        playerCancelled = true;
+        talismanPanel.SetActive(false);
+        HideTalisman();
+    }
+
+    public void OnSkipButton() 
+    {
+        talismanPanel.SetActive(false);
+        HideTalisman();
     }
 
     public void OnDefendButton()
     {
         if (state != BattleState.PLAYERTURN)
             return;
+
+        playerCancelled = false;
 
         if (GameObject.Find("DefendingCurse") != null) //To prevent defending. -Dylan 2
         {
