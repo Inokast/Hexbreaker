@@ -19,12 +19,25 @@ public class SoundFXController : MonoBehaviour, IDataPersistence
     [Header("Battle Sounds")]
     [SerializeField] private AudioSource playerHit;
     [SerializeField] private AudioSource enemyHit;
-    [SerializeField] private AudioSource qtePass;
-    [SerializeField] private AudioSource qteFail;
+    [SerializeField] private AudioSource MagicImpact;
+    [SerializeField] private AudioSource QTEchargeUp;
+    [SerializeField] private AudioSource QTEchargeAlt;
+    [SerializeField] private AudioSource QTEsuccess;
+    [SerializeField] private AudioSource QTEfailure;
+    [SerializeField] private AudioSource CurseShatter;
 
 
-    //[Header("Enemy Sounds")]
-    //[SerializeField] private AudioSource dogSound;
+    [Header("Attack Sounds")]
+    [SerializeField] private AudioSource PlayerAttack_Orb;
+    [SerializeField] private AudioSource PlayerAttack_Burst;
+    [SerializeField] private AudioSource PlayerAttack_Beam;
+    [SerializeField] private AudioSource PlayerAttack_Focus;
+    [SerializeField] private AudioSource EnemyAttack_Burst;
+    [SerializeField] private AudioSource EnemyAttack_Beam;
+    [SerializeField] private AudioSource EnemyAttack_Portal;
+    [SerializeField] private AudioSource PF_AttackCharge;
+    [SerializeField] private AudioSource PF_AttackAlt;
+
 
 
     //[Header("Impact Sounds")]
@@ -78,19 +91,69 @@ public class SoundFXController : MonoBehaviour, IDataPersistence
     {
         playerHit.Play();
     }
-
-    public void PlayQTEPass()
+    public void PlayMagicImpact()
     {
-        qtePass.Play();
+        MagicImpact.Play();
     }
 
-    public void PlayQTEFail()
+    public void PlayQTEchargeUp()
     {
-        qteFail.Play();
+       QTEchargeUp.Play();
+    }
+    public void PlayQTEchargeAlt()
+    {
+        QTEchargeAlt.Play();
     }
 
+    public void PlayQTEsuccess()
+    {
+        QTEsuccess.Play();
+    }
 
+    public void PlayQTEFailure()
+    {
+        QTEfailure.Play();
+    }
 
-
+    public void PlayCurseShatter()
+    {
+        CurseShatter.Play();
+    }
+    public void PlayPlayerAttack_Orb()
+    {
+        PlayerAttack_Orb.Play();
+    }
+    public void PlayPlayerAttack_Beam()
+    {
+        PlayerAttack_Beam.Play();
+    }
+    public void PlayPlayerAttack_Burst()
+    {
+        PlayerAttack_Burst.Play();
+    }
+    public void PlayPlayerAttack_Focus()
+    {
+        PlayerAttack_Focus.Play();
+    }
+    public void PlayEnemyAttack_Beam()
+    {
+        EnemyAttack_Beam.Play();
+    }
+    public void PlayEnemyAttack_Burst()
+    {
+        EnemyAttack_Burst.Play();
+    }
+    public void PlayEnemyAttack_Portal()
+    {
+        EnemyAttack_Portal.Play();
+    }
+    public void PlayPF_AttackCharge()
+    {
+        PF_AttackCharge.Play();
+    }
+    public void PlayPF_AttackAlt()
+    {
+        PF_AttackAlt.Play();
+    }
 
 }
