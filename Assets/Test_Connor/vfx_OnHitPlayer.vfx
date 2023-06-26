@@ -31,7 +31,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d4c867f6b72b714dbb5fd1780afe208, type: 3}
-  m_Name: vfx_OnHit
+  m_Name: vfx_OnHitPlayer
   m_EditorClassIdentifier: 
   m_UIIgnoredErrors: []
   m_Parent: {fileID: 0}
@@ -73,7 +73,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Color, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"r":0.06679421663284302,"g":0.18496112525463105,"b":0.7452830076217651,"a":0.0}'
+      m_SerializableObject: '{"r":0.5943396091461182,"g":0.45559951663017275,"b":0.22147560119628907,"a":0.0}'
     min: -Infinity
     max: Infinity
     enumValues: []
@@ -87,7 +87,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Color, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"r":0.04650232195854187,"g":0.17924529314041139,"b":0.15841755270957948,"a":0.0}'
+      m_SerializableObject: '{"r":0.40566039085388186,"g":0.09661372750997544,"b":0.032529376447200778,"a":0.0}'
     min: -Infinity
     max: Infinity
     enumValues: []
@@ -103,7 +103,7 @@ VisualEffectResource:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: vfx_OnHit
+  m_Name: vfx_OnHitPlayer
   m_Graph: {fileID: 114350483966674976}
   m_Infos:
     m_RendererSettings:
@@ -1854,7 +1854,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Color, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"r":0.06679421663284302,"g":0.18496112525463105,"b":0.7452830076217651,"a":0.0}'
+      m_SerializableObject: '{"r":0.5943396091461182,"g":0.45559951663017275,"b":0.22147560119628907,"a":0.0}'
     m_Space: 2147483647
   m_Property:
     name: o
@@ -7447,7 +7447,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Color, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"r":0.04650232195854187,"g":0.17924529314041139,"b":0.15841755270957948,"a":0.0}'
+      m_SerializableObject: '{"r":0.40566039085388186,"g":0.09661372750997544,"b":0.032529376447200778,"a":0.0}'
     m_Space: 2147483647
   m_Property:
     name: o
