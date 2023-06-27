@@ -12,12 +12,16 @@ public class UIManager : MonoBehaviour
     private LevelManager levelManager;
     private DataPersistenceManager dataManager;
 
+    private SoundFXController sfx;
+
     void Start()
     {
         levelManager = FindObjectOfType<LevelManager>();
+        sfx = FindAnyObjectByType<SoundFXController>();
     }
     public void OnNewGameButton() 
     {
+        sfx.PlayButtonSelect();
         // create a new game - which will initialize game data
         DataPersistenceManager.instance.NewGame();
         // Load the gameplay scene - which will in turn save the game
@@ -28,22 +32,25 @@ public class UIManager : MonoBehaviour
     public void OnContinueGameButton() 
     {
         // Load the next scene - which will load the game data
+        sfx.PlayButtonSelect();
         levelManager.LoadSceneWithName("Overworld");
     }
 
-    public void OnPlayAgainButton() 
+    public void OnPlayAgainButton()
     {
         dataManager = FindObjectOfType<DataPersistenceManager>();
+        sfx.PlayButtonSelect();
         dataManager.NewGame();
         levelManager.LoadSceneWithName("MainMenu");
     }
 
-    public void OnLoadNewSceneButton(string sceneName) 
+    public void OnLoadNewSceneButton(string sceneName)
     {
-        levelManager.LoadSceneWithName(sceneName);
+        sfx.PlayButtonSelect();
+        levelManager.LoadSceneWithName(sceneName);        
     }
 
-    public void ToggleSettingsPanel() 
+    public void ToggleSettingsPanel()
     {
         if (settingsPanel.activeSelf == true)
         {
@@ -51,6 +58,8 @@ public class UIManager : MonoBehaviour
         }
 
         else { settingsPanel.SetActive(true); }
+
+        sfx.PlayButtonSelect();
     }
 
     public void ToggleCreditsPanel()
@@ -61,6 +70,8 @@ public class UIManager : MonoBehaviour
         }
 
         else { creditsPanel.SetActive(true); }
+
+        sfx.PlayButtonSelect();
     }
 
     public void ToggleHelpPanel()
@@ -71,6 +82,8 @@ public class UIManager : MonoBehaviour
         }
 
         else { helpPanel.SetActive(true); }
+
+        sfx.PlayButtonSelect();
     }
 
     public void OnQuitButtonPress() 

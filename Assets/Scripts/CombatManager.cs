@@ -70,6 +70,8 @@ public class CombatManager : MonoBehaviour, IDataPersistence
 
     private OutlineWpopUpUI enemyShader;
 
+    private SoundFXController sfx;
+
     [Header("Battle Settings")]
 
     private int breakCharges = 0;
@@ -106,6 +108,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         botCurses = GameObject.FindGameObjectsWithTag("CurseBot");
 
         winPanel = GameObject.Find("Win Panel");
+        sfx = FindAnyObjectByType<SoundFXController>();
 
         talismanManager = GameObject.Find("TalismanGenerator").GetComponent<CreateTalismans>();
 
@@ -441,7 +444,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
     IEnumerator KillPlayer()
     {
         battleText.text = "You Died";
-
+        sfx.PlayGameOver();
         playerDied = true;
         combatFinished = false;
         endPanel.SetActive(true);
@@ -615,7 +618,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
                 eventManager.GenerateStandardQTE(3);
                 break;
         }
-
+        sfx.PlayQTEchargeUp();
 
         yield return new WaitUntil(() => eventManager.eventCompleted == true);
         int damageDealt = 0;
@@ -627,6 +630,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
                 print("ERROR! EventResult should not be NONE");
                 break;
             case QTEResult.LOW:
+                sfx.PlayQTEFailure();
                 damageDealt = playerUnit.lowDamage;
                 if (CheckIfTalismanActive("Conflicting")) 
                 {
@@ -650,6 +654,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
                 }
                 break;
             case QTEResult.MID:
+                sfx.PlayQTEchargeAlt();
                 damageDealt = playerUnit.midDamage;
 
                 if (CheckIfTalismanActive("Contending"))
@@ -670,6 +675,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
                 }
                 break;
             case QTEResult.HIGH:
+                sfx.PlayQTEsuccess();
                 damageDealt = playerUnit.highDamage;
 
                 if (CheckIfTalismanActive("Omnipotent"))
@@ -721,6 +727,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         {
             isDead = selectedEnemyUnit.TakeDamage(damageDealt, false);
         }
+        sfx.PlayPlayerHit();
 
         if (CheckIfTalismanActive("Vampiric")) 
         {
@@ -728,8 +735,9 @@ public class CombatManager : MonoBehaviour, IDataPersistence
             playerUnit.heal(amountToHeal);
             playerHUD.SetHP(playerUnit);
         }
-        
+
         enemyHUD.SetHP(selectedEnemyUnit);
+        enemyHUD.SetHUD(selectedEnemyUnit);
 
         StartCoroutine(ConfirmTimer());
         yield return new WaitUntil(() => waitingForConfirm == false);
@@ -816,6 +824,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
             }           
         }
 
+        sfx.PlayPlayerAttack_Focus();
         playerUnit.isDefending = true;
         battleText.text = playerUnit.unitName + " takes a defensive stance!";
 
@@ -872,22 +881,25 @@ public class CombatManager : MonoBehaviour, IDataPersistence
 
 
         yield return new WaitUntil(() => eventManager.eventCompleted == true);
+   
         int damageDealt = 0;
 
         if (eventManager.eventResult == QTEResult.HIGH)
         {
             damageDealt = playerUnit.highDamage;
+            sfx.PlayQTEsuccess();
         }
 
-        else 
+        else
         {
             damageDealt = playerUnit.midDamage;
+            sfx.PlayQTEFailure();
         }
 
         //
 
         battleText.text = "You break the curse imposed by " + selectedEnemyUnit.unitName + " and deal " + damageDealt + " damage!";
-
+        sfx.PlayCurseShatter();
         cursesToTalismans += 1;      
 
         // Damage the enemy selected. Choose damage based on eventState;
@@ -965,7 +977,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
             if (eventManager.eventResult != QTEResult.HIGH)            
             {
                 PowerUpEnemy(selectedEnemyUnit);
-                print("Break event result was not high, enemy powered up");
+                //print("Break event result was not high, enemy powered up");
             }           
         }
 
@@ -1042,6 +1054,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
             battleText.text = "The " + actingEnemyUnit.unitName + " attacks! Block by pressing the right key!";
 
             string attackType = actingEnemyUnit.attackType1;
+            sfx.PlayQTEchargeAlt();
 
             switch (attackType) 
             {
@@ -1078,6 +1091,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
                     break;
 
                 case QTEResult.LOW:
+                    sfx.PlayQTEFailure();
                     defenseBoost = 1;
                     battleText.text = "A weak block..." + playerUnit.unitName + " takes " + (Mathf.Clamp(damageDealt - defenseBoost, 1, damageDealt)) + " damage!";
 
@@ -1092,11 +1106,13 @@ public class CombatManager : MonoBehaviour, IDataPersistence
                     break;
 
                 case QTEResult.MID:
+                    sfx.PlayQTEFailure();
                     defenseBoost = 2;
                     battleText.text = "You block! " + playerUnit.unitName + " takes " + (Mathf.Clamp(damageDealt - defenseBoost, 1, damageDealt)) + " damage!";
                     break;
 
                 case QTEResult.HIGH:
+                    sfx.PlayQTEsuccess();
                     defenseBoost = 3;
                     battleText.text = "A perfect block! " + playerUnit.unitName + " takes " + (Mathf.Clamp(damageDealt - defenseBoost, 1, damageDealt)) + " damage!";
 
@@ -1123,6 +1139,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
 
         bool isDead = playerUnit.TakeDamage(Mathf.Clamp(damageDealt - defenseBoost, 1, damageDealt), false);
         playerHUD.SetHP(playerUnit);
+        sfx.PlayEnemyAttack_Burst();
 
         StartCoroutine(ConfirmTimer());
         yield return new WaitUntil(() => waitingForConfirm == false);
@@ -1191,7 +1208,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
             battleText.text = "The " + actingEnemyUnit.unitName + " attacks! Block by pressing the right key!";
 
             string attackType = actingEnemyUnit.attackType2;
-
+            sfx.PlayQTEchargeAlt();
             switch (attackType)
             {
                 case "Timed":
@@ -1227,6 +1244,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
                     break;
 
                 case QTEResult.LOW:
+                    sfx.PlayQTEFailure();
                     defenseBoost = 1;
                     battleText.text = "A weak block..." + playerUnit.unitName + " takes " + (Mathf.Clamp(damageDealt - defenseBoost, 1, damageDealt)) + " damage!";
 
@@ -1241,11 +1259,13 @@ public class CombatManager : MonoBehaviour, IDataPersistence
                     break;
 
                 case QTEResult.MID:
+                    sfx.PlayQTEFailure();
                     defenseBoost = 2;
                     battleText.text = "You block! " + playerUnit.unitName + " takes " + (Mathf.Clamp(damageDealt - defenseBoost, 1, damageDealt)) + " damage!";
                     break;
 
                 case QTEResult.HIGH:
+                    sfx.PlayQTEsuccess();
                     defenseBoost = 3;
                     battleText.text = "A perfect block! " + playerUnit.unitName + " takes " + (Mathf.Clamp(damageDealt - defenseBoost, 1, damageDealt)) + " damage!";
 
@@ -1272,6 +1292,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
 
         bool isDead = playerUnit.TakeDamage(Mathf.Clamp(damageDealt - defenseBoost, 1, damageDealt), false);
         playerHUD.SetHP(playerUnit);
+        sfx.PlayEnemyAttack_Beam();
 
         StartCoroutine(ConfirmTimer());
         yield return new WaitUntil(() => waitingForConfirm == false);
@@ -1330,6 +1351,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
             battleText.text = "The " + actingEnemyUnit.unitName + " unleashes a charged attack! Block by pressing the right key!";
 
             string attackType = actingEnemyUnit.attackType2;
+            sfx.PlayQTEchargeAlt();
 
             switch (attackType)
             {
@@ -1366,6 +1388,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
                     break;
 
                 case QTEResult.LOW:
+                    sfx.PlayQTEFailure();
                     defenseBoost = 1;
                     battleText.text = "A weak block..." + playerUnit.unitName + " takes " + (Mathf.Clamp(damageDealt - defenseBoost, 1, damageDealt)) + " damage!";
 
@@ -1380,11 +1403,13 @@ public class CombatManager : MonoBehaviour, IDataPersistence
                     break;
 
                 case QTEResult.MID:
+                    sfx.PlayQTEFailure();
                     defenseBoost = 2;
                     battleText.text = "You block! " + playerUnit.unitName + " takes " + (Mathf.Clamp(damageDealt - defenseBoost, 1, damageDealt)) + " damage!";
                     break;
 
                 case QTEResult.HIGH:
+                    sfx.PlayQTEsuccess();
                     defenseBoost = 3;
                     battleText.text = "A perfect block! " + playerUnit.unitName + " takes " + (Mathf.Clamp(damageDealt - defenseBoost, 1, damageDealt)) + " damage!";
 
@@ -1411,6 +1436,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
 
         bool isDead = playerUnit.TakeDamage(Mathf.Clamp(damageDealt - defenseBoost, 1, damageDealt), false);
         playerHUD.SetHP(playerUnit);
+        sfx.PlayEnemyAttack_Portal();
 
         StartCoroutine(ConfirmTimer());
         yield return new WaitUntil(() => waitingForConfirm == false);
@@ -1459,7 +1485,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         enemy.lowDamage = enemy.lowDamage + enemy.strengthModifier;
         enemy.midDamage = enemy.midDamage + enemy.strengthModifier;
         enemy.highDamage = enemy.highDamage + enemy.strengthModifier;
-
+        sfx.PlayMagicImpact();
         battleText.text = "The " + enemy.unitName + "'s rage has caused it to grow stronger!";
     }
 
@@ -1509,13 +1535,14 @@ public class CombatManager : MonoBehaviour, IDataPersistence
             attackButton.interactable = false;
             return;
         }
-
+        sfx.PlayButtonSelect();
         StartCoroutine(PlayerAttack());
         state = BattleState.START;
     }
 
     public void OnCancelButton() 
     {
+        sfx.PlayButtonSelect();
         waitingForTalismanPick = false;
         playerCancelled = true;
         talismanPanel.SetActive(false);
@@ -1524,6 +1551,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
 
     public void OnSkipButton() 
     {
+        sfx.PlayButtonSelect();
         waitingForTalismanPick = false;
         talismanPanel.SetActive(false);
         HideTalisman();
@@ -1542,7 +1570,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
             defendButton.interactable = false;
             return;
         }
-
+        sfx.PlayButtonSelect();
 
 
         StartCoroutine(PlayerDefend());
@@ -1556,7 +1584,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
             return;
 
         // If player has action talismans, display talismans and allow player to choose before continuing
-
+        sfx.PlayButtonSelect();
         StartCoroutine(PlayerBreak());
         state = BattleState.START;
     }
