@@ -93,7 +93,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1730c33eeec1e2d4689e7c60c1c4ca93, type: 3}
---- !u!4 &3347490100544599475 stripped
+--- !u!4 &3025880187866026585 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1730c33eeec1e2d4689e7c60c1c4ca93,
     type: 3}
@@ -110,22 +110,22 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: a5cd4b6df4a949642a0af0ae36387b2d,
         type: 3}
       propertyPath: m_RootOrder
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a5cd4b6df4a949642a0af0ae36387b2d,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 150
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a5cd4b6df4a949642a0af0ae36387b2d,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 150
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a5cd4b6df4a949642a0af0ae36387b2d,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 150
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a5cd4b6df4a949642a0af0ae36387b2d,
         type: 3}
@@ -198,7 +198,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: a5cd4b6df4a949642a0af0ae36387b2d,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3347490100544599475}
+      addedObject: {fileID: 3025880187866026585}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a5cd4b6df4a949642a0af0ae36387b2d, type: 3}
 --- !u!4 &8637393298559165541 stripped
