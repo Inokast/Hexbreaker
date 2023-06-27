@@ -618,7 +618,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
                 eventManager.GenerateStandardQTE(3);
                 break;
         }
-        sfx.PlayQTEchargeUp();
+        //sfx.PlayQTEchargeUp();
 
         yield return new WaitUntil(() => eventManager.eventCompleted == true);
         int damageDealt = 0;
@@ -654,7 +654,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
                 }
                 break;
             case QTEResult.MID:
-                sfx.PlayQTEchargeAlt();
+                sfx.PlayQTEsuccess();
                 damageDealt = playerUnit.midDamage;
 
                 if (CheckIfTalismanActive("Contending"))
@@ -1060,7 +1060,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
             battleText.text = "The " + actingEnemyUnit.unitName + " attacks! Block by pressing the right key!";
 
             string attackType = actingEnemyUnit.attackType1;
-            sfx.PlayQTEchargeAlt();
+            //sfx.PlayQTEchargeAlt();
 
             switch (attackType) 
             {
@@ -1215,7 +1215,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
             battleText.text = "The " + actingEnemyUnit.unitName + " attacks! Block by pressing the right key!";
 
             string attackType = actingEnemyUnit.attackType2;
-            sfx.PlayQTEchargeAlt();
+            //sfx.PlayQTEchargeAlt();
             switch (attackType)
             {
                 case "Timed":
@@ -1358,7 +1358,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
             battleText.text = "The " + actingEnemyUnit.unitName + " unleashes a charged attack! Block by pressing the right key!";
 
             string attackType = actingEnemyUnit.attackType2;
-            sfx.PlayQTEchargeAlt();
+            //sfx.PlayQTEchargeAlt();
 
             switch (attackType)
             {
