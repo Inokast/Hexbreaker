@@ -1287,6 +1287,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerHUDPanel
       objectReference: {fileID: 0}
+    - target: {fileID: 3355175478155156907, guid: 2a7bffcb78612b24e8f29f0fd3ad2070,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 94448199}
+    - target: {fileID: 3355175478155156907, guid: 2a7bffcb78612b24e8f29f0fd3ad2070,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnDefendButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 3986200477276805933, guid: 2a7bffcb78612b24e8f29f0fd3ad2070,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 94448199}
+    - target: {fileID: 3986200477276805933, guid: 2a7bffcb78612b24e8f29f0fd3ad2070,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnBreakButton
+      objectReference: {fileID: 0}
     - target: {fileID: 4118226995399978951, guid: 2a7bffcb78612b24e8f29f0fd3ad2070,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -1401,6 +1421,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8434874820947547293, guid: 2a7bffcb78612b24e8f29f0fd3ad2070,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 94448199}
+    - target: {fileID: 8434874820947547293, guid: 2a7bffcb78612b24e8f29f0fd3ad2070,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnAttackButton
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
