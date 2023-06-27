@@ -40,6 +40,8 @@ public class Unit : MonoBehaviour
     public int maxHP;
     public int currentHP;
 
+    public Animator basicAnim;
+
     public bool TakeDamage(int dmg, bool ignoreDefense) // Takes damage and returns true if unit has died
     {
         if (ignoreDefense)
@@ -69,5 +71,20 @@ public class Unit : MonoBehaviour
     {
         currentHP += Mathf.Clamp(amount, 1, maxHP); // Ensures amount healed does not exceed the maxHP value
 
+    }
+
+    public void PlayHitAnim()
+    {
+        basicAnim.SetTrigger("Hit");
+    }
+
+    public void PlayAttackAnim()
+    {
+        basicAnim.SetTrigger("ATK");
+    }
+
+    public void PlayDeathAnim()
+    {
+        basicAnim.SetTrigger("Death");
     }
 }

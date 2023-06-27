@@ -142,6 +142,7 @@ MonoBehaviour:
   defense: 5
   maxHP: 95
   currentHP: 95
+  basicAnim: {fileID: 7798611573364662966}
 --- !u!1001 &393860010624914194
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -233,6 +234,12 @@ PrefabInstance:
 --- !u!4 &7453969311342999873 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7063495858826029651, guid: 4fea52426fdcdd54ebdfd852c1b111e6,
+    type: 3}
+  m_PrefabInstance: {fileID: 393860010624914194}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &7798611573364662966 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7587860035194139044, guid: 4fea52426fdcdd54ebdfd852c1b111e6,
     type: 3}
   m_PrefabInstance: {fileID: 393860010624914194}
   m_PrefabAsset: {fileID: 0}

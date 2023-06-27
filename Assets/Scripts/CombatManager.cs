@@ -708,6 +708,8 @@ public class CombatManager : MonoBehaviour, IDataPersistence
                 break;
         }
 
+        playerUnit.PlayAttackAnim();
+
         bool isDead = false;
 
         if (CheckIfTalismanActive("Multistrike"))
@@ -728,6 +730,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
             isDead = selectedEnemyUnit.TakeDamage(damageDealt, false);
         }
         sfx.PlayPlayerHit();
+        actingEnemyUnit.PlayHitAnim();
 
         if (CheckIfTalismanActive("Vampiric")) 
         {
@@ -1045,6 +1048,9 @@ public class CombatManager : MonoBehaviour, IDataPersistence
                 break;
         }
 
+        actingEnemyUnit.PlayAttackAnim();
+        playerUnit.PlayHitAnim();
+
         battleText.text = "The " + actingEnemyUnit.unitName + " attacks! " + playerUnit.unitName + " takes " + damageDealt + " damage!";
 
         if (playerUnit.isDefending)
@@ -1146,6 +1152,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
 
         if (isDead)
         {
+            playerUnit.PlayDeathAnim();
             state = BattleState.LOST;
             EndBattle();
         }
