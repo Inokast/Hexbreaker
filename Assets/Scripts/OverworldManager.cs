@@ -13,6 +13,7 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
     [SerializeField] private TextMeshProUGUI informationText;
     [SerializeField] private TextMeshProUGUI eventText;
     [SerializeField] private MapNode[] mapNodes;
+    private SoundFXController sfx;
 
     private CreateTalismans tg;
 
@@ -48,7 +49,7 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
     void Start()
     {
         // If there is no previous world data, GenerateNewWorld()
-
+        sfx = FindAnyObjectByType<SoundFXController>();
         levelManager = FindAnyObjectByType<LevelManager>();
         eventText.text = "";
         player.transform.position = playerPosInWorld;
@@ -146,6 +147,8 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
                         moveTimer = 0;
                         movementInitiated = true;
                         lastSelectedNodeID = selectedNode.nodeID;
+
+                        sfx.PlayButtonSelect();
                         //informationPanel.GetComponentInChildren<Button>().interactable = true;
 
                         if (selectedNode.isCompleted)
@@ -205,36 +208,43 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
 
                 if (selectedNode.mapSection == "Tutorial")
                 {
+                    sfx.PlayButtonSelect();
                     levelManager.LoadSceneWithName("TutorialScene");
                 }
 
                 if (selectedNode.mapSection == "Marsh")
                 {
+                    sfx.PlayButtonSelect();
                     levelManager.LoadSceneWithName("CombatSceneMarsh");
                 }
 
                 if (selectedNode.mapSection == "Ruins")
                 {
+                    sfx.PlayButtonSelect();
                     levelManager.LoadSceneWithName("CombatSceneRuins");
                 }
 
                 if (selectedNode.mapSection == "Cathedral")
                 {
+                    sfx.PlayButtonSelect();
                     levelManager.LoadSceneWithName("CombatSceneCathedral");
                 }
 
                 if (selectedNode.mapSection == "Boss")
                 {
+                    sfx.PlayButtonSelect();
                     levelManager.LoadSceneWithName("CombatSceneBoss");
                 }
 
                 break;
 
             case 2:
+                sfx.PlayButtonSelect();
                 tg.GenerateHealingTalismans();
                 break;
 
             case 3:
+                sfx.PlayLuckyNode();
                 tg.GenerateLuckyTalismans();
                 break;
 
@@ -280,6 +290,7 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
 
     private void DisplayNodeInfo(MapNode node)
     {
+        sfx.PlayButtonSelect();
         informationPanel.SetActive(true);
         informationText.text = node.nodeDescription;
     }
@@ -377,6 +388,14 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
         foreach (MapNode node in mapNodes)
         {
             node.UpdateMesh();
+            if (node.gameObject.name == "BossNode") 
+            {
+                node.nodeType = 1;
+                node.mapSection = "Boss";
+                node.nodeEnemyID.Clear();
+                node.nodeEnemyID.Add(0);
+                node.nodeDescription = "You've reached the Phantasmal Despair. The air here is rife with melancholy...";
+            }
         }
 
         // foreach mapNode node in mapNodes[], randomize values
