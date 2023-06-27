@@ -140,8 +140,8 @@ MonoBehaviour:
   fillGauge2: 4
   keyToPressArray: 01000000030000000400000002000000
   defense: 0
-  maxHP: 60
-  currentHP: 60
+  maxHP: 24
+  currentHP: 24
   basicAnim: {fileID: 3398602288040090465}
 --- !u!1001 &4807778191222061842
 PrefabInstance:
