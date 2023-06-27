@@ -132,7 +132,7 @@ MonoBehaviour:
   keyToPressArray: 0100000002000000030000000400000001000000020000000300000004000000
   defense: 0
   maxHP: 70
-  currentHP: 57
+  currentHP: 70
   basicAnim: {fileID: 4087264470645752074}
 --- !u!1001 &8105622300356814059
 PrefabInstance:
