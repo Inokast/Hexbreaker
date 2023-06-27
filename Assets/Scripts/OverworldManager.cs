@@ -151,17 +151,20 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
                         if (selectedNode.isCompleted)
                         {
                             //informationPanel.GetComponentInChildren<Button>().interactable = false;
+                            StartCoroutine(EventTextDisplay("This path has been lost..."));
                         }
 
                         else if (selectedNode.isCompleted == false)
                         {
                             //informationPanel.GetComponentInChildren<Button>().interactable = true;
+                            StartCoroutine(EventTextDisplay("Traverse this path?..."));
                         }
                     }
 
                     else
                     {
-                        print("Selected node is not activated");
+                        //print("Selected node is not activated");
+                        StartCoroutine(EventTextDisplay("This path has been lost..."));
                     }
                 }
 
@@ -191,7 +194,7 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
 
     public void OnConfirm()
     {
-        print("Confirmed");
+        //print("Confirmed");
 
         switch (selectedNode.nodeType)
         {
@@ -199,6 +202,11 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
                 // Node type Combat
 
                 lastSelectedNodeEnemyID = selectedNode.nodeEnemyID;
+
+                if (selectedNode.mapSection == "Tutorial")
+                {
+                    levelManager.LoadSceneWithName("TutorialScene");
+                }
 
                 if (selectedNode.mapSection == "Marsh")
                 {
@@ -286,7 +294,7 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
         foreach (MapNode node in mapNodes)
         {
 
-            if (node.nodeDescription != "This is the Tutorial Encounter")
+            if (node.nodeDescription != "This is where your journey begins...")
             {
                 int randomizedNumber = Random.Range(1, 101);
 
@@ -359,6 +367,16 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
 
                 } while (amountOfEnemies > 0);
             }
+        }
+
+        mapNodes[0].nodeType = 1;
+        mapNodes[0].mapSection = "Tutorial";
+        mapNodes[0].nodeEnemyID.Clear();
+        mapNodes[0].nodeEnemyID.Add(0);
+        mapNodes[0].nodeDescription = "Your journey begins here...";
+        foreach (MapNode node in mapNodes)
+        {
+            node.UpdateMesh();
         }
 
         // foreach mapNode node in mapNodes[], randomize values

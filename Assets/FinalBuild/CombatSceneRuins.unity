@@ -1467,6 +1467,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 769254411172707942, guid: cba26f69e6ae156419603ad10402515e,
+        type: 3}
+      propertyPath: m_CullTransparentMesh
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1309620824355937442, guid: cba26f69e6ae156419603ad10402515e,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1576,6 +1581,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: EnemyCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 5342586566119304101, guid: cba26f69e6ae156419603ad10402515e,
+        type: 3}
+      propertyPath: m_Interactable
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7576017015395758532, guid: cba26f69e6ae156419603ad10402515e,
         type: 3}
@@ -4144,7 +4154,7 @@ PrefabInstance:
     - target: {fileID: 2698688748123368937, guid: 69dd937581f0b2245a5701000a05b5da,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5324051850429614542, guid: 69dd937581f0b2245a5701000a05b5da,
         type: 3}

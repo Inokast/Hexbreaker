@@ -578,6 +578,10 @@ MonoBehaviour:
   nodeID: 4c343e48-b5ef-4327-894d-c607219e4e05
   leftPath: {fileID: 109931050}
   rightPath: {fileID: 109931050}
+  nodeMeshes:
+  - {fileID: 377315440509832864, guid: 3a2341a067d87e340b67d926d2578989, type: 3}
+  - {fileID: 1480104068411172374, guid: ad3bcc242746cc449b1350fa473eb5c7, type: 3}
+  - {fileID: 1525121015262567679, guid: 3acb789e1ff2df74284526314de051fb, type: 3}
   nodeType: 1
   nodeDescription: Oh No, a ghost!
   nodeRewards: []
@@ -1554,6 +1558,10 @@ MonoBehaviour:
   nodeID: 419867a0-dc22-489a-a5d6-710bf7babab2
   leftPath: {fileID: 1201661011}
   rightPath: {fileID: 1201661011}
+  nodeMeshes:
+  - {fileID: 377315440509832864, guid: 3a2341a067d87e340b67d926d2578989, type: 3}
+  - {fileID: 1480104068411172374, guid: ad3bcc242746cc449b1350fa473eb5c7, type: 3}
+  - {fileID: 1525121015262567679, guid: 3acb789e1ff2df74284526314de051fb, type: 3}
   nodeType: 1
   nodeDescription: A High Spirit lurks here.
   nodeRewards: []
@@ -4034,6 +4042,10 @@ MonoBehaviour:
   nodeID: 9e78b188-08d5-41e9-bb7b-c693033aa183
   leftPath: {fileID: 750133156}
   rightPath: {fileID: 1049117491}
+  nodeMeshes:
+  - {fileID: 377315440509832864, guid: 3a2341a067d87e340b67d926d2578989, type: 3}
+  - {fileID: 1480104068411172374, guid: ad3bcc242746cc449b1350fa473eb5c7, type: 3}
+  - {fileID: 1525121015262567679, guid: 3acb789e1ff2df74284526314de051fb, type: 3}
   nodeType: 1
   nodeDescription: This is combat. The enemy is a fake slurp.
   nodeRewards: []
@@ -5128,6 +5140,10 @@ MonoBehaviour:
   nodeID: a8ec9099-d83a-4949-83e7-bcce338535fd
   leftPath: {fileID: 1049117491}
   rightPath: {fileID: 1864126185}
+  nodeMeshes:
+  - {fileID: 377315440509832864, guid: 3a2341a067d87e340b67d926d2578989, type: 3}
+  - {fileID: 1480104068411172374, guid: ad3bcc242746cc449b1350fa473eb5c7, type: 3}
+  - {fileID: 1525121015262567679, guid: 3acb789e1ff2df74284526314de051fb, type: 3}
   nodeType: 1
   nodeDescription: This is combat. The enemy is a ghost.
   nodeRewards: []
@@ -8138,7 +8154,7 @@ MonoBehaviour:
   - {fileID: 1201661011}
   player: {fileID: 1767277888}
   playerUnit: {fileID: 0}
-  startPos: {x: 0, y: 0.5, z: -8}
+  startPos: {x: 0, y: 0.12, z: -11.1}
   playerPosInWorld: {x: 0, y: 0, z: 0}
   lastSelectedNodeEnemyID: 
 --- !u!4 &533649390
@@ -10441,6 +10457,10 @@ MonoBehaviour:
   nodeID: 9a2feba8-62aa-4947-b698-af4f20a76a16
   leftPath: {fileID: 109931050}
   rightPath: {fileID: 1238171429}
+  nodeMeshes:
+  - {fileID: 377315440509832864, guid: 3a2341a067d87e340b67d926d2578989, type: 3}
+  - {fileID: 1480104068411172374, guid: ad3bcc242746cc449b1350fa473eb5c7, type: 3}
+  - {fileID: 1525121015262567679, guid: 3acb789e1ff2df74284526314de051fb, type: 3}
   nodeType: 2
   nodeDescription: This is another healing node.
   nodeRewards:
@@ -11478,6 +11498,10 @@ MonoBehaviour:
   nodeID: dc98db7f-0645-40e7-beea-4eea71de08e2
   leftPath: {fileID: 1201661011}
   rightPath: {fileID: 1201661011}
+  nodeMeshes:
+  - {fileID: 377315440509832864, guid: 3a2341a067d87e340b67d926d2578989, type: 3}
+  - {fileID: 1480104068411172374, guid: ad3bcc242746cc449b1350fa473eb5c7, type: 3}
+  - {fileID: 1525121015262567679, guid: 3acb789e1ff2df74284526314de051fb, type: 3}
   nodeType: 0
   nodeDescription: A High Spirit lurks here.
   nodeRewards: []
@@ -15134,6 +15158,10 @@ MonoBehaviour:
   nodeID: be0d7f52-e84a-43ef-b577-7b482eebd219
   leftPath: {fileID: 1238171429}
   rightPath: {fileID: 819224332}
+  nodeMeshes:
+  - {fileID: 377315440509832864, guid: 3a2341a067d87e340b67d926d2578989, type: 3}
+  - {fileID: 1480104068411172374, guid: ad3bcc242746cc449b1350fa473eb5c7, type: 3}
+  - {fileID: 1525121015262567679, guid: 3acb789e1ff2df74284526314de051fb, type: 3}
   nodeType: 1
   nodeDescription: A High Spirit lurks here.
   nodeRewards: []
@@ -15452,6 +15480,10 @@ MonoBehaviour:
   nodeID: 1e823d20-72ca-41e9-97ed-79f0bd27b987
   leftPath: {fileID: 254238225}
   rightPath: {fileID: 326234399}
+  nodeMeshes:
+  - {fileID: 377315440509832864, guid: 3a2341a067d87e340b67d926d2578989, type: 3}
+  - {fileID: 1480104068411172374, guid: ad3bcc242746cc449b1350fa473eb5c7, type: 3}
+  - {fileID: 1525121015262567679, guid: 3acb789e1ff2df74284526314de051fb, type: 3}
   nodeType: 2
   nodeDescription: This is a healing node.
   nodeRewards:
@@ -16053,6 +16085,10 @@ MonoBehaviour:
   nodeID: dfb0f0ac-4b25-40ba-9f01-5b8f45637f14
   leftPath: {fileID: 1667269715}
   rightPath: {fileID: 254238225}
+  nodeMeshes:
+  - {fileID: 377315440509832864, guid: 3a2341a067d87e340b67d926d2578989, type: 3}
+  - {fileID: 1480104068411172374, guid: ad3bcc242746cc449b1350fa473eb5c7, type: 3}
+  - {fileID: 1525121015262567679, guid: 3acb789e1ff2df74284526314de051fb, type: 3}
   nodeType: 1
   nodeDescription: This is a combat node. A Slurp enemy lurks here.
   nodeRewards: []
@@ -17787,7 +17823,7 @@ PrefabInstance:
     - target: {fileID: 3156578035115734741, guid: 03eef988e7ed6014588dd762fd86a172,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -9.15
+      value: -11.1
       objectReference: {fileID: 0}
     - target: {fileID: 3156578035115734741, guid: 03eef988e7ed6014588dd762fd86a172,
         type: 3}
@@ -18072,139 +18108,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1173194896}
   m_CullTransparentMesh: 1
---- !u!1 &1173233827
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1173233831}
-  - component: {fileID: 1173233830}
-  - component: {fileID: 1173233829}
-  - component: {fileID: 1173233828}
-  - component: {fileID: 1173233832}
-  m_Layer: 0
-  m_Name: StartingNode
-  m_TagString: Node
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!136 &1173233828
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1173233827}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
---- !u!23 &1173233829
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1173233827}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 62d6d8225213ca442be21c3f409fcbd4, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &1173233830
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1173233827}
-  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &1173233831
+--- !u!4 &1173233831 stripped
 Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 6980219495716486565, guid: 7f592349ae4d7174d9132e6799385ddb,
+    type: 3}
+  m_PrefabInstance: {fileID: 5756740685268231558}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1173233827}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.39395815, y: -2.5321467, z: -3.6559763}
-  m_LocalScale: {x: 1.5, y: 0.1, z: 1.5}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 270262959}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1173233832
+--- !u!114 &1173233832 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 389492758297900472, guid: 7f592349ae4d7174d9132e6799385ddb,
+    type: 3}
+  m_PrefabInstance: {fileID: 5756740685268231558}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1173233827}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 80c67172a93f2dc47a4be2fff913d31b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nodeID: StartingNode
-  leftPath: {fileID: 1075164956}
-  rightPath: {fileID: 1057626255}
-  nodeType: 1
-  nodeDescription: This is the Tutorial Encounter
-  nodeRewards:
-  - Max Health Up Talisman
-  - Attack Up Talisman
-  - Defense Up Talisman
-  nodeEnemyID: 00000000
-  mapSection: Marsh
-  isActive: 1
-  isCompleted: 0
 --- !u!1001 &1182691785
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18709,6 +18630,10 @@ MonoBehaviour:
   nodeID: 
   leftPath: {fileID: 0}
   rightPath: {fileID: 0}
+  nodeMeshes:
+  - {fileID: 377315440509832864, guid: 3a2341a067d87e340b67d926d2578989, type: 3}
+  - {fileID: 1480104068411172374, guid: ad3bcc242746cc449b1350fa473eb5c7, type: 3}
+  - {fileID: 1525121015262567679, guid: 3acb789e1ff2df74284526314de051fb, type: 3}
   nodeType: 1
   nodeDescription: You've reached the boss. Evil specter is waiting.
   nodeRewards: []
@@ -19403,6 +19328,10 @@ MonoBehaviour:
   nodeID: d6d120dc-b7ea-4bf2-bc1e-dbeadecca240
   leftPath: {fileID: 1201661011}
   rightPath: {fileID: 1201661011}
+  nodeMeshes:
+  - {fileID: 377315440509832864, guid: 3a2341a067d87e340b67d926d2578989, type: 3}
+  - {fileID: 1480104068411172374, guid: ad3bcc242746cc449b1350fa473eb5c7, type: 3}
+  - {fileID: 1525121015262567679, guid: 3acb789e1ff2df74284526314de051fb, type: 3}
   nodeType: 1
   nodeDescription: A High Spirit lurks here.
   nodeRewards: []
@@ -22559,8 +22488,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 0, y: 156}
+  m_SizeDelta: {x: 423.5233, y: 77.94}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1525085633
 MonoBehaviour:
@@ -22617,8 +22546,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 4096
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -24381,6 +24310,10 @@ MonoBehaviour:
   nodeID: 6839ffd6-8f71-494c-accd-16a2c1f11a29
   leftPath: {fileID: 44941531}
   rightPath: {fileID: 750133156}
+  nodeMeshes:
+  - {fileID: 377315440509832864, guid: 3a2341a067d87e340b67d926d2578989, type: 3}
+  - {fileID: 1480104068411172374, guid: ad3bcc242746cc449b1350fa473eb5c7, type: 3}
+  - {fileID: 1525121015262567679, guid: 3acb789e1ff2df74284526314de051fb, type: 3}
   nodeType: 1
   nodeDescription: This is combat. The enemy is a fake slurp.
   nodeRewards: []
@@ -26526,6 +26459,10 @@ MonoBehaviour:
   nodeID: 43834c1d-f11b-43ad-901b-5d4bdfcc99bd
   leftPath: {fileID: 819224332}
   rightPath: {fileID: 819224332}
+  nodeMeshes:
+  - {fileID: 377315440509832864, guid: 3a2341a067d87e340b67d926d2578989, type: 3}
+  - {fileID: 1480104068411172374, guid: ad3bcc242746cc449b1350fa473eb5c7, type: 3}
+  - {fileID: 1525121015262567679, guid: 3acb789e1ff2df74284526314de051fb, type: 3}
   nodeType: 1
   nodeDescription: A High Spirit lurks here.
   nodeRewards: []
@@ -29814,3 +29751,109 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2145587715}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5756740685268231558
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 270262959}
+    m_Modifications:
+    - target: {fileID: 389492758297900472, guid: 7f592349ae4d7174d9132e6799385ddb,
+        type: 3}
+      propertyPath: leftPath
+      value: 
+      objectReference: {fileID: 1075164956}
+    - target: {fileID: 389492758297900472, guid: 7f592349ae4d7174d9132e6799385ddb,
+        type: 3}
+      propertyPath: rightPath
+      value: 
+      objectReference: {fileID: 1057626255}
+    - target: {fileID: 389492758297900472, guid: 7f592349ae4d7174d9132e6799385ddb,
+        type: 3}
+      propertyPath: nodeMeshes.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 389492758297900472, guid: 7f592349ae4d7174d9132e6799385ddb,
+        type: 3}
+      propertyPath: nodeMeshes.Array.data[0]
+      value: 
+      objectReference: {fileID: 377315440509832864, guid: 3a2341a067d87e340b67d926d2578989,
+        type: 3}
+    - target: {fileID: 389492758297900472, guid: 7f592349ae4d7174d9132e6799385ddb,
+        type: 3}
+      propertyPath: nodeMeshes.Array.data[1]
+      value: 
+      objectReference: {fileID: 1480104068411172374, guid: ad3bcc242746cc449b1350fa473eb5c7,
+        type: 3}
+    - target: {fileID: 389492758297900472, guid: 7f592349ae4d7174d9132e6799385ddb,
+        type: 3}
+      propertyPath: nodeMeshes.Array.data[2]
+      value: 
+      objectReference: {fileID: 1525121015262567679, guid: 3acb789e1ff2df74284526314de051fb,
+        type: 3}
+    - target: {fileID: 5836816122787063543, guid: 7f592349ae4d7174d9132e6799385ddb,
+        type: 3}
+      propertyPath: m_Name
+      value: StartingNode
+      objectReference: {fileID: 0}
+    - target: {fileID: 6980219495716486565, guid: 7f592349ae4d7174d9132e6799385ddb,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6980219495716486565, guid: 7f592349ae4d7174d9132e6799385ddb,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.39395815
+      objectReference: {fileID: 0}
+    - target: {fileID: 6980219495716486565, guid: 7f592349ae4d7174d9132e6799385ddb,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.5321467
+      objectReference: {fileID: 0}
+    - target: {fileID: 6980219495716486565, guid: 7f592349ae4d7174d9132e6799385ddb,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -3.6559763
+      objectReference: {fileID: 0}
+    - target: {fileID: 6980219495716486565, guid: 7f592349ae4d7174d9132e6799385ddb,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6980219495716486565, guid: 7f592349ae4d7174d9132e6799385ddb,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6980219495716486565, guid: 7f592349ae4d7174d9132e6799385ddb,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6980219495716486565, guid: 7f592349ae4d7174d9132e6799385ddb,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6980219495716486565, guid: 7f592349ae4d7174d9132e6799385ddb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6980219495716486565, guid: 7f592349ae4d7174d9132e6799385ddb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6980219495716486565, guid: 7f592349ae4d7174d9132e6799385ddb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7f592349ae4d7174d9132e6799385ddb, type: 3}
