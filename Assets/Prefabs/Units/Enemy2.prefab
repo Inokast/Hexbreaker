@@ -300,8 +300,8 @@ MonoBehaviour:
   fillGauge2: 13
   keyToPressArray: 
   defense: 0
-  maxHP: 20
-  currentHP: 20
+  maxHP: 18
+  currentHP: 18
   basicAnim: {fileID: 8843822733053833703}
 --- !u!1 &7512487103157660640
 GameObject:

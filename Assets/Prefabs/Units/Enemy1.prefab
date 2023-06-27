@@ -281,8 +281,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitName: Marshwood Wanderer
   isDefending: 0
-  highDamage: 4
-  midDamage: 3
+  highDamage: 3
+  midDamage: 2
   lowDamage: 1
   strengthModifier: 3
   drainStrength: 0

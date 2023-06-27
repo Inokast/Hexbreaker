@@ -121,9 +121,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitName: High Spirit
   isDefending: 0
-  highDamage: 5
-  midDamage: 4
-  lowDamage: 3
+  highDamage: 4
+  midDamage: 3
+  lowDamage: 2
   strengthModifier: 3
   drainStrength: 0
   isCharged: 0
@@ -140,8 +140,8 @@ MonoBehaviour:
   fillGauge2: 0
   keyToPressArray: 01000000020000000400000003000000
   defense: 0
-  maxHP: 70
-  currentHP: 70
+  maxHP: 35
+  currentHP: 35
   basicAnim: {fileID: 7798611573364662966}
 --- !u!1001 &393860010624914194
 PrefabInstance:
