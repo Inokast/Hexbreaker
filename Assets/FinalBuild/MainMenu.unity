@@ -362,8 +362,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -419,7 +419,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &83935562
@@ -1422,8 +1422,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1479,7 +1479,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &466009528
@@ -1853,8 +1853,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1910,7 +1910,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &692625446
@@ -1993,8 +1993,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2734,8 +2734,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -3959,60 +3959,67 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1554491265}
     m_Modifications:
+    - target: {fileID: 524711005582845908, guid: 3f8d75a9a3aacba47bd404ca855dce4a,
+        type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2337859570727959611, guid: 3f8d75a9a3aacba47bd404ca855dce4a,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.962
       objectReference: {fileID: 0}
     - target: {fileID: 2337859570727959611, guid: 3f8d75a9a3aacba47bd404ca855dce4a,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2337859570727959611, guid: 3f8d75a9a3aacba47bd404ca855dce4a,
         type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2766129222805953383, guid: 3f8d75a9a3aacba47bd404ca855dce4a,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2766129222805953383, guid: 3f8d75a9a3aacba47bd404ca855dce4a,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 1
+      value: 0.962
       objectReference: {fileID: 0}
     - target: {fileID: 2766129222805953383, guid: 3f8d75a9a3aacba47bd404ca855dce4a,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 237223882}
-    - target: {fileID: 2766129222805953383, guid: 3f8d75a9a3aacba47bd404ca855dce4a,
+    - target: {fileID: 3998192883854546762, guid: 3f8d75a9a3aacba47bd404ca855dce4a,
         type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
+      propertyPath: m_text
+      value: 'Hexbreaker is a turn based rogue-lite experience. Your goal over the
+        course of this demo is to escape the spirit realm by defeating the first
+        boss located at the end of the map. You will progress through the map by
+        selecting various events that will end up leading you to facing the boss.
+
+
+        During
+        the combat events, you will exchange turns with  the enemy until one of the
+        combatant''s health drops to 0.  As the player, you will have acesss to 3
+        actions at first: Attack, Focus, and Hexbreak. After taking an action, a
+        quick time event will be used to judge how effective the action was taken.
+
+
+        The
+        enemies will curse you at the start of combat, creating new unexpected challenges
+        to overcome. If you manage to break these curses during combat, the player
+        will be rewarded with Talisman. Talisman will grant the player powerful effects
+        that will augment the actions you take.'
       objectReference: {fileID: 0}
-    - target: {fileID: 2766129222805953383, guid: 3f8d75a9a3aacba47bd404ca855dce4a,
+    - target: {fileID: 6149329725408307282, guid: 3f8d75a9a3aacba47bd404ca855dce4a,
         type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ToggleHelpPanel
-      objectReference: {fileID: 0}
-    - target: {fileID: 2766129222805953383, guid: 3f8d75a9a3aacba47bd404ca855dce4a,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: UIManager, Assembly-CSharp
+      propertyPath: m_hasFontAssetChanged
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6288209329341449687, guid: 3f8d75a9a3aacba47bd404ca855dce4a,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.962
       objectReference: {fileID: 0}
     - target: {fileID: 6288209329341449687, guid: 3f8d75a9a3aacba47bd404ca855dce4a,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7724795491268436454, guid: 3f8d75a9a3aacba47bd404ca855dce4a,
         type: 3}
@@ -4122,27 +4129,17 @@ PrefabInstance:
     - target: {fileID: 7775201395811534801, guid: 3f8d75a9a3aacba47bd404ca855dce4a,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.591
       objectReference: {fileID: 0}
     - target: {fileID: 7775201395811534801, guid: 3f8d75a9a3aacba47bd404ca855dce4a,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7775201395811534801, guid: 3f8d75a9a3aacba47bd404ca855dce4a,
         type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7932065680833657906, guid: 3f8d75a9a3aacba47bd404ca855dce4a,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: 7932065680833657906, guid: 3f8d75a9a3aacba47bd404ca855dce4a,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 76
+      value: 0.591
       objectReference: {fileID: 0}
     - target: {fileID: 8350105251922346895, guid: 3f8d75a9a3aacba47bd404ca855dce4a,
         type: 3}
@@ -4157,12 +4154,12 @@ PrefabInstance:
     - target: {fileID: 8736667453577683786, guid: 3f8d75a9a3aacba47bd404ca855dce4a,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.591
       objectReference: {fileID: 0}
     - target: {fileID: 8736667453577683786, guid: 3f8d75a9a3aacba47bd404ca855dce4a,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4643,8 +4640,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
