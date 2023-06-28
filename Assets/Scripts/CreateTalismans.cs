@@ -129,7 +129,7 @@ public class CreateTalismans : MonoBehaviour, IDataPersistence
         }
         else if (random > 66)
         {
-            texts[2].text = "Increases your pefect attack's damage by " + (3 * rarity);
+            texts[2].text = "Increases your perfect attack's damage by " + (3 * rarity);
 
             texts[1].text = "Perfect Talisman";
         }
@@ -172,7 +172,7 @@ public class CreateTalismans : MonoBehaviour, IDataPersistence
         }
         else if (rando > 40 && rando <= 60)
         {
-            texts[2].text = "Action Talisman: Your next weak attack will deal the damage of a normal hit, plus an additional " + (rarity * 1);
+            texts[2].text = "Action Talisman: Your next weak attack will deal the damage of a medium hit, plus an additional " + (rarity * 1);
 
             texts[1].text = "Conflicting Talisman";
         }

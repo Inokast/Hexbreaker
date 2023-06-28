@@ -119,7 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3985249c191f0244bc10022d3959af5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitName: Phantom Fragment
+  unitName: Phantasmal Despair
   isDefending: 0
   highDamage: 6
   midDamage: 5

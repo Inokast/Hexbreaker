@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitName: Rosalin
-  isDefending: 1
+  isDefending: 0
   highDamage: 6
   midDamage: 4
   lowDamage: 2
@@ -119,7 +119,7 @@ MonoBehaviour:
   drainStrength: 0
   isCharged: 0
   isStunned: 0
-  attackType1: Standard
+  attackType1: Mash
   keyToPress1: 1
   attackTimer1: 3
   attackString1: 
