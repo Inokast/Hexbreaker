@@ -1115,6 +1115,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
                     sfx.PlayQTEFailure();
                     defenseBoost = 2;
                     battleText.text = "You block! " + playerUnit.unitName + " takes " + (Mathf.Clamp(damageDealt - defenseBoost, 1, damageDealt)) + " damage!";
+                    bm.ChangeMeterValue(15);
                     break;
 
                 case QTEResult.HIGH:
@@ -1269,6 +1270,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
                     sfx.PlayQTEFailure();
                     defenseBoost = 2;
                     battleText.text = "You block! " + playerUnit.unitName + " takes " + (Mathf.Clamp(damageDealt - defenseBoost, 1, damageDealt)) + " damage!";
+                    bm.ChangeMeterValue(15);
                     break;
 
                 case QTEResult.HIGH:
@@ -1413,6 +1415,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
                     sfx.PlayQTEFailure();
                     defenseBoost = 2;
                     battleText.text = "You block! " + playerUnit.unitName + " takes " + (Mathf.Clamp(damageDealt - defenseBoost, 1, damageDealt)) + " damage!";
+                    bm.ChangeMeterValue(15);
                     break;
 
                 case QTEResult.HIGH:

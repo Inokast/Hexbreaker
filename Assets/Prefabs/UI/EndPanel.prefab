@@ -143,7 +143,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: You DIed
+  m_text: You Died
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 655e9bf53c8cf424795018f1ab181bda, type: 2}
   m_sharedMaterial: {fileID: -7970765992436013949, guid: 655e9bf53c8cf424795018f1ab181bda,
