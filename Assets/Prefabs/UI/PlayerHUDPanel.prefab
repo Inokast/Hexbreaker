@@ -732,7 +732,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 920.9, y: 120.79}
+  m_AnchoredPosition: {x: 935.5, y: 120.79}
   m_SizeDelta: {x: 108.7866, y: 182.1379}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4042623454731248400
@@ -804,7 +804,7 @@ MonoBehaviour:
   m_SpriteState:
     m_HighlightedSprite: {fileID: 21300000, guid: 2f2bd6721c79ba244b8c9ae844c9d2e6,
       type: 3}
-    m_PressedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 21300000, guid: 28b8f6cd6b9f89a4da267a9aca598c71, type: 3}
     m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 21300000, guid: bcb7dfaa758a8e045bca5d30a82ca09e, type: 3}
   m_AnimationTriggers:
@@ -2153,7 +2153,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 765.4, y: 168.3}
+  m_AnchoredPosition: {x: 765.4, y: 176.6}
   m_SizeDelta: {x: 178.5751, y: 87.1098}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &341755158460164306
@@ -2225,7 +2225,7 @@ MonoBehaviour:
   m_SpriteState:
     m_HighlightedSprite: {fileID: 21300000, guid: 70c4bf0bce9f7f448b6365308518ef64,
       type: 3}
-    m_PressedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 21300000, guid: a4f66cf66e6819649a58f45d3f079d1b, type: 3}
     m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 21300000, guid: fce6aa302686b234f9a7957e02bce05a, type: 3}
   m_AnimationTriggers:
@@ -2288,7 +2288,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 765.4, y: 76.325}
+  m_AnchoredPosition: {x: 765.4, y: 60.4}
   m_SizeDelta: {x: 177.2053, y: 93.6179}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8289339730905825057
@@ -2360,7 +2360,7 @@ MonoBehaviour:
   m_SpriteState:
     m_HighlightedSprite: {fileID: 21300000, guid: 099b63489a5a31d469a5a3db0fc525b0,
       type: 3}
-    m_PressedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 21300000, guid: 31e876a1d13c57445980e4ec0e45b72e, type: 3}
     m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 21300000, guid: 2d817cca57c27d84d93d33c7bc5075b8, type: 3}
   m_AnimationTriggers:
