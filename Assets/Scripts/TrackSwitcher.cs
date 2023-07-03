@@ -13,6 +13,7 @@ public class TrackSwitcher : MonoBehaviour
     private void Awake()
     {
         cart = GetComponent<Cinemachine.CinemachineDollyCart>();
+        
     }
 
     private void Reset()
@@ -24,7 +25,7 @@ public class TrackSwitcher : MonoBehaviour
 
     IEnumerator ChangeTrack() 
     {
-        yield return new WaitForSeconds(Random.Range(4,6));
+        yield return new WaitForSeconds(Random.Range(10,16));
 
         var path = alternatePaths[Random.Range(0, alternatePaths.Length)];
         cart.m_Path = path;

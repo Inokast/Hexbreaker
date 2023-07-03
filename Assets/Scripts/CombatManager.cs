@@ -72,6 +72,12 @@ public class CombatManager : MonoBehaviour, IDataPersistence
 
     private SoundFXController sfx;
 
+    [Header("Scene Setup")]
+
+    [SerializeField] private TrackSwitcher playerTrackCam;
+    [SerializeField] private TrackSwitcher enemyTrackCam;
+
+
     [Header("Battle Settings")]
 
     private int breakCharges = 0;

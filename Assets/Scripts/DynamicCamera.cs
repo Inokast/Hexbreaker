@@ -4,28 +4,61 @@ using UnityEngine;
 
 public class DynamicCamera : MonoBehaviour
 {
-    public GameObject playerCam;
-    public GameObject enemyCam;
+    [SerializeField] private GameObject mainCam;
 
-    public TrackSwitcher playerSwitch;
-    public TrackSwitcher enemySwitch;
+    [SerializeField] private GameObject[] trackCams;
 
+    [SerializeField] private GameObject enemyCam;
 
-    // Start is called before the first frame update
-    void Start()
+    //private float targetHeightOffset = 1.5f;
+
+    public Transform enemyTarget;
+
+    //[SerializeField] private TrackSwitcher playerSwitch;
+    //[SerializeField] private TrackSwitcher enemySwitch;
+
+    public void Start()
     {
-        
+        ResetMainCam();
     }
 
-    public void StartPlayerCam() 
+    IEnumerator ChangeTrackCam() 
     {
-        playerCam.gameObject.SetActive(true);
-        enemyCam.gameObject.SetActive(false);
+        yield return new WaitForSeconds(Random.Range(10, 16));
+
+        int newInt = Random.Range(0, trackCams.Length);
+        GameObject newCam = trackCams[newInt];
+        StopAllCams();
+        newCam.SetActive(true);
+
+        StartCoroutine(ChangeTrackCam());
     }
 
-    public void StartEnemyCam()
+    public void ResetMainCam() 
     {
-        playerCam.gameObject.SetActive(false);
+        StopAllCoroutines();
+        StopAllCams();
+        mainCam.SetActive(true);
+
+        StartCoroutine(ChangeTrackCam());
+    }
+
+    public void ResetEnemyCam()
+    {
+        StopAllCoroutines();
+        StopAllCams();
         enemyCam.gameObject.SetActive(true);
+    }
+
+
+    private void StopAllCams() 
+    {
+        mainCam.SetActive(false);
+        enemyCam.SetActive(false);
+
+        foreach (GameObject cam in trackCams)
+        {
+            cam.SetActive(false);
+        }
     }
 }
