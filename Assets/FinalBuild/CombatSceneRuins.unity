@@ -2808,6 +2808,7 @@ MonoBehaviour:
   combatFinished: 0
   playerUnit: {fileID: 0}
   state: 0
+  deathPanel: {fileID: 139858863}
 --- !u!4 &94448200
 Transform:
   m_ObjectHideFlags: 0
@@ -4278,6 +4279,12 @@ RectTransform:
 --- !u!1 &139858862 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2698688748123368937, guid: 69dd937581f0b2245a5701000a05b5da,
+    type: 3}
+  m_PrefabInstance: {fileID: 139858860}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &139858863 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3864118376680097449, guid: 69dd937581f0b2245a5701000a05b5da,
     type: 3}
   m_PrefabInstance: {fileID: 139858860}
   m_PrefabAsset: {fileID: 0}

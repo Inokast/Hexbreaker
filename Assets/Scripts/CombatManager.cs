@@ -106,6 +106,8 @@ public class CombatManager : MonoBehaviour, IDataPersistence
 
     public BattleState state;
 
+    public Animator deathPanel;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -456,11 +458,13 @@ public class CombatManager : MonoBehaviour, IDataPersistence
 
     IEnumerator KillPlayer()
     {
-        battleText.text = "You Died";
+        // battleText.text = "You Died";
+        deathPanel.SetTrigger("Death");
         sfx.PlayGameOver();
         playerDied = true;
         combatFinished = false;
         endPanel.SetActive(true);
+        deathPanel.SetTrigger("Death");
         dataManager = FindObjectOfType<DataPersistenceManager>();
         dataManager.NewGame();
         yield return new WaitForSeconds(1f);
