@@ -841,8 +841,8 @@ RectTransform:
   - {fileID: 1590342652}
   - {fileID: 176367823}
   - {fileID: 1139455592}
-  - {fileID: 815825615}
   - {fileID: 374409987}
+  - {fileID: 815825615}
   - {fileID: 1273811414}
   - {fileID: 344630500}
   m_Father: {fileID: 0}
@@ -3097,12 +3097,12 @@ PrefabInstance:
     - target: {fileID: 3140150904440533704, guid: 5837cb16b45b694449e127e62ef0fc5d,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 48.5
+      value: 1278
       objectReference: {fileID: 0}
     - target: {fileID: 3140150904440533704, guid: 5837cb16b45b694449e127e62ef0fc5d,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -61
+      value: -729
       objectReference: {fileID: 0}
     - target: {fileID: 3140150904440533704, guid: 5837cb16b45b694449e127e62ef0fc5d,
         type: 3}
