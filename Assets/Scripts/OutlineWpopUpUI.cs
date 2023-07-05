@@ -18,20 +18,30 @@ public class OutlineWpopUpUI : MonoBehaviour
     public void ChangeShader(GameObject objectToShade)
     {
 
-        Renderer objectRendererN = objectToShade.GetComponent<Renderer>();
-        objectRendererN.material = outlineMaterial;
-        //Debug.Log("Set Stored Object to Outline");
+        objectToShade.layer = 3;
+        foreach (Transform child in objectToShade.GetComponentsInChildren<Transform>(true))
+        {
+            child.gameObject.layer = LayerMask.NameToLayer("OutlineLayer");   
+        }
+        //Renderer objectRendererN = objectToShade.GetComponent<Renderer>();
+        //objectRendererN.material = outlineMaterial;
+        Debug.Log("Set Stored Object to Outline");
 
         if (stored == true)
         {
-            var objectRenderS = storedObject.GetComponent<Renderer>();
-            objectRenderS.material = blank;
-            //Debug.Log("Stored Object set to blank");
+            storedObject.layer = 0;
+            foreach (Transform child in storedObject.GetComponentsInChildren<Transform>(true))
+            {
+                child.gameObject.layer = LayerMask.NameToLayer("Default");
+            }
+            //  var objectRenderS = storedObject.GetComponent<Renderer>();
+            //  objectRenderS.material = blank;
+            Debug.Log("Stored Object set to blank");
         }
 
         storedObject = objectToShade;
         stored = true;
-        //Debug.Log("Object Stored");
+        Debug.Log("Object Stored");
     }
 
     // Update is called once per frame
