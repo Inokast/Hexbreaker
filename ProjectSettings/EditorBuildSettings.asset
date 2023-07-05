@@ -29,7 +29,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/FinalBuild/TutorialScene.unity
     guid: 90e4e1536af93e94fa7a82cc0ea60655
-  - enabled: 1
-    path: Assets/Test_Dan/CameraTesting.unity
-    guid: c6d2ec3276070ae43b1055faa2d160fc
   m_configObjects: {}

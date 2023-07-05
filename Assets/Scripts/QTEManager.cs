@@ -278,6 +278,11 @@ public class QTEManager : MonoBehaviour
         eventGen = keyToPress;
         timerDuration = duration;
 
+        if (eventGen == 5)
+        {
+            eventGen = Random.Range(1, 5);
+        }
+
         switch (eventGen)
         {
             case 1:
@@ -324,6 +329,10 @@ public class QTEManager : MonoBehaviour
 
         eventGen = keyToPress;
         amountFilled = 0;
+        if (eventGen == 5) 
+        {
+            eventGen = Random.Range(1, 5);
+        }
 
         switch (eventGen)
         {
@@ -383,6 +392,11 @@ public class QTEManager : MonoBehaviour
             {
                 isWaitingForInput = true;
                 eventGen = keysToPress[i];
+
+                if (eventGen == 5)
+                {
+                    eventGen = Random.Range(1, 5);
+                }
 
                 switch (eventGen)
                 {

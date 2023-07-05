@@ -40,6 +40,8 @@ public class CombatManager : MonoBehaviour, IDataPersistence
     private GameObject enemyPrefab;
     private List<int> loadedEnemyID; // This number determines which of the enemyPrefabs[] prefab is used. Pass this data through the Overworld map by saving it upon selecting a node in that scene. - Dan
 
+    private DynamicCamera cam;
+
     [SerializeField] private TextMeshProUGUI battleText;
     [SerializeField] private GameObject helpMenu;
     [SerializeField] private GameObject endPanel;
@@ -80,7 +82,6 @@ public class CombatManager : MonoBehaviour, IDataPersistence
 
     [Header("Battle Settings")]
 
-    private int breakCharges = 0;
     [SerializeField] private float confirmTimer = 1.5f;
     private bool waitingForConfirm = false;
     public bool waitingForTalismanPick = false;
@@ -112,6 +113,8 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         topCurses = GameObject.FindGameObjectsWithTag("CurseTop"); //For finding the curses. -Dylan 2
         midCurses = GameObject.FindGameObjectsWithTag("CurseMid");
         botCurses = GameObject.FindGameObjectsWithTag("CurseBot");
+
+        cam = FindAnyObjectByType<DynamicCamera>();
 
         winPanel = GameObject.Find("Win Panel");
         sfx = FindAnyObjectByType<SoundFXController>();
@@ -312,6 +315,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
 
     private void PlayerTurn()
     {
+        cam.ResetMainCam();
         RefreshPlayerStatus();
 
         battleText.text = "Your Turn!";
@@ -369,6 +373,9 @@ public class CombatManager : MonoBehaviour, IDataPersistence
 
                 StartCoroutine(EnemyChargedAttack());
             }
+
+            cam.enemyTarget.position = new Vector3(actingEnemyUnit.transform.position.x, actingEnemyUnit.transform.position.y + 2, actingEnemyUnit.transform.position.z);
+            cam.ResetEnemyCam();
         }
 
         else
@@ -587,6 +594,8 @@ public class CombatManager : MonoBehaviour, IDataPersistence
                 
             }
         }
+
+        cam.ResetMainCam();
 
         state = BattleState.QTE;
 
@@ -849,7 +858,8 @@ public class CombatManager : MonoBehaviour, IDataPersistence
 
     IEnumerator PlayerBreak()
     {
-        // Break animation plays. It is an auto success!
+        // Break animation plays. 
+        cam.ResetMainCam();
 
         breakButton.interactable = false;
         BreakMeter.charge = 0;
