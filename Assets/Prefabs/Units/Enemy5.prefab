@@ -130,11 +130,11 @@ MonoBehaviour:
   isStunned: 0
   attackType1: Timed
   keyToPress1: 3
-  attackTimer1: 2
+  attackTimer1: 3
   attackString1: 
   attackType2: Array
   keyToPress2: 0
-  attackTimer2: 2.5
+  attackTimer2: 3.5
   attackString2: 
   fillGauge1: 0
   fillGauge2: 0

@@ -134,7 +134,7 @@ MonoBehaviour:
   attackString1: 
   attackType2: Timed
   keyToPress2: 3
-  attackTimer2: 1.5
+  attackTimer2: 2.5
   attackString2: 
   fillGauge1: 0
   fillGauge2: 0
