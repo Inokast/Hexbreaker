@@ -9,6 +9,13 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject settingsPanel;
     [SerializeField] private GameObject helpPanel;
     [SerializeField] private GameObject creditsPanel;
+
+    [Header("Credits")]
+    [SerializeField] private GameObject pageConnor;
+
+    private GameObject currentPage;
+
+
     private LevelManager levelManager;
     private DataPersistenceManager dataManager;
 
@@ -18,6 +25,7 @@ public class UIManager : MonoBehaviour
     {
         levelManager = FindObjectOfType<LevelManager>();
         sfx = FindAnyObjectByType<SoundFXController>();
+        currentPage = pageConnor;
     }
     public void OnNewGameButton() 
     {
@@ -89,5 +97,12 @@ public class UIManager : MonoBehaviour
     public void OnQuitButtonPress() 
     {
         Application.Quit();
+    }
+
+    public void OnPageClick(GameObject tempVar) // Function to turn page credits
+    {
+        currentPage.SetActive(false);
+        currentPage = tempVar;
+        tempVar.SetActive(true);
     }
 }
