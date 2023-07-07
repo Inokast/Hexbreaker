@@ -3864,6 +3864,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerHUDPanel
       objectReference: {fileID: 0}
+    - target: {fileID: 2416027330911883637, guid: 2a7bffcb78612b24e8f29f0fd3ad2070,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3355175478155156907, guid: 2a7bffcb78612b24e8f29f0fd3ad2070,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target

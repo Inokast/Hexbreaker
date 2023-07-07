@@ -13,6 +13,7 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
     [SerializeField] private TextMeshProUGUI informationText;
     [SerializeField] private TextMeshProUGUI eventText;
     [SerializeField] private MapNode[] mapNodes;
+    [SerializeField] private BattleHUD playerHUD;
     private SoundFXController sfx;
 
     private CreateTalismans tg;
@@ -53,6 +54,8 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
         levelManager = FindAnyObjectByType<LevelManager>();
         eventText.text = "";
         player.transform.position = playerPosInWorld;
+        //playerHUD = FindAnyObjectByType<BattleHUD>();
+        playerHUD.SetHP(playerUnit);
 
         if (worldGenerated == false)
         {

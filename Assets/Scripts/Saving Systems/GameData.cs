@@ -72,8 +72,8 @@ public class GameData
         //talismansCollected = new List<GameObject>();
         //isAction = new List<bool>();
 
-        bgmVolumeLevel = .5f;
-        sfxVolumeLevel = .5f;
+        bgmVolumeLevel = .2f;
+        sfxVolumeLevel = .2f;
         
         enemyUnitToLoadID = new List<int> {0};
 

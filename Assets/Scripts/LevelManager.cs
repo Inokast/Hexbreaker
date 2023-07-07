@@ -22,7 +22,13 @@ public class LevelManager : MonoBehaviour
         sfx = FindObjectOfType<SoundFXController>();      
         bgm = FindObjectOfType<BGMController>();
         bgm.PlayMusicWithID(playMusicID);
+
+        if (SceneManager.GetActiveScene().name == "EndScene") 
+        {
+            FindAnyObjectByType<DataPersistenceManager>().NewGame();
+        }
     }
+
 
 
     public void PauseGame() 

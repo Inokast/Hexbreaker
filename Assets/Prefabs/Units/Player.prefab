@@ -125,7 +125,7 @@ MonoBehaviour:
   attackString1: 
   attackType2: Array
   keyToPress2: 0
-  attackTimer2: 3
+  attackTimer2: 4
   attackString2: 
   fillGauge1: 10
   fillGauge2: 10
