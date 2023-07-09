@@ -623,7 +623,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
                 break;
 
             case "Array":
-                eventManager.TriggerQTEArray(playerUnit.attackTimer1, playerUnit.keyToPressArray);
+                eventManager.TriggerQTEArray(playerUnit.attackTimer1, playerUnit.keyToPressArray, false);
                 //Change color of QTE circle
                 break;
 
@@ -887,7 +887,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
                 break;
 
             case "Array":
-                eventManager.TriggerQTEArray(playerUnit.attackTimer2, playerUnit.keyToPressArray);
+                eventManager.TriggerQTEArray(playerUnit.attackTimer2, playerUnit.keyToPressArray, true);
                 //Change color of QTE circle
                 break;
 
@@ -1093,7 +1093,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
                     break;
 
                 case "Array":
-                    eventManager.TriggerQTEArray(actingEnemyUnit.attackTimer1, actingEnemyUnit.keyToPressArray);
+                    eventManager.TriggerQTEArray(actingEnemyUnit.attackTimer1, actingEnemyUnit.keyToPressArray, false);
                     break;
 
                 case "Standard":
@@ -1248,7 +1248,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
                     break;
 
                 case "Array":
-                    eventManager.TriggerQTEArray(actingEnemyUnit.attackTimer2, actingEnemyUnit.keyToPressArray);
+                    eventManager.TriggerQTEArray(actingEnemyUnit.attackTimer2, actingEnemyUnit.keyToPressArray, false);
                     break;
 
                 case "Standard":
@@ -1393,7 +1393,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
                     break;
 
                 case "Array":
-                    eventManager.TriggerQTEArray(actingEnemyUnit.attackTimer2, actingEnemyUnit.keyToPressArray);
+                    eventManager.TriggerQTEArray(actingEnemyUnit.attackTimer2, actingEnemyUnit.keyToPressArray, false);
                     break;
 
                 case "Standard":

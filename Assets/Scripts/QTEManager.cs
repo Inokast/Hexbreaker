@@ -1,5 +1,5 @@
 // Hexbreaker - Quick Time Event System
-// Last modified: 05/28/23 - Dan Sanchez
+// Last modified: 06/08/23 - Dan Sanchez
 // Notes: The goal is to make this flexible enough to be used in any scene where we want a QTE.
 
 using System.Collections;
@@ -17,6 +17,15 @@ public class QTEManager : MonoBehaviour
     public TextMeshProUGUI resultDisplayText;
     [SerializeField] private TextMeshProUGUI timerText;
 
+    [SerializeField] private QTEDisplay mashQTEDisplay;
+    [SerializeField] private QTEDisplay arrayQTEDisplay;
+    [SerializeField] private QTEDisplay timedQTEDisplay;
+    [SerializeField] private QTEDisplay breakQTEDisplay;
+
+    private QTEDisplay activeQTEDisplay;
+
+
+
     [Header("General Variables")]
     private float timerDuration;
     private int eventGen; // QTE generator
@@ -26,6 +35,8 @@ public class QTEManager : MonoBehaviour
     public bool timerIsActive;
     public bool eventCompleted = true;
     public QTEResult eventResult;
+
+    private bool holdingDown;
 
 
     [Header("Advanced Variables")]
@@ -49,8 +60,10 @@ public class QTEManager : MonoBehaviour
     {
         if (isWaitingForInput == true) 
         {
-            if (Input.anyKeyDown) 
+            if (Input.anyKeyDown && !Input.GetMouseButtonDown(0) && !Input.GetMouseButtonDown(1) &&
+                !Input.GetMouseButtonDown(2)) 
             {
+                holdingDown = true;
                 switch (eventGen)
                 {
                     case 0: print("Event did not generate");
@@ -116,7 +129,14 @@ public class QTEManager : MonoBehaviour
                         Debug.Log("Error! QTE Event generated not recognized.");
                         break;                       
                 }
-            }            
+            }
+
+            if (!Input.anyKey && holdingDown) 
+            {
+                activeQTEDisplay.DisplayNormal();
+                resultDisplayText.text = "";
+                holdingDown = false;
+            }
         }
     }
 
@@ -129,6 +149,8 @@ public class QTEManager : MonoBehaviour
 
         if (inputWasCorrect)
         {
+            activeQTEDisplay.DisplayPressed();
+
             if (eventType == "Timed")
             {
                 if (perfectTiming == true)
@@ -137,6 +159,7 @@ public class QTEManager : MonoBehaviour
                     resultDisplayText.text = "Nice!";
                     inputDisplayText.color = Color.yellow;
                     timerText.color = Color.green;
+                    timedQTEDisplay.PlaySparkleEffect();
                 }
 
                 else
@@ -150,6 +173,18 @@ public class QTEManager : MonoBehaviour
 
             else
             {
+                if (eventType == "Mash")
+                {
+                    float currentG = mashQTEDisplay.currentImage.color.g;
+                    float gToAdd = 255 / mashQTEDisplay.colorGoal * amountFilled;
+
+                    Color newColor = new Color32(181, ((byte)(currentG + gToAdd)), 0, 255);
+
+                    mashQTEDisplay.currentImage.color = newColor;
+                    activeQTEDisplay.currentImage.color = newColor;
+                    currentG = mashQTEDisplay.currentImage.color.g;
+                }
+
                 correctKeyPressedNum += 1;
                 eventResult = QTEResult.HIGH;
                 resultDisplayText.text = "Nice!";
@@ -180,7 +215,12 @@ public class QTEManager : MonoBehaviour
         else if (inputWasCorrect == false && eventType != "Mash")
         {
             eventResult = QTEResult.LOW;
-            resultDisplayText.text = "Fail...";
+            if (eventType != "Array")
+            {
+                resultDisplayText.text = "Fail...";
+            }
+
+            else { resultDisplayText.text = "Miss!"; }
             inputDisplayText.color = Color.red;
 
             if (!eventOngoing)
@@ -233,11 +273,18 @@ public class QTEManager : MonoBehaviour
         }
     }
 
+    private void ClearQTEDisplays()
+    {
+        activeQTEDisplay.ResetColor();
+        arrayQTEDisplay.gameObject.SetActive(false);
+        timedQTEDisplay.gameObject.SetActive(false);
+        breakQTEDisplay.gameObject.SetActive(false);
+        mashQTEDisplay.gameObject.SetActive(false);
+    }
     IEnumerator ClearQTESequence()
     {
         timerIsActive = false;
         eventOngoing = false;
-        //yield return new WaitForSeconds(1.5f);
         inputWasCorrect = false;
         isWaitingForInput = false;
         perfectTiming = false;
@@ -249,13 +296,36 @@ public class QTEManager : MonoBehaviour
         correctKeyPressedNum = 0;
         amountFilled = 0;
         eventPanel.SetActive(false);
+        ClearQTEDisplays();
         inputDisplayText.color = Color.white;
         eventCompleted = true;
     }
 
-    public void TriggerQTEArray(float duration, int[] keysToPress) 
+    public void QTETestArray() 
     {
-        StartCoroutine(GenerateQTEArray(duration, keysToPress));
+        int[] QTE = new int[] { 1, 2, 3, 4 };
+        TriggerQTEArray(3f, QTE, false);
+    }
+
+    public void QTETestMash()
+    {
+        TriggerMashQTE(3f, 1, 5);
+    }
+
+    public void QTETestTimed()
+    {
+        TriggerTimedQTE(4, 1);
+    }
+
+    public void QTETestBreak()
+    {
+        int[] QTE = new int[] { 1, 2, 3, 4, 1, 2, 3, 4 };
+        TriggerQTEArray(3f, QTE, true);
+    }
+
+    public void TriggerQTEArray(float duration, int[] keysToPress, bool isBreak) 
+    {
+        StartCoroutine(GenerateQTEArray(duration, keysToPress, isBreak));
     }
 
     public void TriggerMashQTE(float duration, int keyToPress, float amountToFill)
@@ -273,6 +343,8 @@ public class QTEManager : MonoBehaviour
     {
         StopCoroutine(ClearQTESequence());
         eventType = "Timed";
+        timedQTEDisplay.gameObject.SetActive(true);
+        activeQTEDisplay = timedQTEDisplay;
         eventPanel.SetActive(true);
         resultDisplayText.text = "Wait!";
         eventGen = keyToPress;
@@ -321,6 +393,8 @@ public class QTEManager : MonoBehaviour
     {
         StopCoroutine(ClearQTESequence());
         eventType = "Mash";
+        mashQTEDisplay.gameObject.SetActive(true);
+        activeQTEDisplay = mashQTEDisplay;
         eventPanel.SetActive(true);
         resultDisplayText.text = "Mash!";
         eventOngoing = true;
@@ -362,6 +436,7 @@ public class QTEManager : MonoBehaviour
                 break;
         }
         isWaitingForInput = true;
+        mashQTEDisplay.colorGoal = amountToFill;
 
         yield return new WaitUntil(() => amountFilled >= amountToFill);
         timerIsActive = false;
@@ -373,9 +448,17 @@ public class QTEManager : MonoBehaviour
         StartCoroutine(ClearQTESequence());
 
     }
-    IEnumerator GenerateQTEArray(float duration, int[] keysToPress)
+    IEnumerator GenerateQTEArray(float duration, int[] keysToPress, bool isBreak)
     {
         StopCoroutine(ClearQTESequence());
+        if (isBreak)
+        {
+            activeQTEDisplay = breakQTEDisplay;
+            breakQTEDisplay.gameObject.SetActive(true);
+        }
+
+        else { arrayQTEDisplay.gameObject.SetActive(true); activeQTEDisplay = arrayQTEDisplay; }
+
         eventPanel.SetActive(true);
         eventType = "Array";
         resultDisplayText.text = "";
