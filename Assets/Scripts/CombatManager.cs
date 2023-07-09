@@ -1,5 +1,5 @@
 // Hexbreaker - Combat System
-// Last modified: 06/25/23
+// Last modified: 07/09/23
 // Notes:
 
 using System.Collections;
@@ -57,6 +57,10 @@ public class CombatManager : MonoBehaviour, IDataPersistence
     [SerializeField] private Button breakButton;
     [SerializeField] private Button attackButton;
     [SerializeField] private Button defendButton;
+
+    [SerializeField] private GameObject firstCharge;
+    [SerializeField] private GameObject secondCharge;
+    [SerializeField] private GameObject thirdCharge; // For the talisman charges. -Dylan 9
 
     private CreateTalismans talismanManager;
 
@@ -509,6 +513,28 @@ public class CombatManager : MonoBehaviour, IDataPersistence
 
     #region Talisman Checks
 
+    /*public void ChangeTalismanCharges(int amount)
+    {
+        if (amount == 1)
+        {
+            firstCharge.SetActive(true);
+        }
+        else if (amount == 2)
+        {
+            secondCharge.SetActive(true);
+        }
+        else if (amount == 3)
+        {
+            thirdCharge.SetActive(true); //For talisman charges. -Dylan 9
+        }
+        else
+        {
+            firstCharge.SetActive(false);
+            secondCharge.SetActive(false);
+            thirdCharge.SetActive(false);
+        }
+    }*/
+
     public void HideTalisman() 
     {
         for (int i = 0; i < talismanManager.talismans.Count; i++)
@@ -767,6 +793,8 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         activeTalismanNames.Clear();
         //Clears the two lists after they are used, as a sort of reset. -Dylan 8
         activeTalismanPotency.Clear();
+
+        //ChangeTalismanCharges(0); //For to reset the visible charges. -Dylan 9
 
         // Here begins endturn functionality
         if (isDead)

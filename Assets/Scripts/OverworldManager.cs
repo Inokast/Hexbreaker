@@ -14,6 +14,7 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
     [SerializeField] private TextMeshProUGUI eventText;
     [SerializeField] private MapNode[] mapNodes;
     [SerializeField] private BattleHUD playerHUD;
+    [SerializeField] private GameObject mainMenuButton;
     private SoundFXController sfx;
 
     private CreateTalismans tg;
@@ -265,6 +266,8 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
     public void MarkCurrentNodeComplete()
     {
         selectedNode.CompleteNode();
+
+        mainMenuButton.SetActive(true);
 
         tg.HidePanel();
     }

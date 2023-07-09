@@ -1265,6 +1265,7 @@ MonoBehaviour:
   - {fileID: 819224332}
   - {fileID: 1201661011}
   playerHUD: {fileID: 1168367032}
+  mainMenuButton: {fileID: 1264252722}
   player: {fileID: 1767277888}
   playerUnit: {fileID: 0}
   startPos: {x: 0, y: 0.12, z: -11.1}

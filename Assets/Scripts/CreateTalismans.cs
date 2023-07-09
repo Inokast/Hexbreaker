@@ -1,4 +1,4 @@
-//06/05/23 Dylan
+//07/09/23 Dylan
 
 using System.Collections;
 using System.Collections.Generic;
@@ -15,6 +15,8 @@ public class CreateTalismans : MonoBehaviour, IDataPersistence
     [SerializeField] GameObject spectralFrame;
 
     private GameObject talismanChoicePanel;
+
+    private GameObject mainMenuButton;
 
     public List<GameObject> talismans = new List<GameObject>();
     public List<bool> action = new List<bool>();
@@ -41,6 +43,8 @@ public class CreateTalismans : MonoBehaviour, IDataPersistence
 
         if (SceneManager.GetActiveScene().name == "Overworld")
         {
+            mainMenuButton = GameObject.Find("MainMenuButton");
+
             talismanChoicePanel = GameObject.Find("TalismanPanel");
 
             talismanChoicePanel.SetActive(false);
@@ -64,14 +68,16 @@ public class CreateTalismans : MonoBehaviour, IDataPersistence
         {
             CreateWholeTalisman(1, false);
         }
-
-        do
+        else
         {
-            CreateWholeTalisman(amount, false);
+            do
+            {
+                CreateWholeTalisman(amount, false);
 
-            amount--;
+                amount--;
 
-        } while (amount > 0);
+            } while (amount > 0);
+        }
     }
 
     private void CreateHealthTalisman(GameObject frame)
@@ -330,6 +336,8 @@ public class CreateTalismans : MonoBehaviour, IDataPersistence
 
     public void GenerateLuckyTalismans()
     {
+        mainMenuButton.SetActive(false);
+
         int amount = 3;
 
         talismanChoicePanel.SetActive(true);
@@ -343,8 +351,27 @@ public class CreateTalismans : MonoBehaviour, IDataPersistence
         } while (amount > 0);
     }
 
+    public void GenerateActionTalismans()
+    {
+        mainMenuButton.SetActive(false);
+
+        int amount = 3;
+
+        talismanChoicePanel.SetActive(true);
+
+        do
+        {
+            GameObject talisman = DecideTalismanRarity(amount, false);
+
+            CreateActionTalisman(talisman);
+
+        } while (amount > 0);
+    }
+
     public void GenerateHealingTalismans()
     {
+        mainMenuButton.SetActive(false);
+
         int amount = 3;
 
         talismanChoicePanel.SetActive(true);

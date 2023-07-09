@@ -74,6 +74,22 @@ public class DataPersistenceManager : MonoBehaviour
         {
             dataPersistenceObj.LoadData(gameData);
         }
+
+        /*CreateTalismans tg = GameObject.Find("TalismanGenerator").GetComponent<CreateTalismans>();
+
+        if (tg.talismans != null)
+        {
+            foreach (GameObject talisman in tg.talismans)
+            {
+                tg.talismans[0].SetActive(true);
+
+                Destroy(tg.gameObject.transform.GetChild(0));
+            }
+
+            tg.talismans.Clear();
+
+            tg.action.Clear();
+        }*/
     }
 
     public void LoadGame() 
