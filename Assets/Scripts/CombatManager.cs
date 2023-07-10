@@ -502,7 +502,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
 
     #region Talisman Checks
 
-    /*public void ChangeTalismanCharges(int amount)
+    public void ChangeTalismanCharges(int amount)
     {
         if (amount == 1)
         {
@@ -522,7 +522,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
             secondCharge.SetActive(false);
             thirdCharge.SetActive(false);
         }
-    }*/
+    }
 
     public void HideTalisman() 
     {
@@ -785,7 +785,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         //Clears the two lists after they are used, as a sort of reset. -Dylan 8
         activeTalismanPotency.Clear();
 
-        //ChangeTalismanCharges(0); //For to reset the visible charges. -Dylan 9
+        ChangeTalismanCharges(0); //For to reset the visible charges. -Dylan 9
 
         // Here begins endturn functionality
         if (isDead)

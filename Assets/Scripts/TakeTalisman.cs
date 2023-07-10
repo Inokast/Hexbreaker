@@ -129,7 +129,7 @@ public class TakeTalisman : MonoBehaviour
                 cm.OnSkipButton();
                 gameObject.SetActive(false);
 
-                //cm.ChangeTalismanCharges(cm.activeTalismanNames.Count); //For talisman charges -Dylan 9
+                cm.ChangeTalismanCharges(cm.activeTalismanNames.Count); //For talisman charges -Dylan 9
             }
         }
         else if (SceneManager.GetActiveScene().name == "Overworld")
