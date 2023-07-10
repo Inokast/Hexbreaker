@@ -477,6 +477,9 @@ MonoBehaviour:
   breakButton: {fileID: 1905144411}
   attackButton: {fileID: 1687249517}
   defendButton: {fileID: 1523884698}
+  firstCharge: {fileID: 0}
+  secondCharge: {fileID: 0}
+  thirdCharge: {fileID: 0}
   breakMeterGO: {fileID: 948196822}
   playerTrackCam: {fileID: 0}
   enemyTrackCam: {fileID: 0}

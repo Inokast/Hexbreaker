@@ -160,6 +160,7 @@ public class QTEManager : MonoBehaviour
                     inputDisplayText.color = Color.yellow;
                     timerText.color = Color.green;
                     timedQTEDisplay.PlaySparkleEffect();
+                    print("Playing Sparkles");
                 }
 
                 else
@@ -283,12 +284,18 @@ public class QTEManager : MonoBehaviour
     }
     IEnumerator ClearQTESequence()
     {
+        if (eventType == "Timed") 
+        {
+            timedQTEDisplay.StopAllCoroutines();
+        }
+
         timerIsActive = false;
         eventOngoing = false;
         inputWasCorrect = false;
         isWaitingForInput = false;
         perfectTiming = false;
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(1f);
+        inputDisplayText.transform.position = mashQTEDisplay.transform.position;
         inputDisplayText.text = "";
         resultDisplayText.text = "";
         timerText.text = "";
@@ -296,6 +303,8 @@ public class QTEManager : MonoBehaviour
         correctKeyPressedNum = 0;
         amountFilled = 0;
         eventPanel.SetActive(false);
+        activeQTEDisplay.ResetPosition();
+        timedQTEDisplay.ResetRingScale();
         ClearQTEDisplays();
         inputDisplayText.color = Color.white;
         eventCompleted = true;
@@ -314,7 +323,7 @@ public class QTEManager : MonoBehaviour
 
     public void QTETestTimed()
     {
-        TriggerTimedQTE(4, 1);
+        TriggerTimedQTE(2.5f, 5);
     }
 
     public void QTETestBreak()
@@ -346,7 +355,7 @@ public class QTEManager : MonoBehaviour
         timedQTEDisplay.gameObject.SetActive(true);
         activeQTEDisplay = timedQTEDisplay;
         eventPanel.SetActive(true);
-        resultDisplayText.text = "Wait!";
+        
         eventGen = keyToPress;
         timerDuration = duration;
 
@@ -377,13 +386,19 @@ public class QTEManager : MonoBehaviour
                 Debug.Log("Error! QTE Event generated not recognized.");
                 break;
         }
-        isWaitingForInput = true;
-        StartCoroutine(Timer());
+        resultDisplayText.text = "Wait!";
+        //yield return new WaitForSeconds(.5f);
 
+        isWaitingForInput = true;
+        
+
+        StartCoroutine(Timer());
+        timedQTEDisplay.TimerRing(duration);
         yield return new WaitForSeconds(duration * .8f);
 
         if (timerIsActive == true)
         {
+            timedQTEDisplay.currentImage.color = Color.green;
             resultDisplayText.text = "Now!";
             perfectTiming = true;
             timerText.color = Color.yellow;
@@ -481,6 +496,10 @@ public class QTEManager : MonoBehaviour
                     eventGen = Random.Range(1, 5);
                 }
 
+                activeQTEDisplay.ResetPosition();
+                inputDisplayText.transform.position = activeQTEDisplay.transform.position;
+                
+
                 switch (eventGen)
                 {
                     case 1:
@@ -509,6 +528,9 @@ public class QTEManager : MonoBehaviour
                         break;
                 }
 
+                activeQTEDisplay.MovePosition(eventGen);
+                inputDisplayText.transform.position = activeQTEDisplay.transform.position;
+
                 if (i == totalKeys - 1)
                 {
                     eventOngoing = false;
@@ -519,6 +541,8 @@ public class QTEManager : MonoBehaviour
 
             else
             {
+                activeQTEDisplay.ResetPosition();
+                inputDisplayText.transform.position = activeQTEDisplay.transform.position;
                 eventOngoing = false;
                 yield break;
             }

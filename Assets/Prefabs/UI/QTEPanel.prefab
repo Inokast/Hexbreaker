@@ -169,9 +169,9 @@ RectTransform:
   m_Father: {fileID: 537960240047785512}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 165}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: 55}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &91272538265734332
@@ -5253,9 +5253,9 @@ RectTransform:
   m_Father: {fileID: 537960240047785512}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 105}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -5}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8165060608792538686
@@ -5363,6 +5363,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4622517695033314251}
     m_Modifications:
+    - target: {fileID: 287443372987380107, guid: 94d197d79792b9f4595920dc65631101,
+        type: 3}
+      propertyPath: m_Name
+      value: OtherEffect
+      objectReference: {fileID: 0}
     - target: {fileID: 2221236278558775818, guid: 94d197d79792b9f4595920dc65631101,
         type: 3}
       propertyPath: m_Pivot.x
@@ -5473,6 +5478,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SparkleEffect
       objectReference: {fileID: 0}
+    - target: {fileID: 4623238600300231300, guid: 94d197d79792b9f4595920dc65631101,
+        type: 3}
+      propertyPath: m_Name
+      value: FlamesEffect
+      objectReference: {fileID: 0}
     - target: {fileID: 4961810918954596259, guid: 94d197d79792b9f4595920dc65631101,
         type: 3}
       propertyPath: m_SortingLayer
@@ -5515,9 +5525,27 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 4197048654025301352}
   m_SourcePrefab: {fileID: 100100000, guid: 94d197d79792b9f4595920dc65631101, type: 3}
+--- !u!198 &1175348538810093185 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1324901336123297118, guid: 94d197d79792b9f4595920dc65631101,
+    type: 3}
+  m_PrefabInstance: {fileID: 156873895521879007}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &1700444770242764928 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1563983239404626783, guid: 94d197d79792b9f4595920dc65631101,
+    type: 3}
+  m_PrefabInstance: {fileID: 156873895521879007}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &2089170337478072789 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2221236278558775818, guid: 94d197d79792b9f4595920dc65631101,
+    type: 3}
+  m_PrefabInstance: {fileID: 156873895521879007}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &3261482227837323464 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 3417756253292808983, guid: 94d197d79792b9f4595920dc65631101,
     type: 3}
   m_PrefabInstance: {fileID: 156873895521879007}
   m_PrefabAsset: {fileID: 0}
@@ -5577,10 +5605,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14ac95cbd1936854da134c7ace55f874, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sparkleEffect: {fileID: 1700444770242764928}
+  flamesEffect: {fileID: 3261482227837323464}
+  otherEffect: {fileID: 1175348538810093185}
+  ring: {fileID: 0}
+  targetScale: {x: 0, y: 0, z: 0}
   defaultColor: {r: 0.70980394, g: 0, b: 0, a: 1}
   button: {fileID: 21300000, guid: 115851d2ff39b394ca55085d729517e7, type: 3}
   pressedButton: {fileID: 21300000, guid: 21efd61cc50aaaf4e8d02b7478349fea, type: 3}
+  waitTime: 0
   colorGoal: 0
+  defaultPosition: {x: 0, y: 0}
   currentImage: {fileID: 2671702394331533308}
 --- !u!1001 &4025883965732450801
 PrefabInstance:
@@ -5590,6 +5625,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4622517695033314251}
     m_Modifications:
+    - target: {fileID: 650434814448199837, guid: 5d9af04d04328894c82c500a7cdfb612,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4127728287874531319, guid: 5d9af04d04328894c82c500a7cdfb612,
         type: 3}
       propertyPath: m_SortingLayer
@@ -5710,8 +5750,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8314998694918871124, guid: 5d9af04d04328894c82c500a7cdfb612,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 5.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8314998694918871124, guid: 5d9af04d04328894c82c500a7cdfb612,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 5.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8314998694918871124, guid: 5d9af04d04328894c82c500a7cdfb612,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 5.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8908661476909761024, guid: 5d9af04d04328894c82c500a7cdfb612,
+        type: 3}
+      propertyPath: m_Name
+      value: SparkleEffect
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 650434814448199837, guid: 5d9af04d04328894c82c500a7cdfb612, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 4929641114741213107, guid: 5d9af04d04328894c82c500a7cdfb612,
@@ -5727,6 +5788,18 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 753087359738717348}
   m_SourcePrefab: {fileID: 100100000, guid: 5d9af04d04328894c82c500a7cdfb612, type: 3}
+--- !u!198 &708333301608246442 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 4470474922092404059, guid: 5d9af04d04328894c82c500a7cdfb612,
+    type: 3}
+  m_PrefabInstance: {fileID: 4025883965732450801}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7959751240215722050 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6460527703587293619, guid: 5d9af04d04328894c82c500a7cdfb612,
+    type: 3}
+  m_PrefabInstance: {fileID: 4025883965732450801}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &8338214988697302594 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4929641114741213107, guid: 5d9af04d04328894c82c500a7cdfb612,
@@ -5745,10 +5818,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14ac95cbd1936854da134c7ace55f874, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultColor: {r: 0, g: 0, b: 0, a: 0}
+  sparkleEffect: {fileID: 708333301608246442}
+  flamesEffect: {fileID: 0}
+  otherEffect: {fileID: 0}
+  ring: {fileID: 7959751240215722050}
+  targetScale: {x: 0, y: 0, z: 0}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
   button: {fileID: 21300000, guid: c21d28b28aae0454bb74d68cbe2cbfbe, type: 3}
   pressedButton: {fileID: 21300000, guid: c21d28b28aae0454bb74d68cbe2cbfbe, type: 3}
+  waitTime: 0
   colorGoal: 0
+  defaultPosition: {x: 0, y: 0}
   currentImage: {fileID: 753087359738717348}
 --- !u!222 &574255476898214082
 CanvasRenderer:
@@ -5817,10 +5897,15 @@ PrefabInstance:
       propertyPath: m_SortingLayer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4928491531142666736, guid: 1bb7537f8dc461b4b82096fe2c12f479,
+        type: 3}
+      propertyPath: m_Name
+      value: FlamesEffect
+      objectReference: {fileID: 0}
     - target: {fileID: 5424249062337032321, guid: 1bb7537f8dc461b4b82096fe2c12f479,
         type: 3}
       propertyPath: m_Name
-      value: Sparkleeffect
+      value: SparkleEffect
       objectReference: {fileID: 0}
     - target: {fileID: 8611865268385786729, guid: 1bb7537f8dc461b4b82096fe2c12f479,
         type: 3}
@@ -5951,6 +6036,18 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 8579770365042422801}
   m_SourcePrefab: {fileID: 100100000, guid: 1bb7537f8dc461b4b82096fe2c12f479, type: 3}
+--- !u!198 &167931026911540340 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5987911437546479803, guid: 1bb7537f8dc461b4b82096fe2c12f479,
+    type: 3}
+  m_PrefabInstance: {fileID: 5858560633529750735}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &1364283268367210819 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 4873776316046478732, guid: 1bb7537f8dc461b4b82096fe2c12f479,
+    type: 3}
+  m_PrefabInstance: {fileID: 5858560633529750735}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &2796370392192155558 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8611865268385786729, guid: 1bb7537f8dc461b4b82096fe2c12f479,
@@ -5975,10 +6072,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14ac95cbd1936854da134c7ace55f874, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sparkleEffect: {fileID: 167931026911540340}
+  flamesEffect: {fileID: 1364283268367210819}
+  otherEffect: {fileID: 0}
+  ring: {fileID: 0}
+  targetScale: {x: 0, y: 0, z: 0}
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
   button: {fileID: 21300000, guid: 6380acd1e111ca74a8880ab4374a3af2, type: 3}
   pressedButton: {fileID: 21300000, guid: e0695085b65bede4c8435030501d86b9, type: 3}
+  waitTime: 0
   colorGoal: 0
+  defaultPosition: {x: -90.48041, y: -7.712463}
   currentImage: {fileID: 8579770365042422801}
 --- !u!222 &2368528480316467127
 CanvasRenderer:
@@ -6040,6 +6144,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2187259964985843379, guid: 2353241cc6a16c24db82e522604aad59,
+        type: 3}
+      propertyPath: m_Name
+      value: OtherEffect
       objectReference: {fileID: 0}
     - target: {fileID: 2456740575441376001, guid: 2353241cc6a16c24db82e522604aad59,
         type: 3}
@@ -6175,6 +6284,12 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 5006682843735446770}
   m_SourcePrefab: {fileID: 100100000, guid: 2353241cc6a16c24db82e522604aad59, type: 3}
+--- !u!198 &2882268671320007745 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8346539398744599808, guid: 2353241cc6a16c24db82e522604aad59,
+    type: 3}
+  m_PrefabInstance: {fileID: 6065008709354735937}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &5645813597327689908 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1905806337551679989, guid: 2353241cc6a16c24db82e522604aad59,
@@ -6193,10 +6308,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14ac95cbd1936854da134c7ace55f874, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sparkleEffect: {fileID: 5874670573808388039}
+  flamesEffect: {fileID: 0}
+  otherEffect: {fileID: 2882268671320007745}
+  ring: {fileID: 0}
+  targetScale: {x: 0, y: 0, z: 0}
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
   button: {fileID: 21300000, guid: 764e03702152dc24aba3aa4c2208e1a8, type: 3}
   pressedButton: {fileID: 21300000, guid: 8f11be9b73d0fb540b66c5fd1efe9a90, type: 3}
+  waitTime: 0
   colorGoal: 0
+  defaultPosition: {x: -90.48041, y: -7.712463}
   currentImage: {fileID: 5006682843735446770}
 --- !u!222 &8152322793581630450
 CanvasRenderer:
@@ -6236,6 +6358,12 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!198 &5874670573808388039 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 408763837529411206, guid: 2353241cc6a16c24db82e522604aad59,
+    type: 3}
+  m_PrefabInstance: {fileID: 6065008709354735937}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &8517192830756952640 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2456740575441376001, guid: 2353241cc6a16c24db82e522604aad59,

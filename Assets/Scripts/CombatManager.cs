@@ -494,18 +494,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
 
         eventManager.eventResult = QTEResult.NONE;
 
-        if (BreakMeter.charge == 100)
-        {
-            breakButton.interactable = true;
-        }
-
-        else
-        {
-            breakButton.interactable = false;
-        }
-
-        attackButton.interactable = true;
-        defendButton.interactable = true;
+        EnableButtons();
 
         enemyHUD.SetHUD(selectedEnemyUnit);
 
@@ -624,6 +613,8 @@ public class CombatManager : MonoBehaviour, IDataPersistence
                 
             }
         }
+
+        DisableButtons();
 
         cam.ResetMainCam();
 
@@ -877,6 +868,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         sfx.PlayPlayerAttack_Focus();
         playerUnit.isDefending = true;
         battleText.text = playerUnit.unitName + " takes a defensive stance!";
+        DisableButtons();
 
         StartCoroutine(ConfirmTimer());
         yield return new WaitUntil(() => waitingForConfirm == false);
@@ -892,6 +884,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
     {
         // Break animation plays. 
         cam.ResetMainCam();
+        DisableButtons();
 
         breakButton.interactable = false;
         BreakMeter.charge = 0;
@@ -1580,6 +1573,30 @@ public class CombatManager : MonoBehaviour, IDataPersistence
     #endregion
 
     #region Buttons
+
+    public void DisableButtons() 
+    {
+        attackButton.enabled = false;
+        defendButton.enabled = false;
+        breakButton.enabled = false;
+    }
+
+    public void EnableButtons() 
+    {
+        if (BreakMeter.charge == 100)
+        {
+            breakButton.enabled = true;
+        }
+
+        else
+        {
+            breakButton.enabled = false;
+        }
+
+        attackButton.enabled = true;
+        defendButton.enabled = true;
+    }
+
     public void OnAttackButton() 
     {
         if (state != BattleState.PLAYERTURN)
@@ -1590,7 +1607,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         if (GameObject.Find("AttackingCurse") != null) //To prevent attacking. -Dylan 2
         {
             battleText.text = "The enemy's curse is preventing " + playerUnit.unitName + " from attacking!";
-            attackButton.interactable = false;
+            attackButton.enabled = false;
             return;
         }
         sfx.PlayButtonSelect();
@@ -1625,7 +1642,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         if (GameObject.Find("DefendingCurse") != null) //To prevent defending. -Dylan 2
         {
             battleText.text = "The enemy's curse is preventing " + playerUnit.unitName + " from defending!";
-            defendButton.interactable = false;
+            defendButton.enabled = false;
             return;
         }
         sfx.PlayButtonSelect();
