@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class UIManager : MonoBehaviour
@@ -12,6 +13,12 @@ public class UIManager : MonoBehaviour
 
     [Header("Credits")]
     [SerializeField] private GameObject pageConnor;
+
+    [Header("Help")]
+    [SerializeField] private Button nextButton;
+    [SerializeField] private Button previousButton;
+    [SerializeField] private GameObject helpCombat;
+    private GameObject currentHelp;
 
     private GameObject currentPage;
 
@@ -26,6 +33,8 @@ public class UIManager : MonoBehaviour
         levelManager = FindObjectOfType<LevelManager>();
         sfx = FindAnyObjectByType<SoundFXController>();
         currentPage = pageConnor;
+        currentHelp = helpCombat;
+        previousButton.interactable = false;
     }
     public void OnNewGameButton() 
     {
@@ -104,5 +113,22 @@ public class UIManager : MonoBehaviour
         currentPage.SetActive(false);
         currentPage = tempVar;
         tempVar.SetActive(true);
+    }
+
+    public void OnHelpPageClick(GameObject tempVar)
+    {
+        currentHelp.SetActive(false);
+        currentHelp = tempVar;
+        tempVar.SetActive(true);
+    }
+
+    public void DisableSelfButton(Button tempVar)
+    {
+        tempVar.interactable = false;
+    }
+
+    public void EnableeOtherButton(Button tempVar)
+    {
+        tempVar.interactable = true;
     }
 }
