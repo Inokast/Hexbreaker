@@ -22,6 +22,7 @@ public class MapNode : MonoBehaviour, IDataPersistence
     private bool rightPathLocked;
     private bool leftPathLocked;
 
+    [SerializeField] private GameObject fogEffect;
     [SerializeField] private GameObject[] nodeMeshes;
     private GameObject newMesh;
 
@@ -38,6 +39,20 @@ public class MapNode : MonoBehaviour, IDataPersistence
     private void Start()
     {
         UpdateMesh();
+        if (isActive == false)
+        {
+            fogEffect.SetActive(true);
+        }
+
+        else
+        {
+            ClearFog();
+        }
+    }
+
+    public void ClearFog() 
+    {
+        fogEffect.SetActive(false);
     }
 
     public void UpdateMesh() 
@@ -135,7 +150,7 @@ public class MapNode : MonoBehaviour, IDataPersistence
         gameData.nodesEnemies.Add(enemiesAsString);
     }
 
-    public void CompleteNode() 
+    public void CompleteNode()
     {
         isCompleted = true;
 
@@ -148,18 +163,21 @@ public class MapNode : MonoBehaviour, IDataPersistence
         if (rightPath == leftPath)
         {
             rightPath.isActive = true;
+            rightPath.ClearFog();
         }
 
         else 
         {
-            if (rightPathLocked == false) 
+            if (rightPathLocked == false)
             {
                 rightPath.isActive = true;
+                rightPath.ClearFog();
             }
 
-            if (leftPathLocked == false) 
+            if (leftPathLocked == false)
             {
                 leftPath.isActive = true;
+                leftPath.ClearFog();
             }
         }
 

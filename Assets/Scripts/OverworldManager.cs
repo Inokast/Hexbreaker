@@ -15,17 +15,20 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
     [SerializeField] private MapNode[] mapNodes;
     [SerializeField] private BattleHUD playerHUD;
     [SerializeField] private GameObject mainMenuButton;
+
+    [SerializeField] private GameObject enterButton;
+
     private SoundFXController sfx;
 
     private CreateTalismans tg;
 
     [Header("World Data")]
     [SerializeField] private GameObject player;
-    public Unit playerUnit;
+    [HideInInspector] public Unit playerUnit;
     private bool worldGenerated;
     private bool combatFinished;
 
-    [SerializeField] private Vector3 startPos = new Vector3(0, .5f, -8);
+    [SerializeField] private Vector3 startPos = new Vector3(-.4f, .55f, -8.18f);
     [SerializeField] private Vector3 playerPosInWorld;
 
     [Header("Combat Node Data")]
@@ -73,11 +76,20 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
 
         if (combatFinished == true)
         {
-            print("Combat Has Finished check successful");
             //print(lastSelectedNodeID);
             CheckNodeCompleted();
         }
         combatFinished = false;
+
+        if (playerPosInWorld != startPos)
+        {
+            player.transform.position = playerPosInWorld;
+        }
+
+        else
+        {
+            player.transform.position = startPos;
+        }
 
     }
 
@@ -151,6 +163,7 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
                         moveTimer = 0;
                         movementInitiated = true;
                         lastSelectedNodeID = selectedNode.nodeID;
+                        
 
                         sfx.PlayButtonSelect();
                         //informationPanel.GetComponentInChildren<Button>().interactable = true;
@@ -158,20 +171,24 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
                         if (selectedNode.isCompleted)
                         {
                             //informationPanel.GetComponentInChildren<Button>().interactable = false;
-                            StartCoroutine(EventTextDisplay("This path has been lost..."));
+                            StartCoroutine(EventTextDisplay("You've already cleared this path."));
+                            informationPanel.SetActive(false);
+                            enterButton.SetActive(false);
                         }
 
                         else if (selectedNode.isCompleted == false)
                         {
                             //informationPanel.GetComponentInChildren<Button>().interactable = true;
-                            StartCoroutine(EventTextDisplay("Traverse this path?..."));
+                            StartCoroutine(EventTextDisplay("Traverse this path?..."));                           
                         }
                     }
 
                     else
                     {
                         //print("Selected node is not activated");
-                        StartCoroutine(EventTextDisplay("This path has been lost..."));
+                        StartCoroutine(EventTextDisplay("The fog is blocking this path..."));
+                        informationPanel.SetActive(false);
+                        enterButton.SetActive(false);
                     }
                 }
 
@@ -183,6 +200,7 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
                 else
                 {
                     informationPanel.SetActive(false);
+                    enterButton.SetActive(false);
                 }
             }
         }
@@ -192,9 +210,16 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
             player.transform.position = Vector3.Lerp(player.transform.position, endPos, moveTimer / 8);
             moveTimer += Time.deltaTime;
 
+
             if (player.transform.position == endPos)
             {
                 movementInitiated = false;
+
+                if (selectedNode.isActive && !selectedNode.isCompleted) 
+                {
+                    enterButton.SetActive(true);
+                }
+                
             }
         }
     }
@@ -270,12 +295,16 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
         mainMenuButton.SetActive(true);
 
         tg.HidePanel();
+
+        selectedNode.ClearFog();
     }
 
     IEnumerator EventTextDisplay(string textToDisplay)
     {
+        StopAllCoroutines();
+
         eventText.text = textToDisplay;
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(5f);
 
         eventText.text = "";
     }
