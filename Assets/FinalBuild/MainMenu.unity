@@ -8433,6 +8433,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4346675114934478306, guid: 3f8d75a9a3aacba47bd404ca855dce4a,
         type: 3}
+      propertyPath: m_Interactable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4346675114934478306, guid: 3f8d75a9a3aacba47bd404ca855dce4a,
+        type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 3
       objectReference: {fileID: 0}
@@ -11333,6 +11338,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DataPersistenceManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 2948468782288495037, guid: cd1118e95be96924f81e90c52c8360d6,
+        type: 3}
+      propertyPath: initializeDataIfNull
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

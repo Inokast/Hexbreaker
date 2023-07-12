@@ -1583,7 +1583,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
 
     public void EnableButtons() 
     {
-        if (BreakMeter.charge == 100)
+        if (BreakMeter.charge >= 100)
         {
             breakButton.enabled = true;
         }

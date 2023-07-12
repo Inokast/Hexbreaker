@@ -2631,7 +2631,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 22
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &794739448
 PrefabInstance:
@@ -3116,7 +3116,7 @@ PrefabInstance:
     - target: {fileID: 9018401202185458719, guid: abeb80de53ca6274d805480d91e5f067,
         type: 3}
       propertyPath: m_RootOrder
-      value: 24
+      value: 23
       objectReference: {fileID: 0}
     - target: {fileID: 9018401202185458719, guid: abeb80de53ca6274d805480d91e5f067,
         type: 3}
@@ -3195,7 +3195,7 @@ PrefabInstance:
     - target: {fileID: 1365544404900770371, guid: 0b9cc055fa894414a94e957ef998f5a2,
         type: 3}
       propertyPath: m_RootOrder
-      value: 19
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 1365544404900770371, guid: 0b9cc055fa894414a94e957ef998f5a2,
         type: 3}
@@ -3759,7 +3759,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1154370993
 PrefabInstance:
@@ -4184,7 +4184,7 @@ PrefabInstance:
     - target: {fileID: 5021535458020856309, guid: d726589dffd97c9449c1dc2903e05887,
         type: 3}
       propertyPath: m_RootOrder
-      value: 23
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 5021535458020856309, guid: d726589dffd97c9449c1dc2903e05887,
         type: 3}
@@ -4558,54 +4558,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1717980679
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1717980681}
-  - component: {fileID: 1717980680}
-  m_Layer: 0
-  m_Name: UIManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1717980680
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1717980679}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b32966eaf11a66c4caa640febaa1551f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  settingsPanel: {fileID: 0}
-  helpPanel: {fileID: 0}
-  creditsPanel: {fileID: 0}
-  pageConnor: {fileID: 0}
---- !u!4 &1717980681
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1717980679}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 704.9285, y: 287.09213, z: 96.31012}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 16
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1754787207 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2806070146759572128, guid: 6aa21c6cf0b7a39459a9f894ab75f6cd,
@@ -4728,7 +4680,7 @@ Transform:
   - {fileID: 1154370994}
   - {fileID: 261126674}
   m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1825824106
 GameObject:
@@ -5495,7 +5447,7 @@ PrefabInstance:
     - target: {fileID: 1309620824355937442, guid: cba26f69e6ae156419603ad10402515e,
         type: 3}
       propertyPath: m_RootOrder
-      value: 20
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 1309620824355937442, guid: cba26f69e6ae156419603ad10402515e,
         type: 3}
@@ -5628,7 +5580,7 @@ PrefabInstance:
     - target: {fileID: 5899169968711647628, guid: b36c715b036d0e24d8e972c05318880d,
         type: 3}
       propertyPath: m_RootOrder
-      value: 17
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 5899169968711647628, guid: b36c715b036d0e24d8e972c05318880d,
         type: 3}

@@ -106,6 +106,7 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
         worldGenerated = gameData.worldGenerated;
 
         playerPosInWorld = gameData.playerPositionInWorld;
+        endPos = playerPosInWorld;
 
         combatFinished = gameData.combatFinished;
         worldGenerated = gameData.worldGenerated;

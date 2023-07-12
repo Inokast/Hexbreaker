@@ -291,6 +291,10 @@ MonoBehaviour:
   settingsPanel: {fileID: 0}
   helpPanel: {fileID: 0}
   creditsPanel: {fileID: 0}
+  pageConnor: {fileID: 0}
+  nextButton: {fileID: 0}
+  previousButton: {fileID: 0}
+  helpCombat: {fileID: 0}
 --- !u!4 &237223883
 Transform:
   m_ObjectHideFlags: 0
@@ -1091,7 +1095,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2003600835}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: DataPersistenceManager, Assembly-CSharp
         m_MethodName: NewGame
         m_Mode: 1
@@ -1356,18 +1360,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1865450761}
   m_CullTransparentMesh: 1
---- !u!114 &2003600835 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2948468782288495037, guid: cd1118e95be96924f81e90c52c8360d6,
-    type: 3}
-  m_PrefabInstance: {fileID: 6794832463237530107}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56dea5240897a0d40994f02e52f823e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2006995863
 GameObject:
   m_ObjectHideFlags: 0
@@ -1578,79 +1570,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e58ee1a21050984ba307d0059503d27, type: 3}
---- !u!1001 &6794832463237530107
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1817063232602249781, guid: cd1118e95be96924f81e90c52c8360d6,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 1817063232602249781, guid: cd1118e95be96924f81e90c52c8360d6,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 575.957
-      objectReference: {fileID: 0}
-    - target: {fileID: 1817063232602249781, guid: cd1118e95be96924f81e90c52c8360d6,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 276.58966
-      objectReference: {fileID: 0}
-    - target: {fileID: 1817063232602249781, guid: cd1118e95be96924f81e90c52c8360d6,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 3.6594794
-      objectReference: {fileID: 0}
-    - target: {fileID: 1817063232602249781, guid: cd1118e95be96924f81e90c52c8360d6,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1817063232602249781, guid: cd1118e95be96924f81e90c52c8360d6,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1817063232602249781, guid: cd1118e95be96924f81e90c52c8360d6,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1817063232602249781, guid: cd1118e95be96924f81e90c52c8360d6,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1817063232602249781, guid: cd1118e95be96924f81e90c52c8360d6,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1817063232602249781, guid: cd1118e95be96924f81e90c52c8360d6,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1817063232602249781, guid: cd1118e95be96924f81e90c52c8360d6,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2347474306703414344, guid: cd1118e95be96924f81e90c52c8360d6,
-        type: 3}
-      propertyPath: m_Name
-      value: DataPersistenceManager
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: cd1118e95be96924f81e90c52c8360d6, type: 3}
 --- !u!1001 &9092430230588344257
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -34,7 +34,6 @@ public class UIManager : MonoBehaviour
         sfx = FindAnyObjectByType<SoundFXController>();
         currentPage = pageConnor;
         currentHelp = helpCombat;
-        previousButton.interactable = false;
     }
     public void OnNewGameButton() 
     {
