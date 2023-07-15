@@ -421,6 +421,15 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
         mapNodes[0].nodeEnemyID.Clear();
         mapNodes[0].nodeEnemyID.Add(0);
         mapNodes[0].nodeDescription = "Your journey begins here...";
+
+        RandomizeSpecificNode(6, 1, Random.Range(1, 4), "Ruins");
+
+        RandomizeSpecificNode(7, 1, Random.Range(1, 4), "Ruins");
+
+        RandomizeSpecificNode(8, 1, Random.Range(1, 4), "Ruins");
+
+        RandomizeSpecificNode(9, 1, Random.Range(1, 4), "Cathedral");
+
         foreach (MapNode node in mapNodes)
         {
             node.UpdateMesh();
@@ -430,11 +439,9 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
                 node.mapSection = "Boss";
                 node.nodeEnemyID.Clear();
                 node.nodeEnemyID.Add(0);
-                node.nodeDescription = "You've reached the Phantasmal Despair. The air here is rife with melancholy...";
+                node.nodeDescription = "You've reached the Phantasmal Sanctum. The air here is rife with melancholy...";
             }
         }
-
-        // foreach mapNode node in mapNodes[], randomize values
     }
 
     // Resets the player unit to default values - Dan
@@ -450,5 +457,71 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
         playerDied = false;
 
         // Also remove any talismans
+    }
+
+    private void RandomizeSpecificNode(int nodeIndex, int nodeType, int enemyAmount, string nodeRegion)
+    {
+        mapNodes[nodeIndex].nodeEnemyID.Clear();
+        //Just a quicker way to specify the row of nodes we want to always be combat. -Dylan 10
+        do
+        {
+
+            if (nodeRegion == "Marsh")
+            {
+                mapNodes[nodeIndex].nodeType = nodeType;
+                mapNodes[nodeIndex].nodeDescription = "A dangerous combat encounter lurks here...";
+
+                int randomizedNumber = Random.Range(1, 101);
+
+                if (randomizedNumber >= 1 && randomizedNumber < 35)
+                {
+                    mapNodes[nodeIndex].nodeEnemyID.Add(0);
+                }
+                else if (randomizedNumber >= 36 && randomizedNumber < 70)
+                {
+                    mapNodes[nodeIndex].nodeEnemyID.Add(1);
+                }
+                else if (randomizedNumber >= 71)
+                {
+                    mapNodes[nodeIndex].nodeEnemyID.Add(2);
+                }
+            }
+            else if (nodeRegion == "Ruins")
+            {
+                mapNodes[nodeIndex].nodeType = nodeType;
+                mapNodes[nodeIndex].nodeDescription = "A dangerous combat encounter lurks here...";
+
+                int randomizedNumber = Random.Range(1, 101);
+
+
+                if (randomizedNumber >= 1 && randomizedNumber < 35)
+                {
+                    mapNodes[nodeIndex].nodeEnemyID.Add(0);
+                }
+                else if (randomizedNumber >= 36 && randomizedNumber < 70)
+                {
+                    mapNodes[nodeIndex].nodeEnemyID.Add(1);
+                }
+                else if (randomizedNumber >= 71)
+                {
+                    mapNodes[nodeIndex].nodeEnemyID.Add(2);
+                }
+            }
+            else if (nodeRegion == "Cathedral")
+            {
+                mapNodes[nodeIndex].nodeType = nodeType;
+                mapNodes[nodeIndex].nodeDescription = "A dangerous combat encounter lurks here...";
+
+                int randomizedNumber = Random.Range(1, 101);
+
+                if (randomizedNumber >= 1) //Only one enemy resides in the cathedral currently. -Dylan 5
+                {
+                    mapNodes[nodeIndex].nodeEnemyID.Add(0);
+                }
+            }
+
+            enemyAmount--;
+
+        } while (enemyAmount > 0);
     }
 }

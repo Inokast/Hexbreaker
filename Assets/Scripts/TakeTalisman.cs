@@ -21,7 +21,7 @@ public class TakeTalisman : MonoBehaviour
         {
             om = GameObject.Find("OverworldManager").GetComponent<OverworldManager>();
         }
-        else
+        else if (SceneManager.GetActiveScene().name != "MainMenu")
         {
             cm = GameObject.Find("CombatManager").GetComponent<CombatManager>();
         }
@@ -191,6 +191,14 @@ public class TakeTalisman : MonoBehaviour
 
             talismanManager.talismans.Add(gameObject);
 
+            talismanManager.talismanNames.Add("Restorative Talisman");
+
+            talismanManager.talismanFirstStats.Add(amount);
+
+            talismanManager.talismanSecondStats.Add(0);
+
+            talismanManager.talismanRarities.Add(amount / 5);
+
             gameObject.SetActive(false);
         }
         else if (name == "Surgical Talisman")
@@ -253,6 +261,14 @@ public class TakeTalisman : MonoBehaviour
 
             talismanManager.talismans.Add(gameObject);
 
+            talismanManager.talismanNames.Add("Surgical Talisman");
+
+            talismanManager.talismanFirstStats.Add(firstHalf);
+
+            talismanManager.talismanSecondStats.Add(secondHalf);
+
+            talismanManager.talismanRarities.Add(firstHalf / 8);
+
             gameObject.SetActive(false);
         }
         else if (name == "Expansive Talisman")
@@ -284,6 +300,14 @@ public class TakeTalisman : MonoBehaviour
 
             talismanManager.talismans.Add(gameObject);
 
+            talismanManager.talismanNames.Add("Expansive Talisman");
+
+            talismanManager.talismanFirstStats.Add(amount);
+
+            talismanManager.talismanSecondStats.Add(0);
+
+            talismanManager.talismanRarities.Add(amount / 3);
+
             gameObject.SetActive(false);
         }
         else if (name == "Training Talisman" || name == "Powerful Talisman" || name == "Perfect Talisman")
@@ -303,26 +327,74 @@ public class TakeTalisman : MonoBehaviour
             if (SceneManager.GetActiveScene().name == "Overworld" && name == "Training Talisman")
             {
                 om.playerUnit.lowDamage += amount;
+
+                talismanManager.talismanNames.Add("Training Talisman");
+
+                talismanManager.talismanFirstStats.Add(amount);
+
+                talismanManager.talismanSecondStats.Add(0);
+
+                talismanManager.talismanRarities.Add(amount / 1);
             }
             else if (name == "Training Talisman")
             {
                 cm.playerUnit.lowDamage += amount;
+
+                talismanManager.talismanNames.Add("Training Talisman");
+
+                talismanManager.talismanFirstStats.Add(amount);
+
+                talismanManager.talismanSecondStats.Add(0);
+
+                talismanManager.talismanRarities.Add(amount / 1);
             }
             else if (SceneManager.GetActiveScene().name == "Overworld" && name == "Powerful Talisman")
             {
                 om.playerUnit.midDamage += amount;
+
+                talismanManager.talismanNames.Add("Powerful Talisman");
+
+                talismanManager.talismanFirstStats.Add(amount);
+
+                talismanManager.talismanSecondStats.Add(0);
+
+                talismanManager.talismanRarities.Add(amount / 2);
             }
             else if (name == "Powerful Talisman")
             {
                 cm.playerUnit.midDamage += amount;
+
+                talismanManager.talismanNames.Add("Powerful Talisman");
+
+                talismanManager.talismanFirstStats.Add(amount);
+
+                talismanManager.talismanSecondStats.Add(0);
+
+                talismanManager.talismanRarities.Add(amount / 2);
             }
             else if (SceneManager.GetActiveScene().name == "Overworld" && name == "Perfect Talisman")
             {
                 om.playerUnit.highDamage += amount;
+
+                talismanManager.talismanNames.Add("Perfect Talisman");
+
+                talismanManager.talismanFirstStats.Add(amount);
+
+                talismanManager.talismanSecondStats.Add(0);
+
+                talismanManager.talismanRarities.Add(amount / 3);
             }
             else if (name == "Perfect Talisman")
             {
                 cm.playerUnit.highDamage += amount;
+
+                talismanManager.talismanNames.Add("Perfect Talisman");
+
+                talismanManager.talismanFirstStats.Add(amount);
+
+                talismanManager.talismanSecondStats.Add(0);
+
+                talismanManager.talismanRarities.Add(amount / 3);
             }
 
             talismanManager.action.Add(false);
@@ -362,13 +434,60 @@ public class TakeTalisman : MonoBehaviour
 
             talismanManager.talismans.Add(gameObject);
 
+            talismanManager.talismanNames.Add("Impenetrable Talisman");
+
+            talismanManager.talismanFirstStats.Add(amount);
+
+            talismanManager.talismanSecondStats.Add(0);
+
+            talismanManager.talismanRarities.Add(amount / 1);
+
             gameObject.SetActive(false);
         }
-        else
+        else //Is action talisman -Dylan 10
         {
             talismanManager.action.Add(true);
 
             gameObject.transform.SetParent(GameObject.Find("TalismanGenerator").transform, false);
+
+            string extractedNumber = "";
+
+            for (int i = 0; i < description.Length; i++)
+            {
+                if (Char.IsDigit(description[i]))
+                {
+                    extractedNumber += description[i];
+                }
+            }
+
+            int amount = int.Parse(extractedNumber);
+
+            if (tag == "SpectralFrame")
+            {
+                talismanManager.talismanRarities.Add(5);
+            }
+            else if (tag == "LegendaryFrame")
+            {
+                talismanManager.talismanRarities.Add(4);
+            }
+            else if (tag == "RareFrame")
+            {
+                talismanManager.talismanRarities.Add(3);
+            }
+            else if (tag == "UncommonFrame")
+            {
+                talismanManager.talismanRarities.Add(2);
+            }
+            else
+            {
+                talismanManager.talismanRarities.Add(1);
+            }
+
+            talismanManager.talismanNames.Add(name);
+
+            talismanManager.talismanFirstStats.Add(amount);
+
+            talismanManager.talismanSecondStats.Add(0);
 
             talismanManager.talismans.Add(gameObject);
 

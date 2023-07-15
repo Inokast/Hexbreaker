@@ -22,7 +22,6 @@ public class UIManager : MonoBehaviour
 
     private GameObject currentPage;
 
-
     private LevelManager levelManager;
     private DataPersistenceManager dataManager;
 
@@ -35,6 +34,7 @@ public class UIManager : MonoBehaviour
         currentPage = pageConnor;
         currentHelp = helpCombat;
     }
+
     public void OnNewGameButton() 
     {
         sfx.PlayButtonSelect();
@@ -129,5 +129,13 @@ public class UIManager : MonoBehaviour
     public void EnableeOtherButton(Button tempVar)
     {
         tempVar.interactable = true;
+    }
+
+    public void OnResetDataButton()
+    {
+        sfx.PlayButtonSelect();
+
+
+        DataPersistenceManager.instance.NewGame();
     }
 }

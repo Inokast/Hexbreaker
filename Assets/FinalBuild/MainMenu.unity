@@ -5308,6 +5308,66 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!1 &978379911
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 978379912}
+  - component: {fileID: 978379913}
+  m_Layer: 0
+  m_Name: TalismanRegenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &978379912
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 978379911}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5.564097, y: 5.7839136, z: -0.3932115}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &978379913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 978379911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc0d4a7380746a242abe94b816c3b4fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  talis: []
+  act: 
+  talismanName: []
+  talismanFirstStat: 
+  talismanSecondStat: 
+  talismanRarity: 
+  commonFrame: {fileID: 4141631945951821521, guid: 600246502adf1bf4dae15c5e70010bf5,
+    type: 3}
+  uncommonFrame: {fileID: 3341659979554971888, guid: 31749f73a27caf244990f7853f537720,
+    type: 3}
+  rareFrame: {fileID: 4464568911166097858, guid: b8c3e5e1d6f45024d92d009396c620ca,
+    type: 3}
+  legendaryFrame: {fileID: 4587032668641966889, guid: 576418a96cebd2a47acec14806d5d252,
+    type: 3}
+  spectralFrame: {fileID: 2337935471822478998, guid: c17ca18a572e6cc4aad7c73ce212fd69,
+    type: 3}
 --- !u!1 &981410016
 GameObject:
   m_ObjectHideFlags: 0
@@ -7920,9 +7980,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2003600835}
-        m_TargetAssemblyTypeName: DataPersistenceManager, Assembly-CSharp
-        m_MethodName: NewGame
+      - m_Target: {fileID: 237223882}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: OnResetDataButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10757,18 +10817,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1997499689}
   m_CullTransparentMesh: 1
---- !u!114 &2003600835 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2948468782288495037, guid: cd1118e95be96924f81e90c52c8360d6,
-    type: 3}
-  m_PrefabInstance: {fileID: 6794832463237530107}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56dea5240897a0d40994f02e52f823e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2045200379
 GameObject:
   m_ObjectHideFlags: 0

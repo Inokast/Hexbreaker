@@ -69,13 +69,7 @@ public class DataPersistenceManager : MonoBehaviour
 
     public void NewGame() 
     {
-        gameData = new GameData();
-        foreach (IDataPersistence dataPersistenceObj in dataPersistenceObjects)
-        {
-            dataPersistenceObj.LoadData(gameData);
-        }
-
-        /*CreateTalismans tg = GameObject.Find("TalismanGenerator").GetComponent<CreateTalismans>();
+        CreateTalismans tg = GameObject.Find("TalismanGenerator").GetComponent<CreateTalismans>();
 
         if (tg.talismans != null)
         {
@@ -83,13 +77,19 @@ public class DataPersistenceManager : MonoBehaviour
             {
                 tg.talismans[0].SetActive(true);
 
-                Destroy(tg.gameObject.transform.GetChild(0));
+                Destroy(tg.talismans[0]);
             }
 
             tg.talismans.Clear();
 
             tg.action.Clear();
-        }*/
+        }
+
+        gameData = new GameData();
+        foreach (IDataPersistence dataPersistenceObj in dataPersistenceObjects)
+        {
+            dataPersistenceObj.LoadData(gameData);
+        }
     }
 
     public void LoadGame() 

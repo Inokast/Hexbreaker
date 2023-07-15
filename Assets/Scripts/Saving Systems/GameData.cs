@@ -41,11 +41,12 @@ public class GameData
     public int playerCurrentHP;
 
     [Header("Talisman Manager Settings")]
-    public List<GameObject> talismansCollected;
+    //public List<GameObject> talismansCollected;
     public List<bool> isAction;
-
-
-
+    public List<string> talisName;
+    public List<int> talisFirstStat;
+    public List<int> talisSecondStat;
+    public List<int> talisRarity;
 
 
     // The values defined in this constructor will be the default values
@@ -70,7 +71,11 @@ public class GameData
         nodesEnemies = new List<string>();
 
         //talismansCollected = new List<GameObject>();
-        //isAction = new List<bool>();
+        isAction = new List<bool>();
+        talisName = new List<string>();
+        talisFirstStat = new List<int>();
+        talisSecondStat = new List<int>();
+        talisRarity = new List<int>();
 
         bgmVolumeLevel = .2f;
         sfxVolumeLevel = .2f;

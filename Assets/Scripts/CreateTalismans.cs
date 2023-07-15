@@ -20,8 +20,22 @@ public class CreateTalismans : MonoBehaviour, IDataPersistence
 
     public List<GameObject> talismans = new List<GameObject>();
     public List<bool> action = new List<bool>();
+    public List<string> talismanNames = new List<string>();
+    public List<int> talismanFirstStats = new List<int>();
+    public List<int> talismanSecondStats = new List<int>();
+    public List<int> talismanRarities = new List<int>();
 
     public static CreateTalismans talismanManager { get; private set; }
+
+    void Start()
+    {
+        if (SceneManager.GetActiveScene().name == "MainMenu" && talismans != null)
+        {
+            TalismanRegenerator tr = GameObject.Find("TalismanRegenerator").GetComponent<TalismanRegenerator>();
+
+            tr.RegenerateTalismans();
+        }
+    }
 
     void Awake()
     {
@@ -34,12 +48,23 @@ public class CreateTalismans : MonoBehaviour, IDataPersistence
         {
             Destroy(gameObject);
         }
+
+        if (SceneManager.GetActiveScene().name == "MainMenu" && talismans != null)
+        {
+            TalismanRegenerator tr = GameObject.Find("TalismanRegenerator").GetComponent<TalismanRegenerator>();
+
+            tr.RegenerateTalismans();
+        }
     }
 
     public void LoadData(GameData gameData)
     {
-        talismans = gameData.talismansCollected;
+        //talismans = gameData.talismansCollected;
         action = gameData.isAction;
+        talismanNames = gameData.talisName;
+        talismanFirstStats = gameData.talisFirstStat;
+        talismanSecondStats = gameData.talisSecondStat;
+        talismanRarities = gameData.talisRarity;
 
         if (SceneManager.GetActiveScene().name == "Overworld")
         {
@@ -53,26 +78,47 @@ public class CreateTalismans : MonoBehaviour, IDataPersistence
 
     public void SaveData(GameData gameData)
     {
-        gameData.talismansCollected = talismans;
+        //gameData.talismansCollected = talismans;
         gameData.isAction = action;
+        gameData.talisName = talismanNames;
+        gameData.talisFirstStat = talismanFirstStats;
+        gameData.talisSecondStat = talismanSecondStats;
+        gameData.talisRarity = talismanRarities;
     }
 
 
     public void GenerateEncounterTalismans()
     {
-        int amount = CombatManager.cursesToTalismans;
-
         GameObject.Find("Purify Button").SetActive(false);
 
-        if (amount == 0)
+        if (SceneManager.GetActiveScene().name != "TutorialScene")
         {
-            CreateWholeTalisman(1, false);
+            int amount = CombatManager.cursesToTalismans;
+
+            if (amount == 0)
+            {
+                CreateWholeTalisman(1, false);
+            }
+            else
+            {
+                do
+                {
+                    CreateWholeTalisman(amount, false);
+
+                    amount--;
+
+                } while (amount > 0);
+            }
         }
         else
         {
+            int amount = 3;
+
             do
             {
-                CreateWholeTalisman(amount, false);
+                GameObject talisman = DecideTalismanRarity(amount, false);
+
+                CreateActionTalisman(talisman);
 
                 amount--;
 
@@ -364,6 +410,8 @@ public class CreateTalismans : MonoBehaviour, IDataPersistence
             GameObject talisman = DecideTalismanRarity(amount, false);
 
             CreateActionTalisman(talisman);
+
+            amount--;
 
         } while (amount > 0);
     }
