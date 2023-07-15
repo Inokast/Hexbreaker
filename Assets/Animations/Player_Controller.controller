@@ -7,7 +7,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Normal Attack
+  m_Name: Basic Attack
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -21,7 +21,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 9067093048684652814, guid: a07741d3c027c214d8402dd4479fb0de,
+  m_Motion: {fileID: 9067093048684652814, guid: 03ca6cbbb3e779b4a84f71853f4f8238,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -71,7 +71,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 1827226128182048838, guid: a07741d3c027c214d8402dd4479fb0de,
+  m_Motion: {fileID: 1827226128182048838, guid: 03ca6cbbb3e779b4a84f71853f4f8238,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -99,7 +99,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -2529017216748528031, guid: a07741d3c027c214d8402dd4479fb0de,
+  m_Motion: {fileID: -2529017216748528031, guid: 03ca6cbbb3e779b4a84f71853f4f8238,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -140,7 +140,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: ATK 0
+    m_ConditionEvent: Attack
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -8042658263863180013}
@@ -177,7 +177,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -5082598969275926800, guid: a07741d3c027c214d8402dd4479fb0de,
+  m_Motion: {fileID: -5082598969275926800, guid: 03ca6cbbb3e779b4a84f71853f4f8238,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -272,7 +272,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -8481709605947105597, guid: a07741d3c027c214d8402dd4479fb0de,
+  m_Motion: {fileID: -8481709605947105597, guid: 03ca6cbbb3e779b4a84f71853f4f8238,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -294,7 +294,13 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: ATK 0
+  - m_Name: Attack
+    m_Type: 9
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: Hit
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -312,13 +318,7 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: ATK
-    m_Type: 9
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 0}
-  - m_Name: Hit
+  - m_Name: FocusATK
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -453,7 +453,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 1950896874197824025, guid: a07741d3c027c214d8402dd4479fb0de,
+  m_Motion: {fileID: 1950896874197824025, guid: 03ca6cbbb3e779b4a84f71853f4f8238,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -481,7 +481,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 5530032110195653110, guid: a07741d3c027c214d8402dd4479fb0de,
+  m_Motion: {fileID: 5530032110195653110, guid: 03ca6cbbb3e779b4a84f71853f4f8238,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -509,7 +509,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 1178167638873134046, guid: a07741d3c027c214d8402dd4479fb0de,
+  m_Motion: {fileID: 1178167638873134046, guid: 03ca6cbbb3e779b4a84f71853f4f8238,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -525,7 +525,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: ATK
+    m_ConditionEvent: FocusATK
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -3952271420021356690}

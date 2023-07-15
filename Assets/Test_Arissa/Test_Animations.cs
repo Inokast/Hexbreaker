@@ -15,19 +15,34 @@ public class Test_Animations : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown("w"))
-        {
-            playerAnim.SetTrigger("PlayerATK");
-        }
-
         if(Input.GetKeyDown("q"))
         {
-            playerAnim.SetTrigger("PlayerFocus");
+            playerAnim.SetTrigger("Attack");
+        }
+
+        if(Input.GetKeyDown("w"))
+        {
+            playerAnim.SetTrigger("FocusEnter");
         }
 
         if(Input.GetKeyDown("e"))
         {
             playerAnim.SetTrigger("FocusATK");
+        }
+
+        if(Input.GetKeyDown("r"))
+        {
+            playerAnim.SetTrigger("FocusHit");
+        }
+
+        if(Input.GetKeyDown("t"))
+        {
+            playerAnim.SetTrigger("Hit");
+        }
+
+        if(Input.GetKeyDown("y"))
+        {
+            playerAnim.SetTrigger("Death");
         }
     }
 }

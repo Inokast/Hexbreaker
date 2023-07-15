@@ -508,6 +508,12 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!95 &722301501 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5313370809359012876, guid: e7496bc332490c44f9d4f4fb9e4c2b2c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1696282937}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &739528465
 GameObject:
   m_ObjectHideFlags: 0
@@ -904,7 +910,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57821f6af7207ca4dbe782ba0454c702, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerAnim: {fileID: 1851513731}
+  playerAnim: {fileID: 722301501}
 --- !u!4 &1301950623
 Transform:
   m_ObjectHideFlags: 0
@@ -1255,7 +1261,7 @@ PrefabInstance:
     - target: {fileID: 4499012027316705139, guid: e7496bc332490c44f9d4f4fb9e4c2b2c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.89
+      value: 0.17
       objectReference: {fileID: 0}
     - target: {fileID: 4499012027316705139, guid: e7496bc332490c44f9d4f4fb9e4c2b2c,
         type: 3}
@@ -1265,7 +1271,7 @@ PrefabInstance:
     - target: {fileID: 4499012027316705139, guid: e7496bc332490c44f9d4f4fb9e4c2b2c,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.31
+      value: -0.75
       objectReference: {fileID: 0}
     - target: {fileID: 4499012027316705139, guid: e7496bc332490c44f9d4f4fb9e4c2b2c,
         type: 3}
@@ -1453,12 +1459,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1780098309}
   m_CullTransparentMesh: 1
---- !u!95 &1851513731 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 5243339952672663009, guid: e7496bc332490c44f9d4f4fb9e4c2b2c,
-    type: 3}
-  m_PrefabInstance: {fileID: 1696282937}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1886704606
 GameObject:
   m_ObjectHideFlags: 0
