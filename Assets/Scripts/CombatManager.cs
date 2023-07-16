@@ -78,15 +78,10 @@ public class CombatManager : MonoBehaviour, IDataPersistence
 
     private SoundFXController sfx;
 
-    [Header("Scene Setup")]
-
-    [SerializeField] private TrackSwitcher playerTrackCam;
-    [SerializeField] private TrackSwitcher enemyTrackCam;
-
 
     [Header("Battle Settings")]
 
-    [SerializeField] private float confirmTimer = 1.5f;
+    [SerializeField] private float confirmTimer = 7.5f;
     private bool waitingForConfirm = false;
     public bool waitingForTalismanPick = false;
     public bool playerCancelled = false;
@@ -201,6 +196,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
             {
                 enemyCanvas.alpha = 1;
                 Unit hoveringUnit = selection.GetComponent<Unit>();
+                enemyHUD.SetHUD(hoveringUnit);
                 enemyHUD.SetHP(hoveringUnit);
 
                 if (state == BattleState.PLAYERTURN)
@@ -497,6 +493,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         EnableButtons();
 
         enemyHUD.SetHUD(selectedEnemyUnit);
+        enemyHUD.SetHP(selectedEnemyUnit);
 
     }
 
@@ -941,14 +938,24 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         }
 
         //
+        if (cursesToTalismans >= 3)
+        {
+            battleText.text = "You've broken all curses!" + selectedEnemyUnit.unitName + " takes " + damageDealt + " damage!";
+            sfx.PlayCurseShatter();
+        }
 
-        battleText.text = "You break the curse imposed by " + selectedEnemyUnit.unitName + " and deal " + damageDealt + " damage!";
-        sfx.PlayCurseShatter();
-        cursesToTalismans += 1;      
+        else
+        {
+            battleText.text = "You break the curse imposed by " + selectedEnemyUnit.unitName + " and deal " + damageDealt + " damage!";
+            sfx.PlayCurseShatter();
+            cursesToTalismans += 1;
+        }
+           
 
         // Damage the enemy selected. Choose damage based on eventState;
         bool isDead = selectedEnemyUnit.TakeDamage(damageDealt, false);
         enemyHUD.SetHP(selectedEnemyUnit);
+        enemyHUD.SetHUD(selectedEnemyUnit);
 
         StartCoroutine(ConfirmTimer());
         yield return new WaitUntil(() => waitingForConfirm == false);
@@ -1576,25 +1583,29 @@ public class CombatManager : MonoBehaviour, IDataPersistence
 
     public void DisableButtons() 
     {
-        attackButton.enabled = false;
-        defendButton.enabled = false;
-        breakButton.enabled = false;
+        attackButton.gameObject.SetActive(false);
+        defendButton.gameObject.SetActive(false);
+        breakButton.gameObject.SetActive(false);
     }
 
     public void EnableButtons() 
     {
+        attackButton.gameObject.SetActive(true);
+        attackButton.interactable = true;
+        defendButton.gameObject.SetActive(true);
+        defendButton.interactable = true;
+        breakButton.gameObject.SetActive(true);
+
         if (BreakMeter.charge >= 100)
         {
-            breakButton.enabled = true;
+            breakButton.interactable = true;
         }
 
         else
         {
-            breakButton.enabled = false;
+            breakButton.interactable = false;
         }
 
-        attackButton.enabled = true;
-        defendButton.enabled = true;
     }
 
     public void OnAttackButton() 
@@ -1607,7 +1618,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         if (GameObject.Find("AttackingCurse") != null) //To prevent attacking. -Dylan 2
         {
             battleText.text = "The enemy's curse is preventing " + playerUnit.unitName + " from attacking!";
-            attackButton.enabled = false;
+            attackButton.interactable = false;
             return;
         }
         sfx.PlayButtonSelect();

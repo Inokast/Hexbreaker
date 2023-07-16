@@ -21,6 +21,7 @@ public class QTEManager : MonoBehaviour
     [SerializeField] private QTEDisplay arrayQTEDisplay;
     [SerializeField] private QTEDisplay timedQTEDisplay;
     [SerializeField] private QTEDisplay breakQTEDisplay;
+    [SerializeField] private QTEDisplay standardQTEDisplay;
 
     private QTEDisplay activeQTEDisplay;
 
@@ -575,6 +576,8 @@ public class QTEManager : MonoBehaviour
     {
         StopCoroutine(ClearQTESequence());
         eventType = "Standard";
+        activeQTEDisplay.gameObject.SetActive(true);
+        activeQTEDisplay = standardQTEDisplay;
         eventOngoing = true;
         eventPanel.SetActive(true);
         resultDisplayText.text = "";

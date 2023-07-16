@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8636390375801336453}
   - component: {fileID: -1342463686923164538}
   m_Layer: 0
-  m_Name: Enemy3
+  m_Name: RuinHaunter
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -105,8 +105,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 20.45, y: 42.23, z: 26.37}
-  m_Center: {x: -0, y: 0.22709566, z: 0}
+  m_Size: {x: 20.45, y: 29.70144, z: 6.7728987}
+  m_Center: {x: -3.9423994e-16, y: 17.508034, z: -0.097967505}
 --- !u!114 &-1342463686923164538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -119,7 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3985249c191f0244bc10022d3959af5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitName: Basic Ghost
+  unitName: Ruin Haunter
   isDefending: 0
   highDamage: 3
   midDamage: 2
@@ -184,7 +184,7 @@ PrefabInstance:
     - target: {fileID: 1918383940043254870, guid: 90bbaf07328b7244ea67158c9c35d91e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0
+      value: -2.2
       objectReference: {fileID: 0}
     - target: {fileID: 1918383940043254870, guid: 90bbaf07328b7244ea67158c9c35d91e,
         type: 3}

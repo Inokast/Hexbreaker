@@ -85,7 +85,7 @@ VisualEffect:
           type: 3}
         m_Name: Mesh
         m_Overridden: 1
-      - m_Value: {fileID: 2986164992348575660}
+      - m_Value: {fileID: 9141645707562848019}
         m_Name: SkinnedMesh
         m_Overridden: 1
     m_Bool:
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 8636390375801336453}
   - component: {fileID: -1342463686923164538}
   m_Layer: 0
-  m_Name: Enemy2
+  m_Name: MarshwoodWanderer1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -195,7 +195,7 @@ Transform:
   m_LocalScale: {x: 0.08, y: 0.08, z: 0.08}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 665726822782168762}
+  - {fileID: 6814078657452553733}
   - {fileID: 4663465987522091262}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -269,8 +269,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 20.45, y: 42.23, z: 26.37}
-  m_Center: {x: -0, y: 0.22709566, z: 0}
+  m_Size: {x: 13.1713085, y: 19.22369, z: 17.273125}
+  m_Center: {x: -0.42358118, y: 10.669287, z: 0.9452001}
 --- !u!114 &-1342463686923164538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -283,30 +283,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3985249c191f0244bc10022d3959af5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitName: Swamp Seeker
+  unitName: Marshwood Wanderer
   isDefending: 0
-  highDamage: 4
-  midDamage: 3
-  lowDamage: 2
+  highDamage: 3
+  midDamage: 2
+  lowDamage: 1
   strengthModifier: 3
   drainStrength: 0
   isCharged: 0
   isStunned: 0
-  attackType1: Timed
-  keyToPress1: 2
-  attackTimer1: 2
+  attackType1: Array
+  keyToPress1: 0
+  attackTimer1: 5
   attackString1: 
-  attackType2: Mash
+  attackType2: Timed
   keyToPress2: 4
-  attackTimer2: 5
+  attackTimer2: 3
   attackString2: 
   fillGauge1: 0
-  fillGauge2: 13
-  keyToPressArray: 
+  fillGauge2: 0
+  keyToPressArray: 01000000010000000300000003000000
   defense: 0
-  maxHP: 18
-  currentHP: 18
-  basicAnim: {fileID: 5955672479755575192}
+  maxHP: 16
+  currentHP: 16
+  basicAnim: {fileID: 7230864157651625221}
 --- !u!1 &7512487103157660640
 GameObject:
   m_ObjectHideFlags: 0
@@ -392,7 +392,7 @@ VisualEffect:
           type: 3}
         m_Name: Mesh
         m_Overridden: 1
-      - m_Value: {fileID: 4594761241081484086}
+      - m_Value: {fileID: 7525097618956077961}
         m_Name: SkinMesh
         m_Overridden: 1
     m_Bool:
@@ -437,7 +437,7 @@ VFXRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!1001 &1060486085439392081
+--- !u!1001 &6420656505174544878
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -532,22 +532,22 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d0af7c401ea32ab48b24403c2757d0be,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5955672479755575192}
+      addedObject: {fileID: 7230864157651625221}
   m_SourcePrefab: {fileID: 100100000, guid: d0af7c401ea32ab48b24403c2757d0be, type: 3}
---- !u!1 &177597139278443520 stripped
+--- !u!1 &6186724069194853567 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: d0af7c401ea32ab48b24403c2757d0be,
     type: 3}
-  m_PrefabInstance: {fileID: 1060486085439392081}
+  m_PrefabInstance: {fileID: 6420656505174544878}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &5955672479755575192
+--- !u!95 &7230864157651625221
 Animator:
   serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 177597139278443520}
+  m_GameObject: {fileID: 6186724069194853567}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: a400c37a74df7bd43ab167df66e66b84, type: 2}
@@ -561,21 +561,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!4 &665726822782168762 stripped
+--- !u!4 &6814078657452553733 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d0af7c401ea32ab48b24403c2757d0be,
     type: 3}
-  m_PrefabInstance: {fileID: 1060486085439392081}
+  m_PrefabInstance: {fileID: 6420656505174544878}
   m_PrefabAsset: {fileID: 0}
---- !u!137 &2986164992348575660 stripped
-SkinnedMeshRenderer:
-  m_CorrespondingSourceObject: {fileID: 2866373233399619325, guid: d0af7c401ea32ab48b24403c2757d0be,
-    type: 3}
-  m_PrefabInstance: {fileID: 1060486085439392081}
-  m_PrefabAsset: {fileID: 0}
---- !u!137 &4594761241081484086 stripped
+--- !u!137 &7525097618956077961 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: -5659822446078256537, guid: d0af7c401ea32ab48b24403c2757d0be,
     type: 3}
-  m_PrefabInstance: {fileID: 1060486085439392081}
+  m_PrefabInstance: {fileID: 6420656505174544878}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &9141645707562848019 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2866373233399619325, guid: d0af7c401ea32ab48b24403c2757d0be,
+    type: 3}
+  m_PrefabInstance: {fileID: 6420656505174544878}
   m_PrefabAsset: {fileID: 0}
