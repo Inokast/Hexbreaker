@@ -17,12 +17,12 @@ public class Test_Animations : MonoBehaviour
     {
         if(Input.GetKeyDown("q"))
         {
-            playerAnim.SetTrigger("Attack");
+            playerAnim.SetTrigger("Jump");
         }
 
         if(Input.GetKeyDown("w"))
         {
-            playerAnim.SetTrigger("FocusEnter");
+            playerAnim.SetTrigger("Land");
         }
 
         if(Input.GetKeyDown("e"))
