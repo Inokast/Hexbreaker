@@ -1662,7 +1662,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         if (GameObject.Find("DefendingCurse") != null) //To prevent defending. -Dylan 2
         {
             battleText.text = "The enemy's curse is preventing " + playerUnit.unitName + " from defending!";
-            defendButton.enabled = false;
+            defendButton.interactable = false;
             return;
         }
         sfx.PlayButtonSelect();
