@@ -70,6 +70,11 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
         {
             GenerateNewWorld();
             ResetPlayerStats();
+
+            EventTextDisplay("The spirits weakened you. Regain your strength from the beginning.");
+
+            playerDied = false;
+
         }
 
         tg = GameObject.Find("TalismanGenerator").GetComponent<CreateTalismans>();
@@ -453,6 +458,8 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
         playerUnit.defense = 0;
         playerUnit.maxHP = 70;
         playerUnit.currentHP = 70;
+
+        playerPosInWorld = startPos;
 
         playerDied = false;
 

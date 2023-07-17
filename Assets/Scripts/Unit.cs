@@ -49,11 +49,11 @@ public class Unit : MonoBehaviour
             currentHP -= dmg;
         }
 
-        else 
+        else
         {
             currentHP -= Mathf.Clamp(dmg - defense, 1, dmg); // Mathf.Clamp ensures damage cannot be reduced lower than 1 regardless of defense.
         }
-        
+
 
         if (currentHP <= 0)
         {
@@ -61,7 +61,7 @@ public class Unit : MonoBehaviour
             return true;
         }
 
-        else 
+        else
         {
             return false;
         }
@@ -70,6 +70,10 @@ public class Unit : MonoBehaviour
     public void heal(int amount) // Restores health
     {
         currentHP += Mathf.Clamp(amount, 1, maxHP); // Ensures amount healed does not exceed the maxHP value
+        if (currentHP > maxHP)
+        {
+            currentHP = maxHP;
+        }
 
     }
 
@@ -86,5 +90,10 @@ public class Unit : MonoBehaviour
     public void PlayDeathAnim()
     {
         basicAnim.SetTrigger("Death");
+    }
+
+    public void PlayFocusAnim() 
+    {
+
     }
 }

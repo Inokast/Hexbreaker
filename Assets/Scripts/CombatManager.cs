@@ -465,13 +465,13 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         combatFinished = false;
         endPanel.SetActive(true);
         deathPanel.SetTrigger("Death");
-        dataManager = FindObjectOfType<DataPersistenceManager>();
-        dataManager.NewGame();
+        //dataManager = FindObjectOfType<DataPersistenceManager>();
+        //dataManager.NewGame();
         yield return new WaitForSeconds(1f);
         waitingForConfirm = true;
         yield return new WaitUntil(() => waitingForConfirm == false);
 
-        levelManager.LoadSceneWithName("MainMenu");
+        levelManager.LoadSceneWithName("Overworld");
     }
 
     public void TalismanPicked()
@@ -749,7 +749,15 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         {
             foreach (Unit enemy in enemyUnits)
             {
-                enemy.TakeDamage(damageDealt + FetchPotency(FetchIndexOfName("Multistrike")), false);  
+                enemy.TakeDamage(damageDealt + FetchPotency(FetchIndexOfName("Multistrike")), false);
+                enemy.PlayHitAnim();
+                if (enemy != selectedEnemyUnit) 
+                {
+                    if (enemy.currentHP <= 0) 
+                    {
+                        enemy.currentHP = 1;
+                    }
+                }
             }
 
             if (selectedEnemyUnit.currentHP <= 0) 
@@ -761,9 +769,10 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         else 
         {
             isDead = selectedEnemyUnit.TakeDamage(damageDealt, false);
+            selectedEnemyUnit.PlayHitAnim();
         }
         sfx.PlayPlayerHit();
-        actingEnemyUnit.PlayHitAnim();
+        
 
         if (CheckIfTalismanActive("Vampiric")) 
         {

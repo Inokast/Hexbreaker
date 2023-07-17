@@ -965,8 +965,6 @@ MonoBehaviour:
   secondCharge: {fileID: 502834242}
   thirdCharge: {fileID: 502834241}
   breakMeterGO: {fileID: 1811682288}
-  playerTrackCam: {fileID: 0}
-  enemyTrackCam: {fileID: 0}
   confirmTimer: 1.5
   waitingForTalismanPick: 0
   playerCancelled: 0
@@ -2120,10 +2118,10 @@ RectTransform:
   - {fileID: 1577885626}
   - {fileID: 1590342652}
   - {fileID: 1429812505}
-  - {fileID: 348141433}
-  - {fileID: 1078720682}
   - {fileID: 2102023567}
   - {fileID: 644600509}
+  - {fileID: 1078720682}
+  - {fileID: 348141433}
   m_Father: {fileID: 0}
   m_RootOrder: 35
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2921,14 +2919,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 428026645}
-  m_LocalRotation: {x: 0, y: 0.17364816, z: 0, w: 0.9848078}
-  m_LocalPosition: {x: -3.69, y: 0, z: -1.86}
+  m_LocalRotation: {x: -0, y: 0.1044805, z: -0, w: 0.9945269}
+  m_LocalPosition: {x: -3.08, y: 0, z: -2.71}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 42
-  m_LocalEulerAnglesHint: {x: 0, y: 20, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 11.994, z: 0}
 --- !u!1 &447519352
 GameObject:
   m_ObjectHideFlags: 0
@@ -4267,14 +4265,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 677742266}
-  m_LocalRotation: {x: 0, y: 0.17364816, z: 0, w: 0.9848078}
-  m_LocalPosition: {x: -2.46, y: 0, z: 4.2}
+  m_LocalRotation: {x: -0, y: 0.3227319, z: -0, w: 0.94649047}
+  m_LocalPosition: {x: -1.69, y: 0, z: 4.34}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 41
-  m_LocalEulerAnglesHint: {x: 0, y: 20, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 37.656, z: 0}
 --- !u!1001 &678515993
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5486,6 +5484,7 @@ MonoBehaviour:
   arrayQTEDisplay: {fileID: 1982798757}
   timedQTEDisplay: {fileID: 1982798756}
   breakQTEDisplay: {fileID: 1982798755}
+  standardQTEDisplay: {fileID: 1041015896}
   timerIsActive: 0
   eventCompleted: 1
   eventResult: 0
@@ -5504,6 +5503,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 43
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1041015896 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5799535757080273178, guid: a9cd5a7a79a8dd74e9f81ed896948559,
+    type: 3}
+  m_PrefabInstance: {fileID: 1429812503}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14ac95cbd1936854da134c7ace55f874, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1077052987
 PrefabInstance:
   m_ObjectHideFlags: 0

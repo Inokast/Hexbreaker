@@ -282,6 +282,7 @@ public class QTEManager : MonoBehaviour
         timedQTEDisplay.gameObject.SetActive(false);
         breakQTEDisplay.gameObject.SetActive(false);
         mashQTEDisplay.gameObject.SetActive(false);
+        standardQTEDisplay.gameObject.SetActive(false);
     }
     IEnumerator ClearQTESequence()
     {
@@ -576,8 +577,8 @@ public class QTEManager : MonoBehaviour
     {
         StopCoroutine(ClearQTESequence());
         eventType = "Standard";
-        activeQTEDisplay.gameObject.SetActive(true);
         activeQTEDisplay = standardQTEDisplay;
+        activeQTEDisplay.gameObject.SetActive(true);       
         eventOngoing = true;
         eventPanel.SetActive(true);
         resultDisplayText.text = "";
