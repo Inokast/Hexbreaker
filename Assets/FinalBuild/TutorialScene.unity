@@ -9219,6 +9219,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6511151672121661826, guid: 65ae1ed11260dfb43bb15c3843197590,
+        type: 3}
+      propertyPath: m_text
+      value: Choose a talisman to apply to your next attack, or skip to attack normally!
+      objectReference: {fileID: 0}
     - target: {fileID: 8547250743293088951, guid: 65ae1ed11260dfb43bb15c3843197590,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target

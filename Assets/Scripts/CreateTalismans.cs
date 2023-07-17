@@ -208,44 +208,49 @@ public class CreateTalismans : MonoBehaviour, IDataPersistence
 
         TMP_Text[] texts = frame.GetComponentsInChildren<TMP_Text>();
 
-        int rando = Random.Range(1, 101);
 
-        if (rando <= 20)
+
+        do
         {
-            texts[2].text = "Action Talisman: Your next attack will hit all enemies on the field and deal an additional " + (rarity * 2) + " damage to them";
+            int rando = Random.Range(1, 101);
 
-            texts[1].text = "Multistrike Talisman";
-        }
-        else if (rando > 20 && rando <= 40)
-        {
-            texts[2].text = "Action Talisman: Your next attack will heal you for " + (rarity * 3) + " and deal the usual attack damage";
+            if (rando <= 20 && !talismanNames.Contains("Multistrike Talisman"))
+            {
+                texts[2].text = "Action Talisman: Your next attack will hit all enemies on the field and deal an additional " + (rarity * 2) + " damage to them";
 
-            texts[1].text = "Vampiric Talisman";
-        }
-        else if (rando > 40 && rando <= 60)
-        {
-            texts[2].text = "Action Talisman: Your next weak attack will deal the damage of a medium hit, plus an additional " + (rarity * 1);
+                texts[1].text = "Multistrike Talisman";
+            }
+            else if (rando > 20 && rando <= 40 && !talismanNames.Contains("Vampiric Talisman"))
+            {
+                texts[2].text = "Action Talisman: Your next attack will heal you for " + (rarity * 3) + " and deal the usual attack damage";
 
-            texts[1].text = "Conflicting Talisman";
-        }
-        else if (rando > 60 && rando <= 80)
-        {
-            texts[2].text = "Action Talisman: Your next attack will grant " + (rarity * 15) + " break meter charge";
+                texts[1].text = "Vampiric Talisman";
+            }
+            else if (rando > 40 && rando <= 60 && !talismanNames.Contains("Conflicting Talisman"))
+            {
+                texts[2].text = "Action Talisman: Your next weak attack will deal the damage of a medium hit, plus an additional " + (rarity * 1);
 
-            texts[1].text = "Purification Talisman";
-        }
-        else if (rando > 80 && rando <= 92)
-        {
-            texts[2].text = "Action Talisman: Your next attack will deal the damage of a perfect hit, plus an additional " + (rarity * 2);
+                texts[1].text = "Conflicting Talisman";
+            }
+            else if (rando > 60 && rando <= 80 && !talismanNames.Contains("Purification Talisman"))
+            {
+                texts[2].text = "Action Talisman: Your next attack will grant " + (rarity * 15) + " break meter charge";
 
-            texts[1].text = "Contending Talisman";
-        }
-        else if (rando > 92)
-        {
-            texts[2].text = "Action Talisman: Your next perfect attack will deal an additional " + (rarity * 4) + " damage";
+                texts[1].text = "Purification Talisman";
+            }
+            else if (rando > 80 && rando <= 92 && !talismanNames.Contains("Contending Talisman"))
+            {
+                texts[2].text = "Action Talisman: Your next attack will deal the damage of a perfect hit, plus an additional " + (rarity * 2);
 
-            texts[1].text = "Omnipotent Talisman";
-        }
+                texts[1].text = "Contending Talisman";
+            }
+            else if (rando > 92 && !talismanNames.Contains("Omnipotent Talisman"))
+            {
+                texts[2].text = "Action Talisman: Your next perfect attack will deal an additional " + (rarity * 4) + " damage";
+
+                texts[1].text = "Omnipotent Talisman";
+            }
+        } while (texts[1].text == "Talisman of Example Names");
     }
 
     private GameObject DecideTalismanRarity(int position, bool isLucky)
@@ -485,6 +490,19 @@ public class CreateTalismans : MonoBehaviour, IDataPersistence
     {
         GameObject talisman = DecideTalismanRarity(amount, isLucky);
 
+        int amountOfActionTalismans = 0;
+
+        if (action.Contains(true))
+        {
+            for (int i = 0; i < action.Count; i++)
+            {
+                if (action[i])
+                {
+                    amountOfActionTalismans++;
+                }
+            }
+        }
+
         int talismanType = 0;
 
         if (!isLucky)
@@ -517,6 +535,10 @@ public class CreateTalismans : MonoBehaviour, IDataPersistence
         else if (talismanType > 68 && talismanType <= 85)
         {
             CreateDefenseTalisman(talisman);
+        }
+        else if (talismanType > 85 && amountOfActionTalismans >= 3) //Makes Action Talismans not spawn when player has 3+ -Dylan 11
+        {
+            CreateHealthTalisman(talisman);
         }
         else if (talismanType > 85)
         {

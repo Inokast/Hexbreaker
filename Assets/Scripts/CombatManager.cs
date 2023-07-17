@@ -567,7 +567,17 @@ public class CombatManager : MonoBehaviour, IDataPersistence
     IEnumerator PlayerAttack() // Deals damage to enemy and then checks if it is dead
     {
 
-        if (talismanManager.action.Contains(true))
+        int actionTalismans = 0;
+
+        for (int i = 0; i < talismanManager.action.Count; i++)
+        {
+            if (talismanManager.action[i]) //Makes it so that the panel does not show in combat when all action talismans are chosen. -Dylan 11
+            {
+                actionTalismans++;
+            }
+        }
+
+        if (talismanManager.action.Contains(true) && activeTalismanNames.Count != actionTalismans)
         {
             talismanPanel.SetActive(true);
 
@@ -827,7 +837,17 @@ public class CombatManager : MonoBehaviour, IDataPersistence
 
     IEnumerator PlayerDefend() 
     {
-        if (talismanManager.action.Contains(true))
+        int actionTalismans = 0;
+
+        for (int i = 0; i < talismanManager.action.Count; i++)
+        {
+            if (talismanManager.action[i]) //Makes it so that the panel does not show in combat when all action talismans are chosen. -Dylan 11
+            {
+                actionTalismans++;
+            }
+        }
+
+        if (talismanManager.action.Contains(true) && activeTalismanNames.Count != actionTalismans)
         {
             talismanPanel.SetActive(true);
 

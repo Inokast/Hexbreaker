@@ -71,13 +71,15 @@ public class DataPersistenceManager : MonoBehaviour
     {
         CreateTalismans tg = GameObject.Find("TalismanGenerator").GetComponent<CreateTalismans>();
 
+        int index = 0;
+
         if (tg.talismans != null)
         {
             foreach (GameObject talisman in tg.talismans)
             {
-                tg.talismans[0].SetActive(true);
+                Destroy(tg.talismans[index]);
 
-                Destroy(tg.talismans[0]);
+                index++;
             }
 
             tg.talismans.Clear();
