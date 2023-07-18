@@ -120,12 +120,12 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _InnerMaskStrength: 0.39
+    - _InnerMaskStrength: 2.33
     - _MaskBright: 0
-    - _MaskStrength: 0
+    - _MaskStrength: 0.513
     - _Metallic: 0
     - _OcclusionStrength: 1
-    - _Opacity: 3.23
+    - _Opacity: 1.15
     - _Parallax: 0.005
     - _QueueControl: 0
     - _QueueOffset: 0
@@ -143,12 +143,12 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _ClearCoat: {r: 1, g: 1, b: 1, a: 0}
+    - _ClearCoat: {r: 0.754717, g: 0, b: 0, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _TextureScale: {r: 2, g: 2, b: 0, a: 0}
-    - _WaterSpeed: {r: 0.1, g: 0, b: 0, a: 0}
+    - _TextureScale: {r: 30, g: 30, b: 0, a: 0}
+    - _WaterSpeed: {r: 0.04, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &2603046678469652102
 MonoBehaviour:
