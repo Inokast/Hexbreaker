@@ -119,12 +119,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3985249c191f0244bc10022d3959af5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitName: Ghastly Haunter
+  unitName: Horrid Haunter
   isDefending: 0
-  highDamage: 4
-  midDamage: 3
-  lowDamage: 2
-  strengthModifier: 3
+  highDamage: 10
+  midDamage: 7
+  lowDamage: 4
+  strengthModifier: 4
   drainStrength: 0
   isCharged: 0
   isStunned: 0
@@ -140,8 +140,8 @@ MonoBehaviour:
   fillGauge2: 4
   keyToPressArray: 01000000030000000400000002000000
   defense: 0
-  maxHP: 24
-  currentHP: 24
+  maxHP: 44
+  currentHP: 44
   basicAnim: {fileID: 8246803570163550450}
 --- !u!1001 &4807778191222061842
 PrefabInstance:

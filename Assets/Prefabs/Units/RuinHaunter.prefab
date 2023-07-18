@@ -119,12 +119,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3985249c191f0244bc10022d3959af5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitName: Ruin Haunter
+  unitName: Derelict Deceiver
   isDefending: 0
-  highDamage: 3
-  midDamage: 2
-  lowDamage: 1
-  strengthModifier: 3
+  highDamage: 13
+  midDamage: 9
+  lowDamage: 6
+  strengthModifier: 5
   drainStrength: 0
   isCharged: 0
   isStunned: 0
@@ -140,8 +140,8 @@ MonoBehaviour:
   fillGauge2: 0
   keyToPressArray: 02000000040000000200000004000000
   defense: 0
-  maxHP: 20
-  currentHP: 20
+  maxHP: 50
+  currentHP: 50
   basicAnim: {fileID: 6456337583439991387}
 --- !u!1001 &7589590386069037499
 PrefabInstance:

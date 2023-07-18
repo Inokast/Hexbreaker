@@ -119,12 +119,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3985249c191f0244bc10022d3959af5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitName: High Spirit
+  unitName: Sorrowful Soul
   isDefending: 0
-  highDamage: 4
-  midDamage: 3
-  lowDamage: 2
-  strengthModifier: 3
+  highDamage: 16
+  midDamage: 12
+  lowDamage: 9
+  strengthModifier: 6
   drainStrength: 0
   isCharged: 0
   isStunned: 0
@@ -140,8 +140,8 @@ MonoBehaviour:
   fillGauge2: 0
   keyToPressArray: 01000000020000000400000003000000
   defense: 0
-  maxHP: 35
-  currentHP: 35
+  maxHP: 75
+  currentHP: 75
   basicAnim: {fileID: 7798611573364662966}
 --- !u!1001 &393860010624914194
 PrefabInstance:

@@ -63,10 +63,33 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
 
         if (playerDied == true)
         {
-            ResetPlayerStats();
+            //ResetPlayerStats(); We don't want it to reset stats. -Dylan 12
+
+            playerUnit.currentHP = playerUnit.maxHP;
+
+            for (int i = 0; i < tg.action.Count; i++)
+            {
+                if (tg.action[i])
+                {
+                    Destroy(tg.talismans[i]);
+
+                    tg.talismans.RemoveAt(i);
+
+                    tg.action.RemoveAt(i);
+
+                    tg.talismanNames.RemoveAt(i);
+
+                    tg.talismanFirstStats.RemoveAt(i);
+
+                    tg.talismanSecondStats.RemoveAt(i);
+
+                    tg.talismanRarities.RemoveAt(i);
+                }
+            }
+
             worldGenerated = false;
 
-            EventTextDisplay("The spirits weakened you. Regain your strength from the beginning.");
+            EventTextDisplay("The spirits weakened you. May your strength in this life carry to the next.");
         }
 
         playerDied = false;
@@ -342,10 +365,20 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
     // Please use this function to initialize the world. Use this for any randomization that sets what each node is. - Dan
     private void GenerateNewWorld()
     {
-        print("Generated New world");
         worldGenerated = true;
         player.transform.position = startPos;
         mapNodes[0].isActive = true;
+
+        playerPosInWorld = startPos;
+
+        foreach (MapNode node in mapNodes) //For on-death resets. -Dylan 12
+        {
+            Destroy(node.newMesh);
+
+            node.isActive = false;
+
+            node.isCompleted = false;
+        }
         //Map rando in place is below, also randomizes enemies and amount of enemies. -Dylan 5
         foreach (MapNode node in mapNodes)
         {
@@ -430,6 +463,8 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
         mapNodes[0].nodeEnemyID.Clear();
         mapNodes[0].nodeEnemyID.Add(0);
         mapNodes[0].nodeDescription = "Your journey begins here...";
+
+        mapNodes[0].isActive = true;
 
         RandomizeSpecificNode(6, 1, Random.Range(1, 4), "Ruins");
 

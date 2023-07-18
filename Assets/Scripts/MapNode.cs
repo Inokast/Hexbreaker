@@ -24,7 +24,7 @@ public class MapNode : MonoBehaviour, IDataPersistence
 
     [SerializeField] private GameObject fogEffect;
     [SerializeField] private GameObject[] nodeMeshes;
-    private GameObject newMesh;
+    public GameObject newMesh;
 
     public int nodeType;
     public string nodeDescription;

@@ -121,10 +121,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitName: Phantasmal Despair
   isDefending: 0
-  highDamage: 6
-  midDamage: 5
-  lowDamage: 4
-  strengthModifier: 3
+  highDamage: 23
+  midDamage: 17
+  lowDamage: 12
+  strengthModifier: 7
   drainStrength: 0
   isCharged: 0
   isStunned: 0
@@ -140,8 +140,8 @@ MonoBehaviour:
   fillGauge2: 0
   keyToPressArray: 010000000400000003000000020000000300000004000000
   defense: 0
-  maxHP: 100
-  currentHP: 100
+  maxHP: 250
+  currentHP: 250
   basicAnim: {fileID: 2964474591243009657}
 --- !u!1001 &646687403237796592
 PrefabInstance:

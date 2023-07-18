@@ -283,12 +283,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3985249c191f0244bc10022d3959af5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitName: Weak Seeker
+  unitName: Mire Meanderer
   isDefending: 0
   highDamage: 3
   midDamage: 2
   lowDamage: 1
-  strengthModifier: 3
+  strengthModifier: 1
   drainStrength: 0
   isCharged: 0
   isStunned: 0
