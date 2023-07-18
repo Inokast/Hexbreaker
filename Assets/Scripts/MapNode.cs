@@ -38,6 +38,11 @@ public class MapNode : MonoBehaviour, IDataPersistence
 
     private void Start()
     {
+        InitializeNode();
+    }
+
+    public void InitializeNode() 
+    {
         UpdateMesh();
         if (isActive == false)
         {

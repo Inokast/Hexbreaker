@@ -59,23 +59,23 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
         eventText.text = "";
         player.transform.position = playerPosInWorld;
         //playerHUD = FindAnyObjectByType<BattleHUD>();
-        playerHUD.SetHP(playerUnit);
+        
+
+        if (playerDied == true)
+        {
+            ResetPlayerStats();
+            worldGenerated = false;
+
+            EventTextDisplay("The spirits weakened you. Regain your strength from the beginning.");
+        }
+
+        playerDied = false;
 
         if (worldGenerated == false)
         {
             GenerateNewWorld();
         }
-
-        if (playerDied == true)
-        {
-            GenerateNewWorld();
-            ResetPlayerStats();
-
-            EventTextDisplay("The spirits weakened you. Regain your strength from the beginning.");
-
-            playerDied = false;
-
-        }
+      
 
         tg = GameObject.Find("TalismanGenerator").GetComponent<CreateTalismans>();
 
@@ -96,6 +96,7 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
             player.transform.position = startPos;
         }
 
+        playerHUD.SetHP(playerUnit);
     }
 
     public void LoadData(GameData gameData)
@@ -303,6 +304,8 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
         tg.HidePanel();
 
         selectedNode.ClearFog();
+
+        playerHUD.SetHUD(playerUnit);
     }
 
     IEnumerator EventTextDisplay(string textToDisplay)
@@ -339,6 +342,7 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
     // Please use this function to initialize the world. Use this for any randomization that sets what each node is. - Dan
     private void GenerateNewWorld()
     {
+        print("Generated New world");
         worldGenerated = true;
         player.transform.position = startPos;
         mapNodes[0].isActive = true;
@@ -459,11 +463,9 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
         playerUnit.maxHP = 70;
         playerUnit.currentHP = 70;
 
+        playerHUD.SetHP(playerUnit);
+
         playerPosInWorld = startPos;
-
-        playerDied = false;
-
-        // Also remove any talismans
     }
 
     private void RandomizeSpecificNode(int nodeIndex, int nodeType, int enemyAmount, string nodeRegion)
