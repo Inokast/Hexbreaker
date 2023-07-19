@@ -801,7 +801,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         //Clears the two lists after they are used, as a sort of reset. -Dylan 8
         activeTalismanPotency.Clear();
 
-        ChangeTalismanCharges(0); //For to reset the visible charges. -Dylan 9
+        ChangeTalismanCharges(0); //To reset the visible charges. -Dylan 9
 
         // Here begins endturn functionality
         if (isDead)
@@ -1128,7 +1128,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         actingEnemyUnit.PlayAttackAnim();
         playerUnit.PlayHitAnim();
 
-        battleText.text = "The " + actingEnemyUnit.unitName + " attacks! " + playerUnit.unitName + " takes " + damageDealt + " damage!";
+        battleText.text = "The " + actingEnemyUnit.unitName + " attacks! " + playerUnit.unitName + " takes " + (Mathf.Clamp(damageDealt - playerUnit.defense, 1, damageDealt)) + " damage!";
 
         if (playerUnit.isDefending)
         {
@@ -1176,7 +1176,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
                 case QTEResult.LOW:
                     sfx.PlayQTEFailure();
                     defenseBoost = 1;
-                    battleText.text = "A weak block..." + playerUnit.unitName + " takes " + (Mathf.Clamp(damageDealt - defenseBoost, 1, damageDealt)) + " damage!";
+                    battleText.text = "A weak block..." + playerUnit.unitName + " takes " + (Mathf.Clamp(damageDealt - (playerUnit.defense + defenseBoost), 1, damageDealt)) + " damage!";
 
                     if (GameObject.Find("WeakBlockCurse") != null) //Changes meter charge based on curse. -Dylan 2
                     {
@@ -1191,14 +1191,14 @@ public class CombatManager : MonoBehaviour, IDataPersistence
                 case QTEResult.MID:
                     sfx.PlayQTEFailure();
                     defenseBoost = 2;
-                    battleText.text = "You block! " + playerUnit.unitName + " takes " + (Mathf.Clamp(damageDealt - defenseBoost, 1, damageDealt)) + " damage!";
+                    battleText.text = "You block! " + playerUnit.unitName + " takes " + (Mathf.Clamp(damageDealt - (playerUnit.defense + defenseBoost), 1, damageDealt)) + " damage!";
                     bm.ChangeMeterValue(15);
                     break;
 
                 case QTEResult.HIGH:
                     sfx.PlayQTEsuccess();
                     defenseBoost = 3;
-                    battleText.text = "A perfect block! " + playerUnit.unitName + " takes " + (Mathf.Clamp(damageDealt - defenseBoost, 1, damageDealt)) + " damage!";
+                    battleText.text = "A perfect block! " + playerUnit.unitName + " takes " + (Mathf.Clamp(damageDealt - (playerUnit.defense + defenseBoost), 1, damageDealt)) + " damage!";
 
                     if (GameObject.Find("AttackingCurse") != null) //Changes meter charge based on curse. If the player can only defend, that should be the only curse to apply in a perfect QTE. -Dylan 2
                     {
@@ -1221,7 +1221,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
             // Depending on degree of success, temporarily increase defense.
         }
 
-        bool isDead = playerUnit.TakeDamage(Mathf.Clamp(damageDealt - defenseBoost, 1, damageDealt), false);
+        bool isDead = playerUnit.TakeDamage(Mathf.Clamp(damageDealt - (playerUnit.defense + defenseBoost), 1, damageDealt), false);
         playerHUD.SetHP(playerUnit);
         sfx.PlayEnemyAttack_Burst();
 
@@ -1284,7 +1284,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
                 break;
         }
 
-        battleText.text = "The " + actingEnemyUnit.unitName + " attacks! " + playerUnit.unitName + " takes " + damageDealt + " damage!";
+        battleText.text = "The " + actingEnemyUnit.unitName + " attacks! " + playerUnit.unitName + " takes " + (Mathf.Clamp(damageDealt - playerUnit.defense, 1, damageDealt)) + " damage!";
 
         if (playerUnit.isDefending)
         {
@@ -1331,7 +1331,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
                 case QTEResult.LOW:
                     sfx.PlayQTEFailure();
                     defenseBoost = 1;
-                    battleText.text = "A weak block..." + playerUnit.unitName + " takes " + (Mathf.Clamp(damageDealt - defenseBoost, 1, damageDealt)) + " damage!";
+                    battleText.text = "A weak block..." + playerUnit.unitName + " takes " + (Mathf.Clamp(damageDealt - (playerUnit.defense + defenseBoost), 1, damageDealt)) + " damage!";
 
                     if (GameObject.Find("WeakBlockCurse") != null) //Changes meter charge based on curse. -Dylan 2
                     {
@@ -1346,14 +1346,14 @@ public class CombatManager : MonoBehaviour, IDataPersistence
                 case QTEResult.MID:
                     sfx.PlayQTEFailure();
                     defenseBoost = 2;
-                    battleText.text = "You block! " + playerUnit.unitName + " takes " + (Mathf.Clamp(damageDealt - defenseBoost, 1, damageDealt)) + " damage!";
+                    battleText.text = "You block! " + playerUnit.unitName + " takes " + (Mathf.Clamp(damageDealt - (playerUnit.defense + defenseBoost), 1, damageDealt)) + " damage!";
                     bm.ChangeMeterValue(15);
                     break;
 
                 case QTEResult.HIGH:
                     sfx.PlayQTEsuccess();
                     defenseBoost = 3;
-                    battleText.text = "A perfect block! " + playerUnit.unitName + " takes " + (Mathf.Clamp(damageDealt - defenseBoost, 1, damageDealt)) + " damage!";
+                    battleText.text = "A perfect block! " + playerUnit.unitName + " takes " + (Mathf.Clamp(damageDealt - (playerUnit.defense + defenseBoost), 1, damageDealt)) + " damage!";
 
                     if (GameObject.Find("AttackingCurse") != null) //Changes meter charge based on curse. If the player can only defend, that should be the only curse to apply in a perfect QTE. -Dylan 2
                     {
@@ -1428,7 +1428,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
             damageDealt = actingEnemyUnit.highDamage + actingEnemyUnit.lowDamage;
         }
 
-        battleText.text = "The " + actingEnemyUnit.unitName + " unleashes a charged attack! " + playerUnit.unitName + " takes " + damageDealt + " damage!";
+        battleText.text = "The " + actingEnemyUnit.unitName + " unleashes a charged attack! " + playerUnit.unitName + " takes " + (Mathf.Clamp(damageDealt - playerUnit.defense, 1, damageDealt)) + " damage!";
 
         if (playerUnit.isDefending)
         {

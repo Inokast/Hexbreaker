@@ -510,6 +510,12 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
 
         RandomizeSpecificNode(9, 1, Random.Range(1, 4), "Marsh");
 
+        RandomizeSpecificNode(17, 1, Random.Range(1, 4), "Cathedral");
+
+        RandomizeSpecificNode(18, 1, Random.Range(1, 4), "Cathedral");
+
+        RandomizeSpecificNode(19, 1, Random.Range(1, 4), "Cathedral");
+
         foreach (MapNode node in mapNodes)
         {
             node.UpdateMesh();

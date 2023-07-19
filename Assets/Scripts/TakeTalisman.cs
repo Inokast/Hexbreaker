@@ -15,6 +15,8 @@ public class TakeTalisman : MonoBehaviour
 
     private CreateTalismans talismanManager;
 
+    private bool attachTalismanNow = false;
+
     private void Awake()
     {
         if (SceneManager.GetActiveScene().name == "Overworld")
@@ -27,6 +29,17 @@ public class TakeTalisman : MonoBehaviour
         }
 
         talismanManager = GameObject.Find("TalismanGenerator").GetComponent<CreateTalismans>();
+    }
+
+    private void Update()
+    {
+        if (!attachTalismanNow)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                attachTalismanNow = true;
+            }
+        }
     }
 
     public void GetTalisman()
@@ -187,8 +200,6 @@ public class TakeTalisman : MonoBehaviour
 
             talismanManager.action.Add(false);
 
-            gameObject.transform.SetParent(GameObject.Find("TalismanGenerator").transform, false);
-
             talismanManager.talismans.Add(gameObject);
 
             talismanManager.talismanNames.Add("Restorative Talisman");
@@ -198,8 +209,6 @@ public class TakeTalisman : MonoBehaviour
             talismanManager.talismanSecondStats.Add(0);
 
             talismanManager.talismanRarities.Add(amount / 5);
-
-            gameObject.SetActive(false);
         }
         else if (name == "Surgical Talisman")
         {
@@ -257,8 +266,6 @@ public class TakeTalisman : MonoBehaviour
 
             talismanManager.action.Add(false);
 
-            gameObject.transform.SetParent(GameObject.Find("TalismanGenerator").transform, false);
-
             talismanManager.talismans.Add(gameObject);
 
             talismanManager.talismanNames.Add("Surgical Talisman");
@@ -268,8 +275,6 @@ public class TakeTalisman : MonoBehaviour
             talismanManager.talismanSecondStats.Add(secondHalf);
 
             talismanManager.talismanRarities.Add(firstHalf / 8);
-
-            gameObject.SetActive(false);
         }
         else if (name == "Expansive Talisman")
         {
@@ -296,8 +301,6 @@ public class TakeTalisman : MonoBehaviour
 
             talismanManager.action.Add(false);
 
-            gameObject.transform.SetParent(GameObject.Find("TalismanGenerator").transform, false);
-
             talismanManager.talismans.Add(gameObject);
 
             talismanManager.talismanNames.Add("Expansive Talisman");
@@ -307,8 +310,6 @@ public class TakeTalisman : MonoBehaviour
             talismanManager.talismanSecondStats.Add(0);
 
             talismanManager.talismanRarities.Add(amount / 3);
-
-            gameObject.SetActive(false);
         }
         else if (name == "Training Talisman" || name == "Powerful Talisman" || name == "Perfect Talisman")
         {
@@ -399,11 +400,7 @@ public class TakeTalisman : MonoBehaviour
 
             talismanManager.action.Add(false);
 
-            gameObject.transform.SetParent(GameObject.Find("TalismanGenerator").transform, false);
-
             talismanManager.talismans.Add(gameObject);
-
-            gameObject.SetActive(false);
         }
         else if (name == "Impenetrable Talisman")
         {
@@ -430,8 +427,6 @@ public class TakeTalisman : MonoBehaviour
 
             talismanManager.action.Add(false);
 
-            gameObject.transform.SetParent(GameObject.Find("TalismanGenerator").transform, false);
-
             talismanManager.talismans.Add(gameObject);
 
             talismanManager.talismanNames.Add("Impenetrable Talisman");
@@ -441,14 +436,10 @@ public class TakeTalisman : MonoBehaviour
             talismanManager.talismanSecondStats.Add(0);
 
             talismanManager.talismanRarities.Add(amount / 1);
-
-            gameObject.SetActive(false);
         }
         else //Is action talisman -Dylan 10
         {
             talismanManager.action.Add(true);
-
-            gameObject.transform.SetParent(GameObject.Find("TalismanGenerator").transform, false);
 
             string extractedNumber = "";
 
@@ -490,9 +481,9 @@ public class TakeTalisman : MonoBehaviour
             talismanManager.talismanSecondStats.Add(0);
 
             talismanManager.talismans.Add(gameObject);
-
-            gameObject.SetActive(false);
         }
+
+        gameObject.SetActive(false);
 
         GameObject[] buttons = GameObject.FindGameObjectsWithTag("TalismanButton");
 
@@ -505,5 +496,82 @@ public class TakeTalisman : MonoBehaviour
         {
             button.SetActive(false);
         }
+
+        gameObject.SetActive(true);
+
+        OtherCardsVanish();
+    }
+
+    private void OtherCardsVanish() //Makes it possible for the talisman to stay on-screen by creating a copy of it. -Dylan 13
+    {
+        GameObject[] cTalis = GameObject.FindGameObjectsWithTag("CommonFrame");
+        GameObject[] uTalis = GameObject.FindGameObjectsWithTag("UncommonFrame");
+        GameObject[] rTalis = GameObject.FindGameObjectsWithTag("RareFrame");
+        GameObject[] lTalis = GameObject.FindGameObjectsWithTag("LegendaryFrame");
+        GameObject[] sTalis = GameObject.FindGameObjectsWithTag("SpectralFrame");
+
+        if (cTalis != null)
+        {
+            foreach (GameObject t in cTalis)
+            {
+                t.SetActive(false);
+            }
+        }
+
+        if (uTalis != null)
+        {
+            foreach (GameObject t in uTalis)
+            {
+                t.SetActive(false);
+            }
+        }
+
+        if (rTalis != null)
+        {
+            foreach (GameObject t in rTalis)
+            {
+                t.SetActive(false);
+            }
+        }
+
+        if (lTalis != null)
+        {
+            foreach (GameObject t in lTalis)
+            {
+                t.SetActive(false);
+            }
+        }
+
+        if (sTalis != null)
+        {
+            foreach (GameObject t in sTalis)
+            {
+                t.SetActive(false);
+            }
+        }
+
+        gameObject.SetActive(true);
+
+        GameObject talisman = Instantiate(gameObject, gameObject.transform.position, Quaternion.identity);
+
+        talisman.transform.SetParent(GameObject.Find("Canvas").transform, true);
+
+        talisman.transform.localScale = new Vector3(1f, 1f, 1f);
+
+        gameObject.transform.SetParent(GameObject.Find("TalismanGenerator").transform, false);
+
+        gameObject.SetActive(false);
+
+        GameObject[] buttons2 = GameObject.FindGameObjectsWithTag("TalismanButton");
+
+        foreach (GameObject btn in buttons2)
+        {
+            btn.SetActive(false);
+        }
+        /*yield return new WaitUntil(() => attachTalismanNow == true);
+
+        gameObject.transform.SetParent(GameObject.Find("TalismanGenerator").transform, false);
+        gameObject.SetActive(false);
+        attachTalismanNow = false;*/
     }
 }
