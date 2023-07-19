@@ -35941,7 +35941,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000027657, y: 68}
+  m_AnchoredPosition: {x: -3, y: 46}
   m_SizeDelta: {x: 359.6272, y: 0.0009918213}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1173194898
@@ -36004,7 +36004,7 @@ MonoBehaviour:
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: 0
+  m_lineSpacing: 30
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
@@ -43446,8 +43446,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 458.69, y: -0.4177246}
-  m_SizeDelta: {x: -983.8536, y: -344.713}
+  m_AnchoredPosition: {x: 458.69, y: 109}
+  m_SizeDelta: {x: -983.8536, y: -597.3391}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1438190500
 MonoBehaviour:
@@ -45889,7 +45889,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Event Text
+  m_text: 'Event Text
+
+    shid'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1de9fd25d7599d143a7e08bbe1d9a09f, type: 2}
   m_sharedMaterial: {fileID: 5159345624373031867, guid: 1de9fd25d7599d143a7e08bbe1d9a09f,
@@ -45929,7 +45931,7 @@ MonoBehaviour:
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: 0
+  m_lineSpacing: 60
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
