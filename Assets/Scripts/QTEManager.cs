@@ -163,8 +163,6 @@ public class QTEManager : MonoBehaviour
                     resultDisplayText.text = "Nice!";
                     inputDisplayText.color = Color.yellow;
                     timerText.color = Color.green;
-                    timedQTEDisplay.PlaySparkleEffect();
-                    print("Playing Sparkles");
                 }
 
                 else
@@ -212,7 +210,7 @@ public class QTEManager : MonoBehaviour
                 else
                 {
                     resultDisplayText.text = "Keep Going!";
-                    vfx.PlayParticleBurst(mashQTEDisplay.transform);
+                    //vfx.PlayParticleBurst(mashQTEDisplay.transform);
                     amountFilled += 1;
                 }
             }
