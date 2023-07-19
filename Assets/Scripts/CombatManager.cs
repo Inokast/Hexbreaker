@@ -480,12 +480,12 @@ public class CombatManager : MonoBehaviour, IDataPersistence
     {
         playerDied = true;
         combatFinished = false;
+        sfx.PlayGameOver();
         playerUnit.PlayDeathAnim();
         yield return new WaitForSeconds(1.5f);
         // battleText.text = "You Died";
         deathPanel.SetTrigger("Death");
-        sfx.PlayGameOver();
-        
+     
         endPanel.SetActive(true);
         deathPanel.SetTrigger("Death");
 
