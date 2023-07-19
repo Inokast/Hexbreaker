@@ -22,6 +22,8 @@ public class MapNode : MonoBehaviour, IDataPersistence
     private bool rightPathLocked;
     private bool leftPathLocked;
 
+    [SerializeField] private MapNode[] parallelNodes;
+
     [SerializeField] private GameObject fogEffect;
     [SerializeField] private GameObject[] nodeMeshes;
     public GameObject newMesh;
@@ -39,6 +41,11 @@ public class MapNode : MonoBehaviour, IDataPersistence
     private void Start()
     {
         InitializeNode();
+    }
+
+    public MapNode[] GetParallelNodes() 
+    {
+        return parallelNodes;
     }
 
     public void InitializeNode() 
@@ -188,6 +195,15 @@ public class MapNode : MonoBehaviour, IDataPersistence
 
         rightPathLocked = false;
         leftPathLocked = false;
+
+        if (parallelNodes != null) 
+        {
+            foreach (MapNode parallelNode in parallelNodes)
+            {
+                parallelNode.isActive = false;
+                parallelNode.InitializeNode();
+            }
+        }
     }
 
 }

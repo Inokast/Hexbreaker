@@ -991,7 +991,7 @@ GameObject:
   - component: {fileID: 44941528}
   - component: {fileID: 44941531}
   m_Layer: 0
-  m_Name: RuinsNode3
+  m_Name: Row3Node1
   m_TagString: Node
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1101,6 +1101,10 @@ MonoBehaviour:
   nodeID: 4c343e48-b5ef-4327-894d-c607219e4e05
   leftPath: {fileID: 109931050}
   rightPath: {fileID: 109931050}
+  parallelNodes:
+  - {fileID: 750133156}
+  - {fileID: 1049117491}
+  - {fileID: 1864126185}
   fogEffect: {fileID: 24940745}
   nodeMeshes:
   - {fileID: 377315440509832864, guid: 3a2341a067d87e340b67d926d2578989, type: 3}
@@ -1111,7 +1115,7 @@ MonoBehaviour:
   nodeDescription: Oh No, a ghost!
   nodeRewards: []
   nodeEnemyID: 00000000
-  mapSection: Ruins
+  mapSection: Marsh
   isActive: 0
   isCompleted: 0
 --- !u!1001 &52396445
@@ -1399,9 +1403,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 71506550}
-  m_LocalRotation: {x: -0, y: 0.50616455, z: -0, w: 0.86243695}
-  m_LocalPosition: {x: -1.324, y: -0.038, z: -6.375}
-  m_LocalScale: {x: 0.41664, y: 0.41664, z: 0.41664}
+  m_LocalRotation: {x: -0, y: -0.86243695, z: -0, w: 0.50616455}
+  m_LocalPosition: {x: -0.71599996, y: -1.668, z: 13.105}
+  m_LocalScale: {x: 0.41664004, y: 0.41664, z: 0.41664004}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1407036515}
@@ -1419,8 +1423,8 @@ Transform:
   - {fileID: 1038752694}
   - {fileID: 792703706}
   - {fileID: 2052265050}
-  m_Father: {fileID: 0}
-  m_RootOrder: 29
+  m_Father: {fileID: 1752782019}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 60.817, z: 0}
 --- !u!1001 &72550892
 PrefabInstance:
@@ -1603,8 +1607,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 89115606}
-  m_LocalRotation: {x: -0, y: 0.93731505, z: -0, w: 0.34848323}
-  m_LocalPosition: {x: 6.39, y: 0.035317898, z: 22.18}
+  m_LocalRotation: {x: -0, y: -0.34848323, z: -0, w: 0.93731505}
+  m_LocalPosition: {x: -8.43, y: -1.5946821, z: -15.450001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1613,8 +1617,8 @@ Transform:
   - {fileID: 1639161284}
   - {fileID: 253236739}
   - {fileID: 928669405}
-  m_Father: {fileID: 0}
-  m_RootOrder: 26
+  m_Father: {fileID: 1752782019}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 139.211, z: 0}
 --- !u!1 &104649819
 GameObject:
@@ -1630,7 +1634,7 @@ GameObject:
   - component: {fileID: 104649822}
   - component: {fileID: 104649821}
   m_Layer: 0
-  m_Name: ExtraCathedralNode1
+  m_Name: Row6Node1
   m_TagString: Node
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1667,6 +1671,9 @@ MonoBehaviour:
   nodeID: e7c458c9-f038-4b5c-b77c-989bdbaca53f
   leftPath: {fileID: 1201661011}
   rightPath: {fileID: 1201661011}
+  parallelNodes:
+  - {fileID: 214759931}
+  - {fileID: 2139884438}
   fogEffect: {fileID: 1492830231}
   nodeMeshes:
   - {fileID: 377315440509832864, guid: 3a2341a067d87e340b67d926d2578989, type: 3}
@@ -1866,7 +1873,7 @@ GameObject:
   - component: {fileID: 109931047}
   - component: {fileID: 109931050}
   m_Layer: 0
-  m_Name: CathedralNode2
+  m_Name: Row4Node1
   m_TagString: Node
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1976,6 +1983,9 @@ MonoBehaviour:
   nodeID: 419867a0-dc22-489a-a5d6-710bf7babab2
   leftPath: {fileID: 809093126}
   rightPath: {fileID: 1355239501}
+  parallelNodes:
+  - {fileID: 1238171429}
+  - {fileID: 819224332}
   fogEffect: {fileID: 1230955452}
   nodeMeshes:
   - {fileID: 377315440509832864, guid: 3a2341a067d87e340b67d926d2578989, type: 3}
@@ -1986,7 +1996,7 @@ MonoBehaviour:
   nodeDescription: A High Spirit lurks here.
   nodeRewards: []
   nodeEnemyID: 00000000
-  mapSection: Cathedral
+  mapSection: Ruins
   isActive: 0
   isCompleted: 0
 --- !u!1001 &118877935
@@ -2495,8 +2505,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 148639374}
-  m_LocalRotation: {x: -0, y: -0.87518686, z: -0, w: 0.4837851}
-  m_LocalPosition: {x: -3.3, y: -0.038, z: -3.51}
+  m_LocalRotation: {x: -0, y: -0.4837851, z: -0, w: -0.87518686}
+  m_LocalPosition: {x: 1.26, y: -1.668, z: 10.24}
   m_LocalScale: {x: 0.41664, y: 0.41664, z: 0.41664}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2515,8 +2525,8 @@ Transform:
   - {fileID: 1718669850}
   - {fileID: 1185335921}
   - {fileID: 1240963029}
-  m_Father: {fileID: 0}
-  m_RootOrder: 35
+  m_Father: {fileID: 1752782019}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: -122.134, z: 0}
 --- !u!1001 &152214304
 PrefabInstance:
@@ -3439,8 +3449,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 201281439}
-  m_LocalRotation: {x: -0, y: 0.39714503, z: -0, w: -0.9177559}
-  m_LocalPosition: {x: 1.16, y: 0.035317898, z: 22.17}
+  m_LocalRotation: {x: -0, y: 0.9177559, z: -0, w: 0.39714503}
+  m_LocalPosition: {x: -3.1999998, y: -1.5946821, z: -15.440001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3449,8 +3459,8 @@ Transform:
   - {fileID: 1293859970}
   - {fileID: 440831121}
   - {fileID: 411550114}
-  m_Father: {fileID: 0}
-  m_RootOrder: 27
+  m_Father: {fileID: 1752782019}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 313.2, z: 0}
 --- !u!1001 &204435810
 PrefabInstance:
@@ -3797,7 +3807,7 @@ GameObject:
   - component: {fileID: 214759932}
   - component: {fileID: 214759931}
   m_Layer: 0
-  m_Name: ExtraCathedralNode2
+  m_Name: Row6Node2
   m_TagString: Node
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3834,6 +3844,9 @@ MonoBehaviour:
   nodeID: 21e8cb4e-d433-4fa7-8131-5b5bbd360bc3
   leftPath: {fileID: 1201661011}
   rightPath: {fileID: 1201661011}
+  parallelNodes:
+  - {fileID: 104649821}
+  - {fileID: 2139884438}
   fogEffect: {fileID: 1169911084}
   nodeMeshes:
   - {fileID: 377315440509832864, guid: 3a2341a067d87e340b67d926d2578989, type: 3}
@@ -4383,7 +4396,7 @@ GameObject:
   - component: {fileID: 254238222}
   - component: {fileID: 254238225}
   m_Layer: 0
-  m_Name: MarshNode4
+  m_Name: Row2Node2
   m_TagString: Node
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4493,6 +4506,9 @@ MonoBehaviour:
   nodeID: 9e78b188-08d5-41e9-bb7b-c693033aa183
   leftPath: {fileID: 750133156}
   rightPath: {fileID: 1049117491}
+  parallelNodes:
+  - {fileID: 1667269715}
+  - {fileID: 326234399}
   fogEffect: {fileID: 1101962664}
   nodeMeshes:
   - {fileID: 377315440509832864, guid: 3a2341a067d87e340b67d926d2578989, type: 3}
@@ -4541,15 +4557,15 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1173233831}
-  - {fileID: 1057626254}
   - {fileID: 1075164955}
+  - {fileID: 1057626254}
   - {fileID: 1667269711}
   - {fileID: 254238221}
   - {fileID: 326234395}
-  - {fileID: 1864126181}
   - {fileID: 44941527}
   - {fileID: 750133152}
   - {fileID: 1049117487}
+  - {fileID: 1864126181}
   - {fileID: 109931046}
   - {fileID: 1238171425}
   - {fileID: 819224328}
@@ -4927,8 +4943,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 306807707}
-  m_LocalRotation: {x: -0, y: 0.5080065, z: -0, w: 0.8613532}
-  m_LocalPosition: {x: -1.24, y: -0.038, z: 2.25}
+  m_LocalRotation: {x: -0, y: -0.8613532, z: -0, w: 0.5080065}
+  m_LocalPosition: {x: -0.79999995, y: -1.668, z: 4.48}
   m_LocalScale: {x: 0.41664, y: 0.41664, z: 0.41664}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4958,8 +4974,8 @@ Transform:
   - {fileID: 1486832732}
   - {fileID: 983707864}
   - {fileID: 1029508597}
-  m_Father: {fileID: 0}
-  m_RootOrder: 38
+  m_Father: {fileID: 1752782019}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 61.062, z: 0}
 --- !u!1 &308510449
 GameObject:
@@ -4984,8 +5000,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 308510449}
-  m_LocalRotation: {x: -0, y: -0.0075919493, z: -0, w: 0.99997115}
-  m_LocalPosition: {x: -1.79, y: 0.035317898, z: 9.16}
+  m_LocalRotation: {x: -0, y: -0.9999712, z: -0, w: -0.00759195}
+  m_LocalPosition: {x: -0.25, y: -1.5946821, z: -2.4299998}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4994,8 +5010,8 @@ Transform:
   - {fileID: 1179692566}
   - {fileID: 776230632}
   - {fileID: 1622888295}
-  m_Father: {fileID: 0}
-  m_RootOrder: 42
+  m_Father: {fileID: 1752782019}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: -0.87, z: 0}
 --- !u!1001 &322298333
 PrefabInstance:
@@ -5183,7 +5199,7 @@ GameObject:
   - component: {fileID: 326234396}
   - component: {fileID: 326234399}
   m_Layer: 0
-  m_Name: RuinsNode1
+  m_Name: Row2Node3
   m_TagString: Node
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5293,6 +5309,9 @@ MonoBehaviour:
   nodeID: a8ec9099-d83a-4949-83e7-bcce338535fd
   leftPath: {fileID: 1049117491}
   rightPath: {fileID: 1864126185}
+  parallelNodes:
+  - {fileID: 254238225}
+  - {fileID: 254238225}
   fogEffect: {fileID: 585307155}
   nodeMeshes:
   - {fileID: 377315440509832864, guid: 3a2341a067d87e340b67d926d2578989, type: 3}
@@ -5303,7 +5322,7 @@ MonoBehaviour:
   nodeDescription: This is combat. The enemy is a ghost.
   nodeRewards: []
   nodeEnemyID: 00000000
-  mapSection: Ruins
+  mapSection: Marsh
   isActive: 0
   isCompleted: 0
 --- !u!1001 &331041072
@@ -5418,8 +5437,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 331110340}
-  m_LocalRotation: {x: -0, y: -0.00036179158, z: -0, w: 1}
-  m_LocalPosition: {x: 3.8099995, y: 0.035317898, z: 21.997}
+  m_LocalRotation: {x: -0, y: -1, z: -0, w: -0.00036179158}
+  m_LocalPosition: {x: -5.8499994, y: -1.5946821, z: -15.267}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5428,8 +5447,8 @@ Transform:
   - {fileID: 1956359843}
   - {fileID: 484051739}
   - {fileID: 1635442548}
-  m_Father: {fileID: 0}
-  m_RootOrder: 25
+  m_Father: {fileID: 1752782019}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: -0.041, z: 0}
 --- !u!1001 &334719721
 PrefabInstance:
@@ -5994,8 +6013,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 372211216}
-  m_LocalRotation: {x: -0, y: 0.9191379, z: -0, w: 0.39393607}
-  m_LocalPosition: {x: -4.92, y: 0.035317898, z: 22.133001}
+  m_LocalRotation: {x: -0, y: -0.39393607, z: -0, w: 0.9191379}
+  m_LocalPosition: {x: 2.88, y: -1.5946821, z: -15.403002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6004,8 +6023,8 @@ Transform:
   - {fileID: 1692292324}
   - {fileID: 1666784414}
   - {fileID: 1251890643}
-  m_Father: {fileID: 0}
-  m_RootOrder: 24
+  m_Father: {fileID: 1752782019}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 133.601, z: 0}
 --- !u!1001 &407606074
 PrefabInstance:
@@ -8038,8 +8057,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 483050179}
-  m_LocalRotation: {x: -0, y: 0.9301582, z: -0, w: 0.36715892}
-  m_LocalPosition: {x: 6.42, y: 0.035317898, z: 9.11}
+  m_LocalRotation: {x: -0, y: -0.36715895, z: -0, w: 0.93015826}
+  m_LocalPosition: {x: -8.46, y: -1.5946821, z: -2.3799996}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8048,8 +8067,8 @@ Transform:
   - {fileID: 1025730416}
   - {fileID: 761917611}
   - {fileID: 871719789}
-  m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_Father: {fileID: 1752782019}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 136.919, z: 0}
 --- !u!1001 &484051738
 PrefabInstance:
@@ -9010,9 +9029,10 @@ MonoBehaviour:
   playerHUD: {fileID: 1168367032}
   mainMenuButton: {fileID: 1264252722}
   enterButton: {fileID: 1031867883}
+  parallelNodes: []
   player: {fileID: 1767277888}
   playerUnit: {fileID: 1151548439}
-  startPos: {x: -0.3939582, y: 0.55, z: -8.18}
+  startPos: {x: -0.4, y: 0.55, z: -12}
   playerPosInWorld: {x: 0, y: 0, z: 0}
   lastSelectedNodeEnemyID: 
 --- !u!4 &533649390
@@ -9552,9 +9572,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 568634292}
-  m_LocalRotation: {x: -0, y: 0.83497196, z: -0, w: 0.5502926}
-  m_LocalPosition: {x: 0.73, y: -0.038, z: 2.25}
-  m_LocalScale: {x: 0.41664, y: 0.41664, z: 0.41664}
+  m_LocalRotation: {x: -0, y: -0.5502926, z: -0, w: 0.83497196}
+  m_LocalPosition: {x: -2.77, y: -1.668, z: 4.48}
+  m_LocalScale: {x: 0.41664007, y: 0.41664, z: 0.41664007}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1939800994}
@@ -9583,8 +9603,8 @@ Transform:
   - {fileID: 1779064792}
   - {fileID: 1358235343}
   - {fileID: 557384646}
-  m_Father: {fileID: 0}
-  m_RootOrder: 40
+  m_Father: {fileID: 1752782019}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 113.226, z: 0}
 --- !u!1001 &570094324
 PrefabInstance:
@@ -10729,7 +10749,7 @@ GameObject:
   - component: {fileID: 610273880}
   - component: {fileID: 610273879}
   m_Layer: 0
-  m_Name: ExtraRuinsNode4
+  m_Name: Row5Node4
   m_TagString: Node
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10766,6 +10786,10 @@ MonoBehaviour:
   nodeID: d0fea9e8-954a-4ec3-a4f6-3ac225c8ba04
   leftPath: {fileID: 2139884438}
   rightPath: {fileID: 2139884438}
+  parallelNodes:
+  - {fileID: 809093126}
+  - {fileID: 1355239501}
+  - {fileID: 992966120}
   fogEffect: {fileID: 1747927317}
   nodeMeshes:
   - {fileID: 377315440509832864, guid: 3a2341a067d87e340b67d926d2578989, type: 3}
@@ -12145,9 +12169,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 683916110}
-  m_LocalRotation: {x: -0, y: 0.53780586, z: -0, w: 0.8430687}
-  m_LocalPosition: {x: 1.88, y: -0.038, z: -3.86}
-  m_LocalScale: {x: 0.41664, y: 0.41664, z: 0.41664}
+  m_LocalRotation: {x: -0, y: -0.8430687, z: -0, w: 0.53780586}
+  m_LocalPosition: {x: -3.92, y: -1.668, z: 10.59}
+  m_LocalScale: {x: 0.41663998, y: 0.41664, z: 0.41663998}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 849140138}
@@ -12164,8 +12188,8 @@ Transform:
   - {fileID: 213998460}
   - {fileID: 1737241512}
   - {fileID: 597337774}
-  m_Father: {fileID: 0}
-  m_RootOrder: 37
+  m_Father: {fileID: 1752782019}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 65.069, z: 0}
 --- !u!1001 &693819684
 PrefabInstance:
@@ -12860,8 +12884,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 746462441}
-  m_LocalRotation: {x: -0, y: -0.53353083, z: -0, w: 0.8457807}
-  m_LocalPosition: {x: -0.63, y: -0.038, z: -0.59}
+  m_LocalRotation: {x: -0, y: -0.8457807, z: -0, w: -0.53353083}
+  m_LocalPosition: {x: -1.41, y: -1.668, z: 7.32}
   m_LocalScale: {x: 0.41664, y: 0.41664, z: 0.41664}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -12880,8 +12904,8 @@ Transform:
   - {fileID: 1548792891}
   - {fileID: 1418973934}
   - {fileID: 458686925}
-  m_Father: {fileID: 0}
-  m_RootOrder: 36
+  m_Father: {fileID: 1752782019}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: -64.489, z: 0}
 --- !u!1001 &748709876
 PrefabInstance:
@@ -12985,7 +13009,7 @@ GameObject:
   - component: {fileID: 750133153}
   - component: {fileID: 750133156}
   m_Layer: 0
-  m_Name: RuinsNode4
+  m_Name: Row3Node2
   m_TagString: Node
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13095,6 +13119,10 @@ MonoBehaviour:
   nodeID: 9a2feba8-62aa-4947-b698-af4f20a76a16
   leftPath: {fileID: 109931050}
   rightPath: {fileID: 1238171429}
+  parallelNodes:
+  - {fileID: 44941531}
+  - {fileID: 1049117491}
+  - {fileID: 1864126185}
   fogEffect: {fileID: 1680929754}
   nodeMeshes:
   - {fileID: 377315440509832864, guid: 3a2341a067d87e340b67d926d2578989, type: 3}
@@ -13106,7 +13134,7 @@ MonoBehaviour:
   nodeRewards:
   - Health Recovered Talisman
   nodeEnemyID: 
-  mapSection: Ruins
+  mapSection: Marsh
   isActive: 0
   isCompleted: 0
 --- !u!4 &758458381 stripped
@@ -14553,7 +14581,7 @@ GameObject:
   - component: {fileID: 809093127}
   - component: {fileID: 809093126}
   m_Layer: 0
-  m_Name: ExtraRuinsNode1
+  m_Name: Row5Node1
   m_TagString: Node
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14590,6 +14618,10 @@ MonoBehaviour:
   nodeID: 579975e7-9cab-4908-8d62-5cb16b2e5ad9
   leftPath: {fileID: 104649821}
   rightPath: {fileID: 214759931}
+  parallelNodes:
+  - {fileID: 1355239501}
+  - {fileID: 992966120}
+  - {fileID: 610273879}
   fogEffect: {fileID: 1832515835}
   nodeMeshes:
   - {fileID: 377315440509832864, guid: 3a2341a067d87e340b67d926d2578989, type: 3}
@@ -14924,7 +14956,7 @@ GameObject:
   - component: {fileID: 819224329}
   - component: {fileID: 819224332}
   m_Layer: 0
-  m_Name: CathedralNode4
+  m_Name: Row4Node3
   m_TagString: Node
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15034,6 +15066,9 @@ MonoBehaviour:
   nodeID: dc98db7f-0645-40e7-beea-4eea71de08e2
   leftPath: {fileID: 992966120}
   rightPath: {fileID: 610273879}
+  parallelNodes:
+  - {fileID: 109931050}
+  - {fileID: 1238171429}
   fogEffect: {fileID: 1226695199}
   nodeMeshes:
   - {fileID: 377315440509832864, guid: 3a2341a067d87e340b67d926d2578989, type: 3}
@@ -15044,7 +15079,7 @@ MonoBehaviour:
   nodeDescription: A High Spirit lurks here.
   nodeRewards: []
   nodeEnemyID: 00000000
-  mapSection: Cathedral
+  mapSection: Ruins
   isActive: 0
   isCompleted: 0
 --- !u!1001 &828824769
@@ -17392,9 +17427,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 961357788}
-  m_LocalRotation: {x: -0, y: 0.8675421, z: -0, w: 0.4973638}
-  m_LocalPosition: {x: 1.029, y: -0.038, z: -6.328}
-  m_LocalScale: {x: 0.41664, y: 0.41664, z: 0.41664}
+  m_LocalRotation: {x: -0, y: -0.4973638, z: -0, w: 0.8675421}
+  m_LocalPosition: {x: -3.069, y: -1.668, z: 13.058001}
+  m_LocalScale: {x: 0.41664004, y: 0.41664, z: 0.41664004}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 984914799}
@@ -17412,8 +17447,8 @@ Transform:
   - {fileID: 1198569176}
   - {fileID: 626334956}
   - {fileID: 135746089}
-  m_Father: {fileID: 0}
-  m_RootOrder: 30
+  m_Father: {fileID: 1752782019}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 120.349, z: 0}
 --- !u!4 &964327109 stripped
 Transform:
@@ -18094,7 +18129,7 @@ GameObject:
   - component: {fileID: 992966121}
   - component: {fileID: 992966120}
   m_Layer: 0
-  m_Name: ExtraRuinsNode3
+  m_Name: Row5Node3
   m_TagString: Node
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18131,6 +18166,10 @@ MonoBehaviour:
   nodeID: 5c24489c-9c45-4d91-9bd6-1ae98338034a
   leftPath: {fileID: 214759931}
   rightPath: {fileID: 2139884438}
+  parallelNodes:
+  - {fileID: 809093126}
+  - {fileID: 1355239501}
+  - {fileID: 610273879}
   fogEffect: {fileID: 2101464644}
   nodeMeshes:
   - {fileID: 377315440509832864, guid: 3a2341a067d87e340b67d926d2578989, type: 3}
@@ -19734,7 +19773,7 @@ GameObject:
   - component: {fileID: 1049117488}
   - component: {fileID: 1049117491}
   m_Layer: 0
-  m_Name: CathedralNode1
+  m_Name: Row3Node3
   m_TagString: Node
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19844,6 +19883,10 @@ MonoBehaviour:
   nodeID: be0d7f52-e84a-43ef-b577-7b482eebd219
   leftPath: {fileID: 1238171429}
   rightPath: {fileID: 819224332}
+  parallelNodes:
+  - {fileID: 44941531}
+  - {fileID: 750133156}
+  - {fileID: 1864126185}
   fogEffect: {fileID: 1117514910}
   nodeMeshes:
   - {fileID: 377315440509832864, guid: 3a2341a067d87e340b67d926d2578989, type: 3}
@@ -19854,7 +19897,7 @@ MonoBehaviour:
   nodeDescription: A High Spirit lurks here.
   nodeRewards: []
   nodeEnemyID: 00000000
-  mapSection: Cathedral
+  mapSection: Marsh
   isActive: 0
   isCompleted: 0
 --- !u!1001 &1053614757
@@ -20050,7 +20093,7 @@ GameObject:
   - component: {fileID: 1057626251}
   - component: {fileID: 1057626255}
   m_Layer: 0
-  m_Name: MarshNode1
+  m_Name: Row1Node2
   m_TagString: Node
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20160,6 +20203,8 @@ MonoBehaviour:
   nodeID: 1e823d20-72ca-41e9-97ed-79f0bd27b987
   leftPath: {fileID: 254238225}
   rightPath: {fileID: 326234399}
+  parallelNodes:
+  - {fileID: 1075164956}
   fogEffect: {fileID: 788165872}
   nodeMeshes:
   - {fileID: 377315440509832864, guid: 3a2341a067d87e340b67d926d2578989, type: 3}
@@ -20197,9 +20242,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1069422808}
-  m_LocalRotation: {x: -0, y: 0.53780586, z: -0, w: 0.8430687}
-  m_LocalPosition: {x: 0.53, y: -0.038, z: -1.06}
-  m_LocalScale: {x: 0.41664, y: 0.41664, z: 0.41664}
+  m_LocalRotation: {x: -0, y: -0.8430687, z: -0, w: 0.53780586}
+  m_LocalPosition: {x: -2.57, y: -1.668, z: 7.79}
+  m_LocalScale: {x: 0.41663998, y: 0.41664, z: 0.41663998}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2091634511}
@@ -20217,8 +20262,8 @@ Transform:
   - {fileID: 2025459799}
   - {fileID: 72550893}
   - {fileID: 41447806}
-  m_Father: {fileID: 0}
-  m_RootOrder: 32
+  m_Father: {fileID: 1752782019}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 65.069, z: 0}
 --- !u!1001 &1073362941
 PrefabInstance:
@@ -20339,7 +20384,7 @@ GameObject:
   - component: {fileID: 1075164952}
   - component: {fileID: 1075164956}
   m_Layer: 0
-  m_Name: MarshNode2
+  m_Name: Row1Node1
   m_TagString: Node
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20449,6 +20494,8 @@ MonoBehaviour:
   nodeID: dfb0f0ac-4b25-40ba-9f01-5b8f45637f14
   leftPath: {fileID: 1667269715}
   rightPath: {fileID: 254238225}
+  parallelNodes:
+  - {fileID: 1057626255}
   fogEffect: {fileID: 335788517}
   nodeMeshes:
   - {fileID: 377315440509832864, guid: 3a2341a067d87e340b67d926d2578989, type: 3}
@@ -22619,7 +22666,7 @@ PrefabInstance:
     - target: {fileID: 3156578035115734741, guid: 03eef988e7ed6014588dd762fd86a172,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.3939582
+      value: -0.4
       objectReference: {fileID: 0}
     - target: {fileID: 3156578035115734741, guid: 03eef988e7ed6014588dd762fd86a172,
         type: 3}
@@ -22629,7 +22676,7 @@ PrefabInstance:
     - target: {fileID: 3156578035115734741, guid: 03eef988e7ed6014588dd762fd86a172,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -12.35
+      value: -12
       objectReference: {fileID: 0}
     - target: {fileID: 3156578035115734741, guid: 03eef988e7ed6014588dd762fd86a172,
         type: 3}
@@ -24225,9 +24272,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80c67172a93f2dc47a4be2fff913d31b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nodeID: 
+  nodeID: 07cad2dd-2935-4b45-b417-fb23fdd83900
   leftPath: {fileID: 0}
   rightPath: {fileID: 0}
+  parallelNodes: []
   fogEffect: {fileID: 462200636}
   nodeMeshes:
   - {fileID: 377315440509832864, guid: 3a2341a067d87e340b67d926d2578989, type: 3}
@@ -25064,7 +25112,7 @@ GameObject:
   - component: {fileID: 1238171426}
   - component: {fileID: 1238171429}
   m_Layer: 0
-  m_Name: CathedralNode3
+  m_Name: Row4Node2
   m_TagString: Node
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25174,6 +25222,9 @@ MonoBehaviour:
   nodeID: d6d120dc-b7ea-4bf2-bc1e-dbeadecca240
   leftPath: {fileID: 1355239501}
   rightPath: {fileID: 992966120}
+  parallelNodes:
+  - {fileID: 109931050}
+  - {fileID: 819224332}
   fogEffect: {fileID: 1012612705}
   nodeMeshes:
   - {fileID: 377315440509832864, guid: 3a2341a067d87e340b67d926d2578989, type: 3}
@@ -25184,7 +25235,7 @@ MonoBehaviour:
   nodeDescription: A High Spirit lurks here.
   nodeRewards: []
   nodeEnemyID: 00000000
-  mapSection: Cathedral
+  mapSection: Ruins
   isActive: 0
   isCompleted: 0
 --- !u!1001 &1240963028
@@ -25650,9 +25701,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1255000425}
-  m_LocalRotation: {x: -0, y: -0.85476565, z: -0, w: 0.5190141}
-  m_LocalPosition: {x: -7.6892123, y: -0.038, z: 3.872208}
-  m_LocalScale: {x: 0.41664, y: 0.41664, z: 0.41664}
+  m_LocalRotation: {x: -0, y: -0.5190141, z: -0, w: -0.85476565}
+  m_LocalPosition: {x: 5.6492124, y: -1.668, z: 2.857792}
+  m_LocalScale: {x: 0.41664004, y: 0.41664, z: 0.41664004}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 831558228}
@@ -25681,8 +25732,8 @@ Transform:
   - {fileID: 1293651644}
   - {fileID: 294493000}
   - {fileID: 1020135552}
-  m_Father: {fileID: 0}
-  m_RootOrder: 39
+  m_Father: {fileID: 1752782019}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: -117.468, z: 0}
 --- !u!1001 &1260653765
 PrefabInstance:
@@ -26139,8 +26190,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1276992615}
-  m_LocalRotation: {x: -0, y: -0.9984663, z: -0, w: 0.055362802}
-  m_LocalPosition: {x: 5.87, y: 0.035317898, z: 3.08}
+  m_LocalRotation: {x: -0, y: -0.055362802, z: -0, w: -0.9984663}
+  m_LocalPosition: {x: -7.91, y: -1.5946821, z: 3.65}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -26149,8 +26200,8 @@ Transform:
   - {fileID: 1492976281}
   - {fileID: 1898228806}
   - {fileID: 1346886443}
-  m_Father: {fileID: 0}
-  m_RootOrder: 22
+  m_Father: {fileID: 1752782019}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: -173.653, z: 0}
 --- !u!1001 &1293651643
 PrefabInstance:
@@ -26727,7 +26778,7 @@ GameObject:
   - component: {fileID: 1355239502}
   - component: {fileID: 1355239501}
   m_Layer: 0
-  m_Name: ExtraRuinsNode2
+  m_Name: Row5Node2
   m_TagString: Node
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26764,6 +26815,10 @@ MonoBehaviour:
   nodeID: 2214101f-b400-42d3-882a-c74879df3e3a
   leftPath: {fileID: 104649821}
   rightPath: {fileID: 214759931}
+  parallelNodes:
+  - {fileID: 809093126}
+  - {fileID: 992966120}
+  - {fileID: 992966120}
   fogEffect: {fileID: 1670196991}
   nodeMeshes:
   - {fileID: 377315440509832864, guid: 3a2341a067d87e340b67d926d2578989, type: 3}
@@ -28536,8 +28591,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1449911968}
-  m_LocalRotation: {x: -0, y: -0.049299505, z: -0, w: 0.99878407}
-  m_LocalPosition: {x: -7.41, y: 0.035317898, z: 8.947}
+  m_LocalRotation: {x: -0, y: -0.99878407, z: -0, w: -0.049299505}
+  m_LocalPosition: {x: 5.37, y: -1.5946821, z: -2.2169995}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -28546,8 +28601,8 @@ Transform:
   - {fileID: 2139984090}
   - {fileID: 1926079776}
   - {fileID: 1111860178}
-  m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_Father: {fileID: 1752782019}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: -5.652, z: 0}
 --- !u!1 &1456935253
 GameObject:
@@ -28572,8 +28627,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1456935253}
-  m_LocalRotation: {x: -0, y: -0.87518686, z: -0, w: 0.4837851}
-  m_LocalPosition: {x: -4.99, y: -0.038, z: -0.84}
+  m_LocalRotation: {x: -0, y: -0.4837851, z: -0, w: -0.87518686}
+  m_LocalPosition: {x: 2.9499998, y: -1.668, z: 7.57}
   m_LocalScale: {x: 0.41664, y: 0.41664, z: 0.41664}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -28592,8 +28647,8 @@ Transform:
   - {fileID: 69387393}
   - {fileID: 1990054348}
   - {fileID: 2072592158}
-  m_Father: {fileID: 0}
-  m_RootOrder: 34
+  m_Father: {fileID: 1752782019}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: -122.134, z: 0}
 --- !u!1001 &1464671579
 PrefabInstance:
@@ -28776,8 +28831,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1467927007}
-  m_LocalRotation: {x: -0, y: 0.85408264, z: -0, w: 0.5201373}
-  m_LocalPosition: {x: 3.11, y: -0.038, z: -2.02}
+  m_LocalRotation: {x: -0, y: -0.5201373, z: -0, w: 0.85408264}
+  m_LocalPosition: {x: -5.1499996, y: -1.668, z: 8.75}
   m_LocalScale: {x: 0.41664, y: 0.41664, z: 0.41664}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -28799,8 +28854,8 @@ Transform:
   - {fileID: 932533987}
   - {fileID: 423897771}
   - {fileID: 1139981143}
-  m_Father: {fileID: 0}
-  m_RootOrder: 31
+  m_Father: {fileID: 1752782019}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 117.317, z: 0}
 --- !u!1001 &1469089270
 PrefabInstance:
@@ -30681,8 +30736,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1602557541}
-  m_LocalRotation: {x: -0, y: -0.3658243, z: -0, w: 0.930684}
-  m_LocalPosition: {x: 3.38, y: 0.035317898, z: 3.22}
+  m_LocalRotation: {x: -0, y: -0.930684, z: -0, w: -0.3658243}
+  m_LocalPosition: {x: -5.42, y: -1.5946821, z: 3.51}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -30691,8 +30746,8 @@ Transform:
   - {fileID: 1711239088}
   - {fileID: 612762570}
   - {fileID: 350169609}
-  m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_Father: {fileID: 1752782019}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: -42.917, z: 0}
 --- !u!1001 &1609858092
 PrefabInstance:
@@ -31898,7 +31953,7 @@ GameObject:
   - component: {fileID: 1667269712}
   - component: {fileID: 1667269715}
   m_Layer: 0
-  m_Name: MarshNode3
+  m_Name: Row2Node1
   m_TagString: Node
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32008,6 +32063,9 @@ MonoBehaviour:
   nodeID: 6839ffd6-8f71-494c-accd-16a2c1f11a29
   leftPath: {fileID: 44941531}
   rightPath: {fileID: 750133156}
+  parallelNodes:
+  - {fileID: 254238225}
+  - {fileID: 326234399}
   fogEffect: {fileID: 607242238}
   nodeMeshes:
   - {fileID: 377315440509832864, guid: 3a2341a067d87e340b67d926d2578989, type: 3}
@@ -32044,8 +32102,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1669060874}
-  m_LocalRotation: {x: -0, y: -0.53353083, z: -0, w: 0.8457807}
-  m_LocalPosition: {x: -1.94, y: -0.038, z: -3.42}
+  m_LocalRotation: {x: -0, y: -0.8457807, z: -0, w: -0.53353083}
+  m_LocalPosition: {x: -0.099999905, y: -1.668, z: 10.15}
   m_LocalScale: {x: 0.41664, y: 0.41664, z: 0.41664}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -32064,8 +32122,8 @@ Transform:
   - {fileID: 204435811}
   - {fileID: 1728310585}
   - {fileID: 1592386139}
-  m_Father: {fileID: 0}
-  m_RootOrder: 33
+  m_Father: {fileID: 1752782019}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: -64.489, z: 0}
 --- !u!1001 &1670196989
 PrefabInstance:
@@ -32966,8 +33024,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1734166781}
-  m_LocalRotation: {x: -0, y: -0.049299505, z: -0, w: 0.99878407}
-  m_LocalPosition: {x: -7.5, y: 0.035317898, z: 21.95}
+  m_LocalRotation: {x: -0, y: -0.99878407, z: -0, w: -0.049299505}
+  m_LocalPosition: {x: 5.46, y: -1.5946821, z: -15.220001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -32976,8 +33034,8 @@ Transform:
   - {fileID: 1949374880}
   - {fileID: 1738521244}
   - {fileID: 1911591179}
-  m_Father: {fileID: 0}
-  m_RootOrder: 23
+  m_Father: {fileID: 1752782019}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: -5.652, z: 0}
 --- !u!1001 &1734524072
 PrefabInstance:
@@ -33095,9 +33153,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1736786023}
-  m_LocalRotation: {x: -0, y: 0.7138942, z: -0, w: 0.7002536}
-  m_LocalPosition: {x: -0.28, y: -0.038, z: -12.66}
-  m_LocalScale: {x: 0.41664, y: 0.41664, z: 0.41664}
+  m_LocalRotation: {x: -0, y: -0.7002536, z: -0, w: 0.7138942}
+  m_LocalPosition: {x: -1.76, y: -1.668, z: 19.39}
+  m_LocalScale: {x: 0.41663998, y: 0.41664, z: 0.41663998}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 891350036}
@@ -33117,8 +33175,8 @@ Transform:
   - {fileID: 233582094}
   - {fileID: 1045855104}
   - {fileID: 1018604005}
-  m_Father: {fileID: 0}
-  m_RootOrder: 41
+  m_Father: {fileID: 1752782019}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 91.105, z: 0}
 --- !u!1001 &1737241511
 PrefabInstance:
@@ -33805,11 +33863,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4617722663223710607, guid: 6f34e348bd027ea4b81e55d3a00a9cd7,
         type: 3}
-      propertyPath: LightsModule.rangeCurve.scalar
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4617722663223710607, guid: 6f34e348bd027ea4b81e55d3a00a9cd7,
-        type: 3}
       propertyPath: LightsModule.intensityCurve.scalar
       value: 0.06
       objectReference: {fileID: 0}
@@ -34295,6 +34348,106 @@ PrefabInstance:
     - {fileID: 7775093440711020033, guid: 6f34e348bd027ea4b81e55d3a00a9cd7, type: 3}
     - {fileID: 7012144967055925945, guid: 6f34e348bd027ea4b81e55d3a00a9cd7, type: 3}
     m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 8675043948129893413, guid: 6f34e348bd027ea4b81e55d3a00a9cd7,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1449911969}
+    - targetCorrespondingSourceObject: {fileID: 8675043948129893413, guid: 6f34e348bd027ea4b81e55d3a00a9cd7,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1890808502}
+    - targetCorrespondingSourceObject: {fileID: 8675043948129893413, guid: 6f34e348bd027ea4b81e55d3a00a9cd7,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 483050180}
+    - targetCorrespondingSourceObject: {fileID: 8675043948129893413, guid: 6f34e348bd027ea4b81e55d3a00a9cd7,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1602557542}
+    - targetCorrespondingSourceObject: {fileID: 8675043948129893413, guid: 6f34e348bd027ea4b81e55d3a00a9cd7,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1276992616}
+    - targetCorrespondingSourceObject: {fileID: 8675043948129893413, guid: 6f34e348bd027ea4b81e55d3a00a9cd7,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1734166782}
+    - targetCorrespondingSourceObject: {fileID: 8675043948129893413, guid: 6f34e348bd027ea4b81e55d3a00a9cd7,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 372211217}
+    - targetCorrespondingSourceObject: {fileID: 8675043948129893413, guid: 6f34e348bd027ea4b81e55d3a00a9cd7,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 331110341}
+    - targetCorrespondingSourceObject: {fileID: 8675043948129893413, guid: 6f34e348bd027ea4b81e55d3a00a9cd7,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 89115607}
+    - targetCorrespondingSourceObject: {fileID: 8675043948129893413, guid: 6f34e348bd027ea4b81e55d3a00a9cd7,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 201281440}
+    - targetCorrespondingSourceObject: {fileID: 8675043948129893413, guid: 6f34e348bd027ea4b81e55d3a00a9cd7,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2013154591}
+    - targetCorrespondingSourceObject: {fileID: 8675043948129893413, guid: 6f34e348bd027ea4b81e55d3a00a9cd7,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 71506551}
+    - targetCorrespondingSourceObject: {fileID: 8675043948129893413, guid: 6f34e348bd027ea4b81e55d3a00a9cd7,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 961357789}
+    - targetCorrespondingSourceObject: {fileID: 8675043948129893413, guid: 6f34e348bd027ea4b81e55d3a00a9cd7,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1467927008}
+    - targetCorrespondingSourceObject: {fileID: 8675043948129893413, guid: 6f34e348bd027ea4b81e55d3a00a9cd7,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1069422809}
+    - targetCorrespondingSourceObject: {fileID: 8675043948129893413, guid: 6f34e348bd027ea4b81e55d3a00a9cd7,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1669060875}
+    - targetCorrespondingSourceObject: {fileID: 8675043948129893413, guid: 6f34e348bd027ea4b81e55d3a00a9cd7,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1456935254}
+    - targetCorrespondingSourceObject: {fileID: 8675043948129893413, guid: 6f34e348bd027ea4b81e55d3a00a9cd7,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 148639375}
+    - targetCorrespondingSourceObject: {fileID: 8675043948129893413, guid: 6f34e348bd027ea4b81e55d3a00a9cd7,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 746462442}
+    - targetCorrespondingSourceObject: {fileID: 8675043948129893413, guid: 6f34e348bd027ea4b81e55d3a00a9cd7,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 683916111}
+    - targetCorrespondingSourceObject: {fileID: 8675043948129893413, guid: 6f34e348bd027ea4b81e55d3a00a9cd7,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 306807708}
+    - targetCorrespondingSourceObject: {fileID: 8675043948129893413, guid: 6f34e348bd027ea4b81e55d3a00a9cd7,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1255000426}
+    - targetCorrespondingSourceObject: {fileID: 8675043948129893413, guid: 6f34e348bd027ea4b81e55d3a00a9cd7,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 568634293}
+    - targetCorrespondingSourceObject: {fileID: 8675043948129893413, guid: 6f34e348bd027ea4b81e55d3a00a9cd7,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1736786024}
+    - targetCorrespondingSourceObject: {fileID: 8675043948129893413, guid: 6f34e348bd027ea4b81e55d3a00a9cd7,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 308510450}
     - targetCorrespondingSourceObject: {fileID: 4971315058057201926, guid: 6f34e348bd027ea4b81e55d3a00a9cd7,
         type: 3}
       insertIndex: -1
@@ -34537,6 +34690,12 @@ PrefabInstance:
       addedObject: {fileID: 1898266421}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f34e348bd027ea4b81e55d3a00a9cd7, type: 3}
+--- !u!4 &1752782019 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8675043948129893413, guid: 6f34e348bd027ea4b81e55d3a00a9cd7,
+    type: 3}
+  m_PrefabInstance: {fileID: 1752782018}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1757917923
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -35774,7 +35933,7 @@ GameObject:
   - component: {fileID: 1864126182}
   - component: {fileID: 1864126185}
   m_Layer: 0
-  m_Name: RuinsNode2
+  m_Name: Row3Node4
   m_TagString: Node
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35884,6 +36043,10 @@ MonoBehaviour:
   nodeID: 43834c1d-f11b-43ad-901b-5d4bdfcc99bd
   leftPath: {fileID: 819224332}
   rightPath: {fileID: 819224332}
+  parallelNodes:
+  - {fileID: 44941531}
+  - {fileID: 750133156}
+  - {fileID: 1049117491}
   fogEffect: {fileID: 1057091683}
   nodeMeshes:
   - {fileID: 377315440509832864, guid: 3a2341a067d87e340b67d926d2578989, type: 3}
@@ -35894,7 +36057,7 @@ MonoBehaviour:
   nodeDescription: A High Spirit lurks here.
   nodeRewards: []
   nodeEnemyID: 00000000
-  mapSection: Ruins
+  mapSection: Marsh
   isActive: 0
   isCompleted: 0
 --- !u!1 &1890808501
@@ -35920,8 +36083,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1890808501}
-  m_LocalRotation: {x: -0, y: 0.9191379, z: -0, w: 0.39393607}
-  m_LocalPosition: {x: -4.83, y: 0.035317898, z: 9.13}
+  m_LocalRotation: {x: -0, y: -0.39393607, z: -0, w: 0.9191379}
+  m_LocalPosition: {x: 2.79, y: -1.5946821, z: -2.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -35930,8 +36093,8 @@ Transform:
   - {fileID: 1480240890}
   - {fileID: 198587713}
   - {fileID: 761804702}
-  m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_Father: {fileID: 1752782019}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 133.601, z: 0}
 --- !u!1001 &1894796491
 PrefabInstance:
@@ -38306,8 +38469,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2013154590}
-  m_LocalRotation: {x: -0, y: 0.9999687, z: -0, w: -0.007909196}
-  m_LocalPosition: {x: -1.9, y: 0.035317898, z: 22.4}
+  m_LocalRotation: {x: -0, y: 0.007909196, z: -0, w: 0.9999687}
+  m_LocalPosition: {x: -0.13999999, y: -1.5946821, z: -15.67}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -38316,8 +38479,8 @@ Transform:
   - {fileID: 1974398381}
   - {fileID: 251448441}
   - {fileID: 2117547423}
-  m_Father: {fileID: 0}
-  m_RootOrder: 28
+  m_Father: {fileID: 1752782019}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 180.906, z: 0}
 --- !u!4 &2013531355 stripped
 Transform:
@@ -40431,7 +40594,7 @@ GameObject:
   - component: {fileID: 2139884439}
   - component: {fileID: 2139884438}
   m_Layer: 0
-  m_Name: ExtraCathedralNode3
+  m_Name: Row6Node3
   m_TagString: Node
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40468,6 +40631,9 @@ MonoBehaviour:
   nodeID: 8b4c1edd-e973-49e6-a3d4-22111183538a
   leftPath: {fileID: 1201661011}
   rightPath: {fileID: 1201661011}
+  parallelNodes:
+  - {fileID: 104649821}
+  - {fileID: 214759931}
   fogEffect: {fileID: 32670015}
   nodeMeshes:
   - {fileID: 377315440509832864, guid: 3a2341a067d87e340b67d926d2578989, type: 3}

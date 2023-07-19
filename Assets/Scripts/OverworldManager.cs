@@ -23,21 +23,23 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
     private CreateTalismans tg;
 
     [Header("World Data")]
+    [SerializeField] private MapNode[] parallelNodes;
     [SerializeField] private GameObject player;
     [HideInInspector] public Unit playerUnit;
     private bool worldGenerated;
     private bool combatFinished;
 
-    [SerializeField] private Vector3 startPos = new Vector3(-.4f, .55f, -8.18f);
+    [SerializeField] private Vector3 startPos = new Vector3(-.4f, .55f, -12f);
     [SerializeField] private Vector3 playerPosInWorld;
 
     [Header("Combat Node Data")]
-    [SerializeField] private List<int> lastSelectedNodeEnemyID;
+    private List<int> lastSelectedNodeEnemyID;
     private string lastSelectedNodeID;
 
     private bool playerDied;
 
     private LevelManager levelManager;
+
 
     private MapNode selectedNode;
     private Vector3 endPos;
@@ -57,8 +59,8 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
         sfx = FindAnyObjectByType<SoundFXController>();
         levelManager = FindAnyObjectByType<LevelManager>();
         eventText.text = "";
-        player.transform.position = playerPosInWorld;
-        //playerHUD = FindAnyObjectByType<BattleHUD>();
+        
+        playerHUD = FindAnyObjectByType<BattleHUD>();
         
 
         if (playerDied == true)
@@ -89,6 +91,13 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
 
             worldGenerated = false;
 
+            playerPosInWorld = startPos;
+
+            endPos = startPos;
+            player.transform.position = playerPosInWorld;
+            //selectedNode = mapNodes[0];
+
+            StopAllCoroutines();
             EventTextDisplay("The spirits weakened you. May your strength in this life carry to the next.");
         }
 
@@ -119,7 +128,7 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
             player.transform.position = startPos;
         }
 
-        playerHUD.SetHP(playerUnit);
+        playerHUD.SetHUD(playerUnit);
     }
 
     public void LoadData(GameData gameData)
@@ -171,6 +180,11 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
         //print(gameData.lastSelectedNodeID);
     }
 
+    private void GetSelectedNode() 
+    {
+        
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -183,13 +197,34 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
             {
                 if (hit.collider.CompareTag("Node"))
                 {
-                    selectedNode = hit.collider.gameObject.GetComponent<MapNode>();
+                    
 
+                    selectedNode = hit.collider.gameObject.GetComponent<MapNode>();
 
                     if (selectedNode.isActive)
                     {
+                        if (lastSelectedNodeID != null) 
+                        {
+                            foreach (MapNode node in mapNodes)
+                            {
+                                if (lastSelectedNodeID == node.nodeID)
+                                {
+                                    parallelNodes = node.GetParallelNodes();
+                                }
+                            }
+
+                            foreach (MapNode node in parallelNodes)
+                            {
+                                if (selectedNode == node)
+                                {
+                                    return;
+                                }
+                            }
+                        }
+
+                        
                         DisplayNodeInfo(selectedNode);
-                        endPos = selectedNode.gameObject.transform.position;
+                        endPos = new Vector3(selectedNode.gameObject.transform.position.x, selectedNode.gameObject.transform.position.y, selectedNode.gameObject.transform.position.z - 1);
                         moveTimer = 0;
                         movementInitiated = true;
                         lastSelectedNodeID = selectedNode.nodeID;
@@ -333,7 +368,6 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
 
     IEnumerator EventTextDisplay(string textToDisplay)
     {
-        StopAllCoroutines();
 
         eventText.text = textToDisplay;
         yield return new WaitForSeconds(5f);
@@ -353,6 +387,8 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
                 //print("Node " + node.name + " completed");
             }
         }
+
+        playerHUD.SetHUD(playerUnit);
     }
 
     private void DisplayNodeInfo(MapNode node)
@@ -466,13 +502,13 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
 
         mapNodes[0].isActive = true;
 
-        RandomizeSpecificNode(6, 1, Random.Range(1, 4), "Ruins");
+        RandomizeSpecificNode(6, 1, Random.Range(1, 4), "Marsh");
 
-        RandomizeSpecificNode(7, 1, Random.Range(1, 4), "Ruins");
+        RandomizeSpecificNode(7, 1, Random.Range(1, 4), "Marsh");
 
-        RandomizeSpecificNode(8, 1, Random.Range(1, 4), "Ruins");
+        RandomizeSpecificNode(8, 1, Random.Range(1, 4), "Marsh");
 
-        RandomizeSpecificNode(9, 1, Random.Range(1, 4), "Cathedral");
+        RandomizeSpecificNode(9, 1, Random.Range(1, 4), "Marsh");
 
         foreach (MapNode node in mapNodes)
         {
@@ -501,6 +537,8 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
         playerHUD.SetHP(playerUnit);
 
         playerPosInWorld = startPos;
+
+
     }
 
     private void RandomizeSpecificNode(int nodeIndex, int nodeType, int enemyAmount, string nodeRegion)
