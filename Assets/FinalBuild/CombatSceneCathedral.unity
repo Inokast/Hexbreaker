@@ -864,15 +864,15 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1843357907}
+  - {fileID: 126206209}
   - {fileID: 3350806}
   - {fileID: 176367823}
   - {fileID: 374409987}
-  - {fileID: 344630500}
   - {fileID: 815825615}
+  - {fileID: 344630500}
   - {fileID: 1139455592}
+  - {fileID: 1843357907}
   - {fileID: 1273811414}
-  - {fileID: 126206209}
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2893,6 +2893,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3283933028604963910, guid: 69dd937581f0b2245a5701000a05b5da,
+        type: 3}
+      propertyPath: m_PreserveAspect
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5324051850429614542, guid: 69dd937581f0b2245a5701000a05b5da,
         type: 3}

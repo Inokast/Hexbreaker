@@ -169,6 +169,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
 
         levelManager = FindAnyObjectByType<LevelManager>();
         enemyShader = FindObjectOfType<OutlineWpopUpUI>();
+        vfx = FindAnyObjectByType<VFXController>();
 
         state = BattleState.START;
 
@@ -901,6 +902,10 @@ public class CombatManager : MonoBehaviour, IDataPersistence
                 break;
         }
 
+        if (activeTalismanNames.Count > 0) 
+        {
+
+        }
         playerUnit.PlayAttackAnim();
 
         bool isDead = false;
@@ -1041,6 +1046,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
             }           
         }
 
+        playerUnit.PlayFocusEnterAnim();
         sfx.PlayPlayerAttack_Focus();
         playerUnit.isDefending = true;
         battleText.text = playerUnit.unitName + " takes a defensive stance!";
@@ -1064,6 +1070,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
 
         breakButton.interactable = false;
         BreakMeter.charge = 0;
+        
         //Play the animation for the break button
 
         state = BattleState.QTE;

@@ -119,12 +119,29 @@ public class Unit : MonoBehaviour
     // animation to help move player in overworld
     public void PlayOverworldJumpAnim()
     {
-        overworldPlayer.SetTrigger("Jump");
-        basicAnim.SetTrigger("Jump");
+        if (overworldPlayer != null) 
+        {
+            overworldPlayer.SetTrigger("Jump");
+        }
+
+        if (basicAnim != null)
+        {
+            basicAnim.SetTrigger("Jump");
+        }
+
+        
     }
     public void PlayOverworldFallAnim()
     {
-        overworldPlayer.SetTrigger("Fall");
-        basicAnim.SetTrigger("Fall");
+
+        if (overworldPlayer != null)
+        {
+            overworldPlayer.SetTrigger("Fall");
+        }
+
+        if (basicAnim != null)
+        {
+            basicAnim.SetTrigger("Fall");
+        }
     }
 }
