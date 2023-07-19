@@ -12,7 +12,6 @@ public class OutlineWpopUpUI : MonoBehaviour
     [SerializeField] private GameObject storedObject;
     [SerializeField] private bool stored;
 
-    private Transform _selection;
 
 
     public void ChangeShader(GameObject objectToShade)
@@ -41,7 +40,7 @@ public class OutlineWpopUpUI : MonoBehaviour
             
             //Renderer objectRendererN = objectToShade.GetComponent<Renderer>();
             //objectRendererN.material = outlineMaterial;
-            Debug.Log("Set Stored Object to Outline");
+            //Debug.Log("Set Stored Object to Outline");
 
             if (stored == true)
             {
@@ -52,12 +51,12 @@ public class OutlineWpopUpUI : MonoBehaviour
                 }
                 //  var objectRenderS = storedObject.GetComponent<Renderer>();
                 //  objectRenderS.material = blank;
-                Debug.Log("Stored Object set to blank");
+                //Debug.Log("Stored Object set to blank");
             }
 
             storedObject = objectToShade;
             stored = true;
-            Debug.Log("Object Stored");
+            //Debug.Log("Object Stored");
         }
         
     }
