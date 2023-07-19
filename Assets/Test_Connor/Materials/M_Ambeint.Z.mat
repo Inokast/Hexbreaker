@@ -95,7 +95,7 @@ Material:
     - _ClearCoatSmoothness: 0
     - _Cull: 2
     - _Cutoff: 0.5
-    - _DepthFade: 10
+    - _DepthFade: 12.17
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DissolvePower: 0.5
@@ -119,9 +119,9 @@ Material:
     - _SrcBlendAlpha: 1
     - _Surface: 0
     - _WobbleAmount: 0.01
-    - _WobbleDistance: 10
-    - _WobbleFrequenct: 2
-    - _WobbleSpeed: 1
+    - _WobbleDistance: 3.39
+    - _WobbleFrequenct: 0.9
+    - _WobbleSpeed: 0.6
     - _WorkflowMode: 1
     - _ZWrite: 1
     - _maskpower: 1
