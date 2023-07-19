@@ -25,6 +25,8 @@ public class QTEManager : MonoBehaviour
 
     private QTEDisplay activeQTEDisplay;
 
+    private VFXController vfx;
+
 
 
     [Header("General Variables")]
@@ -48,7 +50,8 @@ public class QTEManager : MonoBehaviour
 
     public void Start()
     {
-
+        vfx = FindAnyObjectByType < VFXController> ();
+        
         resultDisplayText.text = "";
         inputDisplayText.text = "";
         isWaitingForInput = false;
@@ -191,6 +194,7 @@ public class QTEManager : MonoBehaviour
                 eventResult = QTEResult.HIGH;
                 resultDisplayText.text = "Nice!";
                 inputDisplayText.color = Color.yellow;
+                vfx.PlayParticleSpam();
             }
 
 
@@ -209,6 +213,7 @@ public class QTEManager : MonoBehaviour
                 else
                 {
                     resultDisplayText.text = "Keep Going!";
+                    vfx.PlayParticleBurst();
                     amountFilled += 1;
                 }
             }

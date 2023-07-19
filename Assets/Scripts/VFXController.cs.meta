@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: e97dd4ee0fb0a1d4696c2b54409aa086
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - QTEspam: {fileID: 129688382851324182, guid: 9390b544a3fcab646a2a5afbe6fef5fe,
+      type: 3}
+  - QTEtiming: {fileID: 7430194570622834046, guid: b3f03c9fdc5fb1f488e5e5f8228bae51,
+      type: 3}
+  - HexBreak: {fileID: 1198670162143878606, guid: 18e0933cbc081644698698fa5ccfaba6,
+      type: 3}
+  - QTEburst: {fileID: 7860577462614179222, guid: d3f1f665793dd3b4ba93f51b253eb422,
+      type: 3}
+  - BurstButton: {fileID: 8972339679382385054, guid: 94d197d79792b9f4595920dc65631101,
+      type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

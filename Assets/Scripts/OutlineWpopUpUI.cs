@@ -17,13 +17,28 @@ public class OutlineWpopUpUI : MonoBehaviour
 
     public void ChangeShader(GameObject objectToShade)
     {
-        if (objectToShade.layer != 3) 
+        if (objectToShade.layer != 3)
         {
             objectToShade.layer = 3;
             foreach (Transform child in objectToShade.GetComponentsInChildren<Transform>(true))
             {
-                child.gameObject.layer = LayerMask.NameToLayer("OutlineLayer");
+                    child.gameObject.layer = LayerMask.NameToLayer("OutlineLayer");
+                if (child.gameObject.name == "VFX_Holder")
+                {
+                    child.gameObject.layer = LayerMask.NameToLayer("Default");
+                }
+                if (child.gameObject.name == "vfxGraph_DripTongue")
+                {
+                    child.gameObject.layer = LayerMask.NameToLayer("Default");
+                }
+                if (child.gameObject.name == "vfxGraph_DripBody")
+                {
+                    child.gameObject.layer = LayerMask.NameToLayer("Default");
+                }
+
             }
+        }  
+            
             //Renderer objectRendererN = objectToShade.GetComponent<Renderer>();
             //objectRendererN.material = outlineMaterial;
             Debug.Log("Set Stored Object to Outline");
@@ -48,4 +63,4 @@ public class OutlineWpopUpUI : MonoBehaviour
     }
 
     
-}
+
