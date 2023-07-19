@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 564196740658618401}
   - component: {fileID: 1198670162143878606}
   - component: {fileID: 931531414780993332}
+  - component: {fileID: 1445890359999552119}
   m_Layer: 0
   m_Name: QTEHexbreak
   m_TagString: Untagged
@@ -111,3 +112,16 @@ VFXRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &1445890359999552119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7812699025504177193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04d245221635add4990ffccc0bfda530, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeUntilKill: 4

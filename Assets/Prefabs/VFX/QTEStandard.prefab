@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3403789767210522193
+--- !u!1 &1925130128574053824
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,41 +8,41 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4035835722652341932}
-  - component: {fileID: 7860577462614179222}
-  - component: {fileID: 3020815399288251829}
-  - component: {fileID: 7838748902837599010}
+  - component: {fileID: 5715646810991586526}
+  - component: {fileID: 5438864021192993859}
+  - component: {fileID: 3489753186078382836}
+  - component: {fileID: 1132982609993230737}
   m_Layer: 0
-  m_Name: QTEBurst
+  m_Name: QTEStandard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4035835722652341932
+--- !u!4 &5715646810991586526
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3403789767210522193}
+  m_GameObject: {fileID: 1925130128574053824}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.2639022, y: 0, z: 0.120517194}
+  m_LocalPosition: {x: 8.994413, y: 0, z: 2.0382257}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!2083052967 &7860577462614179222
+--- !u!2083052967 &5438864021192993859
 VisualEffect:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3403789767210522193}
+  m_GameObject: {fileID: 1925130128574053824}
   m_Enabled: 1
-  m_Asset: {fileID: 8926484042661614526, guid: 5b6e2a2ca98a491469d6210a2a6ac2c1, type: 3}
+  m_Asset: {fileID: 8926484042661614526, guid: d9300b1f78df0de4ab95ad8a50677bb2, type: 3}
   m_InitialEventName: OnPlay
   m_InitialEventNameOverriden: 0
   m_StartSeed: 0
@@ -72,14 +72,14 @@ VisualEffect:
       m_Array: []
     m_Bool:
       m_Array: []
---- !u!73398921 &3020815399288251829
+--- !u!73398921 &3489753186078382836
 VFXRenderer:
   serializedVersion: 1
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3403789767210522193}
+  m_GameObject: {fileID: 1925130128574053824}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -112,16 +112,16 @@ VFXRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &7838748902837599010
+--- !u!114 &1132982609993230737
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3403789767210522193}
+  m_GameObject: {fileID: 1925130128574053824}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 04d245221635add4990ffccc0bfda530, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeUntilKill: 2
+  timeUntilKill: 0
