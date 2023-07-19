@@ -41,6 +41,7 @@ public class Unit : MonoBehaviour
     public int currentHP;
 
     public Animator basicAnim;
+    public Animator overworldPlayer;
 
     public bool TakeDamage(int dmg, bool ignoreDefense) // Takes damage and returns true if unit has died
     {
@@ -87,13 +88,43 @@ public class Unit : MonoBehaviour
         basicAnim.SetTrigger("ATK");
     }
 
+    public void PlayChargedAnim()
+    {
+        basicAnim.SetTrigger("Charged");
+    }
+
     public void PlayDeathAnim()
     {
         basicAnim.SetTrigger("Death");
     }
 
-    public void PlayFocusAnim() 
+    //////////////////////////////////////////////////
+    // unique focus state animation for the player character
+    public void PlayFocusEnterAnim() 
     {
+        basicAnim.SetTrigger("FocusEnter");
+    }
 
+    public void PlayFocusAttackAnim() 
+    {
+        basicAnim.SetTrigger("FocusATK");
+    }
+
+    public void PlayFocusHitAnim() 
+    {
+        basicAnim.SetTrigger("FocusHit");
+    }
+
+    //////////////////////////////////////////////////
+    // animation to help move player in overworld
+    public void PlayOverworldJumpAnim()
+    {
+        overworldPlayer.SetTrigger("Jump");
+        basicAnim.SetTrigger("Jump");
+    }
+    public void PlayOverworldFallAnim()
+    {
+        overworldPlayer.SetTrigger("Fall");
+        basicAnim.SetTrigger("Fall");
     }
 }
