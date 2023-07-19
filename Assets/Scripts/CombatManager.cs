@@ -884,29 +884,31 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         switch (eventManager.eventType)
         {
             case "Timed":
-                vfx.PlayParticleTimed(selectedEnemyUnit.transform);
+                //vfx.PlayParticleTimed(selectedEnemyUnit.transform);
                 break;
             case "Array":
-                vfx.PlayParticleArray(selectedEnemyUnit.transform);
+                //vfx.PlayParticleArray(selectedEnemyUnit.transform);
                 break;
 
             case "Mash":
-                vfx.PlayParticleMash(selectedEnemyUnit.transform);
+                //vfx.PlayParticleMash(selectedEnemyUnit.transform);
                 break;
 
             case "Standard":
-                vfx.PlayParticleStandard(selectedEnemyUnit.transform);
+                //vfx.PlayParticleStandard(selectedEnemyUnit.transform);
                 break;
 
             default:
                 break;
         }
 
-        if (activeTalismanNames.Count > 0) 
+        if (activeTalismanNames.Count > 0)
         {
-
+            playerUnit.PlayFocusAttackAnim();
         }
-        playerUnit.PlayAttackAnim();
+
+        else { playerUnit.PlayAttackAnim(); }
+        
 
         bool isDead = false;
 
