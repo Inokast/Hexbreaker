@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5731,7 +5731,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 13f31dc959aa7ac46b7b2984b9c66468, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6769,7 +6769,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Lead Environment Artist\n\t3D Modeling\n\tTextures"
+  m_text: "-Lead Environment Artist\n\tFoliage, Achitecture, Props\n\n\n-Texture
+    Artist\n\tTerrain, Skyboxes\n\n-Lighting/Level Design\n\tOverworld, Training,
+    Marsh, Ruins, Cathedral scenes"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1de9fd25d7599d143a7e08bbe1d9a09f, type: 2}
   m_sharedMaterial: {fileID: 5159345624373031867, guid: 1de9fd25d7599d143a7e08bbe1d9a09f,
@@ -9973,7 +9975,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1773464784
 RectTransform:
   m_ObjectHideFlags: 0
