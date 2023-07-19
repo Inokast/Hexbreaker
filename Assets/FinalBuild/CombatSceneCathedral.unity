@@ -1697,7 +1697,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 1158592348228259814, guid: ba81b441b51b68240b6dd445a89f19e2, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba81b441b51b68240b6dd445a89f19e2, type: 3}
@@ -2582,6 +2583,7 @@ MonoBehaviour:
   timedQTEDisplay: {fileID: 176367828}
   breakQTEDisplay: {fileID: 176367826}
   standardQTEDisplay: {fileID: 1751180911}
+  eventType: 
   timerIsActive: 0
   eventCompleted: 1
   eventResult: 0
@@ -3538,6 +3540,26 @@ PrefabInstance:
     - target: {fileID: 5342586566119304101, guid: cba26f69e6ae156419603ad10402515e,
         type: 3}
       propertyPath: m_Interactable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6556426828317102778, guid: cba26f69e6ae156419603ad10402515e,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6556426828317102778, guid: cba26f69e6ae156419603ad10402515e,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6556426828317102778, guid: cba26f69e6ae156419603ad10402515e,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7576017015395758532, guid: cba26f69e6ae156419603ad10402515e,
+        type: 3}
+      propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7576017015395758532, guid: cba26f69e6ae156419603ad10402515e,
