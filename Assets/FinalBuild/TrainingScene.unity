@@ -8028,7 +8028,7 @@ PrefabInstance:
     - target: {fileID: 3937009665756473418, guid: 2a7bffcb78612b24e8f29f0fd3ad2070,
         type: 3}
       propertyPath: m_text
-      value: 100 / 100
+      value: 70 / 70
       objectReference: {fileID: 0}
     - target: {fileID: 3986200477276805933, guid: 2a7bffcb78612b24e8f29f0fd3ad2070,
         type: 3}
@@ -8068,7 +8068,7 @@ PrefabInstance:
     - target: {fileID: 4636127401861553807, guid: 2a7bffcb78612b24e8f29f0fd3ad2070,
         type: 3}
       propertyPath: m_text
-      value: Rosalyn
+      value: Rosalin
       objectReference: {fileID: 0}
     - target: {fileID: 5952546592902892392, guid: 2a7bffcb78612b24e8f29f0fd3ad2070,
         type: 3}
