@@ -478,11 +478,14 @@ public class CombatManager : MonoBehaviour, IDataPersistence
 
     IEnumerator KillPlayer()
     {
+        playerDied = true;
+        combatFinished = false;
+        playerUnit.PlayDeathAnim();
+        yield return new WaitForSeconds(1.5f);
         // battleText.text = "You Died";
         deathPanel.SetTrigger("Death");
         sfx.PlayGameOver();
-        playerDied = true;
-        combatFinished = false;
+        
         endPanel.SetActive(true);
         deathPanel.SetTrigger("Death");
 
@@ -1396,7 +1399,6 @@ public class CombatManager : MonoBehaviour, IDataPersistence
 
         if (isDead)
         {
-            playerUnit.PlayDeathAnim();
             state = BattleState.LOST;
             EndBattle();
         }
@@ -1740,7 +1742,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         battleText.text = "The " + actingEnemyUnit.unitName + " is preparing to unleash its power!";
         actingEnemyUnit.isCharged = true;
         //Play animation or sound effects or whatever
-        vfx.PlayParticleEnemyCharge(actingEnemyUnit.transform);
+        //vfx.PlayParticleEnemyCharge(actingEnemyUnit.transform);
         StartCoroutine(ConfirmTimer());
         yield return new WaitUntil(() => waitingForConfirm == false);
 

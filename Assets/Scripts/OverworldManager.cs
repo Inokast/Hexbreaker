@@ -180,11 +180,6 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
         //print(gameData.lastSelectedNodeID);
     }
 
-    private void GetSelectedNode() 
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
