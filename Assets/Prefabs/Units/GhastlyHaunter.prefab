@@ -121,7 +121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitName: Horrid Haunter
   isDefending: 0
-  highDamage: 10
+  highDamage: 9
   midDamage: 7
   lowDamage: 4
   strengthModifier: 4
@@ -140,9 +140,10 @@ MonoBehaviour:
   fillGauge2: 4
   keyToPressArray: 01000000030000000400000002000000
   defense: 0
-  maxHP: 44
-  currentHP: 44
+  maxHP: 40
+  currentHP: 40
   basicAnim: {fileID: 8246803570163550450}
+  overworldPlayer: {fileID: 0}
 --- !u!1001 &4807778191222061842
 PrefabInstance:
   m_ObjectHideFlags: 0

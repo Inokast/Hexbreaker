@@ -121,7 +121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitName: Derelict Deceiver
   isDefending: 0
-  highDamage: 13
+  highDamage: 12
   midDamage: 9
   lowDamage: 6
   strengthModifier: 5
@@ -140,9 +140,10 @@ MonoBehaviour:
   fillGauge2: 0
   keyToPressArray: 02000000040000000200000004000000
   defense: 0
-  maxHP: 50
-  currentHP: 50
+  maxHP: 45
+  currentHP: 45
   basicAnim: {fileID: 6456337583439991387}
+  overworldPlayer: {fileID: 0}
 --- !u!1001 &7589590386069037499
 PrefabInstance:
   m_ObjectHideFlags: 0

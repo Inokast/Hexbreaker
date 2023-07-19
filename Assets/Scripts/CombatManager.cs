@@ -111,8 +111,6 @@ public class CombatManager : MonoBehaviour, IDataPersistence
     void Start()
     {
         cursesToTalismans = 0;
-        topCurses = GameObject.FindGameObjectsWithTag("CurseTop"); //For finding the curses. -Dylan 2
-        midCurses = GameObject.FindGameObjectsWithTag("CurseMid");
         botCurses = GameObject.FindGameObjectsWithTag("CurseBot");
 
         cam = FindAnyObjectByType<DynamicCamera>();
@@ -124,37 +122,47 @@ public class CombatManager : MonoBehaviour, IDataPersistence
 
         winPanel.SetActive(false);
 
-        foreach (GameObject curse in topCurses) //Probably wildly inefficient, but hey. It works. -Dylan 2
+        if (SceneManager.GetActiveScene().name != "TutorialScene") //To guarantee the curse on the tutorial. -Dylan 14
         {
-            curse.SetActive(false);
-        }
+            topCurses = GameObject.FindGameObjectsWithTag("CurseTop"); //For finding the curses. -Dylan 2
+            midCurses = GameObject.FindGameObjectsWithTag("CurseMid");
 
-        foreach (GameObject curse in midCurses)
-        {
-            curse.SetActive(false);
-        }
+            foreach (GameObject curse in topCurses) //Probably wildly inefficient, but hey. It works. -Dylan 2
+            {
+                curse.SetActive(false);
+            }
 
-        foreach (GameObject curse in botCurses)
-        {
-            curse.SetActive(false);
-        }
+            foreach (GameObject curse in midCurses)
+            {
+                curse.SetActive(false);
+            }
 
-        int amountOfCurses = Random.Range(1, 4);
+            foreach (GameObject curse in botCurses)
+            {
+                curse.SetActive(false);
+            }
 
-        if (amountOfCurses == 1) //This is what randomizes the curses -Dylan 2
-        {
-            botCurses[Random.Range(0, botCurses.Length)].SetActive(true);
+            int amountOfCurses = Random.Range(1, 4);
+
+            if (amountOfCurses == 1) //This is what randomizes the curses -Dylan 2
+            {
+                botCurses[Random.Range(0, botCurses.Length)].SetActive(true);
+            }
+            else if (amountOfCurses == 2)
+            {
+                botCurses[Random.Range(0, botCurses.Length)].SetActive(true);
+                midCurses[Random.Range(0, midCurses.Length)].SetActive(true);
+            }
+            else if (amountOfCurses == 3)
+            {
+                botCurses[Random.Range(0, botCurses.Length)].SetActive(true);
+                midCurses[Random.Range(0, midCurses.Length)].SetActive(true);
+                topCurses[Random.Range(0, topCurses.Length)].SetActive(true);
+            }
         }
-        else if (amountOfCurses == 2)
+        else
         {
-            botCurses[Random.Range(0, botCurses.Length)].SetActive(true);
-            midCurses[Random.Range(0, midCurses.Length)].SetActive(true);
-        }
-        else if (amountOfCurses == 3)
-        {
-            botCurses[Random.Range(0, botCurses.Length)].SetActive(true);
-            midCurses[Random.Range(0, midCurses.Length)].SetActive(true);
-            topCurses[Random.Range(0, topCurses.Length)].SetActive(true);
+            botCurses[0].SetActive(true);
         }
 
         levelManager = FindAnyObjectByType<LevelManager>();
@@ -428,6 +436,15 @@ public class CombatManager : MonoBehaviour, IDataPersistence
             combatFinished = true;
             playerDied = false;
 
+            if (GameObject.Find("LeftRoomCurse") != null)
+            {
+                leftRoomLocked = true;
+            }
+            else if (GameObject.Find("RightRoomCurse") != null)
+            {
+                rightRoomLocked = true;
+            }
+
             GameObject.Find("Curses").SetActive(false);
             GameObject.Find("PlayerHUDPanel").SetActive(false);
             GameObject.Find("EnemyHUDPanel").SetActive(false);
@@ -465,6 +482,20 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         combatFinished = false;
         endPanel.SetActive(true);
         deathPanel.SetTrigger("Death");
+
+        for (int i = 0; i < talismanManager.talismans.Count; i++)
+        {
+            if (talismanManager.action[i])
+            {
+                talismanManager.talismans.RemoveAt(i);
+                talismanManager.action.RemoveAt(i);
+                talismanManager.talismanNames.RemoveAt(i);
+                talismanManager.talismanFirstStats.RemoveAt(i);
+                talismanManager.talismanSecondStats.RemoveAt(i);
+                talismanManager.talismanRarities.RemoveAt(i);
+            }
+        }
+
         //dataManager = FindObjectOfType<DataPersistenceManager>();
         //dataManager.NewGame();
         yield return new WaitForSeconds(1f);
@@ -577,7 +608,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
             }
         }
 
-        if (talismanManager.action.Contains(true) && activeTalismanNames.Count != actionTalismans)
+        if (talismanManager.action.Contains(true) && activeTalismanNames.Count != actionTalismans && GameObject.Find("ActionCurse") == null && GameObject.Find("NegativeAttackingCurse") == null)
         {
             talismanPanel.SetActive(true);
 
@@ -631,28 +662,80 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         string attackType = playerUnit.attackType1; // change attackType to be either Standard, Mash, Timed, Array
         float timer = playerUnit.attackTimer1; // How much time alloted in QTE
         int keyToPress = playerUnit.keyToPress1; // Change to 1,2,3 or 4
+        int[] keyToPressArray = playerUnit.keyToPressArray;
+        float fillGauge = playerUnit.fillGauge1;
 
         // Check for talisman. if last talisman used isn so and so, then change attackType to be either Standard, Mash, Timed, Array
+        if (CheckIfTalismanActive("Omnipotent"))
+        {
+            attackType = "Array";
+            keyToPressArray = new int[8];
+            keyToPressArray[0] = Random.Range(1, 5);
+            keyToPressArray[1] = Random.Range(1, 5);
+            keyToPressArray[2] = Random.Range(1, 5);
+            keyToPressArray[3] = Random.Range(1, 5);
+            keyToPressArray[4] = Random.Range(1, 5);
+            keyToPressArray[5] = Random.Range(1, 5);
+            keyToPressArray[6] = Random.Range(1, 5);
+            keyToPressArray[7] = Random.Range(1, 5);
+            timer = 7;
+        }
+        else if (CheckIfTalismanActive("Multistrike"))
+        {
+            attackType = "Mash";
+            keyToPress = Random.Range(1, 5);
+            fillGauge = 25;
+            timer = 6;
+        }
+        else if (CheckIfTalismanActive("Vampiric"))
+        {
+            attackType = "Timed";
+            keyToPress = Random.Range(1, 5);
+            timer = 1;
+        }
+        else if (CheckIfTalismanActive("Purification"))
+        {
+            attackType = "Array";
+            keyToPressArray = new int[4];
+            keyToPressArray[0] = Random.Range(1, 5);
+            keyToPressArray[1] = Random.Range(1, 5);
+            keyToPressArray[2] = Random.Range(1, 5);
+            keyToPressArray[3] = Random.Range(1, 5);
+            timer = 4;
+        }
+        else if (CheckIfTalismanActive("Contending"))
+        {
+            attackType = "Timed";
+            keyToPress = Random.Range(1, 5);
+            timer = 3;
+        }
+        else if (CheckIfTalismanActive("Conflicting"))
+        {
+            attackType = "Mash";
+            keyToPress = Random.Range(1,5);
+            fillGauge = 12;
+            timer = 5;
+        }
 
         switch (attackType)
         {
             case "Timed":
-                eventManager.TriggerTimedQTE(playerUnit.attackTimer1, playerUnit.keyToPress1);
+                eventManager.TriggerTimedQTE(timer, keyToPress);
                 //Change color of QTE circle
                 break;
 
             case "Mash":
-                eventManager.TriggerMashQTE(playerUnit.attackTimer1, playerUnit.keyToPress1, playerUnit.fillGauge1);
+                eventManager.TriggerMashQTE(timer, keyToPress, fillGauge);
                 //Change color of QTE circle
                 break;
 
             case "Array":
-                eventManager.TriggerQTEArray(playerUnit.attackTimer1, playerUnit.keyToPressArray, false);
+                eventManager.TriggerQTEArray(timer, keyToPressArray, false);
                 //Change color of QTE circle
                 break;
 
             case "Standard":
-                eventManager.GenerateStandardQTE(playerUnit.attackTimer1);
+                eventManager.GenerateStandardQTE(timer);
                 //Change color of QTE circle
                 break;
 
@@ -681,6 +764,19 @@ public class CombatManager : MonoBehaviour, IDataPersistence
                     damageDealt = playerUnit.midDamage + extraDamage;
                 }
                 
+                if (GameObject.Find("MinorDamageCurse") != null)
+                {
+                    damageDealt = (Mathf.Clamp(damageDealt - 1, 1, damageDealt));
+                }
+                else if (GameObject.Find("DamageCurse") != null)
+                {
+                    damageDealt = (Mathf.Clamp(damageDealt - 3, 1, damageDealt));
+                }
+                else if (GameObject.Find("MajorDamageCurse") != null)
+                {
+                    damageDealt = (Mathf.Clamp(damageDealt - 7, 1, damageDealt));
+                }
+
                 battleText.text = "A weak hit! The " + selectedEnemyUnit.unitName + " takes " + damageDealt + " damage!";
 
                 if (CheckIfTalismanActive("Purification"))
@@ -706,6 +802,19 @@ public class CombatManager : MonoBehaviour, IDataPersistence
                     damageDealt = playerUnit.highDamage + extraDamage;
                 }
 
+                if (GameObject.Find("MinorDamageCurse") != null)
+                {
+                    damageDealt = (Mathf.Clamp(damageDealt - 1, 1, damageDealt));
+                }
+                else if (GameObject.Find("DamageCurse") != null)
+                {
+                    damageDealt = (Mathf.Clamp(damageDealt - 3, 1, damageDealt));
+                }
+                else if (GameObject.Find("MajorDamageCurse") != null)
+                {
+                    damageDealt = (Mathf.Clamp(damageDealt - 7, 1, damageDealt));
+                }
+
                 battleText.text = "A hit! The " + selectedEnemyUnit.unitName + " takes " + damageDealt + " damage!";
 
                 if (CheckIfTalismanActive("Purification"))
@@ -725,6 +834,24 @@ public class CombatManager : MonoBehaviour, IDataPersistence
                 {
                     int extraDamage = FetchPotency(FetchIndexOfName("Omnipotent"));
                     damageDealt = playerUnit.highDamage + extraDamage;
+                }
+
+                if (CheckIfTalismanActive("Multistrike"))
+                {
+                    damageDealt += FetchPotency(FetchIndexOfName("Multistrike"));
+                }
+
+                if (GameObject.Find("MinorDamageCurse") != null)
+                {
+                    damageDealt = (Mathf.Clamp(damageDealt - 1, 1, damageDealt));
+                }
+                else if (GameObject.Find("DamageCurse") != null)
+                {
+                    damageDealt = (Mathf.Clamp(damageDealt - 3, 1, damageDealt));
+                }
+                else if (GameObject.Find("MajorDamageCurse") != null)
+                {
+                    damageDealt = (Mathf.Clamp(damageDealt - 7, 1, damageDealt));
                 }
 
                 battleText.text = "A strong hit! The " + selectedEnemyUnit.unitName + " takes " + damageDealt + " damage!";
@@ -847,7 +974,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
             }
         }
 
-        if (talismanManager.action.Contains(true) && activeTalismanNames.Count != actionTalismans)
+        if (talismanManager.action.Contains(true) && activeTalismanNames.Count != actionTalismans && GameObject.Find("ActionCurse") == null && GameObject.Find("NegativeBlockingCurse") == null)
         {
             talismanPanel.SetActive(true);
 
@@ -995,54 +1122,61 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         bool mCurseActive = false;
         bool tCurseActive = false;
 
-        foreach (GameObject curse in botCurses)
-        {
-            if (curse.activeSelf)
-            {
-                bCurseActive = true;
-            }
-        }
-
-        foreach (GameObject curse in midCurses)
-        {
-            if (curse.activeSelf)
-            {
-                mCurseActive = true;
-            }
-        }
-
-        foreach (GameObject curse in topCurses)
-        {
-            if (curse.activeSelf)
-            {
-                tCurseActive = true;
-            }
-        }
-
-        if (bCurseActive)
+        if (SceneManager.GetActiveScene().name != "TutorialScene")
         {
             foreach (GameObject curse in botCurses)
             {
-                curse.SetActive(false);
-                bm.BreakCurse();
+                if (curse.activeSelf)
+                {
+                    bCurseActive = true;
+                }
             }
-        }
-        else if (mCurseActive)
-        {
+
             foreach (GameObject curse in midCurses)
             {
-                curse.SetActive(false);
-                bm.BreakCurse();
+                if (curse.activeSelf)
+                {
+                    mCurseActive = true;
+                }
             }
-        }
-        else if (tCurseActive)
-        {
+
             foreach (GameObject curse in topCurses)
             {
-                curse.SetActive(false);
-
-                bm.BreakCurse();
+                if (curse.activeSelf)
+                {
+                    tCurseActive = true;
+                }
             }
+
+            if (bCurseActive)
+            {
+                foreach (GameObject curse in botCurses)
+                {
+                    curse.SetActive(false);
+                    bm.BreakCurse();
+                }
+            }
+            else if (mCurseActive)
+            {
+                foreach (GameObject curse in midCurses)
+                {
+                    curse.SetActive(false);
+                    bm.BreakCurse();
+                }
+            }
+            else if (tCurseActive)
+            {
+                foreach (GameObject curse in topCurses)
+                {
+                    curse.SetActive(false);
+
+                    bm.BreakCurse();
+                }
+            }
+        }
+        else
+        {
+            botCurses[0].SetActive(false);
         }
 
         if (selectedEnemyUnit.isCharged)
