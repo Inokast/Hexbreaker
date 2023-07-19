@@ -78,6 +78,8 @@ public class CombatManager : MonoBehaviour, IDataPersistence
 
     private SoundFXController sfx;
 
+    private VFXController vfx;
+
 
     [Header("Battle Settings")]
 
@@ -758,12 +760,12 @@ public class CombatManager : MonoBehaviour, IDataPersistence
             case QTEResult.LOW:
                 sfx.PlayQTEFailure();
                 damageDealt = playerUnit.lowDamage;
-                if (CheckIfTalismanActive("Conflicting")) 
+                if (CheckIfTalismanActive("Conflicting"))
                 {
                     int extraDamage = FetchPotency(FetchIndexOfName("Conflicting")); // Here you set the extra damage from the talisman
                     damageDealt = playerUnit.midDamage + extraDamage;
                 }
-                
+
                 if (GameObject.Find("MinorDamageCurse") != null)
                 {
                     damageDealt = (Mathf.Clamp(damageDealt - 1, 1, damageDealt));
@@ -875,6 +877,27 @@ public class CombatManager : MonoBehaviour, IDataPersistence
                 break;
             default:
                 print("ERROR! EventResult is not recognized!");
+                break;
+        }
+
+        switch (eventManager.eventType)
+        {
+            case "Timed":
+                //vfx.PlayParticleTimed();
+                break;
+            case "Array":
+                //vfx.PlayParticleArray();
+                break;
+
+            case "Mash":
+                //vfx.PlayParticleMash();
+                break;
+
+            case "Standard":
+                //vfx.PlayParticleStandard();
+                break;
+
+            default:
                 break;
         }
 

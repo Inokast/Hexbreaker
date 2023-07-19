@@ -33,11 +33,11 @@ public class QTEManager : MonoBehaviour
     private float timerDuration;
     private int eventGen; // QTE generator
     private bool isWaitingForInput;
-    private string eventType;
+    [HideInInspector] public string eventType;
     private bool inputWasCorrect;
-    public bool timerIsActive;
-    public bool eventCompleted = true;
-    public QTEResult eventResult;
+    [HideInInspector] public bool timerIsActive;
+    [HideInInspector] public bool eventCompleted = true;
+    [HideInInspector] public QTEResult eventResult;
 
     private bool holdingDown;
 
@@ -194,7 +194,6 @@ public class QTEManager : MonoBehaviour
                 eventResult = QTEResult.HIGH;
                 resultDisplayText.text = "Nice!";
                 inputDisplayText.color = Color.yellow;
-                vfx.PlayParticleSpam();
             }
 
 
@@ -213,7 +212,7 @@ public class QTEManager : MonoBehaviour
                 else
                 {
                     resultDisplayText.text = "Keep Going!";
-                    vfx.PlayParticleBurst();
+                    //vfx.PlayParticleBurst();
                     amountFilled += 1;
                 }
             }
@@ -291,6 +290,8 @@ public class QTEManager : MonoBehaviour
     }
     IEnumerator ClearQTESequence()
     {
+        
+
         if (eventType == "Timed") 
         {
             timedQTEDisplay.StopAllCoroutines();

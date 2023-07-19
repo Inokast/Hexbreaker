@@ -15,47 +15,35 @@ public class VFXController : MonoBehaviour
     //[SerializeField] private VisualEffect QTEcharging;
 
     [SerializeField] private GameObject BurstButton;
-    [SerializeField] private GameObject EBS1;
-    [SerializeField] private GameObject EBS2;
-    [SerializeField] private GameObject EBS3;
-
-    public void Start()
-    {
-        
-    }
-
-    public void PlayParticleBurst()
+    
+    public void PlayParticleBurst(Transform spawnPoint)
     {
         VisualEffect particle = Instantiate(QTEburst, BurstButton.transform.position, BurstButton.transform.rotation);
         particle.Play();
 
     }
 
-    public void PlayParticleMash()
-        {
-        // VisualEffect particle = Instantiate(QTEspam, EnemyBattleStation1.transform.position, EnemyBattleStation1.transform.rotation);
+    public void PlayParticleMash(Transform spawnPoint)
+    {
+        VisualEffect particle = Instantiate(QTEspam, spawnPoint.position, spawnPoint.rotation);
         //particle.Play();
       
-        }
+    }
 
-    public void PlayParticleTimed()
+    public void PlayParticleTimed(Transform spawnPoint)
     {
         // QTEtiming
     }
 
-    public void PlayParticleArray()
+    public void PlayParticleArray(Transform spawnPoint)
     {
         // QTEarray
     }
 
-    public void PlayParticleStandard()
+    public void PlayParticleStandard(Transform spawnPoint)
     {
 
     }
 
-    public void KillParticles()
-    {
-        
-    }
 
 }
