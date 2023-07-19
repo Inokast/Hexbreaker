@@ -45,5 +45,15 @@ public class VFXController : MonoBehaviour
 
     }
 
+    public void PlayParticleHexbreak(Transform startPos, Transform endPos) 
+    {
+
+    }
+
+    public void PlayParticleEnemyCharge(Transform spawnPoint) 
+    {
+
+    }
+
 
 }

@@ -883,18 +883,18 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         switch (eventManager.eventType)
         {
             case "Timed":
-                //vfx.PlayParticleTimed();
+                vfx.PlayParticleTimed(selectedEnemyUnit.transform);
                 break;
             case "Array":
-                //vfx.PlayParticleArray();
+                vfx.PlayParticleArray(selectedEnemyUnit.transform);
                 break;
 
             case "Mash":
-                //vfx.PlayParticleMash();
+                vfx.PlayParticleMash(selectedEnemyUnit.transform);
                 break;
 
             case "Standard":
-                //vfx.PlayParticleStandard();
+                vfx.PlayParticleStandard(selectedEnemyUnit.transform);
                 break;
 
             default:
@@ -1716,13 +1716,6 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         }
     }
 
-    IEnumerator SummonEnemy() 
-    {
-        StartCoroutine(ConfirmTimer());
-        yield return new WaitUntil(() => waitingForConfirm == false);
-        // TO DO
-    }
-
     private void PowerUpEnemy(Unit enemy) 
     {
         
@@ -1738,7 +1731,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         battleText.text = "The " + actingEnemyUnit.unitName + " is preparing to unleash its power!";
         actingEnemyUnit.isCharged = true;
         //Play animation or sound effects or whatever
-
+        vfx.PlayParticleEnemyCharge(actingEnemyUnit.transform);
         StartCoroutine(ConfirmTimer());
         yield return new WaitUntil(() => waitingForConfirm == false);
 
