@@ -70,27 +70,27 @@ MonoBehaviour:
   sfxVolumeLevel: 0
   sfxMixer: {fileID: 24100000, guid: 4fb05ed3fddca3147b27c282ccd45cac, type: 2}
   buttonSelect: {fileID: 3273551927230214831}
-  talismanSelect: {fileID: 5492058629158620977}
-  luckyNode: {fileID: 4087718057057482823}
-  gameOver: {fileID: -304375432172935469}
-  winSound: {fileID: 5492058629158620977}
-  playerHit: {fileID: -8071300974376946214}
-  enemyHit: {fileID: -3587542829766486225}
-  MagicImpact: {fileID: 8462091764641037255}
-  QTEchargeUp: {fileID: 8572922344199933601}
-  QTEchargeAlt: {fileID: 7743890919509847209}
-  QTEsuccess: {fileID: 1413198969413638893}
-  QTEfailure: {fileID: 9071707594936164943}
-  CurseShatter: {fileID: 2886607259832497052}
-  PlayerAttack_Orb: {fileID: 2071494970581206065}
-  PlayerAttack_Burst: {fileID: 111828137577375079}
-  PlayerAttack_Beam: {fileID: 2811453602893411130}
-  PlayerAttack_Focus: {fileID: 2110635157925605357}
-  EnemyAttack_Burst: {fileID: 6001893589208110811}
-  EnemyAttack_Beam: {fileID: 5345382022053705295}
-  EnemyAttack_Portal: {fileID: 5662762880279882897}
-  PF_AttackCharge: {fileID: 8695592602452837746}
-  PF_AttackAlt: {fileID: 7762019580042424172}
+  talismanSelect: {fileID: 8572922344199933601}
+  luckyNode: {fileID: -304375432172935469}
+  gameOver: {fileID: -8071300974376946214}
+  winSound: {fileID: 7743890919509847209}
+  playerHit: {fileID: 4087718057057482823}
+  enemyHit: {fileID: 5492058629158620977}
+  MagicImpact: {fileID: -3587542829766486225}
+  QTEchargeUp: {fileID: 0}
+  QTEchargeAlt: {fileID: 0}
+  QTEsuccess: {fileID: 8462091764641037255}
+  QTEfailure: {fileID: 8610992861252516976}
+  CurseShatter: {fileID: -3587542829766486225}
+  PlayerAttack_Orb: {fileID: 0}
+  PlayerAttack_Burst: {fileID: 0}
+  PlayerAttack_Beam: {fileID: 0}
+  PlayerAttack_Focus: {fileID: 3541063536145738689}
+  EnemyAttack_Burst: {fileID: 0}
+  EnemyAttack_Beam: {fileID: 0}
+  EnemyAttack_Portal: {fileID: 0}
+  PF_AttackCharge: {fileID: 0}
+  PF_AttackAlt: {fileID: 0}
 --- !u!82 &3273551927230214831
 AudioSource:
   m_ObjectHideFlags: 0
@@ -102,7 +102,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 4fb05ed3fddca3147b27c282ccd45cac,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 6f038f6515caaab449158df87bafe448, type: 3}
+  m_audioClip: {fileID: 8300000, guid: d4da06a72039ec94fa5d2273c8a23eb7, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.2
   m_Pitch: 1
@@ -199,7 +199,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 4fb05ed3fddca3147b27c282ccd45cac,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 3f03cd7feabd0ec43add9aa62397ad13, type: 3}
+  m_audioClip: {fileID: 8300000, guid: de26734355961314ab1b6cdd78ddadc7, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.2
   m_Pitch: 1
@@ -296,7 +296,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 4fb05ed3fddca3147b27c282ccd45cac,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: dfb80d8e4140fdc4d906c3a70bc6ff79, type: 3}
+  m_audioClip: {fileID: 8300000, guid: a6a099370ab2bf142993dec2e04f6f8d, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.2
   m_Pitch: 1
@@ -393,7 +393,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 4fb05ed3fddca3147b27c282ccd45cac,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: af716adbdce44284f8cb31108a277a56, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 00ebf5b5979a1074f913871b523ff705, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.2
   m_Pitch: 1
@@ -490,7 +490,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 4fb05ed3fddca3147b27c282ccd45cac,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: bdfd00b2d415aee45a057cc2c56d5c60, type: 3}
+  m_audioClip: {fileID: 8300000, guid: bf49721065535224f9f921b89b842427, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.2
   m_Pitch: 1
@@ -587,7 +587,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 4fb05ed3fddca3147b27c282ccd45cac,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 979bdbf963d67e847aa8c8c214365a1d, type: 3}
+  m_audioClip: {fileID: 8300000, guid: e9be25ee9f82324409411d00f6987d98, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.2
   m_Pitch: 1
@@ -684,7 +684,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 4fb05ed3fddca3147b27c282ccd45cac,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: a27cf06941cc1304f931544aa29e20f7, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 6b63af933ed8fda4f9171f2b5dbb712c, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.2
   m_Pitch: 1
@@ -781,7 +781,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 4fb05ed3fddca3147b27c282ccd45cac,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 97c768036a767724182b706211ce6447, type: 3}
+  m_audioClip: {fileID: 8300000, guid: fdb1ee1792d92de4c85e01eb2a1434f6, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.2
   m_Pitch: 1
@@ -878,7 +878,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 4fb05ed3fddca3147b27c282ccd45cac,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 59fdded65ef869846b5cd11517692010, type: 3}
+  m_audioClip: {fileID: 8300000, guid: d61ae613c5db2ae45bd9dab0852104d4, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.2
   m_Pitch: 1
@@ -975,7 +975,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 4fb05ed3fddca3147b27c282ccd45cac,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 1cc7fff0744d15e4ebc3ecbeae3ac5d3, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 3086149488e84344d98060a5b963bc30, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.2
   m_Pitch: 1
@@ -1072,7 +1072,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 4fb05ed3fddca3147b27c282ccd45cac,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 6109cd3dc9e810b459ff8138aa054089, type: 3}
+  m_audioClip: {fileID: 8300000, guid: c88d5e8cc159083408a9d752dc7b8612, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.2
   m_Pitch: 1

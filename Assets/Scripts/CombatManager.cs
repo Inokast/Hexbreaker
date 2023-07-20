@@ -1417,7 +1417,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
 
         bool isDead = playerUnit.TakeDamage(Mathf.Clamp(damageDealt - (playerUnit.defense + defenseBoost), 1, damageDealt), false);
         playerHUD.SetHP(playerUnit);
-        sfx.PlayEnemyAttack_Burst();
+        
 
         StartCoroutine(ConfirmTimer());
         yield return new WaitUntil(() => waitingForConfirm == false);
@@ -1579,7 +1579,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
 
         bool isDead = playerUnit.TakeDamage(Mathf.Clamp(damageDealt - defenseBoost, 1, damageDealt), false);
         playerHUD.SetHP(playerUnit);
-        sfx.PlayEnemyAttack_Beam();
+        
 
         StartCoroutine(ConfirmTimer());
         yield return new WaitUntil(() => waitingForConfirm == false);
@@ -1732,7 +1732,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
 
         bool isDead = playerUnit.TakeDamage(Mathf.Clamp(damageDealt - (playerUnit.defense + defenseBoost), 1, damageDealt), false);
         playerHUD.SetHP(playerUnit);
-        sfx.PlayEnemyAttack_Portal();
+        
 
         StartCoroutine(ConfirmTimer());
         yield return new WaitUntil(() => waitingForConfirm == false);
