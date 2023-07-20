@@ -27,7 +27,7 @@ public class QTEManager : MonoBehaviour
 
     private VFXController vfx;
 
-
+    private Camera MainCamera;
 
     [Header("General Variables")]
     private float timerDuration;
@@ -51,7 +51,7 @@ public class QTEManager : MonoBehaviour
     public void Start()
     {
         vfx = FindAnyObjectByType < VFXController> ();
-        
+        MainCamera = FindFirstObjectByType<Camera>();
         resultDisplayText.text = "";
         inputDisplayText.text = "";
         isWaitingForInput = false;
@@ -210,7 +210,7 @@ public class QTEManager : MonoBehaviour
                 else
                 {
                     resultDisplayText.text = "Keep Going!";
-                    vfx.PlayParticleBurst(mashQTEDisplay.transform);
+                    vfx.PlayParticleBurst(MainCamera.transform);
                     amountFilled += 1;
                 }
             }

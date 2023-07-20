@@ -18,7 +18,10 @@ public class VFXController : MonoBehaviour
     
     public void PlayParticleBurst(Transform spawnPoint)
     {
-        VisualEffect particle = Instantiate(QTEburst, BurstButton.transform.position, BurstButton.transform.rotation);
+        VisualEffect particle = Instantiate(QTEburst,new Vector3 (spawnPoint.transform.position.x, spawnPoint.transform.position.y, spawnPoint.position.z +4), spawnPoint.transform.rotation);
+       // VisualEffect particle = Instantiate(QTEburst);
+        //QTEburst.transform.rotation = spawnPoint.transform.rotation;
+        QTEburst.transform.position = new Vector3(spawnPoint.transform.position.x, spawnPoint.transform.position.y, spawnPoint.transform.position.z + 4);
         particle.Play();
 
     }
