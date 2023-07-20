@@ -20,23 +20,14 @@ public class SoundFXController : MonoBehaviour, IDataPersistence
     [SerializeField] private AudioSource playerHit;
     [SerializeField] private AudioSource enemyHit;
     [SerializeField] private AudioSource MagicImpact;
-    [SerializeField] private AudioSource QTEchargeUp;
-    [SerializeField] private AudioSource QTEchargeAlt;
     [SerializeField] private AudioSource QTEsuccess;
     [SerializeField] private AudioSource QTEfailure;
     [SerializeField] private AudioSource CurseShatter;
 
 
     [Header("Attack Sounds")]
-    [SerializeField] private AudioSource PlayerAttack_Orb;
-    [SerializeField] private AudioSource PlayerAttack_Burst;
-    [SerializeField] private AudioSource PlayerAttack_Beam;
     [SerializeField] private AudioSource PlayerAttack_Focus;
-    [SerializeField] private AudioSource EnemyAttack_Burst;
-    [SerializeField] private AudioSource EnemyAttack_Beam;
-    [SerializeField] private AudioSource EnemyAttack_Portal;
-    [SerializeField] private AudioSource PF_AttackCharge;
-    [SerializeField] private AudioSource PF_AttackAlt;
+
 
 
 
@@ -96,14 +87,6 @@ public class SoundFXController : MonoBehaviour, IDataPersistence
         MagicImpact.Play();
     }
 
-    public void PlayQTEchargeUp()
-    {
-       QTEchargeUp.Play();
-    }
-    public void PlayQTEchargeAlt()
-    {
-        QTEchargeAlt.Play();
-    }
 
     public void PlayQTEsuccess()
     {
@@ -119,41 +102,11 @@ public class SoundFXController : MonoBehaviour, IDataPersistence
     {
         CurseShatter.Play();
     }
-    public void PlayPlayerAttack_Orb()
-    {
-        PlayerAttack_Orb.Play();
-    }
-    public void PlayPlayerAttack_Beam()
-    {
-        PlayerAttack_Beam.Play();
-    }
-    public void PlayPlayerAttack_Burst()
-    {
-        PlayerAttack_Burst.Play();
-    }
+
     public void PlayPlayerAttack_Focus()
     {
         PlayerAttack_Focus.Play();
     }
-    public void PlayEnemyAttack_Beam()
-    {
-        EnemyAttack_Beam.Play();
-    }
-    public void PlayEnemyAttack_Burst()
-    {
-        EnemyAttack_Burst.Play();
-    }
-    public void PlayEnemyAttack_Portal()
-    {
-        EnemyAttack_Portal.Play();
-    }
-    public void PlayPF_AttackCharge()
-    {
-        PF_AttackCharge.Play();
-    }
-    public void PlayPF_AttackAlt()
-    {
-        PF_AttackAlt.Play();
-    }
+
 
 }

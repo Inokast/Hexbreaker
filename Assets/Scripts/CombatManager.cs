@@ -461,6 +461,10 @@ public class CombatManager : MonoBehaviour, IDataPersistence
                 rightRoomLocked = true;
             }
 
+            Debug.Log(rightRoomLocked);
+
+            Debug.Log(leftRoomLocked);
+
             GameObject.Find("Curses").SetActive(false);
             GameObject.Find("PlayerHUDPanel").SetActive(false);
             GameObject.Find("EnemyHUDPanel").SetActive(false);
@@ -1413,7 +1417,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
 
         bool isDead = playerUnit.TakeDamage(Mathf.Clamp(damageDealt - (playerUnit.defense + defenseBoost), 1, damageDealt), false);
         playerHUD.SetHP(playerUnit);
-        sfx.PlayEnemyAttack_Burst();
+        
 
         StartCoroutine(ConfirmTimer());
         yield return new WaitUntil(() => waitingForConfirm == false);
@@ -1575,7 +1579,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
 
         bool isDead = playerUnit.TakeDamage(Mathf.Clamp(damageDealt - defenseBoost, 1, damageDealt), false);
         playerHUD.SetHP(playerUnit);
-        sfx.PlayEnemyAttack_Beam();
+        
 
         StartCoroutine(ConfirmTimer());
         yield return new WaitUntil(() => waitingForConfirm == false);
@@ -1728,7 +1732,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
 
         bool isDead = playerUnit.TakeDamage(Mathf.Clamp(damageDealt - (playerUnit.defense + defenseBoost), 1, damageDealt), false);
         playerHUD.SetHP(playerUnit);
-        sfx.PlayEnemyAttack_Portal();
+        
 
         StartCoroutine(ConfirmTimer());
         yield return new WaitUntil(() => waitingForConfirm == false);

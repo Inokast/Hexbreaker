@@ -97,6 +97,9 @@ public class MapNode : MonoBehaviour, IDataPersistence
         gameData.nodesCompleted.TryGetValue(nodeID, out isCompleted);
         gameData.nodesDescriptions.TryGetValue(nodeID, out nodeDescription);
         gameData.nodesTypes.TryGetValue(nodeID, out nodeType);
+
+        rightPathLocked = gameData.rightRoomLocked;
+        leftPathLocked = gameData.leftRoomLocked;
         for (int i = 0; i < gameData.nodesEnemies.Count; i++)
         {
             if (gameData.nodeIDForEnemies[i] == nodeID)
@@ -177,8 +180,7 @@ public class MapNode : MonoBehaviour, IDataPersistence
             rightPath.isActive = true;
             rightPath.ClearFog();
         }
-
-        else 
+        else
         {
             if (rightPathLocked == false)
             {
