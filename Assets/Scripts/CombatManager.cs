@@ -290,6 +290,19 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         GameObject playerGO = Instantiate(playerPrefab, playerBattleStation);
         enemyUnits = new List<Unit> { };
         //playerUnit = playerGO.GetComponent<Unit>(); // We are now reading the unit data from GameData when we load into the scene. - Dan
+        Unit tempUnit = playerGO.GetComponent<Unit>();
+
+
+        tempUnit.unitName = playerUnit.unitName;
+        tempUnit.highDamage = playerUnit.highDamage;
+        tempUnit.midDamage = playerUnit.midDamage;
+        tempUnit.lowDamage = playerUnit.lowDamage;
+        tempUnit.defense = playerUnit.defense;
+        tempUnit.maxHP = playerUnit.maxHP;
+        tempUnit.currentHP = playerUnit.currentHP;
+
+        playerUnit = tempUnit;
+
 
         enemyPrefab = enemyPrefabs[loadedEnemyID[0]];
         enemyGO = Instantiate(enemyPrefab, enemyBattleStations[0]);
@@ -1074,7 +1087,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         DisableButtons();
 
         breakButton.interactable = false;
-        BreakMeter.charge = 0;
+        bm.ResetMeter();
         
         //Play the animation for the break button
 
@@ -1141,8 +1154,9 @@ public class CombatManager : MonoBehaviour, IDataPersistence
             sfx.PlayCurseShatter();
             cursesToTalismans += 1;
         }
-           
 
+        selectedEnemyUnit.PlayHitAnim();
+        playerUnit.PlayAttackAnim();
         // Damage the enemy selected. Choose damage based on eventState;
         bool isDead = selectedEnemyUnit.TakeDamage(damageDealt, false);
         enemyHUD.SetHP(selectedEnemyUnit);
@@ -1294,10 +1308,16 @@ public class CombatManager : MonoBehaviour, IDataPersistence
                 break;
         }
 
-        actingEnemyUnit.PlayAttackAnim();
-        playerUnit.PlayHitAnim();
 
-        battleText.text = "The " + actingEnemyUnit.unitName + " attacks! " + playerUnit.unitName + " takes " + (Mathf.Clamp(damageDealt - playerUnit.defense, 1, damageDealt)) + " damage!";
+        actingEnemyUnit.PlayAttackAnim();
+        if (playerUnit.isDefending == true)
+        {
+            playerUnit.PlayFocusHitAnim();
+        }
+
+        else { playerUnit.PlayHitAnim(); }
+
+        battleText.text = "The " + actingEnemyUnit.unitName + " attacks! " + playerUnit.unitName + " takes " + (Mathf.Clamp(damageDealt - (playerUnit.defense + defenseBoost), 1, damageDealt)) + " damage!";
 
         if (playerUnit.isDefending)
         {
@@ -1452,7 +1472,15 @@ public class CombatManager : MonoBehaviour, IDataPersistence
                 break;
         }
 
-        battleText.text = "The " + actingEnemyUnit.unitName + " attacks! " + playerUnit.unitName + " takes " + (Mathf.Clamp(damageDealt - playerUnit.defense, 1, damageDealt)) + " damage!";
+        actingEnemyUnit.PlayAttackAnim();
+        if (playerUnit.isDefending == true)
+        {
+            playerUnit.PlayFocusHitAnim();
+        }
+
+        else { playerUnit.PlayHitAnim(); }
+
+        battleText.text = "The " + actingEnemyUnit.unitName + " attacks! " + playerUnit.unitName + " takes " + (Mathf.Clamp(damageDealt - (playerUnit.defense + defenseBoost), 1, damageDealt)) + " damage!";
 
         if (playerUnit.isDefending)
         {
@@ -1596,7 +1624,15 @@ public class CombatManager : MonoBehaviour, IDataPersistence
             damageDealt = actingEnemyUnit.highDamage + actingEnemyUnit.lowDamage;
         }
 
-        battleText.text = "The " + actingEnemyUnit.unitName + " unleashes a charged attack! " + playerUnit.unitName + " takes " + (Mathf.Clamp(damageDealt - playerUnit.defense, 1, damageDealt)) + " damage!";
+        actingEnemyUnit.PlayChargedAnim();
+        if (playerUnit.isDefending == true)
+        {
+            playerUnit.PlayFocusHitAnim();
+        }
+
+        else { playerUnit.PlayHitAnim(); }
+
+        battleText.text = "The " + actingEnemyUnit.unitName + " unleashes a charged attack! " + playerUnit.unitName + " takes " + (Mathf.Clamp(damageDealt - (playerUnit.defense + defenseBoost), 1, damageDealt)) + " damage!";
 
         if (playerUnit.isDefending)
         {
@@ -1644,7 +1680,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
                 case QTEResult.LOW:
                     sfx.PlayQTEFailure();
                     defenseBoost = 1;
-                    battleText.text = "A weak block..." + playerUnit.unitName + " takes " + (Mathf.Clamp(damageDealt - defenseBoost, 1, damageDealt)) + " damage!";
+                    battleText.text = "A weak block..." + playerUnit.unitName + " takes " + (Mathf.Clamp(damageDealt - (playerUnit.defense + defenseBoost), 1, damageDealt)) + " damage!";
 
                     if (GameObject.Find("WeakBlockCurse") != null) //Changes meter charge based on curse. -Dylan 2
                     {
@@ -1659,14 +1695,14 @@ public class CombatManager : MonoBehaviour, IDataPersistence
                 case QTEResult.MID:
                     sfx.PlayQTEFailure();
                     defenseBoost = 2;
-                    battleText.text = "You block! " + playerUnit.unitName + " takes " + (Mathf.Clamp(damageDealt - defenseBoost, 1, damageDealt)) + " damage!";
+                    battleText.text = "You block! " + playerUnit.unitName + " takes " + (Mathf.Clamp(damageDealt - (playerUnit.defense + defenseBoost), 1, damageDealt)) + " damage!";
                     bm.ChangeMeterValue(15);
                     break;
 
                 case QTEResult.HIGH:
                     sfx.PlayQTEsuccess();
                     defenseBoost = 3;
-                    battleText.text = "A perfect block! " + playerUnit.unitName + " takes " + (Mathf.Clamp(damageDealt - defenseBoost, 1, damageDealt)) + " damage!";
+                    battleText.text = "A perfect block! " + playerUnit.unitName + " takes " + (Mathf.Clamp(damageDealt - (playerUnit.defense + defenseBoost), 1, damageDealt)) + " damage!";
 
                     if (GameObject.Find("AttackingCurse") != null) //Changes meter charge based on curse. If the player can only defend, that should be the only curse to apply in a perfect QTE. -Dylan 2
                     {
@@ -1689,7 +1725,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
             // Depending on degree of success, temporarily increase defense.
         }
 
-        bool isDead = playerUnit.TakeDamage(Mathf.Clamp(damageDealt - defenseBoost, 1, damageDealt), false);
+        bool isDead = playerUnit.TakeDamage(Mathf.Clamp(damageDealt - (playerUnit.defense + defenseBoost), 1, damageDealt), false);
         playerHUD.SetHP(playerUnit);
         sfx.PlayEnemyAttack_Portal();
 

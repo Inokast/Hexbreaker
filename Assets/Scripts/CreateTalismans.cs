@@ -55,6 +55,16 @@ public class CreateTalismans : MonoBehaviour, IDataPersistence
 
             tr.RegenerateTalismans();
         }
+
+        if (SceneManager.GetActiveScene().name == "Overworld")
+        {
+
+            mainMenuButton = GameObject.Find("MainMenuButton");
+
+            talismanChoicePanel = GameObject.Find("TalismanPanel");
+
+            talismanChoicePanel.SetActive(false);
+        }
     }
 
     public void LoadData(GameData gameData)
@@ -68,6 +78,7 @@ public class CreateTalismans : MonoBehaviour, IDataPersistence
 
         if (SceneManager.GetActiveScene().name == "Overworld")
         {
+            
             mainMenuButton = GameObject.Find("MainMenuButton");
 
             talismanChoicePanel = GameObject.Find("TalismanPanel");
