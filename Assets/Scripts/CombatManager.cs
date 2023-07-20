@@ -461,6 +461,10 @@ public class CombatManager : MonoBehaviour, IDataPersistence
                 rightRoomLocked = true;
             }
 
+            Debug.Log(rightRoomLocked);
+
+            Debug.Log(leftRoomLocked);
+
             GameObject.Find("Curses").SetActive(false);
             GameObject.Find("PlayerHUDPanel").SetActive(false);
             GameObject.Find("EnemyHUDPanel").SetActive(false);
