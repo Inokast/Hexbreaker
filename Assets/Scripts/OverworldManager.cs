@@ -98,7 +98,7 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
             //selectedNode = mapNodes[0];
 
             StopAllCoroutines();
-            EventTextDisplay("The spirits weakened you. May your strength in this life carry to the next.");
+            StartCoroutine(EventTextDisplay("The spirits weakened you. May your strength in this life carry to the next."));
         }
 
         playerDied = false;
@@ -223,6 +223,7 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
                         moveTimer = 0;
                         movementInitiated = true;
                         lastSelectedNodeID = selectedNode.nodeID;
+                        playerUnit.PlayOverworldJumpAnim(); // This is the jumping animation
                         
 
                         sfx.PlayButtonSelect();
@@ -274,6 +275,7 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
             if (player.transform.position == endPos)
             {
                 movementInitiated = false;
+                playerUnit.PlayOverworldFallAnim(); // This is the falling animation
 
                 if (selectedNode.isActive && !selectedNode.isCompleted) 
                 {

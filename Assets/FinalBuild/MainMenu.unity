@@ -4471,7 +4471,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Daniel
+  m_text: Dan
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 655e9bf53c8cf424795018f1ab181bda, type: 2}
   m_sharedMaterial: {fileID: -7970765992436013949, guid: 655e9bf53c8cf424795018f1ab181bda,
@@ -11237,7 +11237,7 @@ PrefabInstance:
     - target: {fileID: 2948468782288495037, guid: cd1118e95be96924f81e90c52c8360d6,
         type: 3}
       propertyPath: initializeDataIfNull
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
