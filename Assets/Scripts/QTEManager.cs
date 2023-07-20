@@ -210,7 +210,7 @@ public class QTEManager : MonoBehaviour
                 else
                 {
                     resultDisplayText.text = "Keep Going!";
-                    //vfx.PlayParticleBurst(mashQTEDisplay.transform);
+                    vfx.PlayParticleBurst(mashQTEDisplay.transform);
                     amountFilled += 1;
                 }
             }

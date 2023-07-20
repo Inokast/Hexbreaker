@@ -51,7 +51,8 @@ MonoBehaviour:
     type: 3}
   QTEburst: {fileID: 7860577462614179222, guid: d3f1f665793dd3b4ba93f51b253eb422,
     type: 3}
-  QTEarray: {fileID: 0}
+  QTEarray: {fileID: 7860577462614179222, guid: d3f1f665793dd3b4ba93f51b253eb422,
+    type: 3}
   QTEstandard: {fileID: 5438864021192993859, guid: 1c98afcd492703848b0a664a9673facd,
     type: 3}
   QTEfocus: {fileID: 0}
