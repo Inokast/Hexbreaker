@@ -27,6 +27,8 @@ public class UIManager : MonoBehaviour
 
     private SoundFXController sfx;
 
+    public Animator cinematicAnimation;
+
     void Start()
     {
         levelManager = FindObjectOfType<LevelManager>();
@@ -43,6 +45,11 @@ public class UIManager : MonoBehaviour
         // Load the gameplay scene - which will in turn save the game
         levelManager.LoadSceneWithName("Overworld"); // Whatever the name of our tutorial scene is
         // disable the ability to select a different button so that it cannot load multiple games asynchronously
+    }
+
+    IEnumerator CinematicPlay()
+    {
+        cinematicAnimation.SetTrigger("Play");
     }
 
     public void OnContinueGameButton() 

@@ -5,6 +5,7 @@ using UnityEngine;
 public class Test_Animations : MonoBehaviour
 {
     public Animator playerAnim;
+    public Unit tempScript;
 
     // Start is called before the first frame update
     void Start()
@@ -22,17 +23,20 @@ public class Test_Animations : MonoBehaviour
 
         if(Input.GetKeyDown("w"))
         {
-            playerAnim.SetTrigger("Land");
+            // playerAnim.SetTrigger("Land");
+            tempScript.PlayFocusEnterAnim();
         }
 
         if(Input.GetKeyDown("e"))
         {
-            playerAnim.SetTrigger("FocusATK");
+            // playerAnim.SetTrigger("FocusATK");
+            tempScript.PlayFocusAttackAnim() ;
         }
 
         if(Input.GetKeyDown("r"))
         {
-            playerAnim.SetTrigger("FocusHit");
+            // playerAnim.SetTrigger("FocusHit");
+            tempScript.PlayFocusHitAnim();
         }
 
         if(Input.GetKeyDown("t"))
