@@ -201,6 +201,21 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0.602
       objectReference: {fileID: 0}
+    - target: {fileID: 8833943251088926984, guid: 24af664fb6f7b714cbef0e7afbe40c7c,
+        type: 3}
+      propertyPath: prewarm
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8833943251088926984, guid: 24af664fb6f7b714cbef0e7afbe40c7c,
+        type: 3}
+      propertyPath: lengthInSec
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 8833943251088926984, guid: 24af664fb6f7b714cbef0e7afbe40c7c,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 60
+      objectReference: {fileID: 0}
     - target: {fileID: 9106229860024579983, guid: 24af664fb6f7b714cbef0e7afbe40c7c,
         type: 3}
       propertyPath: m_Name

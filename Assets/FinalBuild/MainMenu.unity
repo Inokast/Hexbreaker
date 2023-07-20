@@ -3041,17 +3041,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Project Manager
-
-    VFX
-
-    UI set up
-
-    Rigging
-
-    Tech Artist
-
-'
+  m_text: "Project Manager \n\nTech Artist:\n\tShaders and Visual Effects\n\tRigging\nCharacter
+    Development (Marsh Ghost)\n\tModeling and Textures\nAssistant Programming\n\tOutlines,
+    Sounds, and Particles"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1de9fd25d7599d143a7e08bbe1d9a09f, type: 2}
   m_sharedMaterial: {fileID: 5159345624373031867, guid: 1de9fd25d7599d143a7e08bbe1d9a09f,
