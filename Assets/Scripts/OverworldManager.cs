@@ -223,7 +223,7 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
                         moveTimer = 0;
                         movementInitiated = true;
                         lastSelectedNodeID = selectedNode.nodeID;
-                        playerUnit.PlayOverworldJumpAnim(); // This is the jumping animation
+                        //playerUnit.PlayOverworldJumpAnim(); // This is the jumping animation
                         
 
                         sfx.PlayButtonSelect();
@@ -275,7 +275,7 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
             if (player.transform.position == endPos)
             {
                 movementInitiated = false;
-                playerUnit.PlayOverworldFallAnim(); // This is the falling animation
+                //playerUnit.PlayOverworldFallAnim(); // This is the falling animation
 
                 if (selectedNode.isActive && !selectedNode.isCompleted) 
                 {
