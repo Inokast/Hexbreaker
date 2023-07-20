@@ -140,8 +140,8 @@ MonoBehaviour:
   fillGauge2: 4
   keyToPressArray: 01000000030000000400000002000000
   defense: 0
-  maxHP: 40
-  currentHP: 40
+  maxHP: 35
+  currentHP: 35
   basicAnim: {fileID: 8246803570163550450}
   overworldPlayer: {fileID: 0}
 --- !u!1001 &4807778191222061842
