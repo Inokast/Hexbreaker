@@ -400,7 +400,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
                 StartCoroutine(EnemyChargedAttack());
             }
 
-            cam.enemyTarget.position = new Vector3(actingEnemyUnit.transform.position.x, actingEnemyUnit.transform.position.y + 2, actingEnemyUnit.transform.position.z);
+            cam.enemyTarget.position = new Vector3(actingEnemyUnit.transform.position.x, actingEnemyUnit.transform.position.y + 1, actingEnemyUnit.transform.position.z);
             cam.ResetEnemyCam();
         }
 
