@@ -27,7 +27,10 @@ public class UIManager : MonoBehaviour
 
     private SoundFXController sfx;
 
+    [Header("Cinematic")]
     public Animator cinematicAnimation;
+    public GameObject cinematicOBJ;
+    public GameObject skipButton;
 
     void Start()
     {
@@ -49,14 +52,40 @@ public class UIManager : MonoBehaviour
 
     IEnumerator CinematicPlay()
     {
-        cinematicAnimation.SetTrigger("Play");
+        // cinematicAnimation.SetTrigger("Play");
+        cinematicAnimation.SetBool("Play", true);
+
+        yield return new WaitForSeconds(2f);
+
+        skipButton.SetActive(true);
+
+        yield return new WaitForSeconds(36f);
+
+        levelManager.LoadSceneWithName("Overworld");
+
+        print("cinematic done");
+    }
+
+    public void OnSkipCineButton()
+    {
+        // cinematicAnimation.time = 38f;
+        print("skipped");
+        skipButton.GetComponent<Button>().interactable = false;
+        levelManager.LoadSceneWithName("Overworld");
+        
     }
 
     public void OnContinueGameButton() 
     {
         // Load the next scene - which will load the game data
         sfx.PlayButtonSelect();
-        levelManager.LoadSceneWithName("Overworld");
+
+        cinematicOBJ.SetActive(true);
+
+        StartCoroutine(CinematicPlay());
+        
+        // levelManager.LoadSceneWithName("Overworld");
+        // moved to the coroutine (Arissa, 7/20 4:40am)
     }
 
     public void OnPlayAgainButton()
@@ -116,13 +145,17 @@ public class UIManager : MonoBehaviour
 
     public void OnPageClick(GameObject tempVar) // Function to turn page credits
     {
+        sfx.PlayButtonSelect();
+
         currentPage.SetActive(false);
         currentPage = tempVar;
         tempVar.SetActive(true);
     }
 
-    public void OnHelpPageClick(GameObject tempVar)
+    public void OnHelpPageClick(GameObject tempVar) // Function for the Next and Previous buttons on the Help panel
     {
+        sfx.PlayButtonSelect();
+
         currentHelp.SetActive(false);
         currentHelp = tempVar;
         tempVar.SetActive(true);
