@@ -900,18 +900,18 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         switch (eventManager.eventType)
         {
             case "Timed":
-                //vfx.PlayParticleTimed(selectedEnemyUnit.transform);
+                vfx.PlayParticleTimed(selectedEnemyUnit.transform);
                 break;
             case "Array":
-                //vfx.PlayParticleArray(selectedEnemyUnit.transform);
+                vfx.PlayParticleArray(selectedEnemyUnit.transform);
                 break;
 
             case "Mash":
-                //vfx.PlayParticleMash(selectedEnemyUnit.transform);
+                vfx.PlayParticleMash(selectedEnemyUnit.transform);
                 break;
 
             case "Standard":
-                //vfx.PlayParticleStandard(selectedEnemyUnit.transform);
+                vfx.PlayParticleStandard(selectedEnemyUnit.transform);
                 break;
 
             default:
@@ -1157,6 +1157,7 @@ public class CombatManager : MonoBehaviour, IDataPersistence
 
         selectedEnemyUnit.PlayHitAnim();
         playerUnit.PlayAttackAnim();
+        
         // Damage the enemy selected. Choose damage based on eventState;
         bool isDead = selectedEnemyUnit.TakeDamage(damageDealt, false);
         enemyHUD.SetHP(selectedEnemyUnit);
