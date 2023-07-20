@@ -27,6 +27,12 @@ public class BreakMeter : MonoBehaviour
         charge = 0;
     }
 
+    public void ResetMeter() 
+    {
+        breakSlider.value = 0;
+        charge = breakSlider.value;
+    }
+
     public void ChangeMeterValue(int value)
     {
         breakSlider.value += value;

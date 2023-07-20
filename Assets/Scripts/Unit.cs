@@ -141,7 +141,7 @@ public class Unit : MonoBehaviour
 
         if (basicAnim != null)
         {
-            basicAnim.SetTrigger("Fall");
+            basicAnim.SetTrigger("Land");
         }
     }
 }
