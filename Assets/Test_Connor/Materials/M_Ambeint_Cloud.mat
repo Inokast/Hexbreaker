@@ -102,13 +102,13 @@ Material:
     - _BumpScale: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
-    - _CloudDensity: -1.25
-    - _CloudScale: 208.7
+    - _CloudDensity: -1.1
+    - _CloudScale: 289.38
     - _Cull: 2
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
-    - _DissolvePower: 1.46
+    - _DissolvePower: 6.8
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1

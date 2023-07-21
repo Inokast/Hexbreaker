@@ -123,13 +123,13 @@ Material:
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DissolveAmount: 1.03
-    - _Distance: 2.19
+    - _Distance: 2.22
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
     - _FoamAmount: 4.11
     - _FoamCutoff: 5.11
-    - _FoamSpeed: 0.06
+    - _FoamSpeed: 0.04
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
