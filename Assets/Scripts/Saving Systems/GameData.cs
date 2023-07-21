@@ -54,7 +54,7 @@ public class GameData
 
     public GameData() 
     {
-        playerPositionInWorld = new Vector3(0, .5f, -8);
+        playerPositionInWorld = new Vector3(-.4f, .55f, -12f);
         worldGenerated = false;
         lastSelectedNodeID = "";
         rightRoomLocked = false;

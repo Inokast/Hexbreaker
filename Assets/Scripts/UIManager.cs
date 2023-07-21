@@ -11,7 +11,7 @@ public class UIManager : MonoBehaviour , IDataPersistence
     [SerializeField] private GameObject helpPanel;
     [SerializeField] private GameObject creditsPanel;
 
-    private bool isNewGame = false;
+    private bool worldGenerated = false;
 
     [Header("Credits")]
     [SerializeField] private GameObject pageConnor;
@@ -55,42 +55,39 @@ public class UIManager : MonoBehaviour , IDataPersistence
 
     public void LoadData(GameData gameData)
     {
-        gameData.worldGenerated = isNewGame;
+        //gameData.worldGenerated = isNewGame;
+        worldGenerated = gameData.worldGenerated;
     }
 
     // Passes data to the saved data file
     public void SaveData(GameData gameData)
     {
-        
+
     }
 
     IEnumerator CinematicPlay()
     {
 
-        if (isNewGame == true)
-        {
-            // cinematicAnimation.SetTrigger("Play");
-            cinematicAnimation.SetBool("Play", true);
+        // cinematicAnimation.SetTrigger("Play");
+        cinematicAnimation.SetBool("Play", true);
 
-            yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(2f);
 
-            skipButton.SetActive(true);
+        skipButton.SetActive(true);
 
-            yield return new WaitForSeconds(36f);
+        yield return new WaitForSeconds(36f);
 
-            levelManager.LoadSceneWithName("Overworld");
-        }
+        levelManager.LoadSceneWithName("Overworld");
 
-        else { levelManager.LoadSceneWithName("Overworld"); }
+        
     }
 
     public void OnSkipCineButton()
     {
         // cinematicAnimation.time = 38f;
-        print("skipped");
         skipButton.GetComponent<Button>().interactable = false;
         levelManager.LoadSceneWithName("Overworld");
-        
+
     }
 
     public void OnContinueGameButton() 
@@ -98,9 +95,16 @@ public class UIManager : MonoBehaviour , IDataPersistence
         // Load the next scene - which will load the game data
         sfx.PlayButtonSelect();
 
-        cinematicOBJ.SetActive(true);
+        if (worldGenerated == false)
+        {
+            cinematicOBJ.SetActive(true);
 
-        StartCoroutine(CinematicPlay());
+            StartCoroutine(CinematicPlay());
+        }
+
+        else { levelManager.LoadSceneWithName("Overworld"); }
+
+        
         
         // levelManager.LoadSceneWithName("Overworld");
         // moved to the coroutine (Arissa, 7/20 4:40am)
@@ -192,8 +196,7 @@ public class UIManager : MonoBehaviour , IDataPersistence
     public void OnResetDataButton()
     {
         sfx.PlayButtonSelect();
-
-        isNewGame = true;
         DataPersistenceManager.instance.NewGame();
+        worldGenerated = false;
     }
 }
