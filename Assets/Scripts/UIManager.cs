@@ -4,12 +4,14 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class UIManager : MonoBehaviour
+public class UIManager : MonoBehaviour , IDataPersistence
 {
 
     [SerializeField] private GameObject settingsPanel;
     [SerializeField] private GameObject helpPanel;
     [SerializeField] private GameObject creditsPanel;
+
+    private bool isNewGame = false;
 
     [Header("Credits")]
     [SerializeField] private GameObject pageConnor;
@@ -38,6 +40,7 @@ public class UIManager : MonoBehaviour
         sfx = FindAnyObjectByType<SoundFXController>();
         currentPage = pageConnor;
         currentHelp = helpCombat;
+
     }
 
     public void OnNewGameButton() 
@@ -50,20 +53,35 @@ public class UIManager : MonoBehaviour
         // disable the ability to select a different button so that it cannot load multiple games asynchronously
     }
 
+    public void LoadData(GameData gameData)
+    {
+        gameData.worldGenerated = isNewGame;
+    }
+
+    // Passes data to the saved data file
+    public void SaveData(GameData gameData)
+    {
+        
+    }
+
     IEnumerator CinematicPlay()
     {
-        // cinematicAnimation.SetTrigger("Play");
-        cinematicAnimation.SetBool("Play", true);
 
-        yield return new WaitForSeconds(2f);
+        if (isNewGame == true)
+        {
+            // cinematicAnimation.SetTrigger("Play");
+            cinematicAnimation.SetBool("Play", true);
 
-        skipButton.SetActive(true);
+            yield return new WaitForSeconds(2f);
 
-        yield return new WaitForSeconds(36f);
+            skipButton.SetActive(true);
 
-        levelManager.LoadSceneWithName("Overworld");
+            yield return new WaitForSeconds(36f);
 
-        print("cinematic done");
+            levelManager.LoadSceneWithName("Overworld");
+        }
+
+        else { levelManager.LoadSceneWithName("Overworld"); }
     }
 
     public void OnSkipCineButton()
@@ -175,7 +193,7 @@ public class UIManager : MonoBehaviour
     {
         sfx.PlayButtonSelect();
 
-
+        isNewGame = true;
         DataPersistenceManager.instance.NewGame();
     }
 }
