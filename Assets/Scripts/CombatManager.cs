@@ -1256,6 +1256,11 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         // Here begins endturn functionality
         if (isDead)
         {
+            selectedEnemyUnit.PlayDeathAnim();
+            print("welp");
+
+            yield return new WaitForSeconds(2);
+
             if (enemyUnits.Count > 1)
             {
                 enemyUnits.Remove(selectedEnemyUnit);
