@@ -383,6 +383,8 @@ public class OverworldManager : MonoBehaviour, IDataPersistence
                 combatFinished = false;
                 //print("Node " + node.name + " completed");
             }
+            node.rightPathLocked = false;
+            node.leftPathLocked = false;
         }
 
         playerHUD.SetHUD(playerUnit);

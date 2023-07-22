@@ -19,8 +19,8 @@ public class MapNode : MonoBehaviour, IDataPersistence
     [Header("Pathing")]
     [SerializeField] private MapNode leftPath;
     [SerializeField] private MapNode rightPath;
-    private bool rightPathLocked;
-    private bool leftPathLocked;
+    public bool rightPathLocked;
+    public bool leftPathLocked;
 
     [SerializeField] private MapNode[] parallelNodes;
 
