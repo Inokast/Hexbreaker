@@ -461,9 +461,9 @@ public class CombatManager : MonoBehaviour, IDataPersistence
                 rightRoomLocked = true;
             }
 
-            Debug.Log(rightRoomLocked);
+            //Debug.Log(rightRoomLocked); // I commented these out for the build - Dan 07/22/2023
 
-            Debug.Log(leftRoomLocked);
+            //Debug.Log(leftRoomLocked);
 
             GameObject.Find("Curses").SetActive(false);
             GameObject.Find("PlayerHUDPanel").SetActive(false);
@@ -983,6 +983,9 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         // Here begins endturn functionality
         if (isDead)
         {
+            selectedEnemyUnit.PlayDeathAnim();
+            yield return new WaitForSeconds(2);
+
             if (enemyUnits.Count > 1)
             {
                 enemyUnits.Remove(selectedEnemyUnit);
@@ -1257,8 +1260,6 @@ public class CombatManager : MonoBehaviour, IDataPersistence
         if (isDead)
         {
             selectedEnemyUnit.PlayDeathAnim();
-            print("welp");
-
             yield return new WaitForSeconds(2);
 
             if (enemyUnits.Count > 1)
