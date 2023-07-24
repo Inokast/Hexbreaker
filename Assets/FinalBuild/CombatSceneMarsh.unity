@@ -6114,7 +6114,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LookAt
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 853208291}
     - target: {fileID: 1556985725438616537, guid: abeb80de53ca6274d805480d91e5f067,
         type: 3}
       propertyPath: m_LocalRotation.w
@@ -6230,6 +6230,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: abeb80de53ca6274d805480d91e5f067, type: 3}
+--- !u!4 &853208291 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 247401116890126056, guid: abeb80de53ca6274d805480d91e5f067,
+    type: 3}
+  m_PrefabInstance: {fileID: 853208290}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &854086848
 PrefabInstance:
   m_ObjectHideFlags: 0
